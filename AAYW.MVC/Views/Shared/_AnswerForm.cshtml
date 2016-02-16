@@ -1,0 +1,17 @@
+﻿@using AAYW.Models.ViewModels
+@model AnswerModel
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(x => x.ParentId)
+        <div class="row">
+            @Html.LabelFor(m => m.Description)
+            <div class="control mui-textfield">
+                @Html.EditorFor(m => m.Description)
+            </div>
+        </div>
+        <div class="row">
+            <div class="control">
+                <input class="mui-btn mui-btn--raised" type="submit" value="@Html.Text("Reply")" />
+            </div>
+        </div>
+    }

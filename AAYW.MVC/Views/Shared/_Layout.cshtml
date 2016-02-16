@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AAYW</title>
+    <link href="~/Content/css/mui.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <header>
+        @Html.Partial("_Menu")
+    </header>
+    <main class="body-content mui-container-fluid">
+        @RenderBody()
+    </main>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

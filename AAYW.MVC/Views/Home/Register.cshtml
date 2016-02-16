@@ -1,0 +1,42 @@
+﻿@using AAYW.Models.ViewModels;
+@model RegistrationModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="mui-row center">
+    <div class="mui-col-md-4 mui-col-lg-offset-4">
+
+        <h2>@Html.Text("Register")</h2>
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <div class="error">
+                    @Html.ValidationSummary()
+                </div>
+            </div>
+            <div class="row">
+                <div class="control mui-textfield">
+                    @Html.EditorFor(m => m.login, new { htmlAttributes = new { placeholder = Html.Text("Login") } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="control mui-textfield">
+                    @Html.EditorFor(m => m.password, new { htmlAttributes = new { placeholder = Html.Text("Password") } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="control mui-textfield">
+                    @Html.EditorFor(m => m.confirmation, new { htmlAttributes = new { placeholder = Html.Text("Confirmation") } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="control">
+                    <input class="mui-btn mui-btn--raised" type="submit" value="@Html.Text("CreateAccount")" />
+                </div>
+            </div>
+        }
+    </div>
+    
+
+</div>

@@ -1,0 +1,36 @@
+﻿@using AAYW.Models.ViewModels;
+@model LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<div class="mui-row center">
+    <div class="mui-col-md-4 mui-col-lg-offset-4">
+        <h2>@Html.Text("Login")</h2>
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <div class="error">
+                    @Html.ValidationSummary()
+                </div>
+            </div>
+            <div class="row">
+                <div class="control mui-textfield">
+                    @Html.EditorFor(m => m.login, new { htmlAttributes = new { placeholder = Html.Text("Login") } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="control mui-textfield">
+                    @Html.EditorFor(m => m.password, new { htmlAttributes = new { placeholder = Html.Text("Password") } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="control">
+                    <input class="mui-btn mui-btn--raised" type="submit" value="@Html.Text("Login")" />
+                    <a href="@Url.RouteUrl("Register")" class="mui-btn mui-btn--flat">@Html.Text("Register")</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@{ 
+    ViewBag.Title = "Welcome";
+}
+<div class="landing mui-panel center">
+    <img src="~/Content/img/logo-big.png" alt="@Html.Text("LandingExplanation")" />
+    <h1>
+        @Html.Text("LandingWelcome")
+    </h1>
+    <p>
+        @Html.Text("LandingAsk")
+    </p>
+    <p>
+        @Html.Text("LandingAnswer")
+    </p>
+    <p>
+        @Html.Text("LandingExplanation")
+    </p>
+    <a href="@Url.RouteUrl("CreateQuestion")" class="mui-btn mui-btn--raised mui-btn--large">@Html.Text("AskOwn")</a>
+    <a href="@Url.RouteUrl("Home")" class="mui-btn mui-btn--flat">@Html.Text("TryAnswer")</a>
+</div>

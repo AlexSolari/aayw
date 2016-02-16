@@ -1,0 +1,41 @@
+﻿@using AAYW.Models.ViewModels;
+@model CreateQuestionModel
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="mui-panel center">
+    <h2>@Html.Text("AskOwn")</h2>
+    @if (!AAYW.DependecyResolver.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>().IsAuthorized)
+    {
+        <div class="info">
+            <h3>@Html.Text("RegisterAlert")</h3>
+            <p>@Html.Text("RegisterExplanation")</p>
+        </div>
+    }
+    
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            @Html.ValidationSummary()
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Title)
+            <div class="control mui-textfield">
+                @Html.EditorFor(m => m.Title)
+            </div>
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.Description)
+            <div class="control mui-textfield">
+                @Html.EditorFor(m => m.Description)
+            </div>
+        </div>
+        <div class="row">
+            <div class="control">
+                <input class="mui-btn mui-btn--raised" type="submit" value="@Html.Text("Create")" />
+            </div>
+        </div>
+    }
+</div>  
