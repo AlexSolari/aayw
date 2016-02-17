@@ -46,12 +46,15 @@ namespace AAYW.MVC.Controllers
             var maxLengthDescription = (authorized) ? 1000 : 200;
             var maxLengthTitle = (authorized) ? 400 : 80;
 
-            if (model.Description.Length > maxLengthDescription)
+            model.Description = model.Description.Trim();
+            model.Title = model.Title.Trim();
+
+            if (model.Description.Length > maxLengthDescription || model.Description.Length == 0)
             {
                 ModelState.AddModelError("Description", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Description", maxLengthDescription));
             }
 
-            if (model.Title.Length > maxLengthTitle)
+            if (model.Title.Length > maxLengthTitle || model.Title.Length == 0)
             {
                 ModelState.AddModelError("Title", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Title", maxLengthTitle));
             }

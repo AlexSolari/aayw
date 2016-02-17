@@ -45,7 +45,7 @@ namespace AAYW.Core.Data.Managers
                 return null;
             }
 
-            newQuestion.AutorId = author?.Id ?? Guid.Empty;
+            newQuestion.AutorId = (author != null) ? author.Id : Guid.Empty;
             newQuestion.Views = 0;
             newQuestion.Description = description;
             newQuestion.Title = title;
