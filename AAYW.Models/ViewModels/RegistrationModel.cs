@@ -16,5 +16,10 @@ namespace AAYW.Models.ViewModels
 
         [DataType(DataType.Password)]
         public string confirmation { get; set; }
+
+        public RegistrationModel()
+        {
+            confirmation = login = password = string.Empty;
+        }
     }
 }

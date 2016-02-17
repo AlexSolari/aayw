@@ -13,5 +13,10 @@ namespace AAYW.Models.ViewModels
         public string Description { get; set; }
 
         public Guid ParentId { get; set; }
+
+        public AnswerModel()
+        {
+            Description = string.Empty;
+        }
     }
 }

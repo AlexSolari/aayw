@@ -13,5 +13,10 @@ namespace AAYW.Models.ViewModels
 
         [DataType(DataType.Password)]
         public string password { get; set; }
+
+        public LoginModel()
+        {
+            login = password = string.Empty;
+        }
     }
 }

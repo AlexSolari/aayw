@@ -13,5 +13,10 @@ namespace AAYW.Models.ViewModels
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        public CreateQuestionModel()
+        {
+            Title = Description = string.Empty;
+        }
     }
 }
