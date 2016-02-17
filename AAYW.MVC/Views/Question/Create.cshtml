@@ -2,7 +2,7 @@
 @model CreateQuestionModel
 @{
     ViewBag.Title = "Create";
-    var Length = new { Title = 80, Description = 200 };
+    var Length = new { Title = 400, Description = 1000 };
     Func<string, object> makeAttributes = (key) => new Dictionary<string,Object> { {"data-reactive","true"}, {"data-reactive-target",key+"CharCounter"}, {"data-reactive-method", "input"} };
 }
 
@@ -10,7 +10,7 @@
     <h2>@Html.Text("AskOwn")</h2>
     @if (!AAYW.DependecyResolver.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>().IsAuthorized)
     {
-        Length = new { Title = 400, Description = 1000 };
+        Length = new { Title = 80, Description = 200 }; 
         <div class="info">
             <h3>@Html.Text("RegisterAlert")</h3>
             <p>@Html.Text("RegisterExplanation")</p>
