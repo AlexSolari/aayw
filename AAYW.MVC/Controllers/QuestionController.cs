@@ -28,6 +28,16 @@ namespace AAYW.MVC.Controllers
         [HttpPost]
         public ActionResult Index(AnswerModel model)
         {
+            if (string.IsNullOrWhiteSpace(model.Description) || model.Description.Length > 1000)
+            {
+                ModelState.AddModelError("Description", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Description", 1000));
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToRoute("Question", new { id = model.ParentId.ToString() });
+            }
+
             answerManager.Create(model.Description, model.ParentId);
 
             return RedirectToRoute("Question", new { id = model.ParentId.ToString() });
@@ -46,15 +56,11 @@ namespace AAYW.MVC.Controllers
             var maxLengthDescription = (authorized) ? 1000 : 200;
             var maxLengthTitle = (authorized) ? 400 : 80;
 
-            model.Description = model.Description.Trim();
-            model.Title = model.Title.Trim();
-
-            if (model.Description.Length > maxLengthDescription || model.Description.Length == 0)
+            if (string.IsNullOrWhiteSpace(model.Description) || model.Description.Length > maxLengthDescription)
             {
                 ModelState.AddModelError("Description", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Description", maxLengthDescription));
             }
-
-            if (model.Title.Length > maxLengthTitle || model.Title.Length == 0)
+            if (string.IsNullOrWhiteSpace(model.Title) || model.Title.Length > maxLengthTitle)
             {
                 ModelState.AddModelError("Title", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Title", maxLengthTitle));
             }
@@ -63,6 +69,9 @@ namespace AAYW.MVC.Controllers
             {
                 return View(model);
             }
+
+            model.Description = model.Description.Trim();
+            model.Title = model.Title.Trim();
 
             var user = userManager.CurrentUser;
             var newQuestion = questionManager.Create(model.Description, model.Title, user);

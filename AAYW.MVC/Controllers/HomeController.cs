@@ -45,34 +45,36 @@ namespace AAYW.MVC.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationModel model)
         {
-            model.login = model.login.Trim();
-            model.password = model.password.Trim();
-            model.confirmation = model.confirmation.Trim();
-
-            if (!model.password.Equals(model.confirmation))
+            if (string.IsNullOrWhiteSpace(model.confirmation))
             {
-                ModelState.AddModelError("password", ResourceAccessor.Instance.Get("PasswordsAreNotEqual"));
+                model.confirmation = string.Empty;
             }
 
-            if (!userManager.IsAvalibleForCreation(model.login))
+            if (string.IsNullOrWhiteSpace(model.login) || model.login.Length > 50)
             {
-                ModelState.AddModelError("login", ResourceAccessor.Instance.Get("UserAlreadyRegistered"));
+                ModelState.AddModelError("login", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Login", 50));
             }
-
-            if (model.login.Length > 50 || model.login.Length == 0)
+            else if (string.IsNullOrWhiteSpace(model.password) || model.password.Length > 50)
             {
                 ModelState.AddModelError("password", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Password", 50));
             }
-
-            if (model.password.Length > 50 || model.password.Length == 0)
+            else if (!model.password.Equals(model.confirmation))
             {
-                ModelState.AddModelError("login", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Login", 50));
+                ModelState.AddModelError("password", ResourceAccessor.Instance.Get("PasswordsAreNotEqual"));
+            }
+            else if (!userManager.IsAvalibleForCreation(model.login))
+            {
+                ModelState.AddModelError("login", ResourceAccessor.Instance.Get("UserAlreadyRegistered"));
             }
 
             if (!ModelState.IsValid)
             {
                 return View();
             }
+
+            model.login = model.login.Trim();
+            model.password = model.password.Trim();
+            model.confirmation = model.confirmation.Trim();
 
             if (userManager.Register(model.login, model.password))
             {

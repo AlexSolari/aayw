@@ -2,13 +2,15 @@
 @model CreateQuestionModel
 @{
     ViewBag.Title = "Create";
+    var Length = new { Title = 80, Description = 200 };
+    Func<string, object> makeAttributes = (key) => new Dictionary<string,Object> { {"data-reactive","true"}, {"data-reactive-target",key+"CharCounter"}, {"data-reactive-method", "input"} };
 }
-
 
 <div class="mui-panel center">
     <h2>@Html.Text("AskOwn")</h2>
     @if (!AAYW.DependecyResolver.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>().IsAuthorized)
     {
+        Length = new { Title = 400, Description = 1000 };
         <div class="info">
             <h3>@Html.Text("RegisterAlert")</h3>
             <p>@Html.Text("RegisterExplanation")</p>
@@ -23,13 +25,19 @@
         <div class="row">
             @Html.LabelFor(m => m.Title)
             <div class="control mui-textfield">
-                @Html.EditorFor(m => m.Title)
+                @Html.EditorFor(m => m.Title, new { htmlAttributes = makeAttributes("QuestionTitle") })
+            </div>
+            <div id="char-counter">
+                <span id="question-title-char-counter">0</span>/@Length.Title
             </div>
         </div>
         <div class="row">
             @Html.LabelFor(m => m.Description)
             <div class="control mui-textfield">
-                @Html.EditorFor(m => m.Description)
+                @Html.EditorFor(m => m.Description, new { htmlAttributes = makeAttributes("QuestionDescription") })
+            </div>
+            <div id="char-counter">
+                <span id="question-descr-char-counter">0</span>/@Length.Description
             </div>
         </div>
         <div class="row">

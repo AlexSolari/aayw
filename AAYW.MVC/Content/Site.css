@@ -53,6 +53,10 @@ ul.inline li { display: inline-block; }
 .validation-summary-errors ul{
     margin: 0;
 }
+input.input-validation-error, textarea.input-validation-error{
+    border: none;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.26);
+}
 header{
     margin-bottom: 1em;
 }
@@ -67,4 +71,10 @@ header{
 }
 .answer-metadata-postingtime{
     color: rgba(27, 27, 27, 0.53)
+}
+#char-counter {
+    float: left;
+    margin-top: -1em;
+    color: rgba(0, 0, 0, 0.5);
+    position: absolute;
 }
