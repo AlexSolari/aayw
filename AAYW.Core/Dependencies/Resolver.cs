@@ -19,7 +19,10 @@ namespace AAYW.Core.Dependecies
                 return typeof(T);
         }
 
+        /// <typeparam name="T">What will be requested</typeparam>
+        /// <typeparam name="I">What will be returned</typeparam>
         public static void RegisterType<T, I>()
+            where I : T
         {
             typeDependencies.Add(typeof(T), typeof(I));
         }

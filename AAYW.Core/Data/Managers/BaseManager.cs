@@ -35,5 +35,15 @@ namespace AAYW.Core.Data.Managers
             provider.Update(model);
             return true;
         }
+
+        public TModel GetByField(string field, string value)
+        {
+            return provider.GetByField(field, value);
+        }
+
+        public IList<TModel> GeListByField(string field, string value)
+        {
+            return provider.GetListByField(field, value);
+        }
     }
 }

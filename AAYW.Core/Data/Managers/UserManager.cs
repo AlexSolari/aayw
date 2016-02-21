@@ -7,6 +7,8 @@ using System.Web;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using AAYW.Core.Extensions;
+using AAYW.Core.Crypto;
 
 namespace AAYW.Core.Data.Managers
 {
@@ -24,7 +26,7 @@ namespace AAYW.Core.Data.Managers
 
             var newuser = Resolver.GetInstance<User>();
 
-            newuser.PasswordHash = Encryptor.Instance.CryptPassword(newuser, passwordRaw);
+            newuser.PasswordHash = Resolver.GetInstance<ICryptoProcessor>().CryptPassword(newuser, passwordRaw);
             newuser.Login = login;
 
             provider.Create(newuser);
@@ -39,7 +41,7 @@ namespace AAYW.Core.Data.Managers
             if (user == null)
                 return false;
 
-            if (Encryptor.Instance.CryptPassword(user, passwordRaw) != user.PasswordHash)
+            if (Resolver.GetInstance<ICryptoProcessor>().CryptPassword(user, passwordRaw) != user.PasswordHash)
                 return false;
 
             provider.Update(user);
@@ -59,7 +61,7 @@ namespace AAYW.Core.Data.Managers
 
         public bool IsAvalibleForCreation(string login)
         {
-            if (String.IsNullOrWhiteSpace(login))
+            if (login.IsNullOrWhiteSpace())
                 return true;
 
             var result = true;

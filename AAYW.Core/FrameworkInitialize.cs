@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AAYW.Core.Crypto;
+using AAYW.Core.Dependecies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,7 @@ namespace AAYW.Core
             // Example:
             //  Resolver.RegisterType<TBase, TDerived>();
             //  Resolver.RegisterType<IInterface, TRealisation>();
+            Resolver.RegisterType<ICryptoProcessor, BaseCryptoProcessor>();
         }
     }
 }

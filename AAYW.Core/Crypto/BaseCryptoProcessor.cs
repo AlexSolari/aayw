@@ -3,28 +3,11 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AAYW.Core
+namespace AAYW.Core.Crypto
 {
-    public class Encryptor
+    public class BaseCryptoProcessor : ICryptoProcessor
     {
-        private Encryptor() { }
-
-        private static Encryptor _Encryptor;
-
-        public static Encryptor Instance
-        {
-            get
-            {
-                if (_Encryptor == null)
-                {
-                    _Encryptor = new Encryptor();
-                }
-                return _Encryptor;
-            }
-        }
-
-        #region Methods
-        private string GetSalt(Entity entity)
+        public string GetSalt(Entity entity)
         {
             return MD5Hash(entity.Id);
         }
@@ -37,7 +20,7 @@ namespace AAYW.Core
         public string MD5Hash(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
-            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+            md5.ComputeHash(Encoding.ASCII.GetBytes(text));
             var result = md5.Hash;
 
             var strBuilder = new StringBuilder();
@@ -51,9 +34,7 @@ namespace AAYW.Core
 
         public string CryptPassword(Entity entity, string password)
         {
-            return MD5Hash(password + GetSalt(entity));
+            return MD5Hash(MD5Hash(password) + GetSalt(entity));
         }
-        #endregion
-
     }
 }

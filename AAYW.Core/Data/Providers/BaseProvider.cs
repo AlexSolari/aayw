@@ -1,4 +1,5 @@
-﻿using AAYW.Database;
+﻿using AAYW.Core.Dependecies;
+using AAYW.Database;
 using AAYW.Models;
 using NHibernate.Criterion;
 using System;
@@ -17,14 +18,26 @@ namespace AAYW.Core.Data.Providers
 
         }
 
-        public T GetByField(string field, string login)
+        public T GetByField(string field, string value)
         {
             T result = null;
             Execute(session =>
             {
                 var criteria = session.CreateCriteria(typeof(T));
-                criteria.Add(Restrictions.Eq(field, login));
+                criteria.Add(Restrictions.Eq(field, value));
                 result = criteria.UniqueResult<T>();
+            });
+            return result;
+        }
+
+        public IList<T> GetListByField(string field, string value)
+        {
+            IList<T> result = Resolver.GetInstance<IList<T>>();
+            Execute(session =>
+            {
+                var criteria = session.CreateCriteria(typeof(T));
+                criteria.Add(Restrictions.Eq(field, value));
+                result = criteria.List<T>();
             });
             return result;
         }
