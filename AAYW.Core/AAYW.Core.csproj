@@ -91,9 +91,11 @@
     <Compile Include="Data\Providers\AnswerProvider.cs" />
     <Compile Include="Data\Providers\QuestionProvider.cs" />
     <Compile Include="Data\Providers\UserProvider.cs" />
+    <Compile Include="Dependencies\Resolver.cs" />
     <Compile Include="Errors\Errors.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="FrameworkInitialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\MaxLength.cs" />
   </ItemGroup>
@@ -101,10 +103,6 @@
     <ProjectReference Include="..\AAYW.Database\AAYW.Database.csproj">
       <Project>{cb7a2905-54b7-422f-91c5-08f3c0767e6b}</Project>
       <Name>AAYW.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AAYW.DependecyResolver\AAYW.DependecyResolver.csproj">
-      <Project>{26917acf-7df0-4c4c-925a-2f624fc58c0c}</Project>
-      <Name>AAYW.DependecyResolver</Name>
     </ProjectReference>
     <ProjectReference Include="..\AAYW.Models\AAYW.Models.csproj">
       <Project>{c6db87a5-53cb-4193-a289-b0bbb1e58405}</Project>

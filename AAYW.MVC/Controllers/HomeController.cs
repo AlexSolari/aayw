@@ -1,5 +1,5 @@
 ﻿using AAYW.Core.Data.Managers;
-using AAYW.DependecyResolver;
+using AAYW.Core.Dependecies;
 using System.Web.Mvc;
 using AAYW.Models;
 using AAYW.Resources;
@@ -12,8 +12,8 @@ namespace AAYW.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        UserManager userManager = DependecyResolver.Resolver.GetInstance<UserManager>();
-        QuestionManager questionManager = DependecyResolver.Resolver.GetInstance<QuestionManager>();
+        UserManager userManager = AAYW.Core.Dependecies.Resolver.GetInstance<UserManager>();
+        QuestionManager questionManager = AAYW.Core.Dependecies.Resolver.GetInstance<QuestionManager>();
 
         [HttpGet]
         public ActionResult Index()

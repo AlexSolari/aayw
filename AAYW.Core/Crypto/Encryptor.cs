@@ -3,7 +3,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AAYW.Framework
+namespace AAYW.Core
 {
     public class Encryptor
     {

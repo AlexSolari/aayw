@@ -178,10 +178,6 @@
       <Project>{ed0d08d6-f804-422f-ace9-e5dc522677c0}</Project>
       <Name>AAYW.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AAYW.DependecyResolver\AAYW.DependecyResolver.csproj">
-      <Project>{26917acf-7df0-4c4c-925a-2f624fc58c0c}</Project>
-      <Name>AAYW.DependecyResolver</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AAYW.Models\AAYW.Models.csproj">
       <Project>{c6db87a5-53cb-4193-a289-b0bbb1e58405}</Project>
       <Name>AAYW.Models</Name>

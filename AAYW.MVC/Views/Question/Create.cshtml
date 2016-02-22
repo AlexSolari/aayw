@@ -8,7 +8,7 @@
 
 <div class="mui-panel center">
     <h2>@Html.Text("AskOwn")</h2>
-    @if (!AAYW.DependecyResolver.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>().IsAuthorized)
+    @if (!AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>().IsAuthorized)
     {
         Length = new { Title = 80, Description = 200 }; 
         <div class="info">

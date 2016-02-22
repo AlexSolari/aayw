@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AAYW.DependecyResolver
+namespace AAYW.Core.Dependecies
 {
     public static class Resolver
     {

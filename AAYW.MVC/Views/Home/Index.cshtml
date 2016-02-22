@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home";
-    var manager = AAYW.DependecyResolver.Resolver.GetInstance<AAYW.Core.Data.Managers.AnswerManager>();
+    var manager = AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.AnswerManager>();
 }
 @model IList<Question>
 @foreach (var question in Model.OrderByDescending(x => x.Views))

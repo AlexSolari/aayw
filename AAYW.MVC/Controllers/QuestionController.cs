@@ -6,14 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AAYW.Core.Dependecies;
 
 namespace AAYW.MVC.Controllers
 {
     public class QuestionController : Controller
     {
-        UserManager userManager = DependecyResolver.Resolver.GetInstance<UserManager>();
-        QuestionManager questionManager = DependecyResolver.Resolver.GetInstance<QuestionManager>();
-        AnswerManager answerManager = DependecyResolver.Resolver.GetInstance<AnswerManager>();
+        UserManager userManager = AAYW.Core.Dependecies.Resolver.GetInstance<UserManager>();
+        QuestionManager questionManager = AAYW.Core.Dependecies.Resolver.GetInstance<QuestionManager>();
+        AnswerManager answerManager = AAYW.Core.Dependecies.Resolver.GetInstance<AnswerManager>();
 
         [HttpGet]
         public ActionResult Index(string id)

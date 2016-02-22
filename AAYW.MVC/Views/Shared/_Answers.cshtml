@@ -1,6 +1,6 @@
 ﻿@model Guid
 @{
-    var answers = AAYW.DependecyResolver.Resolver.GetInstance<AAYW.Core.Data.Managers.AnswerManager>().GetList(Model.ToString());
+    var answers = AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.AnswerManager>().GetList(Model.ToString());
 }
 <ul class="no-marker">
 

@@ -1,5 +1,5 @@
 ﻿using AAYW.Core.Data.Providers;
-using AAYW.DependecyResolver;
+using AAYW.Core.Dependecies;
 using AAYW.Models;
 using System;
 using System.Collections.Generic;
