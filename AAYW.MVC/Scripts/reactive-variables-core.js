@@ -1,3 +1,5 @@
+"use strict";
+
 function ReactiveVariable(data) {
     this._data = data;
     this._beforeSet = [];
@@ -8,13 +10,14 @@ function ReactiveVariable(data) {
 ReactiveVariable.BeforeGet = "bS";
 ReactiveVariable.BeforeSet = "bG";
 ReactiveVariable.AfterSet = "aS";
+ReactiveVariable.Prefix = "__rv-";
 
 ReactiveVariable.Initialize = function () {
     var scopedDOM = document.querySelectorAll('*[data-reactive="true"]');
 
     var length = scopedDOM.length;
     for (var i = 0; i < length; i++) {
-        var variableName = "__rv-"+scopedDOM[i].dataset["reactiveTarget"];
+        var variableName = ReactiveVariable.Prefix + scopedDOM[i].dataset["reactiveTarget"];
 
         if (!window[variableName])
             window[variableName] = new ReactiveVariable(null);
