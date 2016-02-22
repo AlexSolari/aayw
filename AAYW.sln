@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAYW.Models", "AAYW.Models\AAYW.Models.csproj", "{C6DB87A5-53CB-4193-A289-B0BBB1E58405}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAYW.DependecyResolver", "AAYW.DependecyResolver\AAYW.DependecyResolver.csproj", "{26917ACF-7DF0-4C4C-925A-2F624FC58C0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAYW.Resources", "AAYW.Resources\AAYW.Resources.csproj", "{8907E55A-87C2-4352-B777-FEAD71AD157F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAYW.ViewModels", "AAYW.ViewModels\AAYW.ViewModels.csproj", "{B0A99616-C6AF-4218-8196-7E8C06768A4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{8907E55A-87C2-4352-B777-FEAD71AD157F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8907E55A-87C2-4352-B777-FEAD71AD157F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8907E55A-87C2-4352-B777-FEAD71AD157F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0A99616-C6AF-4218-8196-7E8C06768A4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A99616-C6AF-4218-8196-7E8C06768A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A99616-C6AF-4218-8196-7E8C06768A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A99616-C6AF-4218-8196-7E8C06768A4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,5 @@
 ﻿using AAYW.Core.Data.Managers;
-using AAYW.Models.ViewModels;
+using AAYW.ViewModels;
 using AAYW.Resources;
 using System;
 using System.Collections.Generic;
@@ -30,7 +30,7 @@ namespace AAYW.MVC.Controllers
         {
             if (string.IsNullOrWhiteSpace(model.Description) || model.Description.Length > 1000)
             {
-                ModelState.AddModelError("Description", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Description", 1000));
+                ModelState.AddModelError("Description", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Description", 1000, 0));
             }
 
             if (!ModelState.IsValid)
@@ -58,11 +58,11 @@ namespace AAYW.MVC.Controllers
 
             if (string.IsNullOrWhiteSpace(model.Description) || model.Description.Length > maxLengthDescription)
             {
-                ModelState.AddModelError("Description", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Description", maxLengthDescription));
+                ModelState.AddModelError("Description", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Description", maxLengthDescription, 0));
             }
             if (string.IsNullOrWhiteSpace(model.Title) || model.Title.Length > maxLengthTitle)
             {
-                ModelState.AddModelError("Title", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Title", maxLengthTitle));
+                ModelState.AddModelError("Title", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Title", maxLengthTitle, 0));
             }
 
             if (!ModelState.IsValid)

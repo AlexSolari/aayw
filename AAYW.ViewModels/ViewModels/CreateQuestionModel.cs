@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AAYW.Models.ViewModels
+namespace AAYW.ViewModels
 {
     public class CreateQuestionModel
     {
+        [Required]
         public string Title { get; set; }
 
+        [Required]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 

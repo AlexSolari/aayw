@@ -6,7 +6,7 @@ using AAYW.Resources;
 using AAYW.Core.Errors;
 using System.Linq;
 using System;
-using AAYW.Models.ViewModels;
+using AAYW.ViewModels;
 
 namespace AAYW.MVC.Controllers
 {
@@ -45,31 +45,14 @@ namespace AAYW.MVC.Controllers
         [HttpPost]
         public ActionResult Register(RegistrationModel model)
         {
-            if (string.IsNullOrWhiteSpace(model.confirmation))
-            {
-                model.confirmation = string.Empty;
-            }
-
-            if (string.IsNullOrWhiteSpace(model.login) || model.login.Length > 50)
-            {
-                ModelState.AddModelError("login", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Login", 50));
-            }
-            else if (string.IsNullOrWhiteSpace(model.password) || model.password.Length > 50)
-            {
-                ModelState.AddModelError("password", string.Format(ResourceAccessor.Instance.Get("MaxLength"), "Password", 50));
-            }
-            else if (!model.password.Equals(model.confirmation))
-            {
-                ModelState.AddModelError("password", ResourceAccessor.Instance.Get("PasswordsAreNotEqual"));
-            }
-            else if (!userManager.IsAvalibleForCreation(model.login))
+            if (!userManager.IsAvalibleForCreation(model.login))
             {
                 ModelState.AddModelError("login", ResourceAccessor.Instance.Get("UserAlreadyRegistered"));
             }
 
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(model);
             }
 
             model.login = model.login.Trim();
@@ -91,16 +74,16 @@ namespace AAYW.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string login, string password)
+        public ActionResult Login(LoginModel model)
         {
-            if (!userManager.Login(login, password))
+            if (!userManager.Login(model.login, model.password))
             {
                 ModelState.AddModelError("", ResourceAccessor.Instance.Get("FailedToLogin"));
             }
 
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(model);
             }
 
             return RedirectToRoute("Home");

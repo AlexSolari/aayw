@@ -1,7 +1,7 @@
 ﻿@model Question
 @{
     ViewBag.Title = Model.Title;
-    var answer = AAYW.DependecyResolver.Resolver.GetInstance<AAYW.Models.ViewModels.AnswerModel>();
+    var answer = AAYW.DependecyResolver.Resolver.GetInstance<AAYW.ViewModels.AnswerModel>();
     answer.ParentId = Model.Id;
 }
 

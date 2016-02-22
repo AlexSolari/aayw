@@ -190,6 +190,10 @@
       <Project>{8907e55a-87c2-4352-b777-fead71ad157f}</Project>
       <Name>AAYW.Resources</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AAYW.ViewModels\AAYW.ViewModels.csproj">
+      <Project>{b0a99616-c6af-4218-8196-7e8c06768a4e}</Project>
+      <Name>AAYW.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -178,7 +178,7 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} must be shorter than {1} characters and longer than 0..
+        ///   Looks up a localized string similar to {0} must be shorter than {1} characters and longer than {2}..
         /// </summary>
         internal static string MaxLength {
             get {
