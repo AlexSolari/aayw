@@ -17,15 +17,5 @@ namespace AAYW.Core.Extensions
         {
             return ResourceAccessor.Instance.Get(key);
         }
-
-        public static MvcHtmlString ResourceLabelFor<T, TValue>(this HtmlHelper<T> val, Expression<Func<T, TValue>> expression)
-        {
-            var proxyValue = val.LabelFor(expression).ToString();
-            var groups = Regex.Match(proxyValue, "<[\\w\\s=\"]*>([\\w\\s-.,]*)<\\/[\\w\\s=\"]*>");
-            var resourceName = groups.Groups[1].Value;
-            var name = ResourceAccessor.Instance.Get(resourceName);
-            var result = string.Format("<label>{0}</label>", name);
-            return new MvcHtmlString(result);
-        }
     }
 }

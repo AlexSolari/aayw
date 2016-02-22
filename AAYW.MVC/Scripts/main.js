@@ -1,18 +1,17 @@
-﻿$(window).load(function () {
+﻿var CharCounterBinder = {
+    Bind: function (name) {
+        var variableName = "__rv-" + name;
+        if (window[variableName] && window[variableName].Bind)
+            window[variableName].Bind(ReactiveVariable.AfterSet, function () {
+                $("#"+name).html(this.length);
+            });
+    }
+};
+
+$(window).load(function () {
     ReactiveVariable.Initialize();
 
-    if (window.QuestionDescriptionCharCounter)
-        window.QuestionDescriptionCharCounter.Bind(ReactiveVariable.AfterSet, function () {
-            $("#question-descr-char-counter").html(this.length);
-        });
-
-    if (window.QuestionTitleCharCounter)
-        window.QuestionTitleCharCounter.Bind(ReactiveVariable.AfterSet, function () {
-            $("#question-title-char-counter").html(this.length);
-        });
-
-    if (window.AnswerDescriptionCharCounter)
-        window.AnswerDescriptionCharCounter.Bind(ReactiveVariable.AfterSet, function () {
-            $("#reply-char-counter").html(this.length);
-        });
+    CharCounterBinder.Bind("QuestionDescriptionCharCounter");
+    CharCounterBinder.Bind("QuestionTitleCharCounter");
+    CharCounterBinder.Bind("AnswerDescriptionCharCounter");
 });
