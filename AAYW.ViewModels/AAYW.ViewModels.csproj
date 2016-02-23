@@ -41,10 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\AnswerModel.cs" />
-    <Compile Include="ViewModels\CreateQuestionModel.cs" />
-    <Compile Include="ViewModels\LoginModel.cs" />
-    <Compile Include="ViewModels\RegistrationModel.cs" />
+    <Compile Include="AnswerModel.cs" />
+    <Compile Include="CreateQuestionModel.cs" />
+    <Compile Include="LoginModel.cs" />
+    <Compile Include="RegistrationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AAYW.Core\AAYW.Core.csproj">
