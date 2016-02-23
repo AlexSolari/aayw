@@ -85,11 +85,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crypto\Encryptor.cs" />
-    <Compile Include="Data\Managers\AnswerManager.cs" />
-    <Compile Include="Data\Managers\QuestionManager.cs" />
+    <Compile Include="Data\Managers\BaseManager.cs" />
     <Compile Include="Data\Managers\UserManager.cs" />
-    <Compile Include="Data\Providers\AnswerProvider.cs" />
-    <Compile Include="Data\Providers\QuestionProvider.cs" />
+    <Compile Include="Data\Providers\BaseProvider.cs" />
     <Compile Include="Data\Providers\UserProvider.cs" />
     <Compile Include="Dependencies\Resolver.cs" />
     <Compile Include="Errors\Errors.cs" />

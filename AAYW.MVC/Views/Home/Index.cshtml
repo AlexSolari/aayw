@@ -1,37 +1,3 @@
 ﻿@{
     ViewBag.Title = "Home";
-    var manager = AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.AnswerManager>();
-}
-@model IList<Question>
-@foreach (var question in Model.OrderByDescending(x => x.Views))
-{
-    var replies = manager.GetList(question.Id.ToString());
-    <ul class="no-marker">
-        <li>
-            <div class="question-label mui-panel">
-                <a href="@Url.RouteUrl("Question", new { id = question.Id.ToString() })"  class="mui--text-dark-secondary mui--text-display2">@(new string(question.Title.Take(50).ToArray()))...</a>
-                <p>@(new string(question.Description.Take(100).ToArray()))...</p>
-                <div class="question-metadata">
-                    <span class="question-metadata-views">
-                        @Html.Text("Views")
-                        <span>@question.Views</span>
-                    </span>
-                    &nbsp;|&nbsp;
-                    <span class="question-metadata-views">
-                        @Html.Text("Replies")
-                        <span>@replies.Count</span>
-                    </span>
-                </div>
-            </div>
-        </li>
-    </ul>
-}
-@if (Model.Count == 0)
-{
-    <div class="no-questions mui-panel">
-        <p>
-            @Html.Text("NoQuestions")
-        </p>
-        <a href="@Url.RouteUrl("CreateQuestion")" class="mui-btn mui-btn--raised mui-btn--large">@Html.Text("Ask")</a>
-    </div>
 }

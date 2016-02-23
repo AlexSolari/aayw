@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Ask" xml:space="preserve">
-    <value>Ask</value>
-  </data>
-  <data name="AskOwn" xml:space="preserve">
-    <value>Ask your own question</value>
-  </data>
   <data name="Confirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>
@@ -138,14 +132,8 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="LandingAnswer" xml:space="preserve">
-    <value>AAYW is a place, when you can help somebody, whos you dont know.</value>
-  </data>
-  <data name="LandingAsk" xml:space="preserve">
-    <value>AAYW is a service, where you can ask a question and get an answer.</value>
-  </data>
   <data name="LandingExplanation" xml:space="preserve">
-    <value>AAYW: Ask Anything You Want.</value>
+    <value>AAYW -- is a fat way to create customizeble site.</value>
   </data>
   <data name="LandingWelcome" xml:space="preserve">
     <value>Welcome to AAYW.</value>
@@ -159,9 +147,6 @@
   <data name="MaxLength" xml:space="preserve">
     <value>{0} must be shorter than {1} characters and longer than {2}.</value>
   </data>
-  <data name="NoQuestions" xml:space="preserve">
-    <value>NO QUESTIONS</value>
-  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -174,22 +159,7 @@
   <data name="RegisterAlert" xml:space="preserve">
     <value>Do you want to register?</value>
   </data>
-  <data name="RegisterExplanation" xml:space="preserve">
-    <value>Registration will grant you ability to ask 5 times more long questions.</value>
-  </data>
-  <data name="Replies" xml:space="preserve">
-    <value>Replies: </value>
-  </data>
-  <data name="Reply" xml:space="preserve">
-    <value>Reply</value>
-  </data>
-  <data name="TryAnswer" xml:space="preserve">
-    <value>or try to answer</value>
-  </data>
   <data name="UserAlreadyRegistered" xml:space="preserve">
     <value>Username is already taken</value>
-  </data>
-  <data name="Views" xml:space="preserve">
-    <value>Views:</value>
   </data>
 </root>

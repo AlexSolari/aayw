@@ -54,9 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataProvider.cs" />
-    <Compile Include="Mappings\AnswerMap.cs" />
     <Compile Include="Mappings\EntityMap.cs" />
-    <Compile Include="Mappings\QuestionMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

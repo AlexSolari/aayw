@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AAYW.Core.Data.Providers
 {
-    public class UserProvider : DataProvider<User>
+    public class UserProvider : BaseProvider<User>
     {
         public UserProvider()
         {
@@ -18,14 +18,7 @@ namespace AAYW.Core.Data.Providers
 
         public User GetByLogin(string login)
         {
-            User result = null;
-            Execute(session =>
-            {
-                var criteria = session.CreateCriteria(typeof(User));
-                criteria.Add(Restrictions.Eq("Login", login));
-                result = criteria.UniqueResult<User>();
-            });
-            return result;
+            return GetByField("Login", login);
         }
     }
 }

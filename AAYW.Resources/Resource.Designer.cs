@@ -61,24 +61,6 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ask.
-        /// </summary>
-        internal static string Ask {
-            get {
-                return ResourceManager.GetString("Ask", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ask your own question.
-        /// </summary>
-        internal static string AskOwn {
-            get {
-                return ResourceManager.GetString("AskOwn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Confirmation.
         /// </summary>
         internal static string Confirmation {
@@ -124,25 +106,7 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AAYW is a place, when you can help somebody, whos you dont know..
-        /// </summary>
-        internal static string LandingAnswer {
-            get {
-                return ResourceManager.GetString("LandingAnswer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AAYW is a service, where you can ask a question and get an answer..
-        /// </summary>
-        internal static string LandingAsk {
-            get {
-                return ResourceManager.GetString("LandingAsk", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AAYW: Ask Anything You Want..
+        ///   Looks up a localized string similar to AAYW -- is a fat way to create customizeble site..
         /// </summary>
         internal static string LandingExplanation {
             get {
@@ -187,15 +151,6 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NO QUESTIONS.
-        /// </summary>
-        internal static string NoQuestions {
-            get {
-                return ResourceManager.GetString("NoQuestions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Password {
@@ -232,56 +187,11 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registration will grant you ability to ask 5 times more long questions..
-        /// </summary>
-        internal static string RegisterExplanation {
-            get {
-                return ResourceManager.GetString("RegisterExplanation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Replies: .
-        /// </summary>
-        internal static string Replies {
-            get {
-                return ResourceManager.GetString("Replies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reply.
-        /// </summary>
-        internal static string Reply {
-            get {
-                return ResourceManager.GetString("Reply", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to or try to answer.
-        /// </summary>
-        internal static string TryAnswer {
-            get {
-                return ResourceManager.GetString("TryAnswer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Username is already taken.
         /// </summary>
         internal static string UserAlreadyRegistered {
             get {
                 return ResourceManager.GetString("UserAlreadyRegistered", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Views:.
-        /// </summary>
-        internal static string Views {
-            get {
-                return ResourceManager.GetString("Views", resourceCulture);
             }
         }
     }

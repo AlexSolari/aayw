@@ -12,5 +12,10 @@ namespace AAYW.Core.Extensions
         {
             return String.Format(value, args);
         }
+
+        public static bool IsNullOrWhiteSpace(this string value)
+        {
+            return String.IsNullOrWhiteSpace(value);
+        }
     }
 }

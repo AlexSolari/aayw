@@ -5,8 +5,6 @@
     <img src="~/Content/img/logo.png"/>
     <ul class="inline menu">
         <li>@Html.RouteLink(Html.Text("Home"), "Home")</li>
-        <li>@Html.RouteLink(Html.Text("Ask"), "CreateQuestion")</li>
-
         @if (authorized)
         {
             <li>

@@ -49,9 +49,9 @@ namespace AAYW.Core
             return strBuilder.ToString();
         }
 
-        public string CryptPassword(User user, string password)
+        public string CryptPassword(Entity entity, string password)
         {
-            return MD5Hash(password + GetSalt(user));
+            return MD5Hash(password + GetSalt(entity));
         }
         #endregion
 

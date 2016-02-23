@@ -10,28 +10,16 @@ using System.Linq;
 
 namespace AAYW.Core.Data.Managers
 {
-    public class UserManager
+    public class UserManager : BaseManager<UserProvider, User>
     {
-        private UserProvider userProvider = Resolver.GetInstance<UserProvider>();
-
         public UserManager()
         {
 
         }
 
-        public User GetById(string id)
-        {
-            return userProvider.GetById(id);
-        }
-
-        public IList<User> GetList()
-        {
-            return userProvider.GetList();
-        }
-
         public bool Register(string login, string passwordRaw)
         {
-            if (userProvider.GetByLogin(login) != null)
+            if (provider.GetByLogin(login) != null)
                 return false;
 
             var newuser = Resolver.GetInstance<User>();
@@ -39,7 +27,7 @@ namespace AAYW.Core.Data.Managers
             newuser.PasswordHash = Encryptor.Instance.CryptPassword(newuser, passwordRaw);
             newuser.Login = login;
 
-            userProvider.Create(newuser);
+            provider.Create(newuser);
 
             return true;
         }
@@ -47,14 +35,14 @@ namespace AAYW.Core.Data.Managers
         public bool Login(string login, string passwordRaw)
         {
             var response = HttpContext.Current.Request.RequestContext.HttpContext.Response;
-            var user = userProvider.GetByLogin(login);
+            var user = provider.GetByLogin(login);
             if (user == null)
                 return false;
 
             if (Encryptor.Instance.CryptPassword(user, passwordRaw) != user.PasswordHash)
                 return false;
 
-            userProvider.Update(user);
+            provider.Update(user);
             response.Cookies.Add(new HttpCookie("aayw-login", user.Id.ToString()));
 
             return true;
@@ -69,12 +57,6 @@ namespace AAYW.Core.Data.Managers
             return true;
         }
 
-        public bool Update(User user)
-        {
-            userProvider.Update(user);
-            return true;
-        }
-
         public bool IsAvalibleForCreation(string login)
         {
             if (String.IsNullOrWhiteSpace(login))
@@ -82,7 +64,7 @@ namespace AAYW.Core.Data.Managers
 
             var result = true;
 
-            result = result && (userProvider.GetByLogin(login) == null);
+            result = result && (provider.GetByLogin(login) == null);
 
             return result;
         }

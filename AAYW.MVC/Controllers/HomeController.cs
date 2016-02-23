@@ -13,14 +13,13 @@ namespace AAYW.MVC.Controllers
     public class HomeController : Controller
     {
         UserManager userManager = AAYW.Core.Dependecies.Resolver.GetInstance<UserManager>();
-        QuestionManager questionManager = AAYW.Core.Dependecies.Resolver.GetInstance<QuestionManager>();
 
         [HttpGet]
         public ActionResult Index()
         {
             if (Request.Cookies.AllKeys.Contains("aayw-landed"))
             {
-                return View(questionManager.GetList());
+                return View();
             }
 
             return RedirectToRoute("Landing");

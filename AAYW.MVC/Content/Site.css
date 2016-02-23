@@ -30,12 +30,6 @@ ul.inline li { display: inline-block; }
     padding: .75em;
     height: 100%;
 }
-.no-questions{
-    font-size: xx-large;
-    margin-top: 1em;
-    text-align: center;
-    padding: 3em 0;
-}
 .landing{
     font-size: large;
     margin-top: 1em;
@@ -59,22 +53,4 @@ input.input-validation-error, textarea.input-validation-error{
 }
 header{
     margin-bottom: 1em;
-}
-.info{
-    color: rgb(0, 56, 109);
-    display: inline-block;
-    border: 1px solid rgba(22, 148, 255, 0.69);
-    padding: 0em 1em 1em 1em;
-    border-radius: 1.5em;
-    background: rgba(26, 143, 255, 0.19);
-    margin-bottom: 0.5em;
-}
-.answer-metadata-postingtime{
-    color: rgba(27, 27, 27, 0.53)
-}
-#char-counter {
-    float: left;
-    margin-top: -1em;
-    color: rgba(0, 0, 0, 0.5);
-    position: absolute;
 }
