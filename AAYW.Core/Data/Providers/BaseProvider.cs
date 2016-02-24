@@ -1,5 +1,4 @@
 ﻿using AAYW.Core.Dependecies;
-using AAYW.Database;
 using AAYW.Core.Models.Bussines;
 using NHibernate.Criterion;
 using System;
