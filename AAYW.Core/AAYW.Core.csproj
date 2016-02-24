@@ -94,7 +94,6 @@
     <Compile Include="Data\Providers\UserProvider.cs" />
     <Compile Include="Dependencies\Resolver.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
-    <Compile Include="Extensions\RouteExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extras\Singleton.cs" />
     <Compile Include="FrameworkInitialize.cs" />

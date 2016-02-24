@@ -9,5 +9,5 @@
     <p>
         @Html.Text("LandingExplanation")
     </p>
-    <a href="@Url.RouteUrl("Home")" class="mui-btn mui-btn--flat">@Html.Text("Home")</a>
+    @Html.Button(Html.Text("Home"), ButtonType.Flat, Url.RouteUrl("Home"))
 </div>

@@ -27,8 +27,8 @@
             </div>
             <div class="row">
                 <div class="control">
-                    <input class="mui-btn mui-btn--raised" type="submit" value="@Html.Text("Login")" />
-                    <a href="@Url.RouteUrl("Register")" class="mui-btn mui-btn--flat">@Html.Text("Register")</a>
+                    @Html.Submit(Html.Text("Login"), ButtonType.Raised)
+                    @Html.Button(Html.Text("Register"), ButtonType.Flat, Url.RouteUrl("Register"))
                 </div>
             </div>
         }
