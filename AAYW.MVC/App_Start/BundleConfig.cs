@@ -15,7 +15,8 @@ namespace AAYW.MVC
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/Scripts").Include(
-                        "~/Scripts/main.js"));
+                        "~/Scripts/main.js", 
+                        "~/Scripts/mui.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/mui.css",
