@@ -88,7 +88,16 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} must be shorter than {1} characters and longer than {2}..
+        ///   Looks up a localized string similar to {0} and {1} must be equal.
+        /// </summary>
+        internal static string Error_Compare {
+            get {
+                return ResourceManager.GetString("Error_Compare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be shorter than {1} characters and longer than {2}.
         /// </summary>
         internal static string Error_MaxLength {
             get {

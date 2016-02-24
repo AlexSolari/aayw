@@ -21,6 +21,7 @@ namespace AAYW.Core.Models.View.User
 
         [CustomRequired]
         [CustomMaxLength(50, 0)]
+        [CustomCompare("Password")]
         [DataType(DataType.Password)]
         public string Confirmation { get; set; }
 

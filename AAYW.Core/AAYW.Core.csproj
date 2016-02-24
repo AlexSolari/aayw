@@ -84,6 +84,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotations\CustomCompareAttribute.cs" />
     <Compile Include="Annotations\CustomRequiredAttribute.cs" />
     <Compile Include="Crypto\BaseCryptoProcessor.cs" />
     <Compile Include="Crypto\ICryptoProcessor.cs" />
