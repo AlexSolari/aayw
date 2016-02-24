@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AAYW.Core.Extensions;
 
 namespace AAYW.Core.Models.Mappings
 {
@@ -15,6 +16,12 @@ namespace AAYW.Core.Models.Mappings
         {
             Id(x => x.Id).GeneratedBy.Assigned();
             Map(x => x.CreatedDate);
+            Map(x => x.ModifiedDate);
+        }
+
+        public void CrateTable()
+        {
+            Table("{0}s".FormatWith(typeof(TEntity).Name));
         }
     }
 }
