@@ -5,23 +5,29 @@ using System.Text;
 
 namespace AAYW.Core.Crypto
 {
-    public class BaseCryptoProcessor : ICryptoProcessor
+    public class BaseCryptoProcessor : ICryptoProcessor<MD5>
     {
-        public string GetSalt(Entity entity)
+        public MD5 Hasher { get; set; }
+
+        public BaseCryptoProcessor()
         {
-            return MD5Hash(entity.Id);
+            Hasher = new MD5CryptoServiceProvider();
         }
 
-        public string MD5Hash(Guid guid)
+        public string SaltFor(Entity entity)
         {
-            return MD5Hash(guid.ToString());
+            return Hash(entity.Id);
         }
 
-        public string MD5Hash(string text)
+        public string Hash(Guid guid)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            md5.ComputeHash(Encoding.ASCII.GetBytes(text));
-            var result = md5.Hash;
+            return Hash(guid.ToString());
+        }
+
+        public string Hash(string text)
+        {
+            Hasher.ComputeHash(Encoding.ASCII.GetBytes(text));
+            var result = Hasher.Hash;
 
             var strBuilder = new StringBuilder();
             foreach (var item in result)
@@ -34,7 +40,7 @@ namespace AAYW.Core.Crypto
 
         public string CryptPassword(Entity entity, string password)
         {
-            return MD5Hash(MD5Hash(password) + GetSalt(entity));
+            return Hash(Hash(password) + SaltFor(entity));
         }
     }
 }

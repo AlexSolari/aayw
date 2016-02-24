@@ -10,6 +10,7 @@ using System.Linq;
 using AAYW.Core.Extensions;
 using AAYW.Core.Crypto;
 using AAYW.Core.Models.Bussines.User;
+using System.Security.Cryptography;
 
 namespace AAYW.Core.Data.Managers
 {
@@ -27,7 +28,7 @@ namespace AAYW.Core.Data.Managers
 
             var newuser = Resolver.GetInstance<User>();
 
-            newuser.PasswordHash = Resolver.GetInstance<ICryptoProcessor>().CryptPassword(newuser, passwordRaw);
+            newuser.PasswordHash = Resolver.GetInstance<ICryptoProcessor<MD5>>().CryptPassword(newuser, passwordRaw);
             newuser.Login = login;
 
             provider.Create(newuser);
@@ -42,7 +43,7 @@ namespace AAYW.Core.Data.Managers
             if (user == null)
                 return false;
 
-            if (Resolver.GetInstance<ICryptoProcessor>().CryptPassword(user, passwordRaw) != user.PasswordHash)
+            if (Resolver.GetInstance<ICryptoProcessor<MD5>>().CryptPassword(user, passwordRaw) != user.PasswordHash)
                 return false;
 
             provider.Update(user);

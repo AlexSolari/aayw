@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Security.Cryptography;
 
 namespace AAYW.Core
 {
@@ -21,7 +22,7 @@ namespace AAYW.Core
             // Example:
             //  Resolver.RegisterType<TBase, TDerived>();
             //  Resolver.RegisterType<IInterface, TRealisation>();
-            Resolver.RegisterType<ICryptoProcessor, BaseCryptoProcessor>();
+            Resolver.RegisterType<ICryptoProcessor<MD5>, BaseCryptoProcessor>();
             Resolver.RegisterType<IControllerFactory, BaseControllerFactory>();
 
             //Controllers

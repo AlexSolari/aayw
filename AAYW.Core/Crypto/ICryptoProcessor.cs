@@ -2,16 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AAYW.Core.Crypto
 {
-    public interface ICryptoProcessor
+    public interface ICryptoProcessor<THasher>
+        where THasher : HashAlgorithm
     {
-        string MD5Hash(Guid guid);
-        string MD5Hash(string text);
+        THasher Hasher { get; set; }
+        string Hash(Guid guid);
+        string Hash(string text);
         string CryptPassword(Entity entity, string password);
-        string GetSalt(Entity entity);
+        string SaltFor(Entity entity);
     }
 }
