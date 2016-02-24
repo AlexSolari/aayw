@@ -1,6 +1,6 @@
 ﻿using AAYW.Core.Dependecies;
 using AAYW.Database;
-using AAYW.Models;
+using AAYW.Core.Models.Bussines;
 using NHibernate.Criterion;
 using System;
 using System.Collections.Generic;
@@ -88,6 +88,7 @@ namespace AAYW.Core.Data.Providers
             {
                 using (var transaction = StartTransaction(session))
                 {
+                    model.ModifiedDate = DateTime.Now;
                     session.SaveOrUpdate(model);
                     session.Flush();
                     transaction.Commit();

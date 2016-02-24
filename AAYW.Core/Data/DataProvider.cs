@@ -1,10 +1,11 @@
-﻿using AAYW.Models;
+﻿using AAYW.Core.Models.Bussines;
+using AAYW.Database;
 using NHibernate;
 using NHibernate.Criterion;
 using System;
 using System.Collections.Generic;
 
-namespace AAYW.Database
+namespace AAYW.Core.Data
 {
     public class DataProvider<TEntity>
         where TEntity : Entity

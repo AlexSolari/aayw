@@ -1,4 +1,4 @@
-﻿using AAYW.Models;
+﻿using AAYW.Core.Models.Bussines;
 using FluentNHibernate.Mapping;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AAYW.Database.Mappings
+namespace AAYW.Core.Models.Mappings
 {
     class EntityMap<TEntity> : ClassMap<TEntity>
         where TEntity : Entity
@@ -14,7 +14,7 @@ namespace AAYW.Database.Mappings
         public EntityMap()
         {
             Id(x => x.Id).GeneratedBy.Assigned();
-            Map(x => x.CreationTime);
+            Map(x => x.CreatedDate);
         }
     }
 }

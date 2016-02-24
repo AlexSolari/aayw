@@ -53,17 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataProvider.cs" />
-    <Compile Include="Mappings\EntityMap.cs" />
-    <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AAYW.Models\AAYW.Models.csproj">
-      <Project>{c6db87a5-53cb-4193-a289-b0bbb1e58405}</Project>
-      <Name>AAYW.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,6 +1,6 @@
 ﻿using AAYW.Core.Data.Providers;
 using AAYW.Core.Dependecies;
-using AAYW.Models;
+using AAYW.Core.Models.Bussines;
 using System;
 using System.Collections.Generic;
 using System.Linq;

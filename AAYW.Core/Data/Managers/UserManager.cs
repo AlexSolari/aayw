@@ -1,6 +1,6 @@
 ﻿using AAYW.Core.Data.Providers;
 using AAYW.Core.Dependecies;
-using AAYW.Models;
+using AAYW.Core.Models.Bussines;
 using System;
 using System.Collections.Generic;
 using System.Web;
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using AAYW.Core.Extensions;
 using AAYW.Core.Crypto;
+using AAYW.Core.Models.Bussines.User;
 
 namespace AAYW.Core.Data.Managers
 {

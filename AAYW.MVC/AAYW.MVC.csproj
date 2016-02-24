@@ -116,8 +116,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,17 +169,9 @@
       <Project>{ed0d08d6-f804-422f-ace9-e5dc522677c0}</Project>
       <Name>AAYW.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AAYW.Models\AAYW.Models.csproj">
-      <Project>{c6db87a5-53cb-4193-a289-b0bbb1e58405}</Project>
-      <Name>AAYW.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AAYW.Resources\AAYW.Resources.csproj">
       <Project>{8907e55a-87c2-4352-b777-fead71ad157f}</Project>
       <Name>AAYW.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AAYW.ViewModels\AAYW.ViewModels.csproj">
-      <Project>{b0a99616-c6af-4218-8196-7e8c06768a4e}</Project>
-      <Name>AAYW.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

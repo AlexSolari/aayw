@@ -1,4 +1,4 @@
-﻿using AAYW.Models;
+﻿using AAYW.Core.Models.Bussines;
 using System;
 using System.Security.Cryptography;
 using System.Text;

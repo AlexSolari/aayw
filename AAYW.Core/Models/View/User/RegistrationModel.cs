@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AAYW.ViewModels
+namespace AAYW.Core.Models.View.User
 {
-    public class LoginModel
+    public class RegistrationModel
     {
         [Required]
-        [AAYW.Core.Validation.MaxLength(50, 0)]
+        [AAYW.Core.Validation.MaxLength(50,0)]
         public string login { get; set; }
 
         [Required]
@@ -18,9 +18,14 @@ namespace AAYW.ViewModels
         [DataType(DataType.Password)]
         public string password { get; set; }
 
-        public LoginModel()
+        [Required]
+        [AAYW.Core.Validation.MaxLength(50, 0)]
+        [DataType(DataType.Password)]
+        public string confirmation { get; set; }
+
+        public RegistrationModel()
         {
-            login = password = string.Empty;
+            confirmation = login = password = string.Empty;
         }
     }
 }

@@ -1,17 +1,31 @@
 ﻿using AAYW.Core.Data.Managers;
 using AAYW.Core.Dependecies;
 using System.Web.Mvc;
-using AAYW.Models;
+using AAYW.Core.Models.Bussines;
 using AAYW.Resources;
-using AAYW.Core.Errors;
 using System.Linq;
 using System;
-using AAYW.ViewModels;
+using AAYW.Core.Models.View;
+using AAYW.Core.Web.Controller;
+using System.Web.Routing;
+using AAYW.Core.Models.View.User;
 
-namespace AAYW.MVC.Controllers
+namespace AAYW.Core.Controller.Concrete
 {
-    public class HomeController : Controller
+    public class HomeController : FrontendController
     {
+        public HomeController()
+        {
+
+        }
+
+        public override string Name 
+        { 
+            get {
+                return "Home";
+            }
+        }
+
         UserManager userManager = AAYW.Core.Dependecies.Resolver.GetInstance<UserManager>();
 
         [HttpGet]
@@ -63,7 +77,7 @@ namespace AAYW.MVC.Controllers
                 return RedirectToRoute("Login");
             }
 
-            return RedirectToRoute("GenericError", new { errorCode = Errors.RegistrationFailed });
+            throw new SystemException("Unknown error occured while processing request");
         }
 
         [HttpGet]

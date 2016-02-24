@@ -89,24 +89,30 @@
     <Compile Include="Data\Managers\BaseManager.cs" />
     <Compile Include="Data\Managers\UserManager.cs" />
     <Compile Include="Data\Providers\BaseProvider.cs" />
+    <Compile Include="Data\DataProvider.cs" />
     <Compile Include="Data\Providers\UserProvider.cs" />
     <Compile Include="Dependencies\Resolver.cs" />
-    <Compile Include="Errors\Errors.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\RouteExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extras\Singleton.cs" />
     <Compile Include="FrameworkInitialize.cs" />
+    <Compile Include="Models\Bussines\Entity.cs" />
+    <Compile Include="Models\Bussines\User\User.cs" />
+    <Compile Include="Models\Mappings\EntityMap.cs" />
+    <Compile Include="Models\Mappings\UserMap.cs" />
+    <Compile Include="Models\View\User\LoginModel.cs" />
+    <Compile Include="Models\View\User\RegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\MaxLength.cs" />
+    <Compile Include="Web\ControllerFactory\BaseControllerFactory.cs" />
+    <Compile Include="Web\Controller\Concrete\HomeController.cs" />
+    <Compile Include="Web\Controller\FrontendController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AAYW.Database\AAYW.Database.csproj">
       <Project>{cb7a2905-54b7-422f-91c5-08f3c0767e6b}</Project>
       <Name>AAYW.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AAYW.Models\AAYW.Models.csproj">
-      <Project>{c6db87a5-53cb-4193-a289-b0bbb1e58405}</Project>
-      <Name>AAYW.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\AAYW.Resources\AAYW.Resources.csproj">
       <Project>{8907e55a-87c2-4352-b777-fead71ad157f}</Project>
