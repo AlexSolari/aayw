@@ -95,7 +95,6 @@
     <Compile Include="Dependencies\Resolver.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Extras\Singleton.cs" />
     <Compile Include="FrameworkInitialize.cs" />
     <Compile Include="Models\Bussines\Entity.cs" />
     <Compile Include="Models\Bussines\User\User.cs" />
