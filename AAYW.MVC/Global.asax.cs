@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AAYW.Core;
-using AAYW.Core.Dependecies;
 
 namespace AAYW.MVC
 {

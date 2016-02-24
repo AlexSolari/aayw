@@ -54,3 +54,51 @@ input.input-validation-error, textarea.input-validation-error{
 header{
     margin-bottom: 1em;
 }
+.popup-close-button{
+    color: dimgray;
+    cursor: pointer;
+}
+.popup-containter{
+    padding: 1em;
+    text-align: center;
+}
+.popup{
+    padding: 1em;
+}
+/*************/
+.spinner-wrapper{
+    width: 300px;
+    height: 300px;
+    text-align: center;
+}
+.spinner{
+    margin-top: 150px;
+    transform: translateY(-50%);
+    display: inline-block;
+    background: #2196F3;
+    border-radius: 50%;
+    width: 0%;
+    height: 0%;
+
+    -webkit-animation: fill-unfill 5332ms linear infinite both;
+    animation: fill-unfill 5332ms linear infinite both;
+}
+
+@-webkit-keyframes fill-unfill {
+  0% {
+    width: 0%; 
+    height: 0%;
+    opacity: 1;
+  }
+  50% {
+    width: 50%; 
+    height: 50%;
+    opacity: .5;
+  }
+  100% {
+    opacity: 0;
+    width: 100%; 
+    height: 100%;
+  } 
+
+}
