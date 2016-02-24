@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using AAYW.Core.Annotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace AAYW.Core.Models.View.User
 {
     public class LoginModel
     {
-        [Required]
-        [AAYW.Core.Validation.MaxLength(50, 0)]
-        public string login { get; set; }
+        [CustomRequired]
+        [CustomMaxLength(50, 0)]
+        public string Login { get; set; }
 
-        [Required]
-        [AAYW.Core.Validation.MaxLength(50, 0)]
+        [CustomRequired]
+        [CustomMaxLength(50, 0)]
         [DataType(DataType.Password)]
-        public string password { get; set; }
+        public string Password { get; set; }
 
         public LoginModel()
         {
-            login = password = string.Empty;
+            Login = Password = string.Empty;
         }
     }
 }

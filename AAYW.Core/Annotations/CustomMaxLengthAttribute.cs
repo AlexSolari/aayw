@@ -8,17 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using AAYW.Core.Extensions;
 
-namespace AAYW.Core.Validation
+namespace AAYW.Core.Annotations
 {
-    public class MaxLengthAttribute : StringLengthAttribute
+    public class CustomMaxLengthAttribute : StringLengthAttribute
     {
-        public MaxLengthAttribute(int MaxLength, int MinLength, [CallerMemberName] string PropertyResourceName = null)
+        public CustomMaxLengthAttribute(int MaxLength, int MinLength, [CallerMemberName] string PropertyResourceName = null)
             : base(MaxLength)
         {
             MinimumLength = MinLength;
             var propName = ResourceAccessor.Instance.Get(PropertyResourceName);
             ErrorMessage =
-                ResourceAccessor.Instance.Get("MaxLength")
+                ResourceAccessor.Instance.Get("Error_MaxLength")
                 .FormatWith(propName, MaxLength, MinimumLength);
         }
     }

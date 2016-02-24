@@ -58,7 +58,7 @@ namespace AAYW.Core.Controller.Concrete
         [HttpPost]
         public ActionResult Register(RegistrationModel model)
         {
-            if (!userManager.IsAvalibleForCreation(model.login))
+            if (!userManager.IsAvalibleForCreation(model.Login))
             {
                 ModelState.AddModelError("login", ResourceAccessor.Instance.Get("UserAlreadyRegistered"));
             }
@@ -68,11 +68,11 @@ namespace AAYW.Core.Controller.Concrete
                 return View(model);
             }
 
-            model.login = model.login.Trim();
-            model.password = model.password.Trim();
-            model.confirmation = model.confirmation.Trim();
+            model.Login = model.Login.Trim();
+            model.Password = model.Password.Trim();
+            model.Confirmation = model.Confirmation.Trim();
 
-            if (userManager.Register(model.login, model.password))
+            if (userManager.Register(model.Login, model.Password))
             {
                 return RedirectToRoute("Login");
             }
@@ -89,7 +89,7 @@ namespace AAYW.Core.Controller.Concrete
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
-            if (!userManager.Login(model.login, model.password))
+            if (!userManager.Login(model.Login, model.Password))
             {
                 ModelState.AddModelError("", ResourceAccessor.Instance.Get("FailedToLogin"));
             }

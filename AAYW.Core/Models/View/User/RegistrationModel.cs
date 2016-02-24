@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AAYW.Core.Annotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,23 +10,23 @@ namespace AAYW.Core.Models.View.User
 {
     public class RegistrationModel
     {
-        [Required]
-        [AAYW.Core.Validation.MaxLength(50,0)]
-        public string login { get; set; }
+        [CustomRequired]
+        [CustomMaxLength(50,0)]
+        public string Login { get; set; }
 
-        [Required]
-        [AAYW.Core.Validation.MaxLength(50, 0)]
+        [CustomRequired]
+        [CustomMaxLength(50, 0)]
         [DataType(DataType.Password)]
-        public string password { get; set; }
+        public string Password { get; set; }
 
-        [Required]
-        [AAYW.Core.Validation.MaxLength(50, 0)]
+        [CustomRequired]
+        [CustomMaxLength(50, 0)]
         [DataType(DataType.Password)]
-        public string confirmation { get; set; }
+        public string Confirmation { get; set; }
 
         public RegistrationModel()
         {
-            confirmation = login = password = string.Empty;
+            Confirmation = Login = Password = string.Empty;
         }
     }
 }

@@ -88,6 +88,24 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} must be shorter than {1} characters and longer than {2}..
+        /// </summary>
+        internal static string Error_MaxLength {
+            get {
+                return ResourceManager.GetString("Error_MaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is required.
+        /// </summary>
+        internal static string Error_Required {
+            get {
+                return ResourceManager.GetString("Error_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect username or password.
         /// </summary>
         internal static string FailedToLogin {
@@ -106,7 +124,7 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AAYW -- is a fat way to create customizeble site..
+        ///   Looks up a localized string similar to AAYW -- is a fast way to create customizeble site..
         /// </summary>
         internal static string LandingExplanation {
             get {
@@ -142,15 +160,6 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} must be shorter than {1} characters and longer than {2}..
-        /// </summary>
-        internal static string MaxLength {
-            get {
-                return ResourceManager.GetString("MaxLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Password {
@@ -174,15 +183,6 @@ namespace AAYW.Resources {
         internal static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you want to register?.
-        /// </summary>
-        internal static string RegisterAlert {
-            get {
-                return ResourceManager.GetString("RegisterAlert", resourceCulture);
             }
         }
         
