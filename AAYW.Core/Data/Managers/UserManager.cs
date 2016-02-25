@@ -18,7 +18,10 @@ namespace AAYW.Core.Data.Managers
     {
         public UserManager()
         {
-
+            if (CurrentUser == null && IsAuthorized)
+            {
+                Logout();
+            }
         }
 
         public bool Register(string login, string passwordRaw)
@@ -30,6 +33,7 @@ namespace AAYW.Core.Data.Managers
 
             newuser.PasswordHash = Resolver.GetInstance<ICryptoProcessor<MD5>>().CryptPassword(newuser, passwordRaw);
             newuser.Login = login;
+            newuser.CurrentRole = User.Role.User;
 
             provider.Create(newuser);
 

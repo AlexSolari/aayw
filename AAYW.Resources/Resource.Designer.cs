@@ -61,6 +61,15 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin page.
+        /// </summary>
+        internal static string AdminHome {
+            get {
+                return ResourceManager.GetString("AdminHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirmation.
         /// </summary>
         internal static string Confirmation {
@@ -102,6 +111,24 @@ namespace AAYW.Resources {
         internal static string Error_MaxLength {
             get {
                 return ResourceManager.GetString("Error_MaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error 403.
+        /// </summary>
+        internal static string Error_NotAllowed {
+            get {
+                return ResourceManager.GetString("Error_NotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access level is low..
+        /// </summary>
+        internal static string Error_NotAllowedDetails {
+            get {
+                return ResourceManager.GetString("Error_NotAllowedDetails", resourceCulture);
             }
         }
         

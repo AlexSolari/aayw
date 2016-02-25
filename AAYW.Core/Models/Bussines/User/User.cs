@@ -9,7 +9,13 @@ namespace AAYW.Core.Models.Bussines.User
 {
     public class User : Entity
     {
+        public enum Role : int
+        {
+            User,
+            Admin
+        }
         public virtual string Login { get; set; }
         public virtual string PasswordHash { get; set; }
+        public virtual Role CurrentRole { get; set; }
     }
 }

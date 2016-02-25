@@ -15,6 +15,7 @@ namespace AAYW.Core.Models.Mappings
         {
             Map(x => x.Login).Length(50);
             Map(x => x.PasswordHash);
+            Map(x => x.CurrentRole);
             CrateTable();
         }
     }

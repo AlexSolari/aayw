@@ -41,13 +41,16 @@ namespace AAYW.Core
             Map(routes, "Home", "Logout", "logout", "Logout");
             Map(routes, "Home", "Register", "register", "Register");
 
+            Map(routes, "Admin", "Index", "admin", "AdminHome");
+
             routes.MapRoute(
                 "Default",
                 "",
                 new { controller = "Home", action = "Index", id = "" }
             );
-
+            
             Map(routes, "Error", "Error404", "{*url}", "Error404");
+            Map(routes, "Error", "Error403", "{*url}", "Error403");
         }
 
         private static void RegisterControllers()
@@ -58,6 +61,7 @@ namespace AAYW.Core
             //Controllers
             Resolver.RegisterController<HomeController, HomeController>("Home");
             Resolver.RegisterController<ErrorController, ErrorController>("Error");
+            Resolver.RegisterController<AdminController, AdminController>("Admin");
         }
 
         private static void Map(RouteCollection routes, string controller, string action, string url = null, string name = null)

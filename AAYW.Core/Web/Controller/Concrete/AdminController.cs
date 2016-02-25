@@ -9,12 +9,14 @@ using AAYW.Core.Models.View;
 using AAYW.Core.Web.Controller;
 using System.Web.Routing;
 using AAYW.Core.Models.View.User;
+using AAYW.Core.Annotations;
 
 namespace AAYW.Core.Controller.Concrete
 {
-    public class ErrorController : FrontendController
+    [AccessLevel(Models.Bussines.User.User.Role.Admin)]
+    public class AdminController : FrontendController
     {
-        public ErrorController()
+        public AdminController()
         {
 
         }
@@ -22,21 +24,13 @@ namespace AAYW.Core.Controller.Concrete
         public override string Name 
         { 
             get {
-                return "Error";
+                return "Admin";
             }
         }
 
         [HttpGet]
-        public ActionResult Error404()
+        public ActionResult Index()
         {
-            Response.StatusCode = 404;
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Error403()
-        {
-            Response.StatusCode = 403;
             return View();
         }
     }

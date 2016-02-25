@@ -1,22 +1,33 @@
 ﻿@{ 
-    var authorized = AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>().IsAuthorized;
+    var userManager = AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>();
 }
 <div class="mui-appbar">
     <img src="~/Content/img/logo.png"/>
     <ul class="inline menu">
-        <li>@Html.RouteLink(Html.Text("Home"), "Home")</li>
-        @if (authorized)
+        <li>
+            @Html.RouteLink(Html.Text("Home"), "Home")
+        </li>
+        @if (userManager.IsAuthorized)
         {
+            if (userManager.CurrentUser.CurrentRole == AAYW.Core.Models.Bussines.User.User.Role.Admin)
+            {
+                <li>
+                    @Html.RouteLink(Html.Text("AdminHome"), "AdminHome")
+                </li>
+            }
             <li>
                 @Html.RouteLink(Html.Text("Logout"), "Logout")
             </li>
         }
         else
         {
-            <li>@Html.RouteLink(Html.Text("Login"), "Login")</li>
-            <li>@Html.RouteLink(Html.Text("Register"), "Register")</li>
+            <li>
+                @Html.RouteLink(Html.Text("Login"), "Login")
+            </li>
+            <li>
+                @Html.RouteLink(Html.Text("Register"), "Register")
+            </li>
         }
-
     </ul>
 </div>
 
