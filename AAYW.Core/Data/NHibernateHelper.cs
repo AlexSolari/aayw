@@ -26,14 +26,19 @@ namespace AAYW.Core.Data
         {
             _sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012
-                  .ConnectionString(
-                  @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\o.halanin\Documents\aayw.mdf;Integrated Security=True;Connect Timeout=30")
+                  .ConnectionString(System.Configuration.ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString)
                               .ShowSql()
                 )
                 .Mappings(m =>
                           m.FluentMappings
                               .AddFromAssemblyOf<NHibernateHelper>())
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))
+                .ExposeConfiguration(cfg =>
+#if (DEBUG)
+                new SchemaExport(cfg).Create(true, true)
+#else
+                new SchemaUpdate(cfg)
+#endif
+                )
                 .BuildSessionFactory();
         }
 
