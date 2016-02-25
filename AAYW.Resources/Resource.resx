@@ -132,6 +132,12 @@
   <data name="Error_MaxLength" xml:space="preserve">
     <value>{0} must be shorter than {1} characters and longer than {2}</value>
   </data>
+  <data name="Error_NotFound" xml:space="preserve">
+    <value>Error 404</value>
+  </data>
+  <data name="Error_NotFoundDetails" xml:space="preserve">
+    <value>Requested page or resource not found. Sorry.</value>
+  </data>
   <data name="Error_Required" xml:space="preserve">
     <value>{0} is required</value>
   </data>
@@ -155,9 +161,6 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
-  </data>
-  <data name="PasswordsAreNotEqual" xml:space="preserve">
-    <value>Password and password confirmation must me equal</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>

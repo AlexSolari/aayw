@@ -34,12 +34,20 @@ namespace AAYW.Core
         private static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            Map(routes, "Home", "Index", "", "Home");
+            
+            Map(routes, "Home", "Index", "home", "Home");
             Map(routes, "Home", "Landing", "landing", "Landing");
             Map(routes, "Home", "Login", "login", "Login");
             Map(routes, "Home", "Logout", "logout", "Logout");
             Map(routes, "Home", "Register", "register", "Register");
-            routes.MapRoute("Default", "{controller}/{action}", new { controller = "Home", action = "Index" });
+
+            routes.MapRoute(
+                "Default",
+                "",
+                new { controller = "Home", action = "Index", id = "" }
+            );
+
+            Map(routes, "Error", "Error404", "{*url}", "Error404");
         }
 
         private static void RegisterControllers()
@@ -49,6 +57,7 @@ namespace AAYW.Core
 
             //Controllers
             Resolver.RegisterController<HomeController, HomeController>("Home");
+            Resolver.RegisterController<ErrorController, ErrorController>("Error");
         }
 
         private static void Map(RouteCollection routes, string controller, string action, string url = null, string name = null)
