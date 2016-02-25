@@ -33,11 +33,8 @@
 
 				mui.overlay('on', modalEl);
 			},
-			Close: function (id) {
-				if (id.indexOf("popup-") != 0)
-					return;
-
-				$("#" + id).remove();
+			Close: function () {
+			    mui.overlay('off');
 			},
 		};
 	})(this);

@@ -13,7 +13,14 @@
     <main class="body-content mui-container-fluid">
         @RenderBody()
     </main>
-
+    <div id="loading-indicator" style="display: none;">
+        <div class="spinner-wrapper active mui--z3 mui--appbar-height mui--appbar-line-height">
+            <div class="spinner"></div>
+            <h1>
+                Loading...
+            </h1>
+        </div>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/lib")
     @Scripts.Render("~/Scripts")
