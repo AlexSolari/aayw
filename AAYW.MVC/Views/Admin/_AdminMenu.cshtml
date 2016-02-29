@@ -1,0 +1,17 @@
+﻿@{
+    var entities = AAYW.Core.Dependecies.Resolver.Entites;
+}
+<div class="mui-dropdown">
+    <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+        Entities
+        <span class="mui-caret"></span>
+    </button>
+    <ul class="mui-dropdown__menu admin-menu">
+        @foreach (var type in entities)
+        {
+            <li><a href="@(Url.RouteUrl("EntityInspector", new { type = type.Key.Name }))">@(type.Key.Name + "s")</a></li>
+        }
+    </ul>
+</div>
+
+

@@ -7,7 +7,7 @@
         <li>
             @Html.RouteLink(Html.Text("Home"), "Home")
         </li>
-        @if (userManager.IsAuthorized)
+        @if (userManager.IsAuthorized && userManager.CurrentUser != null)
         {
             if (userManager.CurrentUser.CurrentRole == AAYW.Core.Models.Bussines.User.User.Role.Admin)
             {

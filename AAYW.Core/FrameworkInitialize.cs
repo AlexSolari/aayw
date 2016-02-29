@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Security.Cryptography;
+using AAYW.Core.Models.Bussines.User;
+using AAYW.Core.Data.Managers;
+using AAYW.Core.Data.Providers;
 
 namespace AAYW.Core
 {
@@ -24,6 +27,12 @@ namespace AAYW.Core
             //  Resolver.RegisterType<IInterface, TRealisation>();
             Resolver.RegisterType<ICryptoProcessor<MD5>, BaseCryptoProcessor>();
             Resolver.RegisterType<IControllerFactory, BaseControllerFactory>();
+
+            // Registrering entites
+            Resolver.RegisterEntity<User, User>();
+
+            // Registering managers
+            Resolver.RegisterType<UserManager, UserManager>();
 
             //Controllers
             RegisterControllers();
@@ -42,6 +51,7 @@ namespace AAYW.Core
             Map(routes, "Home", "Register", "register", "Register");
 
             Map(routes, "Admin", "Index", "admin", "AdminHome");
+            Map(routes, "Admin", "EntityInspector", "inspector/{type}", "EntityInspector");
 
             routes.MapRoute(
                 "Default",

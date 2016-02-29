@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = Html.Text("AdminHome");
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+@Html.ValidationSummary()
+@if (Model != null)
+{
+    <table class="mui-table mui-table--bordered">
+        <thead>
+            <tr>
+                @foreach (var prop in Model[0].GetType().GetProperties())
+                {
+                    <td>@prop.Name</td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @foreach (var prop in item.GetType().GetProperties())
+                    {
+                        <td>@prop.GetValue(item)</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}

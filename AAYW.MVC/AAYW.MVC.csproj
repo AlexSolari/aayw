@@ -164,6 +164,9 @@
     <Content Include="Views\Shared\Error404.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\Error403.cshtml" />
+    <Content Include="Views\Admin\Layout.cshtml" />
+    <Content Include="Views\Admin\_AdminMenu.cshtml" />
+    <Content Include="Views\Admin\EntityInspector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

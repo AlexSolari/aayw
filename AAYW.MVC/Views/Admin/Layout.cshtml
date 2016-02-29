@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="admin-sidebar mui-panel">
+    <h1>
+        @Html.Text("AdminHome")
+    </h1>
+    @Html.Partial("_AdminMenu")
+</div>
+<div class="admin-content">
+    @RenderBody()
+</div>
+

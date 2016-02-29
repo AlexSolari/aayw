@@ -1,4 +1,5 @@
-﻿using FluentNHibernate.Cfg;
+﻿//#define RECREATE_DATABASE
+using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
@@ -33,7 +34,7 @@ namespace AAYW.Core.Data
                           m.FluentMappings
                               .AddFromAssemblyOf<NHibernateHelper>())
                 .ExposeConfiguration(cfg =>
-#if (DEBUG)
+#if (RECREATE_DATABASE)
                 new SchemaExport(cfg).Create(true, true)
 #else
                 new SchemaUpdate(cfg)

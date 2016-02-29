@@ -46,7 +46,7 @@ namespace AAYW.Core.Data.Providers
             return Execute(session =>
             {
                 var criteria = session.CreateCriteria<TEntity>();
-                criteria.AddOrder(Order.Desc("CreationTime"));
+                criteria.AddOrder(Order.Desc("CreatedDate"));
                 return criteria.List<TEntity>();
             });
         }
