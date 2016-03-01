@@ -6,10 +6,10 @@
     AAYW.UI.LoadingIndicator = AAYW.UI.LoadingIndicator || (function (window) {
 		return {
 			Show: function () {
-			    $("#loading-indicator").fadeIn(300);
+			    $("#loading-indicator").show();
 			},
 			Close: function () {
-			    $("#loading-indicator").fadeOut(300);
+			    $("#loading-indicator").hide();
 			},
 		};
 	})(this);
