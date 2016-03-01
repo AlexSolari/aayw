@@ -13,6 +13,8 @@ using AAYW.Core.Annotations;
 using AAYW.Core.Models.Bussines.User;
 using AAYW.Core.Extensions;
 using System.Reflection;
+using System.Collections.Generic;
+using AAYW.Core.Map;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -40,25 +42,54 @@ namespace AAYW.Core.Controller.Concrete
         [HttpGet]
         public ActionResult EntityInspector(string type)
         {
-            var types = Assembly.GetExecutingAssembly().DefinedTypes.Where(x => x.Name.Contains(type + "Manager"));
-            if (types.Count() == 0)
-            {
-                ModelState.AddModelError("", new Exception(ResourceAccessor.Instance.Get("EntityNotFound")));
-                return View();
-            }            
-            var reflectedtype = types.First();
-            dynamic manager = typeof(AAYW.Core.Dependecies.Resolver)
-                .GetMethod("GetInstance")
-                .MakeGenericMethod(new Type[] { reflectedtype })
-                .Invoke(null, null);
+            var manager = GetManager(type);
+
+            return View(manager.GetList());
+        }
+
+        [HttpGet]
+        public ActionResult EditEntity(string type, string id)
+        {
+            var manager = GetManager(type);
+
+            return PartialView(manager.GetById(id));
+        }
+
+        [HttpPost]
+        public ActionResult SaveEntity(string type, Dictionary<string, string> modelData)
+        {
+            var manager = GetManager(type);
+            var entityType = Assembly.GetExecutingAssembly().DefinedTypes.Where(x => x.Name.Equals(type)).FirstOrDefault();
 
             if (manager == null)
             {
-                ModelState.AddModelError("", new Exception(ResourceAccessor.Instance.Get("EntityNotFound")));
-                return View();
+                return Json(false);
             }
 
-            return View(manager.GetList());
+            var entity = manager.GetById(modelData["Id@System.Guid"]);
+
+            entity = Mapper.Map(entityType, modelData);
+
+            return Json(manager.Update(entity));
+        }
+
+        private dynamic GetManager(string type)
+        {
+            var types = Assembly.GetExecutingAssembly().DefinedTypes.Where(x => x.Name.Contains(type + "Manager"));
+            if (types.Count() == 0)
+            {
+                ModelState.AddModelError("", ResourceAccessor.Instance.Get("EntityNotFound"));
+                return View();
+            }
+            var reflectedtype = types.First();
+            dynamic manager = AAYW.Core.Dependecies.Resolver.GetInstance(reflectedtype);
+
+            if (manager == null)
+            {
+                ModelState.AddModelError("", ResourceAccessor.Instance.Get("EntityNotFound"));
+                return View();
+            }
+            return manager;
         }
     }
 }

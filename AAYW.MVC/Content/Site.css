@@ -67,7 +67,7 @@ header{
 }
 /*************/
 #loading-indicator{
-    z-index: 500;
+    z-index: 999999999;
     position: fixed;
     background: rgba(128, 128, 128, 0.42);
     width: 100%;
@@ -143,4 +143,19 @@ header{
 .admin-menu {
     list-style: none;
     padding: 0;
+}
+.admin-inspector{
+    text-align: center;
+    margin-top: 18px;
+}
+.admin-inspector tr{
+    cursor: pointer;
+}
+.admin-inspector tr, .admin-inspector th{
+    text-align: center;
+}
+.admin-edit-entity input {
+    max-width: 500px;
+    display: inline-block;
+    text-align: center;
 }

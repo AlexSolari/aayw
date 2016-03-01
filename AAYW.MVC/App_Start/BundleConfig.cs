@@ -21,6 +21,9 @@ namespace AAYW.MVC
                         "~/Scripts/main.js", 
                         "~/Scripts/mui.min.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/Admin").Include(
+                        "~/Scripts/admin.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/mui.css",
                       "~/Content/site.css"));

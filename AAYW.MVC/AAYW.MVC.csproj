@@ -128,6 +128,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\lib\AAYW.LoadingIndicator.js" />
     <Content Include="Scripts\lib\AAYW.Popup.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
@@ -167,6 +168,7 @@
     <Content Include="Views\Admin\Layout.cshtml" />
     <Content Include="Views\Admin\_AdminMenu.cshtml" />
     <Content Include="Views\Admin\EntityInspector.cshtml" />
+    <Content Include="Views\Admin\EditEntity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

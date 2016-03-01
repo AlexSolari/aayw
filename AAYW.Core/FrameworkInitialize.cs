@@ -29,7 +29,7 @@ namespace AAYW.Core
             Resolver.RegisterType<IControllerFactory, BaseControllerFactory>();
 
             // Registrering entites
-            Resolver.RegisterEntity<User, User>();
+            Resolver.RegisterType<User, User>();
 
             // Registering managers
             Resolver.RegisterType<UserManager, UserManager>();
@@ -51,7 +51,9 @@ namespace AAYW.Core
             Map(routes, "Home", "Register", "register", "Register");
 
             Map(routes, "Admin", "Index", "admin", "AdminHome");
-            Map(routes, "Admin", "EntityInspector", "inspector/{type}", "EntityInspector");
+            Map(routes, "Admin", "EntityInspector", "admin/inspector/{type}", "EntityInspector");
+            Map(routes, "Admin", "EditEntity", "admin/entity/edit/{type}/{id}", "EditEntity");
+            Map(routes, "Admin", "SaveEntity", "admin/entity/save", "SaveEntity");
 
             routes.MapRoute(
                 "Default",

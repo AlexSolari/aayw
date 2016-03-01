@@ -27,20 +27,20 @@ namespace AAYW.Core.Extensions
 	    #endregion
         
         #region Buttons
-        public static HtmlString Button<T>(this HtmlHelper<T> val, string text, ButtonType type = ButtonType.Flat, string href = "#")
+        public static HtmlString Button<T>(this HtmlHelper<T> val, string text, ButtonType type = ButtonType.Flat, string href = "#", string cssClass = "")
         {
-            var cssClass = "";
+            cssClass += " mui-btn";
             switch (type)
             {
                 case ButtonType.Raised:
-                    cssClass = "mui-btn--raised";
+                    cssClass += " mui-btn--raised";
                     break;
                 case ButtonType.Flat:
                 default:
-                    cssClass = "mui-btn--flat";
+                    cssClass += " mui-btn--flat";
                     break;
             }
-            return new HtmlString("<a href='{0}' class='mui-btn {1}'>{2}</a>".FormatWith(href, cssClass, text));
+            return new HtmlString("<a href='{0}' class='{1}'>{2}</a>".FormatWith(href, cssClass, text));
         }
 
         public static HtmlString Submit<T>(this HtmlHelper<T> val, string text, ButtonType type = ButtonType.Flat)

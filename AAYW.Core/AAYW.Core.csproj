@@ -85,6 +85,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotations\InspectorLockAttribute.cs" />
+    <Compile Include="Annotations\InspectableAttribute.cs" />
     <Compile Include="Annotations\AccessLevelAttribute.cs" />
     <Compile Include="Annotations\CustomCompareAttribute.cs" />
     <Compile Include="Annotations\CustomRequiredAttribute.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="FrameworkInitialize.cs" />
+    <Compile Include="Map\Mapper.cs" />
     <Compile Include="Models\Bussines\Entity.cs" />
     <Compile Include="Models\Bussines\User\User.cs" />
     <Compile Include="Models\Mappings\EntityMap.cs" />

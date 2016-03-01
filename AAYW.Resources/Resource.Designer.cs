@@ -97,6 +97,33 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entity editor.
+        /// </summary>
+        internal static string EntityEditor {
+            get {
+                return ResourceManager.GetString("EntityEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entity inspector.
+        /// </summary>
+        internal static string EntityInspector {
+            get {
+                return ResourceManager.GetString("EntityInspector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to click on row to edit.
+        /// </summary>
+        internal static string EntityInspectorHint {
+            get {
+                return ResourceManager.GetString("EntityInspectorHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type is not registered.
         /// </summary>
         internal static string EntityNotFound {
@@ -237,6 +264,15 @@ namespace AAYW.Resources {
         internal static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         

@@ -1,30 +1,37 @@
-﻿@{
-    ViewBag.Title = Html.Text("AdminHome");
+﻿@* Model will be "List" of entities ( actuall type is "dynamic" ), type is unknow at compile time and will be resolved in runtime*@
+@{
+    ViewBag.Title = Html.Text("EntityInspector");
     Layout = "~/Views/Admin/Layout.cshtml";
 }
-@Html.ValidationSummary()
-@if (Model != null)
-{
-    <table class="mui-table mui-table--bordered">
-        <thead>
-            <tr>
-                @foreach (var prop in Model[0].GetType().GetProperties())
-                {
-                    <td>@prop.Name</td>
-                }
-            </tr>
-        </thead>
-        <tbody>
 
-            @foreach (var item in Model)
-            {
+<div class="admin-inspector mui-panel">
+    <h1>@Html.Text("EntityInspector")</h1>
+    <div>@Html.Text("EntityInspectorHint")</div>
+    @Html.ValidationSummary()
+    @if (Model != null && Model.Count > 0)
+    {
+        <table class="mui-table mui-table--bordered">
+            <thead>
                 <tr>
-                    @foreach (var prop in item.GetType().GetProperties())
+                    @foreach (var prop in Model[0].GetType().GetProperties())
                     {
-                        <td>@prop.GetValue(item)</td>
+                        <th>@prop.Name</th>
                     }
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="admin-inspector-edit" id="@item.Id" data-target="@item.Id" data-type="@item.GetType().Name">
+                        @foreach (var prop in item.GetType().GetProperties())
+                        {
+                            <td id="@(item.Id + "_" + prop.Name)">@prop.GetValue(item)</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+

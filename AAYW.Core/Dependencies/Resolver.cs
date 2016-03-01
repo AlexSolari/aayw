@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AAYW.Core.Annotations;
 
 namespace AAYW.Core.Dependecies
 {
@@ -25,17 +26,44 @@ namespace AAYW.Core.Dependecies
                 return typeof(T);
         }
 
+        public static Type Resolve(Type type)
+        {
+            if (typeDependencies.ContainsKey(type))
+                return typeDependencies[type];
+            else
+                return type;
+        }
+
         /// <typeparam name="T">What will be requested</typeparam>
         /// <typeparam name="I">What will be returned</typeparam>
         public static void RegisterType<T, I>()
             where I : T
         {
             typeDependencies.Add(typeof(T), typeof(I));
+            if (typeof(I).GetCustomAttributes(typeof(InspectableAttribute), false).Length > 0)
+            {
+                entitiesDependencies.Add(typeof(T), typeof(I));
+            }
         }
 
         public static T GetInstance<T>()
         {
             var result = (T)Activator.CreateInstance(Resolve<T>());
+
+            if (result is Entity)
+            {
+                var entity = result as Entity;
+                entity.CreatedDate = DateTime.Now;
+                entity.ModifiedDate = DateTime.Now;
+                entity.Id = Guid.NewGuid();
+            }
+
+            return result;
+        }
+
+        public static object GetInstance(Type type)
+        {
+            var result = Activator.CreateInstance(Resolve(type));
 
             if (result is Entity)
             {
@@ -93,13 +121,6 @@ namespace AAYW.Core.Dependecies
                 return entitiesDependencies;
             }
             private set { }
-        }
-
-        public static void RegisterEntity<T, I>()
-            where I : T
-        {
-            typeDependencies.Add(typeof(T), typeof(I));
-            entitiesDependencies.Add(typeof(T), typeof(I));
         }
         #endregion
     }

@@ -129,6 +129,15 @@
   <data name="CreateAccount" xml:space="preserve">
     <value>Create account</value>
   </data>
+  <data name="EntityEditor" xml:space="preserve">
+    <value>Entity editor</value>
+  </data>
+  <data name="EntityInspector" xml:space="preserve">
+    <value>Entity inspector</value>
+  </data>
+  <data name="EntityInspectorHint" xml:space="preserve">
+    <value>click on row to edit</value>
+  </data>
   <data name="EntityNotFound" xml:space="preserve">
     <value>Type is not registered</value>
   </data>
@@ -176,6 +185,9 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="UserAlreadyRegistered" xml:space="preserve">
     <value>Username is already taken</value>

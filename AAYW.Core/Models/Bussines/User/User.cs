@@ -1,4 +1,5 @@
-﻿using AAYW.Core.Models;
+﻿using AAYW.Core.Annotations;
+using AAYW.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AAYW.Core.Models.Bussines.User
 {
+    [Inspectable]
     public class User : Entity
     {
         public enum Role : int

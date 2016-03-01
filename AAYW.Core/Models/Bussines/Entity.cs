@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AAYW.Core.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace AAYW.Core.Models.Bussines
 {
     public class Entity
     {
+        [InspectorLock]
         public virtual Guid Id { get; set; }
         
         public virtual DateTime CreatedDate { get; set; }

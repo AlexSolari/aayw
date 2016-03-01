@@ -17,7 +17,7 @@
 			    };
 
 			    var modalEl = document.createElement('div');
-			    modalEl.className = 'popup-containter';
+			    modalEl.className = 'popup-containter mui--z3';
 				modalEl.style.width = '100%';
 				modalEl.style.height = 'auto';
 				modalEl.style.margin = '100px auto';

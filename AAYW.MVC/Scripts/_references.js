@@ -7,3 +7,4 @@
 /// <reference path="lib/aayw.popup.js" />
 /// <reference path="main.js" />
 /// <reference path="mui.min.js" />
+/// <reference path="admin.js" />
