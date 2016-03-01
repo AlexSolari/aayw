@@ -9,6 +9,7 @@ using AAYW.Core.Models.View;
 using AAYW.Core.Web.Controller;
 using System.Web.Routing;
 using AAYW.Core.Models.View.User;
+using AAYW.Core.Models.Bussines.User;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -26,7 +27,7 @@ namespace AAYW.Core.Controller.Concrete
             }
         }
 
-        UserManager userManager = AAYW.Core.Dependecies.Resolver.GetInstance<UserManager>();
+        UserManager userManager = (UserManager)AAYW.Core.Dependecies.Resolver.GetInstance<IManager<User>>();
 
         [HttpGet]
         public ActionResult Index()

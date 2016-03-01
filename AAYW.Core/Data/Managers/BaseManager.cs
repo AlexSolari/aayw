@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace AAYW.Core.Data.Managers
 {
-    public class BaseManager<TProvider, TModel>
-        where TProvider : BaseProvider<TModel>
+    public class BaseManager<TProvider, TModel> : IManager<TModel>
+        where TProvider : IProvider<TModel>
         where TModel : Entity
     {
         protected TProvider provider = Resolver.GetInstance<TProvider>();

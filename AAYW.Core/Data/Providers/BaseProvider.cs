@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AAYW.Core.Data.Providers
 {
-    public class BaseProvider<TEntity> : DataProvider<TEntity>
+    public class BaseProvider<TEntity> : DataProvider<TEntity>, IProvider<TEntity>
         where TEntity : Entity
     {
         public BaseProvider()

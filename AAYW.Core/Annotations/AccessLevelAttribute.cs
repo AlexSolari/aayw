@@ -14,7 +14,7 @@ namespace AAYW.Core.Annotations
 
         void IActionFilter.OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var userManager = Resolver.GetInstance<UserManager>();
+            var userManager = (UserManager)Resolver.GetInstance<IManager<User>>();
             if (userManager.CurrentUser == null || userManager.CurrentUser.CurrentRole != Role)
             {
                 filterContext.Result = new ViewResult() { ViewName = "Error403" };

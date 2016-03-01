@@ -32,7 +32,8 @@ namespace AAYW.Core
             Resolver.RegisterType<User, User>();
 
             // Registering managers
-            Resolver.RegisterType<UserManager, UserManager>();
+            Resolver.RegisterType<IProvider<User>, UserProvider>();
+            Resolver.RegisterType<IManager<User>, UserManager>();
 
             //Controllers
             RegisterControllers();
