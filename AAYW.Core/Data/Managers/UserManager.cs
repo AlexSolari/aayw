@@ -11,9 +11,11 @@ using AAYW.Core.Extensions;
 using AAYW.Core.Crypto;
 using AAYW.Core.Models.Bussines.User;
 using System.Security.Cryptography;
+using AAYW.Core.Annotations;
 
 namespace AAYW.Core.Data.Managers
 {
+    [ManagerFor(typeof(User))]
     public class UserManager : BaseManager<UserProvider, User>
     {
         public UserManager()

@@ -148,6 +148,9 @@ header{
     text-align: center;
     margin-top: 18px;
 }
+.admin-inspector .table-wrapper{
+    overflow-x: scroll;
+}
 .admin-inspector tr{
     cursor: pointer;
 }

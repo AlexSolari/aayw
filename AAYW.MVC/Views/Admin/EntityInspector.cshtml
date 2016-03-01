@@ -10,28 +10,30 @@
     @Html.ValidationSummary()
     @if (Model != null && Model.Count > 0)
     {
-        <table class="mui-table mui-table--bordered">
-            <thead>
-                <tr>
-                    @foreach (var prop in Model[0].GetType().GetProperties())
-                    {
-                        <th>@prop.Name</th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach (var item in Model)
-                {
-                    <tr class="admin-inspector-edit" id="@item.Id" data-target="@item.Id" data-type="@item.GetType().Name">
-                        @foreach (var prop in item.GetType().GetProperties())
+        <div class="table-wrapper">
+            <table class="mui-table mui-table--bordered">
+                <thead>
+                    <tr>
+                        @foreach (var prop in Model[0].GetType().GetProperties())
                         {
-                            <td id="@(item.Id + "_" + prop.Name)">@prop.GetValue(item)</td>
+                            <th>@prop.Name</th>
                         }
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                {
+                        <tr class="admin-inspector-edit" id="@item.Id" data-target="@item.Id" data-type="@item.GetType().Name">
+                            @foreach (var prop in item.GetType().GetProperties())
+                            {
+                                <td id="@(item.Id + "_" + prop.Name)">@prop.GetValue(item)</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
 </div>
 

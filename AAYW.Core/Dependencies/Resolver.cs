@@ -16,6 +16,7 @@ namespace AAYW.Core.Dependecies
         static Dictionary<Type, Type> typeDependencies = new Dictionary<Type, Type>();
         static Dictionary<string, Type> controllerDependencies = new Dictionary<string, Type>();
         static Dictionary<Type, Type> entitiesDependencies = new Dictionary<Type, Type>();
+        static Dictionary<Type, Type> managerDependencies = new Dictionary<Type, Type>();
 
         #region Types
         public static Type Resolve<T>()
@@ -43,6 +44,13 @@ namespace AAYW.Core.Dependecies
             if (typeof(I).GetCustomAttributes(typeof(InspectableAttribute), false).Length > 0)
             {
                 entitiesDependencies.Add(typeof(T), typeof(I));
+            }
+            if (typeof(I).GetCustomAttributes(typeof(ManagerForAttribute), false).Length > 0)
+            {
+                managerDependencies.Add(
+                    ((ManagerForAttribute)(typeof(I)
+                    .GetCustomAttributes(typeof(ManagerForAttribute), false)
+                    .FirstOrDefault())).entityType, typeof(I));
             }
         }
 
@@ -119,6 +127,14 @@ namespace AAYW.Core.Dependecies
             get
             {
                 return entitiesDependencies;
+            }
+            private set { }
+        }
+        public static Dictionary<Type, Type> Managers
+        {
+            get
+            {
+                return managerDependencies;
             }
             private set { }
         }

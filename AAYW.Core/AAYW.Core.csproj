@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotations\ManagerForAttribute.cs" />
     <Compile Include="Annotations\InspectorLockAttribute.cs" />
     <Compile Include="Annotations\InspectableAttribute.cs" />
     <Compile Include="Annotations\AccessLevelAttribute.cs" />

@@ -75,14 +75,9 @@ namespace AAYW.Core.Controller.Concrete
 
         private dynamic GetManager(string type)
         {
-            var types = Assembly.GetExecutingAssembly().DefinedTypes.Where(x => x.Name.Contains(type + "Manager"));
-            if (types.Count() == 0)
-            {
-                ModelState.AddModelError("", ResourceAccessor.Instance.Get("EntityNotFound"));
-                return View();
-            }
-            var reflectedtype = types.First();
-            dynamic manager = AAYW.Core.Dependecies.Resolver.GetInstance(reflectedtype);
+            var types = (Type)Assembly.GetExecutingAssembly().DefinedTypes.Where(x => x.Name.Equals(type)).FirstOrDefault();
+            var reflectedType = AAYW.Core.Dependecies.Resolver.Managers[types];
+            dynamic manager = AAYW.Core.Dependecies.Resolver.GetInstance(reflectedType);
 
             if (manager == null)
             {
