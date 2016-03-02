@@ -7,7 +7,7 @@
             $(".admin-edit-entity form input").each(function (index, el) {
                 var $el = $(el);
                 if ($el.data("locked") == "True")
-                    $el.prop("disabled", "disabled");
+                    $el.parents(".row").addClass("hidden");
             });
 
             
