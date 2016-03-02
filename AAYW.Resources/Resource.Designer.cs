@@ -250,6 +250,69 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mail adress.
+        /// </summary>
+        internal static string MailAdress {
+            get {
+                return ResourceManager.GetString("MailAdress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable SSL.
+        /// </summary>
+        internal static string MailEnableSsl {
+            get {
+                return ResourceManager.GetString("MailEnableSsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail host.
+        /// </summary>
+        internal static string MailHost {
+            get {
+                return ResourceManager.GetString("MailHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail password.
+        /// </summary>
+        internal static string MailPassword {
+            get {
+                return ResourceManager.GetString("MailPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail port.
+        /// </summary>
+        internal static string MailPort {
+            get {
+                return ResourceManager.GetString("MailPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail settings.
+        /// </summary>
+        internal static string MailSettings {
+            get {
+                return ResourceManager.GetString("MailSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail username.
+        /// </summary>
+        internal static string MailUsername {
+            get {
+                return ResourceManager.GetString("MailUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Password {

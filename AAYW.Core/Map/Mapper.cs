@@ -14,7 +14,6 @@ namespace AAYW.Core.Map
         public static Dictionary<Type, Func<object, object, object>> CustomMappings = new Dictionary<Type, Func<object, object, object>>();
 
         public static TDestination Map<TDestination, TSource>(TSource source)
-            where TDestination : TSource
         {
             var result = Resolver.GetInstance<TDestination>();
 
@@ -35,7 +34,6 @@ namespace AAYW.Core.Map
             return result;
         }
         public static TDestination MapAndMerge<TDestination, TSource>(TSource source, TDestination result)
-            where TDestination : TSource
         {
             foreach (var fieldR in typeof(TDestination).GetProperties())
             {
@@ -76,7 +74,6 @@ namespace AAYW.Core.Map
         }
 
         public static IEnumerable<TDestination> Map<TDestination, TSource>(IEnumerable<TSource> source)
-            where TDestination : TSource
         {
             var result = new List<TDestination>();
             foreach (var item in source)

@@ -15,12 +15,15 @@ using AAYW.Core.Extensions;
 using System.Reflection;
 using System.Collections.Generic;
 using AAYW.Core.Map;
+using AAYW.Core.Models.View.Settings;
 
 namespace AAYW.Core.Controller.Concrete
 {
     [AccessLevel(Models.Bussines.User.User.Role.Admin)]
     public class AdminController : FrontendController
     {
+        WebsiteSettingsManager settingsManager = (WebsiteSettingsManager)AAYW.Core.Dependecies.Resolver.GetInstance<IManager<WebsiteSettings>>();
+
         public AdminController()
         {
 
@@ -37,6 +40,23 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult MailSettings()
+        {
+            var websiteSettings = settingsManager.GetSettings();
+            var mailSettings = Mapper.Map<MailSettings, WebsiteSettings>(websiteSettings);
+            return View(mailSettings);
+        }
+
+        [HttpPost]
+        public ActionResult MailSettings(MailSettings model)
+        {
+            var websiteSettings = settingsManager.GetSettings();
+            websiteSettings = Mapper.MapAndMerge<WebsiteSettings, MailSettings>(model, websiteSettings);
+            settingsManager.UpdateSettings(websiteSettings);
+            return View(model);
         }
 
         [HttpGet]

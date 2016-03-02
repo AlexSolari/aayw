@@ -180,6 +180,27 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="MailAdress" xml:space="preserve">
+    <value>Mail adress</value>
+  </data>
+  <data name="MailEnableSsl" xml:space="preserve">
+    <value>Enable SSL</value>
+  </data>
+  <data name="MailHost" xml:space="preserve">
+    <value>Mail host</value>
+  </data>
+  <data name="MailPassword" xml:space="preserve">
+    <value>Mail password</value>
+  </data>
+  <data name="MailPort" xml:space="preserve">
+    <value>Mail port</value>
+  </data>
+  <data name="MailSettings" xml:space="preserve">
+    <value>Mail settings</value>
+  </data>
+  <data name="MailUsername" xml:space="preserve">
+    <value>Mail username</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>

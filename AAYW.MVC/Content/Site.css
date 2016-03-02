@@ -137,6 +137,9 @@ header{
     min-height: 510px;
     margin-top: 1em;
 }
+.admin-sidebar .mui-btn {
+    width: 100%;
+}
 .admin-content{
     margin-left: 265px;
 }
@@ -144,7 +147,7 @@ header{
     list-style: none;
     padding: 0;
 }
-.admin-inspector{
+.admin-inspector, .admin-mail-settings{
     text-align: center;
     margin-top: 18px;
 }
@@ -157,7 +160,7 @@ header{
 .admin-inspector tr, .admin-inspector th{
     text-align: center;
 }
-.admin-edit-entity input {
+.admin-edit-entity input, .admin-mail-settings input{
     max-width: 500px;
     display: inline-block;
     text-align: center;

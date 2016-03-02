@@ -3,7 +3,7 @@
 }
 <div class="mui-dropdown">
     <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
-        Entities
+        @Html.Text("EntityInspector")
         <span class="mui-caret"></span>
     </button>
     <ul class="mui-dropdown__menu admin-menu">
@@ -12,6 +12,7 @@
             <li><a href="@(Url.RouteUrl("EntityInspector", new { type = type.Key.Name }))">@(type.Key.Name + "s")</a></li>
         }
     </ul>
+    @Html.Button(Html.Text("MailSettings"), ButtonType.Raised, Url.RouteUrl("MailSettings"), "mui-btn--primary")
 </div>
 
 

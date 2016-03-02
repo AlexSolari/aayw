@@ -95,21 +95,28 @@
     <Compile Include="Crypto\ICryptoProcessor.cs" />
     <Compile Include="Data\Managers\BaseManager.cs" />
     <Compile Include="Data\Managers\IManager.cs" />
+    <Compile Include="Data\Managers\WebsiteSettingsManager.cs" />
     <Compile Include="Data\Managers\UserManager.cs" />
     <Compile Include="Data\NHibernateHelper.cs" />
     <Compile Include="Data\Providers\BaseProvider.cs" />
     <Compile Include="Data\DataProvider.cs" />
     <Compile Include="Data\Providers\IProvider.cs" />
+    <Compile Include="Data\Providers\WebsiteSettingsProvider.cs" />
     <Compile Include="Data\Providers\UserProvider.cs" />
     <Compile Include="Dependencies\Resolver.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="FrameworkInitialize.cs" />
+    <Compile Include="Mail\IMailProcessor.cs" />
+    <Compile Include="Mail\MailProcessor.cs" />
     <Compile Include="Map\Mapper.cs" />
     <Compile Include="Models\Bussines\Entity.cs" />
     <Compile Include="Models\Bussines\User\User.cs" />
+    <Compile Include="Models\Bussines\WebsiteSettings.cs" />
     <Compile Include="Models\Mappings\EntityMap.cs" />
+    <Compile Include="Models\Mappings\WebsiteSettingsMap.cs" />
     <Compile Include="Models\Mappings\UserMap.cs" />
+    <Compile Include="Models\View\Settings\MailSettings.cs" />
     <Compile Include="Models\View\User\LoginModel.cs" />
     <Compile Include="Models\View\User\RegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,8 +126,6 @@
     <Compile Include="Web\Controller\Concrete\ErrorController.cs" />
     <Compile Include="Web\Controller\Concrete\HomeController.cs" />
     <Compile Include="Web\Controller\FrontendController.cs" />
-    <Compile Include="Web\ViewEngine\CustomView.cs" />
-    <Compile Include="Web\ViewEngine\CustomViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AAYW.Resources\AAYW.Resources.csproj">

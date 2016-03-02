@@ -14,6 +14,8 @@ using System.Security.Cryptography;
 using AAYW.Core.Models.Bussines.User;
 using AAYW.Core.Data.Managers;
 using AAYW.Core.Data.Providers;
+using AAYW.Core.Models.Bussines;
+using AAYW.Core.Mail;
 
 namespace AAYW.Core
 {
@@ -27,13 +29,19 @@ namespace AAYW.Core
             //  Resolver.RegisterType<IInterface, TRealisation>();
             Resolver.RegisterType<ICryptoProcessor<MD5>, BaseCryptoProcessor>();
             Resolver.RegisterType<IControllerFactory, BaseControllerFactory>();
+            Resolver.RegisterType<IMailProcessor, MailProcessor>();
 
             // Registrering entites
             Resolver.RegisterType<User, User>();
+            Resolver.RegisterType<WebsiteSettings, WebsiteSettings>();
+
+            // Registering providers
+            Resolver.RegisterType<IProvider<User>, UserProvider>();
+            Resolver.RegisterType<IProvider<WebsiteSettings>, WebsiteSettingsProvider>();
 
             // Registering managers
-            Resolver.RegisterType<IProvider<User>, UserProvider>();
             Resolver.RegisterType<IManager<User>, UserManager>();
+            Resolver.RegisterType<IManager<WebsiteSettings>, WebsiteSettingsManager>();
 
             //Controllers
             RegisterControllers();
@@ -55,6 +63,7 @@ namespace AAYW.Core
             Map(routes, "Admin", "EntityInspector", "admin/inspector/{type}", "EntityInspector");
             Map(routes, "Admin", "EditEntity", "admin/entity/edit/{type}/{id}", "EditEntity");
             Map(routes, "Admin", "SaveEntity", "admin/entity/save", "SaveEntity");
+            Map(routes, "Admin", "MailSettings", "admin/settings/mail", "MailSettings");
 
             routes.MapRoute(
                 "Default",
