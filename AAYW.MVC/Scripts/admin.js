@@ -11,7 +11,7 @@
             });
 
             
-            $('.submit').click(function () {
+            $('.admin-edit-entity .submit').click(function () {
                 AAYW.UI.LoadingIndicator.Show();
                 $.post("/admin/entity/save", $(".admin-edit-entity form").serialize(), function () {
                     AAYW.UI.LoadingIndicator.Close();
@@ -27,5 +27,12 @@
                 })
             });
         });
+    });
+
+    $(".admin-mail-settings .submit").click(function () {
+        AAYW.UI.LoadingIndicator.Show();
+        $.post("/admin/settings/mail", $(".admin-mail-settings form").serialize(), function () {
+            AAYW.UI.LoadingIndicator.Close();
+        })
     });
 });

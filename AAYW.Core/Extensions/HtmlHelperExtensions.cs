@@ -43,20 +43,20 @@ namespace AAYW.Core.Extensions
             return new HtmlString("<a href='{0}' class='{1}'>{2}</a>".FormatWith(href, cssClass, text));
         }
 
-        public static HtmlString Submit<T>(this HtmlHelper<T> val, string text, ButtonType type = ButtonType.Flat)
+        public static HtmlString Submit<T>(this HtmlHelper<T> val, string text, ButtonType type = ButtonType.Flat, string cssClass = "")
         {
-            var cssClass = "";
+            cssClass += " mui-btn";
             switch (type)
             {
                 case ButtonType.Raised:
-                    cssClass = "mui-btn--raised";
+                    cssClass += " mui-btn--raised";
                     break;
                 case ButtonType.Flat:
                 default:
-                    cssClass = "mui-btn--flat";
+                    cssClass += " mui-btn--flat";
                     break;
             }
-            return new HtmlString("<input class='mui-btn {0}' type='submit' value='{1}' />".FormatWith(cssClass, text));
+            return new HtmlString("<input class='{0}' type='submit' value='{1}' />".FormatWith(cssClass, text));
         }
 	    #endregion
         
