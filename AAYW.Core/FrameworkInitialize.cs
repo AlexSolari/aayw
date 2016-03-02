@@ -60,7 +60,7 @@ namespace AAYW.Core
             Map(routes, "Home", "Register", "register", "Register");
 
             Map(routes, "Admin", "Index", "admin", "AdminHome");
-            Map(routes, "Admin", "EntityInspector", "admin/inspector/{type}", "EntityInspector");
+            Map(routes, "Admin", "EntityInspector", "admin/inspector/{type}/{page}", "EntityInspector");
             Map(routes, "Admin", "EditEntity", "admin/entity/edit/{type}/{id}", "EditEntity");
             Map(routes, "Admin", "SaveEntity", "admin/entity/save", "SaveEntity");
             Map(routes, "Admin", "MailSettings", "admin/settings/mail", "MailSettings");

@@ -1,11 +1,22 @@
-﻿@* Model will be "List" of entities ( actuall type is "dynamic" ), type is unknow at compile time and will be resolved in runtime*@
+﻿@model dynamic
+@* Model will be "List" of entities ( actuall type is "dynamic" ), type is unknow at compile time and will be resolved in runtime*@
 @{
     ViewBag.Title = Html.Text("EntityInspector");
     Layout = "~/Views/Admin/Layout.cshtml";
+    var page = (int)ViewData["Page"];
+    var type = (string)ViewData["Type"];
 }
 
 <div class="admin-inspector mui-panel">
     <h1>@Html.Text("EntityInspector")</h1>
+    <div class="paging">
+        @if (page != 0)
+        {
+            <a href="@(Url.RouteUrl("EntityInspector", new { type = type, page = page - 1 }))">&larr;</a>
+        }
+        <span class="page">@page</span>
+        <a href="@(Url.RouteUrl("EntityInspector", new { type = type, page = page + 1 }))">&rarr;</a>
+    </div>
     <div>@Html.Text("EntityInspectorHint")</div>
     @Html.ValidationSummary()
     @if (Model != null && Model.Count > 0)
@@ -33,6 +44,12 @@
                     }
                 </tbody>
             </table>
+        </div>
+    }
+    else
+    {
+        <div class="mui--appbar-height mui--appbar-line-height no-results">
+            @Html.Text("NoResults")
         </div>
     }
 </div>

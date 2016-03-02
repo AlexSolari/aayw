@@ -15,11 +15,17 @@ ul.inline li { display: inline-block; }
 .upvote, .downvote{
     cursor: pointer;
 }
-
+.paging {
+    font-size: large;
+}
 .mui-appbar a{
     color: white;
 }
-
+.no-results{
+    font-size: 3em;
+    color: rgba(128, 128, 128, 0.42);
+    height: 100%;
+}
 .center{
     text-align: center;
 }

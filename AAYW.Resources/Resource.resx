@@ -201,6 +201,9 @@
   <data name="MailUsername" xml:space="preserve">
     <value>Mail username</value>
   </data>
+  <data name="NoResults" xml:space="preserve">
+    <value>No results</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>

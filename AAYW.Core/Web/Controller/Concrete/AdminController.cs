@@ -60,11 +60,12 @@ namespace AAYW.Core.Controller.Concrete
         }
 
         [HttpGet]
-        public ActionResult EntityInspector(string type)
+        public ActionResult EntityInspector(string type, int page)
         {
             var manager = GetManager(type);
-
-            return View(manager.GetList());
+            ViewData["Page"] = page;
+            ViewData["Type"] = type;
+            return View(manager.GetList(page));
         }
 
         [HttpGet]

@@ -1,4 +1,5 @@
-﻿@* Model will be "Entity" ( actuall type is "dynamic" ), type is unknow at compile time and will be resolved in runtime*@
+﻿@model dynamic
+@* Model will be "Entity" ( actuall type is "dynamic" ), type is unknow at compile time and will be resolved in runtime*@
 <div class="admin-edit-entity">
     <h1>@Html.Text("EntityEditor")</h1>
     @using (Html.BeginForm("SaveEntity", "Admin", FormMethod.Post))

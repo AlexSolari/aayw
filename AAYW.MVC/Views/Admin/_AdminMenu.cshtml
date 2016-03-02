@@ -9,7 +9,7 @@
     <ul class="mui-dropdown__menu admin-menu">
         @foreach (var type in entities)
         {
-            <li><a href="@(Url.RouteUrl("EntityInspector", new { type = type.Key.Name }))">@(type.Key.Name + "s")</a></li>
+            <li><a href="@(Url.RouteUrl("EntityInspector", new { type = type.Key.Name, page = 0 }))">@(type.Key.Name + "s")</a></li>
         }
     </ul>
     @Html.Button(Html.Text("MailSettings"), ButtonType.Raised, Url.RouteUrl("MailSettings"), "mui-btn--primary")
