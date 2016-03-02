@@ -10,7 +10,7 @@ namespace AAYW.Core.Data.Managers
         IList<TModel> GeListByField(string field, string value);
         TModel GetByField(string field, string value);
         TModel GetById(string id);
-        IList<TModel> GetList();
+        IList<TModel> GetList(int page, int pagesize = 50);
         bool Update(TModel model);
     }
 }

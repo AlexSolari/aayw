@@ -41,12 +41,14 @@ namespace AAYW.Core.Data.Providers
             return result;
         }
 
-        public virtual IList<TEntity> GetList()
+        public virtual IList<TEntity> GetList(int page = 0, int pagesize = 50)
         {
             return Execute(session =>
             {
                 var criteria = session.CreateCriteria<TEntity>();
                 criteria.AddOrder(Order.Desc("CreatedDate"));
+                criteria.SetMaxResults(pagesize);
+                criteria.SetFirstResult(pagesize * page);
                 return criteria.List<TEntity>();
             });
         }

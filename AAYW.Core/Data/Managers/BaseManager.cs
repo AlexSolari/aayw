@@ -25,9 +25,9 @@ namespace AAYW.Core.Data.Managers
             return provider.GetById(id);
         }
 
-        public IList<TModel> GetList()
+        public IList<TModel> GetList(int page = 0, int pagesize = 50)
         {
-            return provider.GetList();
+            return provider.GetList(page, pagesize);
         }
 
         public bool Update(TModel model)
