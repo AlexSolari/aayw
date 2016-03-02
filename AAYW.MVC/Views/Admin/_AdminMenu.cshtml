@@ -12,7 +12,5 @@
             <li><a href="@(Url.RouteUrl("EntityInspector", new { type = type.Key.Name, page = 0 }))">@(type.Key.Name + "s")</a></li>
         }
     </ul>
-    @Html.Button(Html.Text("MailSettings"), ButtonType.Raised, Url.RouteUrl("MailSettings"), "mui-btn--primary")
 </div>
-
-
+@Html.Button(Html.Text("MailSettings"), ButtonType.Raised, Url.RouteUrl("MailSettings"), "mui-btn--primary")

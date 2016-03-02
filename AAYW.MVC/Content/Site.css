@@ -1,4 +1,7 @@
-﻿.inline {
+﻿body{
+    min-width: 400px;
+}
+.inline {
     display: inline-block;
 }
 .hidden{
@@ -9,9 +12,7 @@ ul.inline, ul.no-marker, .validation-summary-errors ul
     list-style-type: none;
     padding: 0;
 }
-
 ul.inline li { display: inline-block; }
-
 .upvote, .downvote{
     cursor: pointer;
 }
@@ -139,17 +140,12 @@ header{
     padding-top: 0;
     text-align: center;
     font-size: large;
-    float: left;
-    max-width: 250px;
-    min-width: 250px;
-    min-height: 510px;
     margin-top: 1em;
 }
-.admin-sidebar .mui-btn {
+.admin-sidebar .mui-btn, .admin-sidebar .mui-dropdown {
     width: 100%;
-}
-.admin-content{
-    margin-left: 265px;
+    padding: 0;
+    height: auto;
 }
 .admin-menu {
     list-style: none;
