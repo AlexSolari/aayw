@@ -54,9 +54,9 @@ namespace AAYW.Core.Dependecies
             }
         }
 
-        public static T GetInstance<T>()
+        public static T GetInstance<T>(params object[] args)
         {
-            var result = (T)Activator.CreateInstance(Resolve<T>());
+            var result = (T)Activator.CreateInstance(Resolve<T>(), args);
 
             if (result is Entity)
             {
@@ -69,9 +69,9 @@ namespace AAYW.Core.Dependecies
             return result;
         }
 
-        public static object GetInstance(Type type)
+        public static object GetInstance(Type type, params object[] args)
         {
-            var result = Activator.CreateInstance(Resolve(type));
+            var result = Activator.CreateInstance(Resolve(type), args);
 
             if (result is Entity)
             {
