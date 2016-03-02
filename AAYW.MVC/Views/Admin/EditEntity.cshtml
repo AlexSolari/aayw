@@ -13,7 +13,8 @@
                     <input
                            id="edit-@(Model.Id + "_" + prop.Name)" 
                            name="modelData[@(prop.Name + "@" + prop.PropertyType.FullName)]" 
-                           type="@ResolveInputType(prop)" value="@prop.GetValue(Model)"
+                           type="@ResolveInputType(prop)"
+                           value="@((prop.PropertyType == typeof(DateTime)) ? prop.GetValue(Model).ToString("yyyy-MM-ddTHH:mm:ss") : prop.GetValue(Model))"
                            placeholder="@prop.PropertyType.Name" 
                            data-locked="@(prop.GetCustomAttributes(typeof(AAYW.Core.Annotations.InspectorLockAttribute), false).Length > 0)" />
                 </div>
@@ -38,6 +39,10 @@
         {
         
             return "number";
+        }
+        else if (type == typeof(DateTime))
+        {
+            return "datetime-local";
         }
         else{
             return "text";
