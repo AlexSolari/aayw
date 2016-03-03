@@ -126,6 +126,7 @@
     <Compile Include="Web\Controller\Concrete\ErrorController.cs" />
     <Compile Include="Web\Controller\Concrete\HomeController.cs" />
     <Compile Include="Web\Controller\FrontendController.cs" />
+    <Compile Include="Web\HttpHandler\JsRoutingHttpHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AAYW.Resources\AAYW.Resources.csproj">

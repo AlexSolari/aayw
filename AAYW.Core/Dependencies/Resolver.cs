@@ -139,5 +139,11 @@ namespace AAYW.Core.Dependecies
             private set { }
         }
         #endregion
+
+        #region Routes
+
+        public static Dictionary<string, string> RouteUrl = new Dictionary<string, string>();
+
+        #endregion
     }
 }
