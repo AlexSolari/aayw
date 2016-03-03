@@ -105,7 +105,7 @@ namespace AAYW.Core
                 defaults: new { controller = controller, action = action }
             );
 
-            Resolver.RouteUrl.Add(name, url);
+            Resolver.RouteUrl.Add(name, "/"+url);
         }
     }
 }

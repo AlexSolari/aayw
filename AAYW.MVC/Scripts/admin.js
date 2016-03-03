@@ -1,7 +1,7 @@
 ﻿$(window).load(function () {
     $(".admin-inspector-edit").click(function () {
         AAYW.UI.LoadingIndicator.Show();
-        $.get("/admin/entity/edit/" + $(this).data("type") + "/" + $(this).data("target"), function (data) {
+        $.get("[Route:EditEntity]".replace("{type}",$(this).data("type")).replace("{id}",$(this).data("target")), function (data) {
             AAYW.UI.LoadingIndicator.Close();
             AAYW.UI.Popup.Show(data);
             $(".admin-edit-entity form input").each(function (index, el) {
@@ -13,7 +13,7 @@
             
             $('.admin-edit-entity .submit').click(function () {
                 AAYW.UI.LoadingIndicator.Show();
-                $.post("/admin/entity/save", $(".admin-edit-entity form").serialize(), function () {
+                $.post("[Route:SaveEntity]", $(".admin-edit-entity form").serialize(), function () {
                     AAYW.UI.LoadingIndicator.Close();
                     var id = $(".admin-edit-entity form input[name='modelData[Id@System.Guid]']").val();
                     var row = $("#" + id);
@@ -31,7 +31,7 @@
 
     $(".admin-mail-settings .submit").click(function () {
         AAYW.UI.LoadingIndicator.Show();
-        $.post("/admin/settings/mail", $(".admin-mail-settings form").serialize(), function () {
+        $.post("[Route:MailSettings]", $(".admin-mail-settings form").serialize(), function () {
             AAYW.UI.LoadingIndicator.Close();
         })
     });
