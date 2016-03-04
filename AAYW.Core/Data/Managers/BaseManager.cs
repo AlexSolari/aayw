@@ -20,28 +20,32 @@ namespace AAYW.Core.Data.Managers
 
         }
 
-        public TModel GetById(string id)
+        public virtual TModel GetById(string id)
         {
             return provider.GetById(id);
         }
 
-        public IList<TModel> GetList(int page = 0, int pagesize = 50)
+        public virtual IList<TModel> GetList(int page = 0, int pagesize = 50)
         {
             return provider.GetList(page, pagesize);
         }
 
-        public bool Update(TModel model)
+        public virtual void CreateOrUpdate(TModel model)
         {
-            provider.Update(model);
-            return true;
+            provider.CreateOrUpdate(model);
         }
 
-        public TModel GetByField(string field, string value)
+        public virtual void Delete(TModel model)
+        {
+            provider.Delete(model);
+        }
+
+        public virtual TModel GetByField(string field, string value)
         {
             return provider.GetByField(field, value);
         }
 
-        public IList<TModel> GeListByField(string field, string value)
+        public virtual IList<TModel> GetListByField(string field, string value)
         {
             return provider.GetListByField(field, value);
         }

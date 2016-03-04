@@ -37,7 +37,7 @@ namespace AAYW.Core.Data.Managers
             newuser.Login = login;
             newuser.CurrentRole = User.Role.User;
 
-            provider.Create(newuser);
+            provider.CreateOrUpdate(newuser);
 
             return true;
         }
@@ -52,7 +52,7 @@ namespace AAYW.Core.Data.Managers
             if (Resolver.GetInstance<ICryptoProcessor<MD5>>().CryptPassword(user, passwordRaw) != user.PasswordHash)
                 return false;
 
-            provider.Update(user);
+            provider.CreateOrUpdate(user);
             response.Cookies.Add(new HttpCookie("aayw-login", user.Id.ToString()));
 
             return true;

@@ -71,19 +71,7 @@ namespace AAYW.Core.Data.Providers
             });
         }
 
-        public void Create(TEntity model)
-        {
-            Execute(session =>
-            {
-                using (var transaction = StartTransaction(session))
-                {
-                    session.SaveOrUpdate(model);
-                    transaction.Commit();
-                }
-            });
-        }
-
-        public void Update(TEntity model)
+        public void CreateOrUpdate(TEntity model)
         {
             Execute(session =>
             {
@@ -91,7 +79,6 @@ namespace AAYW.Core.Data.Providers
                 {
                     model.ModifiedDate = DateTime.Now;
                     session.SaveOrUpdate(model);
-                    session.Flush();
                     transaction.Commit();
                 }
             });

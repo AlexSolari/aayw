@@ -1,4 +1,5 @@
-﻿using AAYW.Core.Models.Bussines;
+﻿using AAYW.Core.Models.Admin.Bussines;
+using AAYW.Core.Models.Bussines;
 using AAYW.Core.Models.Bussines.User;
 using AAYW.Core.Models.Mappings;
 using FluentNHibernate.Mapping;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AAYW.Core.Models.Mappings
 {
-    class WebsiteSettingsMap : EntityMap<WebsiteSettings>
+    class WebsiteSettingsMap : EntityMap<WebsiteSetting>
     {
         public WebsiteSettingsMap() : base()
         {

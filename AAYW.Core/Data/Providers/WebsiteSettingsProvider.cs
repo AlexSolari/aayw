@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AAYW.Core.Models.Bussines.User;
+using AAYW.Core.Models.Admin.Bussines;
 
 namespace AAYW.Core.Data.Providers
 {
-    public class WebsiteSettingsProvider : BaseProvider<WebsiteSettings>
+    public class WebsiteSettingsProvider : BaseProvider<WebsiteSetting>
     {
         public WebsiteSettingsProvider()
         {

@@ -12,47 +12,40 @@ using AAYW.Core.Crypto;
 using AAYW.Core.Models.Bussines.User;
 using System.Security.Cryptography;
 using AAYW.Core.Annotations;
+using AAYW.Core.Models.Admin.Bussines;
 
 namespace AAYW.Core.Data.Managers
 {
-    public class WebsiteSettingsManager : BaseManager<WebsiteSettingsProvider, WebsiteSettings>
+    public class WebsiteSettingsManager : BaseManager<WebsiteSettingsProvider, WebsiteSetting>
     {
         public WebsiteSettingsManager()
         {
 
         }
 
-        public WebsiteSettings GetSettings()
+        public WebsiteSetting GetSettings()
         {
             var model = provider.GetList().FirstOrDefault();
 
             if (model == null)
             {
-                model = Resolver.GetInstance<WebsiteSettings>();
-                Create(model);
+                model = Resolver.GetInstance<WebsiteSetting>();
+                CreateOrUpdate(model);
             }
 
             return model;
         }
 
-        public void UpdateSettings(WebsiteSettings model)
+        public void UpdateSettings(WebsiteSetting model)
         {
             var modelToUpdate = provider.GetList().FirstOrDefault();
 
-            if (model == null)
-            {
-                Create(model);
-            }
-            else
+            if (model != null)
             {
                 model.Id = modelToUpdate.Id;
-                Update(model);
             }
-        }
 
-        private void Create(WebsiteSettings model)
-        {
-            provider.Create(model);
+            CreateOrUpdate(model);
         }
     }
 }
