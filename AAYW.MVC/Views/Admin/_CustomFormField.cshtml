@@ -1,0 +1,52 @@
+﻿@model int
+@{
+    var properties = typeof(AAYW.Core.Models.View.UserForm.UserFormField).GetProperties();
+}
+<div class="field">
+    @foreach (var prop in properties)
+    {
+        <div class="row">
+            @if (prop.PropertyType.IsEnum)
+            {
+                <select name="Fields[@Model].@prop.Name">
+                    @foreach (var val in prop.PropertyType.GetEnumValues())
+                    {
+                        <option value="@val">@val</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <input type="@ResolveInputType(prop)" name="Fields[@Model].@prop.Name" />
+            }
+        </div>
+    }
+</div>
+<hr />
+@functions  {
+    string ResolveInputType(System.Reflection.PropertyInfo info)
+    {
+        var type = info.PropertyType;
+        if (type == typeof(int) ||
+             type == typeof(float) ||
+             type == typeof(double) ||
+             type == typeof(decimal)
+             )
+        {
+
+            return "number";
+        }
+        else if (type == typeof(bool))
+        {
+            return "checkbox";
+        }
+        else if (type == typeof(DateTime))
+        {
+            return "datetime-local";
+        }
+        else
+        {
+            return "text";
+        }
+    }
+}

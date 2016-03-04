@@ -1,4 +1,6 @@
 ﻿$(window).load(function () {
+    var lastFieldIndex = 0;
+
     $(".admin-inspector-edit").click(function () {
         AAYW.UI.LoadingIndicator.Show();
         $.get("[Route:EditEntity]".replace("{type}",$(this).data("type")).replace("{id}",$(this).data("target")), function (data) {
@@ -78,6 +80,25 @@
 
     $('.admin-mail-template .edit-template').click(function () {
         showTemplatePopup($(this).parents("tr").data("id"));
+        return false;
+    });
+
+    $('.form-constructor .add').click(function () {
+        AAYW.UI.LoadingIndicator.Show();
+        $.post("[Route:CustomFormField]", { index: lastFieldIndex }, function (result) {
+            AAYW.UI.LoadingIndicator.Close();
+            $(".form-fields").append(result);
+            $(window).scrollTop($("body").height());
+        });
+        lastFieldIndex++;
+        return false;
+    });
+
+    $('.form-constructor .remove').click(function () {
+        $(".form-fields .field").last().remove();
+        lastFieldIndex--;
+        if (lastFieldIndex < 0)
+            lastFieldIndex = 0;
         return false;
     });
 });

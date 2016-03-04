@@ -30,7 +30,8 @@ namespace AAYW.Resources
 
         public string Get(string key)
         {
-            return manager.GetString(key);
+            var value = manager.GetString(key);
+            return (string.IsNullOrWhiteSpace(value)) ? key : value;
         }
     }
 }

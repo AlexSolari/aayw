@@ -35,15 +35,19 @@ namespace AAYW.Core
 
             // Registrering entites
             Resolver.RegisterType<User, User>();
+            Resolver.RegisterType<MailTemplate, MailTemplate>();
+            Resolver.RegisterType<UserForm, UserForm>();
             Resolver.RegisterType<WebsiteSetting, WebsiteSetting>();
 
             // Registering providers
             Resolver.RegisterType<IProvider<User>, UserProvider>();
+            Resolver.RegisterType<IProvider<UserForm>, UserFormProvider>();
             Resolver.RegisterType<IProvider<MailTemplate>, MailTemplateProvider>();
             Resolver.RegisterType<IProvider<WebsiteSetting>, WebsiteSettingsProvider>();
 
             // Registering managers
             Resolver.RegisterType<IManager<User>, UserManager>();
+            Resolver.RegisterType<IManager<UserForm>, UserFormManager>();
             Resolver.RegisterType<IManager<MailTemplate>, MailTemplateManager>();
             Resolver.RegisterType<IManager<WebsiteSetting>, WebsiteSettingsManager>();
 
@@ -57,21 +61,29 @@ namespace AAYW.Core
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             
+
             Map(routes, "Home", "Index", "home", "Home");
             Map(routes, "Home", "Landing", "landing", "Landing");
             Map(routes, "Home", "Login", "login", "Login");
             Map(routes, "Home", "Logout", "logout", "Logout");
             Map(routes, "Home", "Register", "register", "Register");
 
+
             Map(routes, "Admin", "Index", "admin", "AdminHome");
+
             Map(routes, "Admin", "EntityInspector", "admin/entity/inspector/{type}/{page}", "EntityInspector");
             Map(routes, "Admin", "EditEntity", "admin/entity/edit/{type}/{id}", "EditEntity");
             Map(routes, "Admin", "SaveEntity", "admin/entity/save", "SaveEntity");
+
             Map(routes, "Admin", "MailSettings", "admin/mail/settings", "MailSettings");
             Map(routes, "Admin", "MailTemplates", "admin/mail/templates/{page}", "MailTemplates");
             Map(routes, "Admin", "CreateOrUpdateMailTemplate", "admin/mail/createtemplate", "CreateMailTemplate");
             Map(routes, "Admin", "UpdateMailTemplate", "admin/mail/edittemplate/{id}", "EditMailTemplate");
             Map(routes, "Admin", "DeleteMailTemplate", "admin/mail/deletetemplate/{id}", "DeleteMailTemplate");
+
+            Map(routes, "Admin", "CreateCustomForm", "admin/forms/create", "CreateCustomForm");
+            Map(routes, "Admin", "CustomFormField", "admin/forms/field/{index}", "CustomFormField");
+            
 
             routes.MapRoute(
                 "Default",

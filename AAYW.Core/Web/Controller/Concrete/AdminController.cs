@@ -19,6 +19,7 @@ using AAYW.Core.Models.View.Settings;
 using AAYW.Core.Models.Admin.Bussines;
 using AAYW.Core.Models.Bussines.Admin;
 using AAYW.Core.Models.View.MailTemplates;
+using AAYW.Core.Models.View.UserForm;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -45,7 +46,26 @@ namespace AAYW.Core.Controller.Concrete
         {
             return View();
         }
-
+        [HttpGet]
+        public ActionResult CreateCustomForm()
+        {
+            return View(Dependecies.Resolver.GetInstance<UserFormDesignModel>());
+        }
+        [HttpPost]
+        public ActionResult CreateCustomForm(UserFormDesignModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            throw new NotImplementedException();
+        }
+        [HttpPost]
+        public ActionResult CustomFormField(int index)
+        {
+            return PartialView("_CustomFormField", index);
+        }
+        
         [HttpGet]
         public ActionResult MailTemplates(int page)
         {

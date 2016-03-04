@@ -96,6 +96,7 @@
     <Compile Include="Data\Managers\BaseManager.cs" />
     <Compile Include="Data\Managers\IManager.cs" />
     <Compile Include="Data\Managers\MailTemplateManager.cs" />
+    <Compile Include="Data\Managers\UserFormManager.cs" />
     <Compile Include="Data\Managers\WebsiteSettingsManager.cs" />
     <Compile Include="Data\Managers\UserManager.cs" />
     <Compile Include="Data\NHibernateHelper.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Data\DataProvider.cs" />
     <Compile Include="Data\Providers\IProvider.cs" />
     <Compile Include="Data\Providers\MailTemplateProvider.cs" />
+    <Compile Include="Data\Providers\UserFormProvider.cs" />
     <Compile Include="Data\Providers\WebsiteSettingsProvider.cs" />
     <Compile Include="Data\Providers\UserProvider.cs" />
     <Compile Include="Dependencies\Resolver.cs" />
@@ -113,6 +115,8 @@
     <Compile Include="Mail\MailProcessor.cs" />
     <Compile Include="Map\Mapper.cs" />
     <Compile Include="Models\Bussines\Admin\MailTemplate.cs" />
+    <Compile Include="Models\View\UserForm\UserFormDesignModel.cs" />
+    <Compile Include="Models\View\UserForm\UserFormField.cs" />
     <Compile Include="Models\Bussines\Entity.cs" />
     <Compile Include="Models\Bussines\Admin\UserForm.cs" />
     <Compile Include="Models\Bussines\User\User.cs" />

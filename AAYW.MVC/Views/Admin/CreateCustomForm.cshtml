@@ -1,0 +1,60 @@
+﻿@model AAYW.Core.Models.View.UserForm.UserFormDesignModel
+
+@{
+    ViewBag.Title = "CreateCustomForm";
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+<div class="mui-panel">
+
+    <h2>CreateCustomForm</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>UserFormDesignModel</h4>
+            <hr />
+            @Html.ValidationSummary()
+            <div class="row">
+                <label>@Html.Text("Header")</label>
+                <div class="control mui-textfield">
+                    @Html.EditorFor(model => model.Header)
+                </div>
+            </div>
+
+            <div class="row">
+                <label>@Html.Text("Url")</label>
+                <div class="control mui-textfield">
+                    @Html.EditorFor(model => model.Url)
+                </div>
+            </div>
+
+            <div class="row">
+                <label>@Html.Text("MailTemplateName")</label>
+                <div class="control mui-textfield">
+                    @Html.EditorFor(model => model.MailTemplateName)
+                </div>
+            </div>
+
+            <label>@Html.Text("FormConstructor")</label>
+            <div class="row mui-panel form-constructor">
+                <div class="form-fields">
+
+                </div>
+                <div class="controls">
+                    @Html.Button(Html.Text("Add"), cssClass: "add")
+                    @Html.Button(Html.Text("Remove"), cssClass: "remove")
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.Submit(Html.Text("Save"), ButtonType.Raised)
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
