@@ -79,6 +79,15 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contorols.
+        /// </summary>
+        internal static string Contorols {
+            get {
+                return ResourceManager.GetString("Contorols", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string Create {
@@ -93,6 +102,24 @@ namespace AAYW.Resources {
         internal static string CreateAccount {
             get {
                 return ResourceManager.GetString("CreateAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -192,6 +219,15 @@ namespace AAYW.Resources {
         internal static string Error_Required {
             get {
                 return ResourceManager.GetString("Error_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template with this name already exist.
+        /// </summary>
+        internal static string Error_TemplateExist {
+            get {
+                return ResourceManager.GetString("Error_TemplateExist", resourceCulture);
             }
         }
         
@@ -300,6 +336,24 @@ namespace AAYW.Resources {
         internal static string MailSettings {
             get {
                 return ResourceManager.GetString("MailSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail template.
+        /// </summary>
+        internal static string MailTemplateCreate {
+            get {
+                return ResourceManager.GetString("MailTemplateCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail templates.
+        /// </summary>
+        internal static string MailTemplates {
+            get {
+                return ResourceManager.GetString("MailTemplates", resourceCulture);
             }
         }
         

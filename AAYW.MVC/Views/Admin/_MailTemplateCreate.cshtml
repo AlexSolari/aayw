@@ -1,0 +1,29 @@
+﻿@model AAYW.Core.Models.View.MailTemplates.MailTemplateCreateModel
+<div class="popup-editor">
+    <h1>@Html.Text("MailTemplateCreate")</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.Id)
+        <div class="row">
+            <div class="error">
+                @Html.ValidationSummary()
+            </div>
+        </div>
+        <div class="row">
+            <div class="control mui-textfield">
+                @Html.EditorFor(m => m.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="control mui-textfield">
+                @Html.EditorFor(m => m.Body)
+            </div>
+        </div>
+        <div class="row">
+            <div class="control">
+                @Html.Submit(Html.Text("Save"), ButtonType.Raised, "submit")
+            </div>
+        </div>
+    }
+</div>
+

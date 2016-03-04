@@ -123,11 +123,20 @@
   <data name="Confirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>
+  <data name="Contorols" xml:space="preserve">
+    <value>Contorols</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>Create</value>
   </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Create account</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="EntityEditor" xml:space="preserve">
     <value>Entity editor</value>
@@ -161,6 +170,9 @@
   </data>
   <data name="Error_Required" xml:space="preserve">
     <value>{0} is required</value>
+  </data>
+  <data name="Error_TemplateExist" xml:space="preserve">
+    <value>Template with this name already exist</value>
   </data>
   <data name="FailedToLogin" xml:space="preserve">
     <value>Incorrect username or password</value>
@@ -197,6 +209,12 @@
   </data>
   <data name="MailSettings" xml:space="preserve">
     <value>Mail settings</value>
+  </data>
+  <data name="MailTemplateCreate" xml:space="preserve">
+    <value>Mail template</value>
+  </data>
+  <data name="MailTemplates" xml:space="preserve">
+    <value>Mail templates</value>
   </data>
   <data name="MailUsername" xml:space="preserve">
     <value>Mail username</value>

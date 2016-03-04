@@ -11,6 +11,8 @@ using AAYW.Core.Data.Managers;
 using AAYW.Core.Models.Bussines;
 using System.Net;
 using System.Security;
+using AAYW.Core.Models.Admin.Bussines;
+using AAYW.Core.Models.Bussines.Admin;
 
 namespace AAYW.Core.Mail
 {
@@ -24,7 +26,7 @@ namespace AAYW.Core.Mail
         private SmtpClient CreateClient()
         {
             var client = new SmtpClient();
-            var websiteSettings = ((WebsiteSettingsManager)Resolver.GetInstance<IManager<WebsiteSettings>>()).GetSettings();
+            var websiteSettings = ((WebsiteSettingsManager)Resolver.GetInstance<IManager<WebsiteSetting>>()).GetSettings();
 
             client.EnableSsl = websiteSettings.MailEnableSsl;
             client.Host = websiteSettings.MailHost;
@@ -37,11 +39,10 @@ namespace AAYW.Core.Mail
 
         public void Send(string adress, string subject, string templateKey, Dictionary<string, string> replacements = null)
         {
-            var websiteSettings = ((WebsiteSettingsManager)Resolver.GetInstance<IManager<WebsiteSettings>>()).GetSettings();
+            var websiteSettings = ((WebsiteSettingsManager)Resolver.GetInstance<IManager<WebsiteSetting>>()).GetSettings();
             using (var client = CreateClient())
             {
-                var body = Resources.ResourceAccessor
-                    .Instance.Get(templateKey);
+                var body = Resolver.GetInstance<IManager<MailTemplate>>().GetByField("Name", templateKey).Body;
 
                 if (replacements != null)
                 {
@@ -60,7 +61,7 @@ namespace AAYW.Core.Mail
                 ContentType mimeType = new System.Net.Mime.ContentType("text/html");
                 AlternateView alternate = AlternateView.CreateAlternateViewFromString(body, mimeType);
                 msg.AlternateViews.Add(alternate);
-                msg.Priority = MailPriority.High;
+                msg.Priority = MailPriority.Normal;
 
                 client.Send(msg);
             }

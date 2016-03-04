@@ -4,21 +4,21 @@
         $.get("[Route:EditEntity]".replace("{type}",$(this).data("type")).replace("{id}",$(this).data("target")), function (data) {
             AAYW.UI.LoadingIndicator.Close();
             AAYW.UI.Popup.Show(data);
-            $(".admin-edit-entity form input").each(function (index, el) {
+            $(".popup-editor form input").each(function (index, el) {
                 var $el = $(el);
                 if ($el.data("locked") == "True")
                     $el.parents(".row").addClass("hidden");
             });
 
             
-            $('.admin-edit-entity .submit').click(function () {
+            $('.popup-editor .submit').click(function () {
                 AAYW.UI.LoadingIndicator.Show();
-                $.post("[Route:SaveEntity]", $(".admin-edit-entity form").serialize(), function () {
+                $.post("[Route:SaveEntity]", $(".popup-editor form").serialize(), function () {
                     AAYW.UI.LoadingIndicator.Close();
-                    var id = $(".admin-edit-entity form input[name='modelData[Id@System.Guid]']").val();
+                    var id = $(".popup-editor form input[name='modelData[Id@System.Guid]']").val();
                     var row = $("#" + id);
 
-                    $(".admin-edit-entity form input").each(function (index, el) {
+                    $(".popup-editor form input").each(function (index, el) {
                         var $el = $(el);
                         $("#" + $el.prop("id").split("edit-")[1]).html($el.val());
                     });
@@ -34,5 +34,50 @@
         $.post("[Route:MailSettings]", $(".admin-mail-settings form").serialize(), function () {
             AAYW.UI.LoadingIndicator.Close();
         })
+    });
+
+    var showTemplatePopup = function (data) {
+        var callback = function (data) {
+            function onsubmit() {
+                AAYW.UI.LoadingIndicator.Show();
+                $.post("[Route:CreateMailTemplate]", $(".popup-editor form").serialize(), function (result) {
+                    AAYW.UI.LoadingIndicator.Close();
+                    AAYW.UI.Popup.Close();
+
+                    if (!result) {
+                        document.location.href = "[Route:MailTemplates]".replace("{page}", 0);
+                    }
+                    else {
+                        AAYW.UI.Popup.Show(result);
+                        $('.popup-editor .submit').click(onsubmit);
+                    }
+
+                })
+                return false;
+            }
+
+            AAYW.UI.LoadingIndicator.Close();
+            AAYW.UI.Popup.Show(data);
+
+            $('.popup-editor .submit').click(onsubmit);
+        };
+
+        AAYW.UI.LoadingIndicator.Show();
+
+        if (data instanceof String)
+        {
+            $.get("[Route:EditMailTemplate]".replace("{id}", data), callback);
+        }
+        else
+        {
+            $.get("[Route:CreateMailTemplate]", callback);            
+        }
+    }
+
+    $('.admin-mail-template .create').click(showTemplatePopup);
+
+    $('.admin-mail-template .edit-template').click(function () {
+        showTemplatePopup($(this).parents("tr").data("id"));
+        return false;
     });
 });

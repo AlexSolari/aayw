@@ -151,7 +151,7 @@ header{
     list-style: none;
     padding: 0;
 }
-.admin-inspector, .admin-mail-settings{
+.admin-content > div{
     text-align: center;
     margin-top: 18px;
 }
@@ -161,11 +161,14 @@ header{
 .admin-inspector tr{
     cursor: pointer;
 }
-.admin-inspector tr, .admin-inspector th{
+.admin-content th, .admin-content tr {
     text-align: center;
 }
-.admin-edit-entity input, .admin-mail-settings input{
+.popup-editor input, .admin-mail-settings input,.popup-editor textarea, .admin-mail-settings textarea{
     max-width: 500px;
     display: inline-block;
     text-align: center;
+}
+.admin-sidebar .mui-btn + .mui-btn {
+  margin-left: 0;
 }

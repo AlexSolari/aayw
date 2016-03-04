@@ -16,6 +16,8 @@ using AAYW.Core.Data.Managers;
 using AAYW.Core.Data.Providers;
 using AAYW.Core.Models.Bussines;
 using AAYW.Core.Mail;
+using AAYW.Core.Models.Admin.Bussines;
+using AAYW.Core.Models.Bussines.Admin;
 
 namespace AAYW.Core
 {
@@ -33,15 +35,17 @@ namespace AAYW.Core
 
             // Registrering entites
             Resolver.RegisterType<User, User>();
-            Resolver.RegisterType<WebsiteSettings, WebsiteSettings>();
+            Resolver.RegisterType<WebsiteSetting, WebsiteSetting>();
 
             // Registering providers
             Resolver.RegisterType<IProvider<User>, UserProvider>();
-            Resolver.RegisterType<IProvider<WebsiteSettings>, WebsiteSettingsProvider>();
+            Resolver.RegisterType<IProvider<MailTemplate>, MailTemplateProvider>();
+            Resolver.RegisterType<IProvider<WebsiteSetting>, WebsiteSettingsProvider>();
 
             // Registering managers
             Resolver.RegisterType<IManager<User>, UserManager>();
-            Resolver.RegisterType<IManager<WebsiteSettings>, WebsiteSettingsManager>();
+            Resolver.RegisterType<IManager<MailTemplate>, MailTemplateManager>();
+            Resolver.RegisterType<IManager<WebsiteSetting>, WebsiteSettingsManager>();
 
             //Controllers
             RegisterControllers();
@@ -60,10 +64,14 @@ namespace AAYW.Core
             Map(routes, "Home", "Register", "register", "Register");
 
             Map(routes, "Admin", "Index", "admin", "AdminHome");
-            Map(routes, "Admin", "EntityInspector", "admin/inspector/{type}/{page}", "EntityInspector");
+            Map(routes, "Admin", "EntityInspector", "admin/entity/inspector/{type}/{page}", "EntityInspector");
             Map(routes, "Admin", "EditEntity", "admin/entity/edit/{type}/{id}", "EditEntity");
             Map(routes, "Admin", "SaveEntity", "admin/entity/save", "SaveEntity");
-            Map(routes, "Admin", "MailSettings", "admin/settings/mail", "MailSettings");
+            Map(routes, "Admin", "MailSettings", "admin/mail/settings", "MailSettings");
+            Map(routes, "Admin", "MailTemplates", "admin/mail/templates/{page}", "MailTemplates");
+            Map(routes, "Admin", "CreateOrUpdateMailTemplate", "admin/mail/createtemplate", "CreateMailTemplate");
+            Map(routes, "Admin", "UpdateMailTemplate", "admin/mail/edittemplate/{id}", "EditMailTemplate");
+            Map(routes, "Admin", "DeleteMailTemplate", "admin/mail/deletetemplate/{id}", "DeleteMailTemplate");
 
             routes.MapRoute(
                 "Default",

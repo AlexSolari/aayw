@@ -16,13 +16,17 @@ using System.Reflection;
 using System.Collections.Generic;
 using AAYW.Core.Map;
 using AAYW.Core.Models.View.Settings;
+using AAYW.Core.Models.Admin.Bussines;
+using AAYW.Core.Models.Bussines.Admin;
+using AAYW.Core.Models.View.MailTemplates;
 
 namespace AAYW.Core.Controller.Concrete
 {
     [AccessLevel(Models.Bussines.User.User.Role.Admin)]
     public class AdminController : FrontendController
     {
-        WebsiteSettingsManager settingsManager = (WebsiteSettingsManager)AAYW.Core.Dependecies.Resolver.GetInstance<IManager<WebsiteSettings>>();
+        WebsiteSettingsManager settingsManager = (WebsiteSettingsManager)AAYW.Core.Dependecies.Resolver.GetInstance<IManager<WebsiteSetting>>();
+        IManager<MailTemplate> mailTemplatesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<MailTemplate>>();
 
         public AdminController()
         {
@@ -43,10 +47,58 @@ namespace AAYW.Core.Controller.Concrete
         }
 
         [HttpGet]
+        public ActionResult MailTemplates(int page)
+        {
+            ViewData["Page"] = page;
+            var templates = mailTemplatesManager.GetList(page);
+            return View(templates);
+        }
+
+        [HttpGet]
+        public ActionResult CreateOrUpdateMailTemplate()
+        {
+            return PartialView("_MailTemplateCreate", Dependecies.Resolver.GetInstance<MailTemplateCreateModel>());
+        }
+
+        [HttpGet]
+        public ActionResult UpdateMailTemplate(string id)
+        {
+            var template = Mapper.Map<MailTemplateCreateModel, MailTemplate>(mailTemplatesManager.GetById(id));
+            return PartialView("_MailTemplateCreate", template);
+        }
+
+        [HttpPost]
+        public ActionResult CreateOrUpdateMailTemplate(MailTemplateCreateModel model)
+        {
+            var template = Mapper.Map<MailTemplate, MailTemplateCreateModel>(model);
+
+            if (!((MailTemplateManager)mailTemplatesManager).CanCreate(template))
+            {
+                ModelState.AddModelError("Name", ResourceAccessor.Instance.Get("Error_TemplateExist"));
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return PartialView("_MailTemplateCreate", model);
+            }
+
+            mailTemplatesManager.CreateOrUpdate(template);
+
+            return Json(false);
+        }
+
+        public ActionResult DeleteMailTemplate(string id)
+        {
+            var model = mailTemplatesManager.GetById(id);
+            mailTemplatesManager.Delete(model);
+            return RedirectToRoute("MailTemplates", new { page = 0 });
+        }
+
+        [HttpGet]
         public ActionResult MailSettings()
         {
             var websiteSettings = settingsManager.GetSettings();
-            var mailSettings = Mapper.Map<MailSettings, WebsiteSettings>(websiteSettings);
+            var mailSettings = Mapper.Map<MailSettings, WebsiteSetting>(websiteSettings);
             return View(mailSettings);
         }
 
@@ -54,7 +106,7 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult MailSettings(MailSettings model)
         {
             var websiteSettings = settingsManager.GetSettings();
-            websiteSettings = Mapper.MapAndMerge<WebsiteSettings, MailSettings>(model, websiteSettings);
+            websiteSettings = Mapper.MapAndMerge<WebsiteSetting, MailSettings>(model, websiteSettings);
             settingsManager.UpdateSettings(websiteSettings);
             return View(model);
         }

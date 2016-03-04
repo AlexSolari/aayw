@@ -1,0 +1,73 @@
+﻿@using AAYW.Core.Models.Bussines.Admin
+@model IList<MailTemplate>
+
+@{
+    ViewBag.Title = Html.Text("MailTemplates");
+    var page = (int)ViewData["Page"];
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+<div class="admin-mail-template mui-panel">
+    <h2>@Html.Text("MailTemplates")</h2>
+    <div class="paging">
+        @if (page != 0)
+        {
+            <a href="@(Url.RouteUrl("MailTemplates", new { page = page - 1 }))">&larr;</a>
+        }
+        <span class="page">@page</span>
+        <a href="@(Url.RouteUrl("MailTemplates", new { page = page + 1 }))">&rarr;</a>
+    </div>
+    @if (Model.Count != 0)
+    {
+        <table class="mui-table mui-table--bordered">
+            <thead>
+                <tr>
+                    @foreach (var property in Model[0].GetType().GetProperties())
+                    {
+                        <th>
+                            @property.Name
+                        </th>
+                    }
+                    <th>
+                        @Html.Text("Contorols")
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr data-id="@item.Id">
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Body
+                    </td>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.CreatedDate
+                    </td>
+                    <td>
+                        @item.ModifiedDate
+                    </td>
+                    <td>
+                        <div class="row">
+                            @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeleteMailTemplate", new { id = item.Id }))
+                        </div>
+                        <div class="row">
+                            @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditMailTemplate", new { id = item.Id }), "edit-template")
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div class="mui--appbar-height mui--appbar-line-height no-results">
+            @Html.Text("NoResults")
+        </div>
+    }
+    @Html.Button(Html.Text("Create"), ButtonType.Raised, cssClass: "create")
+</div>
+

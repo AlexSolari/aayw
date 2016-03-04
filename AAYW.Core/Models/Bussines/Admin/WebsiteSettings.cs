@@ -1,13 +1,14 @@
-﻿using System;
+﻿using AAYW.Core.Models.Bussines;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AAYW.Core.Models.Bussines
+namespace AAYW.Core.Models.Admin.Bussines
 {
-    public class WebsiteSettings : Entity
+    public class WebsiteSetting : Entity
     {
         public virtual string MailAdress { get; set; }
         public virtual string MailHost { get; set; }
