@@ -12,7 +12,7 @@ namespace AAYW.Core.Annotations
 {
     public class CustomMaxLengthAttribute : StringLengthAttribute
     {
-        public CustomMaxLengthAttribute(int MaxLength, int MinLength, [CallerMemberName] string PropertyResourceName = null)
+        public CustomMaxLengthAttribute(int MaxLength, int MinLength = 0, [CallerMemberName] string PropertyResourceName = null)
             : base(MaxLength)
         {
             MinimumLength = MinLength;
