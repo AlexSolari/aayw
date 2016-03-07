@@ -109,6 +109,7 @@
     <Compile Include="Data\Providers\UserProvider.cs" />
     <Compile Include="Dependencies\Resolver.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="FrameworkInitialize.cs" />
     <Compile Include="Mail\IMailProcessor.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Web\Controller\Concrete\ErrorController.cs" />
     <Compile Include="Web\Controller\Concrete\HomeController.cs" />
     <Compile Include="Web\Controller\FrontendController.cs" />
+    <Compile Include="Web\DataBinders\UserFormDataBinder.cs" />
     <Compile Include="Web\HttpHandler\JsRoutingHttpHandler.cs" />
   </ItemGroup>
   <ItemGroup>

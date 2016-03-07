@@ -1,24 +1,45 @@
-﻿@model int
+﻿@using AAYW.Core.Models.View.UserForm;
+@model UserFormField
 @{
-    var properties = typeof(AAYW.Core.Models.View.UserForm.UserFormField).GetProperties();
+    var properties = Model.GetType().GetProperties();
 }
 <div class="field">
     @foreach (var prop in properties)
     {
         <div class="row">
-            @if (prop.PropertyType.IsEnum)
-            {
-                <select name="Fields[@Model].@prop.Name">
-                    @foreach (var val in prop.PropertyType.GetEnumValues())
-                    {
-                        <option value="@val">@val</option>
-                    }
-                </select>
-            }
-            else
-            {
-                <input type="@ResolveInputType(prop)" name="Fields[@Model].@prop.Name" />
-            }
+            <label>@Html.Text(prop.Name)</label>
+            <div class="@ResolveInputCSS(prop)">
+                @if (prop.PropertyType.IsEnum)
+                {
+                    var value = prop.GetValue(Model);
+                    <select name="Fields[@ViewData["Index"]].@prop.Name">
+                        @foreach (var val in prop.PropertyType.GetEnumValues())
+                        {
+                            <option value="@val" 
+                                    @if (value.Equals(val))
+                                    {
+                                        <text>selected</text>
+                                    }>
+                                @val
+                            </option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <input type="@ResolveInputType(prop)"
+                           @if (prop.PropertyType != typeof(bool))
+                           {
+                               <text>value="@prop.GetValue(Model)"</text>
+                           }
+                           else
+                           {
+                               var value = (prop.GetValue(Model).Equals(true)) ? "checked" : "";
+                               <text>checked="@value"</text>
+                           }
+                           name="Fields[@ViewData["Index"]].@prop.Name" />
+                }
+            </div>
         </div>
     }
 </div>
@@ -48,5 +69,14 @@
         {
             return "text";
         }
+    }
+
+    string ResolveInputCSS(System.Reflection.PropertyInfo info)
+    {
+        if (info.PropertyType.IsEnum)
+        {
+            return "mui-select";
+        }
+        return "mui-textfield";
     }
 }

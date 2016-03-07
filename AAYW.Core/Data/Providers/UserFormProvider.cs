@@ -1,4 +1,4 @@
-﻿using AAYW.Core.Models.Admin.Bussines;
+﻿using AAYW.Core.Models.Bussines.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;

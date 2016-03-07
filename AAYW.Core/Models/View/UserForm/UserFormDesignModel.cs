@@ -9,7 +9,8 @@ namespace AAYW.Core.Models.View.UserForm
 {
     public class UserFormDesignModel
     {
-        public List<UserFormField> Fields { get; set; }
+        public string Id { get; set; }
+        public List<UserFormField> FormFields { get; set; }
         [CustomRequired]
         public string Header { get; set; }
         [CustomRequired]
@@ -19,7 +20,7 @@ namespace AAYW.Core.Models.View.UserForm
 
         public UserFormDesignModel()
         {
-            Fields = new List<UserFormField>();
+            FormFields = new List<UserFormField>();
         }
     }
 }

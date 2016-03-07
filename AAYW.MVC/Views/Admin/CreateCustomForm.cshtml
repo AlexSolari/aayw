@@ -1,17 +1,12 @@
 ﻿@model AAYW.Core.Models.View.UserForm.UserFormDesignModel
 
-@{
-    ViewBag.Title = "CreateCustomForm";
-    Layout = "~/Views/Admin/Layout.cshtml";
-}
-<div class="mui-panel">
+<div>
 
     <h2>CreateCustomForm</h2>
 
     @using (Html.BeginForm())
     {
-        @Html.AntiForgeryToken()
-
+        @Html.HiddenFor(m => m.Id)
         <div class="form-horizontal">
             <h4>UserFormDesignModel</h4>
             <hr />
@@ -40,7 +35,17 @@
             <label>@Html.Text("FormConstructor")</label>
             <div class="row mui-panel form-constructor">
                 <div class="form-fields">
-
+                    @{
+                        var index = 0;
+                        var dict = new ViewDataDictionary();
+                    
+                        foreach (var field in Model.FormFields)
+	                    {
+                            dict["Index"] = index;
+                            @Html.Partial("_CustomFormField", field, dict);
+                            index++;
+                        }
+                    }
                 </div>
                 <div class="controls">
                     @Html.Button(Html.Text("Add"), cssClass: "add")

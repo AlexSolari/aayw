@@ -18,11 +18,8 @@ namespace AAYW.Core.Models.View.UserForm
             Password,
             DateTime
         }
-        [CustomRequired]
         public string FieldName { get; set; }
-        [CustomRequired]
         public InputType Type { get; set; }
-        [CustomRequired]
         public bool Validate { get; set; }
         public bool Required { get; set; }
         public int Max { get; set; }

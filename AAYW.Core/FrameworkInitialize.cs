@@ -18,6 +18,12 @@ using AAYW.Core.Models.Bussines;
 using AAYW.Core.Mail;
 using AAYW.Core.Models.Admin.Bussines;
 using AAYW.Core.Models.Bussines.Admin;
+using AAYW.Core.Models.View.UserForm;
+using AAYW.Core.Web.DataBinders;
+using AAYW.Core.Map;
+using AAYW.Core.Extensions;
+using System.Xml.Linq;
+using System.Xml;
 
 namespace AAYW.Core
 {
@@ -55,6 +61,32 @@ namespace AAYW.Core
             RegisterControllers();
             //Routing
             RegisterRoutes(RouteTable.Routes);
+            //DataBinders
+            ModelBinders.Binders.Add(typeof(UserFormDesignModel), new UserFormDataBinder());
+            //Custom Mappings
+            RegisterCustomMappings();
+        }
+
+        private static void RegisterCustomMappings()
+        {
+            Mapper.AddMapping<UserForm, UserFormDesignModel>((result, source) =>
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(source.FormFields.Serialize());
+
+                result.Fields = xml;
+
+                return result;
+            });
+
+            Mapper.AddMapping<UserFormDesignModel, UserForm>((result, source) =>
+            {
+                var list = source.Fields.DeserializeAs<List<UserFormField>>();
+
+                result.FormFields = list;
+
+                return result;
+            });
         }
 
         private static void RegisterRoutes(RouteCollection routes)
@@ -83,6 +115,10 @@ namespace AAYW.Core
 
             Map(routes, "Admin", "CreateCustomForm", "admin/forms/create", "CreateCustomForm");
             Map(routes, "Admin", "CustomFormField", "admin/forms/field/{index}", "CustomFormField");
+            Map(routes, "Admin", "CustomFormsList", "admin/forms/list/{page}", "CustomFormsList");
+            Map(routes, "Admin", "EditUserForm", "admin/forms/edit/{id}", "EditUserForm");
+            Map(routes, "Admin", "DeleteUserForm", "admin/forms/delete/{id}", "DeleteUserForm");
+            Map(routes, "Admin", "CustomForm", "form/{url}", "CustomForm");
             
 
             routes.MapRoute(

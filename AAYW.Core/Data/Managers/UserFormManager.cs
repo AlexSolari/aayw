@@ -1,5 +1,5 @@
 ﻿using AAYW.Core.Data.Providers;
-using AAYW.Core.Models.Admin.Bussines;
+using AAYW.Core.Models.Bussines.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +10,16 @@ namespace AAYW.Core.Data.Managers
 {
     public class UserFormManager : BaseManager<UserFormProvider, UserForm>, IManager<UserForm>
     {
+        public bool IsAvalibleForCreation(UserForm model)
+        {
+            var fromDb = GetByField("Url", model.Url);
+
+            if (fromDb == null)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

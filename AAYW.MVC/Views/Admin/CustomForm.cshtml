@@ -1,0 +1,68 @@
+﻿@*
+    Result field depends on user selected field in backoffice
+*@
+@model AAYW.Core.Models.View.UserForm.UserFormDesignModel
+@{
+    ViewBag.Title = "CustomForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CustomForm</h2>
+
+@using (Html.BeginForm())
+{
+    foreach (var field in Model.FormFields)
+    {
+        <div class="row">
+            <label>
+                @field.FieldName
+            </label>
+            <div class="mui-textfield">
+                <input 
+                       type="@ResolveType(field.Type)" 
+                       name="@field.FieldName"
+                       @{
+                           if(field.Validate)
+                           {
+                                if (field.Required)
+                                {
+                                    <text>required</text>
+                                }
+                                if (field.Type == AAYW.Core.Models.View.UserForm.UserFormField.InputType.Number)
+                                {
+                                    <text>min="@field.Min" max="@field.Max"</text>
+                                }
+                                if (field.Type == AAYW.Core.Models.View.UserForm.UserFormField.InputType.Text)
+                                {
+                                    <text>pattern="@field.Pattern"</text>
+                                }
+                           }
+                       }
+                 />
+            </div>
+        </div>
+    } 
+    <div class="row">
+        @Html.Submit(Html.Text("Save"), ButtonType.Raised)
+    </div>
+}
+@functions{
+    string ResolveType(AAYW.Core.Models.View.UserForm.UserFormField.InputType type)
+    {
+        switch (type)
+        {
+            case AAYW.Core.Models.View.UserForm.UserFormField.InputType.Hidden:
+                return "hidden";
+            case AAYW.Core.Models.View.UserForm.UserFormField.InputType.Text:
+                return "text";
+            case AAYW.Core.Models.View.UserForm.UserFormField.InputType.Number:
+                return "number";
+            case AAYW.Core.Models.View.UserForm.UserFormField.InputType.Password:
+                return "password";
+            case AAYW.Core.Models.View.UserForm.UserFormField.InputType.DateTime:
+                return "datetime-local";
+            default:
+                return "";
+        }
+    }
+}

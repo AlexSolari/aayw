@@ -172,3 +172,7 @@ header{
 .admin-sidebar .mui-btn + .mui-btn {
   margin-left: 0;
 }
+.form-constructor input, .form-constructor select{
+    max-width: 350px;
+    display: inline-block;
+}

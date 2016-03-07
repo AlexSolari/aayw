@@ -28,6 +28,7 @@ namespace AAYW.Core.Controller.Concrete
     {
         WebsiteSettingsManager settingsManager = (WebsiteSettingsManager)AAYW.Core.Dependecies.Resolver.GetInstance<IManager<WebsiteSetting>>();
         IManager<MailTemplate> mailTemplatesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<MailTemplate>>();
+        IManager<UserForm> userFormsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<UserForm>>();
 
         public AdminController()
         {
@@ -46,11 +47,75 @@ namespace AAYW.Core.Controller.Concrete
         {
             return View();
         }
+        #region CustomForm
+        [HttpGet]
+        public ActionResult CustomForm(string url)
+        {
+            var form = userFormsManager.GetByField("Url", url);
+
+            if (form == null)
+            {
+                return RedirectToRoute("Error404");
+            }
+
+            var mapped = Mapper.Map<UserFormDesignModel, UserForm>(form);
+
+            return View(mapped);
+        }
+
+        [HttpPost]
+        public ActionResult CustomForm(dynamic model)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        public ActionResult CustomFormsList(int page)
+        {
+            var list = userFormsManager.GetList(page);
+            ViewData["Page"] = page;
+            return View(list);
+        }
+
         [HttpGet]
         public ActionResult CreateCustomForm()
         {
-            return View(Dependecies.Resolver.GetInstance<UserFormDesignModel>());
+            return PartialView(Dependecies.Resolver.GetInstance<UserFormDesignModel>());
         }
+
+        [HttpGet]
+        public ActionResult EditUserForm(string id)
+        {
+            var model = userFormsManager.GetById(id);
+
+            var mapped = Mapper.Map<UserFormDesignModel, UserForm>(model);
+
+            return PartialView("CreateCustomForm", mapped);
+        }
+
+        [HttpPost]
+        public ActionResult EditUserForm(UserFormDesignModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var mapped = Mapper.Map<UserForm, UserFormDesignModel>(model);
+
+            userFormsManager.CreateOrUpdate(mapped);
+
+            return Json(true);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteUserForm(string id)
+        {
+            var model = userFormsManager.GetById(id);
+            userFormsManager.Delete(model);
+            return RedirectToRoute("CustomFormsList", new { page = 0 });
+        }
+
         [HttpPost]
         public ActionResult CreateCustomForm(UserFormDesignModel model)
         {
@@ -58,13 +123,26 @@ namespace AAYW.Core.Controller.Concrete
             {
                 return View(model);
             }
-            throw new NotImplementedException();
+
+            var mapped = Mapper.Map<UserForm, UserFormDesignModel>(model);
+
+            if (((UserFormManager)userFormsManager).IsAvalibleForCreation(mapped))
+            {
+                userFormsManager.CreateOrUpdate(mapped);
+                return Json(true);
+            }
+            
+            return Json(false);
         }
         [HttpPost]
         public ActionResult CustomFormField(int index)
         {
-            return PartialView("_CustomFormField", index);
+            var model = Dependecies.Resolver.GetInstance<UserFormField>();
+            ViewData["Index"] = index;
+            return PartialView("_CustomFormField", model);
         }
+        #endregion
+        #region MailTemplates
         
         [HttpGet]
         public ActionResult MailTemplates(int page)
@@ -114,6 +192,9 @@ namespace AAYW.Core.Controller.Concrete
             return RedirectToRoute("MailTemplates", new { page = 0 });
         }
 
+        #endregion
+        #region MailSettins
+        
         [HttpGet]
         public ActionResult MailSettings()
         {
@@ -130,7 +211,9 @@ namespace AAYW.Core.Controller.Concrete
             settingsManager.UpdateSettings(websiteSettings);
             return View(model);
         }
-
+        #endregion
+        #region EntityInspector
+        
         [HttpGet]
         public ActionResult EntityInspector(string type, int page)
         {
@@ -179,5 +262,6 @@ namespace AAYW.Core.Controller.Concrete
             }
             return manager;
         }
+        #endregion
     }
 }

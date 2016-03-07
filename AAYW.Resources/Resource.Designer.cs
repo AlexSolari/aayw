@@ -106,6 +106,15 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Custom forms.
+        /// </summary>
+        internal static string CustomForms {
+            get {
+                return ResourceManager.GetString("CustomForms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string Delete {

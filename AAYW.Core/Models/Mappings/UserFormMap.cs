@@ -1,4 +1,4 @@
-﻿using AAYW.Core.Models.Admin.Bussines;
+﻿using AAYW.Core.Models.Bussines.Admin;
 using AAYW.Core.Models.Bussines;
 using AAYW.Core.Models.Bussines.User;
 using AAYW.Core.Models.Mappings;
@@ -16,7 +16,7 @@ namespace AAYW.Core.Models.Mappings
         public UserFormMap()
             : base()
         {
-            Map(x => x.Fields).CustomSqlType("text");
+            Map(x => x.Fields).CustomSqlType("xml");
             Map(x => x.Url);
             Map(x => x.MailTemplateName);
             Map(x => x.Header);

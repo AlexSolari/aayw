@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace AAYW.Core.Models.Admin.Bussines
+namespace AAYW.Core.Models.Bussines.Admin
 {
     public class UserForm : Entity
     {

@@ -23,7 +23,18 @@ namespace AAYW.Core.Map
                 {
                     if (fieldR.Name == fieldS.Name)
                     {
-                        fieldR.SetValue(result, fieldS.GetValue(source));
+                        if (fieldR.PropertyType == typeof(Guid))
+                        {
+                            fieldR.SetValue(result, Guid.Parse((string)fieldS.GetValue(source)));
+                        }
+                        else if (fieldR.PropertyType == typeof(String))
+                        {
+                            fieldR.SetValue(result, fieldS.GetValue(source).ToString());
+                        }
+                        else
+                        {
+                            fieldR.SetValue(result, fieldS.GetValue(source));
+                        }
                     }
                 }
             }
@@ -84,7 +95,6 @@ namespace AAYW.Core.Map
         }
 
         public static void AddMapping<TDestination, TSource>(Func<TDestination, TSource, TDestination> mapping)
-            where TDestination : TSource
         {
             if (CustomMappings.ContainsKey(typeof(TSource)))
                 throw new ArgumentException("Mapping for this type already created");

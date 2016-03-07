@@ -132,6 +132,9 @@
   <data name="CreateAccount" xml:space="preserve">
     <value>Create account</value>
   </data>
+  <data name="CustomForms" xml:space="preserve">
+    <value>Custom forms</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
