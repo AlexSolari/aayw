@@ -159,7 +159,7 @@ header{
     text-align: center;
     margin-top: 18px;
 }
-.admin-inspector .table-wrapper{
+.admin-content .table-wrapper{
     overflow-x: scroll;
 }
 .admin-inspector tr{

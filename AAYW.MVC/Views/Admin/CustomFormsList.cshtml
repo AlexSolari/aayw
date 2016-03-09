@@ -18,55 +18,61 @@
     </div>
     @if (Model != null && Model.Count != 0)
     {
-        <table class="mui-table mui-table--bordered">
-            <thead>
-                <tr>
-                    @foreach (var property in Model[0].GetType().GetProperties())
-                    {
+        <div class="table-wrapper">
+
+            <table class="mui-table mui-table--bordered">
+                <thead>
+                    <tr>
+                        @foreach (var property in Model[0].GetType().GetProperties())
+                        {
+                            <th>
+                                @property.Name
+                            </th>
+                        }
                         <th>
-                            @property.Name
+                            @Html.Text("Contorols")
                         </th>
-                    }
-                    <th>
-                        @Html.Text("Contorols")
-                    </th>
-                </tr>
-            </thead>
-            @foreach (var item in Model)
-            {
-                <tr data-id="@item.Id">
-                    <td>
-                        @item.Fields.InnerXml
-                    </td>
-                    <td>
-                        @item.Header
-                    </td>
-                    <td>
-                        @item.Url
-                    </td>
-                    <td>
-                        @item.MailTemplateName
-                    </td>
-                    <td>
-                        @item.Id
-                    </td>
-                    <td>
-                        @item.CreatedDate
-                    </td>
-                    <td>
-                        @item.ModifiedDate
-                    </td>
-                    <td>
-                        <div class="row">
-                            @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeleteUserForm", new { id = item.Id }))
-                        </div>
-                        <div class="row">
-                            @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditUserForm", new { id = item.Id }), "edit-form")
-                        </div>
-                    </td>
-                </tr>
-            }
-        </table>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr data-id="@item.Id">
+                        <td>
+                            @item.Fields.InnerXml
+                        </td>
+                        <td>
+                            @item.Header
+                        </td>
+                        <td>
+                            @item.Url
+                        </td>
+                        <td>
+                            @item.MailTemplateName
+                        </td>
+                        <td>
+                            @item.SubmitAdress
+                        </td>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.CreatedDate
+                        </td>
+                        <td>
+                            @item.ModifiedDate
+                        </td>
+                        <td>
+                            <div class="row">
+                                @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeleteUserForm", new { id = item.Id }))
+                            </div>
+                            <div class="row">
+                                @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditUserForm", new { id = item.Id }), "edit-form")
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
     }
     else
     {

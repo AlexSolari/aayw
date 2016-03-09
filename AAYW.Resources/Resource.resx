@@ -177,6 +177,9 @@
   <data name="Error_TemplateExist" xml:space="preserve">
     <value>Template with this name already exist</value>
   </data>
+  <data name="Error_UrlMustBeUniue" xml:space="preserve">
+    <value>Url must be uniue</value>
+  </data>
   <data name="FailedToLogin" xml:space="preserve">
     <value>Incorrect username or password</value>
   </data>

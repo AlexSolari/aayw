@@ -117,12 +117,12 @@
                     AAYW.UI.LoadingIndicator.Close();
                     AAYW.UI.Popup.Close();
 
-                    if (!result) {
-                        document.location.href = "[Route:CustomFormsList]".replace("{page}", 0);
-                    }
-                    else {
+                    if (typeof result == "string") {
                         AAYW.UI.Popup.Show(result);
                         $('.popup-editor .submit').click(onsubmit);
+                    }
+                    else {
+                        document.location.href = "[Route:CustomFormsList]".replace("{page}", 0);
                     }
 
                 })

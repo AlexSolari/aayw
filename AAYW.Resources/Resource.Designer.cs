@@ -241,6 +241,15 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Url must be uniue.
+        /// </summary>
+        internal static string Error_UrlMustBeUniue {
+            get {
+                return ResourceManager.GetString("Error_UrlMustBeUniue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect username or password.
         /// </summary>
         internal static string FailedToLogin {

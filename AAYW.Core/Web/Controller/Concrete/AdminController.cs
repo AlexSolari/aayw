@@ -103,7 +103,7 @@ namespace AAYW.Core.Controller.Concrete
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return PartialView(model);
             }
 
             var mapped = Mapper.Map<UserForm, UserFormDesignModel>(model);
@@ -111,10 +111,14 @@ namespace AAYW.Core.Controller.Concrete
             if (((UserFormManager)userFormsManager).IsAvalibleForCreation(mapped))
             {
                 userFormsManager.CreateOrUpdate(mapped);
-                return Json(true);
             }
-            
-            return Json(false);
+            else
+            {
+                ModelState.AddModelError("Url", ResourceAccessor.Instance.Get("Error_UrlMustBeUniue"));
+                return PartialView(model);
+            }
+
+            return Json(true);
         }
         [HttpPost]
         public ActionResult CustomFormField(int index)
