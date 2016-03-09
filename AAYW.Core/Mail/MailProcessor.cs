@@ -42,7 +42,14 @@ namespace AAYW.Core.Mail
             var websiteSettings = ((WebsiteSettingsManager)Resolver.GetInstance<IManager<WebsiteSetting>>()).GetSettings();
             using (var client = CreateClient())
             {
-                var body = Resolver.GetInstance<IManager<MailTemplate>>().GetByField("Name", templateKey).Body;
+                var template = Resolver.GetInstance<IManager<MailTemplate>>().GetByField("Name", templateKey);
+
+                if (template == null)
+                {
+                    throw new ArgumentException("Invalid template name: template with this name does not exist");
+                }
+
+                var body = template.Body;
 
                 if (replacements != null)
                 {
