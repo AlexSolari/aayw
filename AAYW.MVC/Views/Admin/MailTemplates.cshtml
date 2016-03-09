@@ -18,49 +18,52 @@
     </div>
     @if (Model.Count != 0)
     {
-        <table class="mui-table mui-table--bordered">
-            <thead>
-                <tr>
-                    @foreach (var property in Model[0].GetType().GetProperties())
-                    {
+        <div class="table-wrapper">
+
+            <table class="mui-table mui-table--bordered">
+                <thead>
+                    <tr>
+                        @foreach (var property in Model[0].GetType().GetProperties())
+                        {
+                            <th>
+                                @property.Name
+                            </th>
+                        }
                         <th>
-                            @property.Name
+                            @Html.Text("Contorols")
                         </th>
-                    }
-                    <th>
-                        @Html.Text("Contorols")
-                    </th>
-                </tr>
-            </thead>
-            @foreach (var item in Model)
-            {
-                <tr data-id="@item.Id">
-                    <td>
-                        @item.Name
-                    </td>
-                    <td>
-                        @item.Body
-                    </td>
-                    <td>
-                        @item.Id
-                    </td>
-                    <td>
-                        @item.CreatedDate
-                    </td>
-                    <td>
-                        @item.ModifiedDate
-                    </td>
-                    <td>
-                        <div class="row">
-                            @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeleteMailTemplate", new { id = item.Id }))
-                        </div>
-                        <div class="row">
-                            @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditMailTemplate", new { id = item.Id }), "edit-template")
-                        </div>
-                    </td>
-                </tr>
-            }
-        </table>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr data-id="@item.Id">
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Body
+                        </td>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.CreatedDate
+                        </td>
+                        <td>
+                            @item.ModifiedDate
+                        </td>
+                        <td>
+                            <div class="row">
+                                @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeleteMailTemplate", new { id = item.Id }))
+                            </div>
+                            <div class="row">
+                                @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditMailTemplate", new { id = item.Id }), "edit-template")
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
     }
     else
     {
