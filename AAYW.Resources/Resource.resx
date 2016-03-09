@@ -183,6 +183,12 @@
   <data name="FailedToLogin" xml:space="preserve">
     <value>Incorrect username or password</value>
   </data>
+  <data name="FormSubmited" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="FormSubmitedDetails" xml:space="preserve">
+    <value>Data has been sent!</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>

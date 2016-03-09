@@ -259,6 +259,24 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        internal static string FormSubmited {
+            get {
+                return ResourceManager.GetString("FormSubmited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data has been sent!.
+        /// </summary>
+        internal static string FormSubmitedDetails {
+            get {
+                return ResourceManager.GetString("FormSubmitedDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         internal static string Home {
