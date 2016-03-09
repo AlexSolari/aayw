@@ -30,5 +30,10 @@ namespace AAYW.Core.Extensions
             XmlSerializer serializer = new XmlSerializer(typeof(TDest));
             return (TDest)serializer.Deserialize(reader);
         }
+
+        public static string SafeToString(this object value)
+        {
+            return (value == null) ? null : value.ToString();
+        }
     }
 }

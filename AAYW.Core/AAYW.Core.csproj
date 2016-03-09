@@ -137,6 +137,7 @@
     <Compile Include="Web\Controller\Concrete\AdminController.cs" />
     <Compile Include="Web\Controller\Concrete\ErrorController.cs" />
     <Compile Include="Web\Controller\Concrete\HomeController.cs" />
+    <Compile Include="Web\Controller\Concrete\UserFormController.cs" />
     <Compile Include="Web\Controller\FrontendController.cs" />
     <Compile Include="Web\DataBinders\UserFormDataBinder.cs" />
     <Compile Include="Web\HttpHandler\JsRoutingHttpHandler.cs" />

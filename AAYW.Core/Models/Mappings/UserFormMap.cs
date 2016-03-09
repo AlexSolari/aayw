@@ -19,6 +19,7 @@ namespace AAYW.Core.Models.Mappings
             Map(x => x.Fields).CustomSqlType("xml");
             Map(x => x.Url);
             Map(x => x.MailTemplateName);
+            Map(x => x.SubmitAdress);
             Map(x => x.Header);
             CrateTable();
         }

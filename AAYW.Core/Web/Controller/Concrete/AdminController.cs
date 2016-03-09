@@ -48,26 +48,7 @@ namespace AAYW.Core.Controller.Concrete
             return View();
         }
         #region CustomForm
-        [HttpGet]
-        public ActionResult CustomForm(string url)
-        {
-            var form = userFormsManager.GetByField("Url", url);
-
-            if (form == null)
-            {
-                return RedirectToRoute("Error404");
-            }
-
-            var mapped = Mapper.Map<UserFormDesignModel, UserForm>(form);
-
-            return View(mapped);
-        }
-
-        [HttpPost]
-        public ActionResult CustomForm(dynamic model)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         [HttpGet]
         public ActionResult CustomFormsList(int page)
@@ -80,7 +61,8 @@ namespace AAYW.Core.Controller.Concrete
         [HttpGet]
         public ActionResult CreateCustomForm()
         {
-            return PartialView(Dependecies.Resolver.GetInstance<UserFormDesignModel>());
+            var model = Dependecies.Resolver.GetInstance<UserFormDesignModel>(Guid.NewGuid());
+            return PartialView(model);
         }
 
         [HttpGet]

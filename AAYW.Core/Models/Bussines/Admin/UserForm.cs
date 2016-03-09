@@ -14,5 +14,6 @@ namespace AAYW.Core.Models.Bussines.Admin
         public virtual string Header { get; set; }
         public virtual string Url { get; set; }
         public virtual string MailTemplateName { get; set; }
+        public virtual string SubmitAdress { get; set; }
     }
 }

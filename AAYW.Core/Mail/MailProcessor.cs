@@ -48,7 +48,7 @@ namespace AAYW.Core.Mail
                 {
                     foreach (var tag in replacements)
                     {
-                        body.Replace("[{0}]".FormatWith(tag.Key), tag.Value);
+                        body = body.Replace("[{0}]".FormatWith(tag.Key), tag.Value);
                     }
                 }
 

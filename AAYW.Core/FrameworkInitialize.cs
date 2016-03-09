@@ -24,6 +24,7 @@ using AAYW.Core.Map;
 using AAYW.Core.Extensions;
 using System.Xml.Linq;
 using System.Xml;
+using AAYW.Core.Web.Controller.Concrete;
 
 namespace AAYW.Core
 {
@@ -118,7 +119,10 @@ namespace AAYW.Core
             Map(routes, "Admin", "CustomFormsList", "admin/forms/list/{page}", "CustomFormsList");
             Map(routes, "Admin", "EditUserForm", "admin/forms/edit/{id}", "EditUserForm");
             Map(routes, "Admin", "DeleteUserForm", "admin/forms/delete/{id}", "DeleteUserForm");
-            Map(routes, "Admin", "CustomForm", "form/{url}", "CustomForm");
+  
+          
+            Map(routes, "UserForm", "CustomForm", "form/{url}", "CustomForm");
+            Map(routes, "UserForm", "FormSubmited", "formsuccess", "FormSubmited");
             
 
             routes.MapRoute(
@@ -140,6 +144,7 @@ namespace AAYW.Core
             Resolver.RegisterController<HomeController, HomeController>("Home");
             Resolver.RegisterController<ErrorController, ErrorController>("Error");
             Resolver.RegisterController<AdminController, AdminController>("Admin");
+            Resolver.RegisterController<UserFormController, UserFormController>("UserForm");
         }
 
         private static void Map(RouteCollection routes, string controller, string action, string url = null, string name = null)

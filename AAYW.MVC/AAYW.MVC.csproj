@@ -175,7 +175,8 @@
     <Content Include="Views\Admin\CreateCustomForm.cshtml" />
     <Content Include="Views\Admin\_CustomFormField.cshtml" />
     <Content Include="Views\Admin\CustomFormsList.cshtml" />
-    <Content Include="Views\Admin\CustomForm.cshtml" />
+    <Content Include="Views\UserForm\CustomForm.cshtml" />
+    <Content Include="Views\UserForm\FormSubmited.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

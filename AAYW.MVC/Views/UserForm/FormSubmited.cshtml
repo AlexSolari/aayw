@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = Html.Text("FormSubmited");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-submited mui-panel">
+    <h2>@Html.Text("FormSubmited")</h2>
+    @Html.Button(Html.Text("Home"), ButtonType.Raised, Url.RouteUrl("Home"))
+</div>
+

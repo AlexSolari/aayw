@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using AAYW.Core.Extensions;
 
 namespace AAYW.Core.Map
 {
@@ -23,17 +24,29 @@ namespace AAYW.Core.Map
                 {
                     if (fieldR.Name == fieldS.Name)
                     {
-                        if (fieldR.PropertyType == typeof(Guid))
+                        if (fieldR.PropertyType == fieldS.PropertyType)
+                        {
+                            fieldR.SetValue(result, fieldS.GetValue(source));
+                        }
+                        else if (fieldR.PropertyType == typeof(Guid) && fieldS.PropertyType == typeof(string))
                         {
                             fieldR.SetValue(result, Guid.Parse((string)fieldS.GetValue(source)));
                         }
                         else if (fieldR.PropertyType == typeof(String))
                         {
-                            fieldR.SetValue(result, fieldS.GetValue(source).ToString());
+                            fieldR.SetValue(result, fieldS.GetValue(source).SafeToString());
                         }
                         else
                         {
-                            fieldR.SetValue(result, fieldS.GetValue(source));
+                            try
+                            {
+
+                                fieldR.SetValue(result, Convert.ChangeType(fieldS.GetValue(source), fieldR.PropertyType));
+                            }
+                            catch (InvalidCastException exc)
+                            {
+                                continue;
+                            }
                         }
                     }
                 }

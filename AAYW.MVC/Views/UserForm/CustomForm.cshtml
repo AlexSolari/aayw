@@ -20,7 +20,7 @@
             <div class="mui-textfield">
                 <input 
                        type="@ResolveType(field.Type)" 
-                       name="@field.FieldName"
+                       name="model[@field.FieldName]"
                        @{
                            if(field.Validate)
                            {
