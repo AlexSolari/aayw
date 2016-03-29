@@ -7,13 +7,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CustomForm</h2>
-
+<div class="mui-panel center custom-form">
+    <h2>@Model.Header</h2>
 @using (Html.BeginForm())
 {
     foreach (var field in Model.FormFields)
     {
-        <div class="row">
+        <div class="row mui-col-md-4 mui-col-md-offset-4">
             <label>
                 @field.FieldName
             </label>
@@ -41,11 +41,13 @@
                  />
             </div>
         </div>
-    } 
-    <div class="row">
+    }
+    <div class="row mui-col-md-4 mui-col-md-offset-4">
         @Html.Submit(Html.Text("Save"), ButtonType.Raised)
     </div>
 }
+</div>
+
 @functions{
     string ResolveType(AAYW.Core.Models.View.UserForm.UserFormField.InputType type)
     {

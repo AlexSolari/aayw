@@ -3,7 +3,7 @@
     ViewBag.Title = Html.Text("FormSubmited");
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="form-submited mui-panel">
+<div class="form-submited mui-panel center mui-col-md-4 mui-col-md-offset-4">
     <h2>@Html.Text("FormSubmited")</h2>
     <p>@Html.Text("FormSubmitedDetails")</p>
     @Html.Button(Html.Text("Home"), ButtonType.Raised, Url.RouteUrl("Home"))
