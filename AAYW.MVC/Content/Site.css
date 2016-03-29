@@ -170,6 +170,7 @@ header{
  .admin-mail-settings .admin-dropdown{
     max-width: 500px;
     margin: 0 auto;
+    text-align: center;
 }
 .popup-editor select option, .admin-mail-settings select option{
     text-align: center;
