@@ -1,4 +1,6 @@
 ﻿@using AAYW.Core.Models.Bussines.Admin
+@using AAYW.Core.Dependecies;
+@using AAYW.Core.Reflector;
 @model IList<UserForm>
 
 @{
@@ -23,7 +25,7 @@
             <table class="mui-table mui-table--bordered">
                 <thead>
                     <tr>
-                        @foreach (var property in Model[0].GetType().GetProperties())
+                        @foreach (var property in Resolver.GetInstance<IReflector>().Reflect(Model[0].GetType()).Properties)
                         {
                             <th>
                                 @property.Name

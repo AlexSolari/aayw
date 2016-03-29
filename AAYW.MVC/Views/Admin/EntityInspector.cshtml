@@ -1,10 +1,14 @@
-﻿@model dynamic
+﻿@using AAYW.Core.Dependecies;
+@using AAYW.Core.Reflector;
+@model dynamic
 @* Model will be "List" of entities ( actuall type is "dynamic" ), type is unknow at compile time and will be resolved in runtime*@
 @{
     ViewBag.Title = Html.Text("EntityInspector");
     Layout = "~/Views/Admin/Layout.cshtml";
     var page = (int)ViewData["Page"];
     var type = (string)ViewData["Type"];
+
+    var reflector = Resolver.GetInstance<IReflector>();
 }
 
 <div class="admin-inspector mui-panel">
@@ -25,7 +29,7 @@
             <table class="mui-table mui-table--bordered">
                 <thead>
                     <tr>
-                        @foreach (var prop in Model[0].GetType().GetProperties())
+                        @foreach (var prop in reflector.Reflect(Model[0].GetType()).Properties)
                         {
                             <th>@prop.Name</th>
                         }
@@ -34,9 +38,9 @@
                 <tbody>
 
                     @foreach (var item in Model)
-                {
+                    {
                         <tr class="admin-inspector-edit" id="@item.Id" data-target="@item.Id" data-type="@item.GetType().Name">
-                            @foreach (var prop in item.GetType().GetProperties())
+                            @foreach (var prop in reflector.Reflect(item.GetType()).Properties)
                             {
                                 <td id="@(item.Id + "_" + prop.Name)">@prop.GetValue(item)</td>
                             }

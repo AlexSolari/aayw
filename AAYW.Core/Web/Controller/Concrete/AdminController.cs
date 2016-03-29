@@ -20,6 +20,7 @@ using AAYW.Core.Models.Admin.Bussines;
 using AAYW.Core.Models.Bussines.Admin;
 using AAYW.Core.Models.View.MailTemplates;
 using AAYW.Core.Models.View.UserForm;
+using AAYW.Core.Reflector;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -221,7 +222,7 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult SaveEntity(string type, Dictionary<string, string> modelData)
         {
             var manager = GetManager(type);
-            var entityType = Assembly.GetExecutingAssembly().DefinedTypes.Where(x => x.Name.Equals(type)).FirstOrDefault();
+            var entityType = AAYW.Core.Dependecies.Resolver.GetInstance<IReflector>().Reflect(type).ReflectedType;
 
             if (manager == null)
             {
@@ -237,7 +238,7 @@ namespace AAYW.Core.Controller.Concrete
 
         private dynamic GetManager(string type)
         {
-            var types = (Type)Assembly.GetExecutingAssembly().DefinedTypes.Where(x => x.Name.Equals(type)).FirstOrDefault();
+            var types = AAYW.Core.Dependecies.Resolver.GetInstance<IReflector>().Reflect(type).ReflectedType;
             var reflectedType = AAYW.Core.Dependecies.Resolver.Managers[types];
             dynamic manager = AAYW.Core.Dependecies.Resolver.GetInstance(reflectedType);
 

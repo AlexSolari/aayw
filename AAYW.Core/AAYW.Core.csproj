@@ -133,6 +133,10 @@
     <Compile Include="Models\View\User\RegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Annotations\CustomMaxLengthAttribute.cs" />
+    <Compile Include="Reflector\EntityReflector.cs" />
+    <Compile Include="Reflector\IReflectionData.cs" />
+    <Compile Include="Reflector\IReflector.cs" />
+    <Compile Include="Reflector\EntityReflectionData.cs" />
     <Compile Include="Web\ControllerFactory\BaseControllerFactory.cs" />
     <Compile Include="Web\Controller\Concrete\AdminController.cs" />
     <Compile Include="Web\Controller\Concrete\ErrorController.cs" />

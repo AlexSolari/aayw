@@ -25,6 +25,7 @@ using AAYW.Core.Extensions;
 using System.Xml.Linq;
 using System.Xml;
 using AAYW.Core.Web.Controller.Concrete;
+using AAYW.Core.Reflector;
 
 namespace AAYW.Core
 {
@@ -39,6 +40,8 @@ namespace AAYW.Core
             Resolver.RegisterType<ICryptoProcessor<MD5>, BaseCryptoProcessor>();
             Resolver.RegisterType<IControllerFactory, BaseControllerFactory>();
             Resolver.RegisterType<IMailProcessor, MailProcessor>();
+            Resolver.RegisterType<IReflectionData, EntityReflectionData>();
+            Resolver.RegisterType<IReflector, EntityReflector>();
 
             // Registrering entites
             Resolver.RegisterType<User, User>();

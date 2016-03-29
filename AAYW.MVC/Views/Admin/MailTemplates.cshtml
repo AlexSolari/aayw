@@ -1,10 +1,13 @@
 ﻿@using AAYW.Core.Models.Bussines.Admin
+@using AAYW.Core.Dependecies;
+@using AAYW.Core.Reflector;
 @model IList<MailTemplate>
 
 @{
     ViewBag.Title = Html.Text("MailTemplates");
     var page = (int)ViewData["Page"];
     Layout = "~/Views/Admin/Layout.cshtml";
+    var properties = Resolver.GetInstance<IReflector>().Reflect(Model[0].GetType()).Properties;
 }
 <div class="admin-mail-template mui-panel">
     <h2>@Html.Text("MailTemplates")</h2>
@@ -23,7 +26,7 @@
             <table class="mui-table mui-table--bordered">
                 <thead>
                     <tr>
-                        @foreach (var property in Model[0].GetType().GetProperties())
+                        @foreach (var property in properties)
                         {
                             <th>
                                 @property.Name

@@ -1,7 +1,9 @@
 ﻿@using AAYW.Core.Models.View.UserForm;
+@using AAYW.Core.Dependecies;
+@using AAYW.Core.Reflector;
 @model UserFormField
 @{
-    var properties = Model.GetType().GetProperties();
+    var properties = Resolver.GetInstance<IReflector>().Reflect(Model.GetType()).Properties;
 }
 <div class="field">
     @foreach (var prop in properties)

@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AAYW.Core.Extensions;
+using AAYW.Core.Reflector;
 
 namespace AAYW.Core.Map
 {
@@ -17,10 +18,13 @@ namespace AAYW.Core.Map
         public static TDestination Map<TDestination, TSource>(TSource source)
         {
             var result = Resolver.GetInstance<TDestination>();
+            var reflector = Resolver.GetInstance<IReflector>();
+            var sourceReflection = reflector.Reflect(typeof(TSource));
+            var destinationReflection = reflector.Reflect(typeof(TDestination));
 
-            foreach (var fieldR in typeof(TDestination).GetProperties())
+            foreach (var fieldR in destinationReflection.Properties)
             {
-                foreach (var fieldS in typeof(TSource).GetProperties())
+                foreach (var fieldS in sourceReflection.Properties)
                 {
                     if (fieldR.Name == fieldS.Name)
                     {
@@ -45,6 +49,7 @@ namespace AAYW.Core.Map
                             }
                             catch (InvalidCastException exc)
                             {
+#warning Add logging here
                                 continue;
                             }
                         }
@@ -52,16 +57,20 @@ namespace AAYW.Core.Map
                 }
             }
 
-            if (CustomMappings.ContainsKey(typeof(TSource)))
-                result = (TDestination)CustomMappings[typeof(TSource)](result, source);
+            if (CustomMappings.ContainsKey(sourceReflection.ReflectedType))
+                result = (TDestination)CustomMappings[sourceReflection.ReflectedType](result, source);
 
             return result;
         }
         public static TDestination MapAndMerge<TDestination, TSource>(TSource source, TDestination result)
         {
-            foreach (var fieldR in typeof(TDestination).GetProperties())
+            var reflector = Resolver.GetInstance<IReflector>();
+            var sourceReflection = reflector.Reflect(typeof(TSource));
+            var destinationReflection = reflector.Reflect(typeof(TDestination));
+
+            foreach (var fieldR in destinationReflection.Properties)
             {
-                foreach (var fieldS in typeof(TSource).GetProperties())
+                foreach (var fieldS in sourceReflection.Properties)
                 {
                     if (fieldR.Name == fieldS.Name)
                     {
@@ -70,8 +79,8 @@ namespace AAYW.Core.Map
                 }
             }
 
-            if (CustomMappings.ContainsKey(typeof(TSource)))
-                result = (TDestination)CustomMappings[typeof(TSource)](result, source);
+            if (CustomMappings.ContainsKey(sourceReflection.ReflectedType))
+                result = (TDestination)CustomMappings[sourceReflection.ReflectedType](result, source);
 
             return result;
         }
@@ -79,10 +88,13 @@ namespace AAYW.Core.Map
         public static TDestination MapAs<TDestination>(object source)
         {
             var result = Resolver.GetInstance<TDestination>();
+            var reflector = Resolver.GetInstance<IReflector>();
+            var sourceReflection = reflector.Reflect(source.GetType());
+            var destinationReflection = reflector.Reflect(typeof(TDestination));
 
-            foreach (var fieldR in typeof(TDestination).GetProperties())
+            foreach (var fieldR in destinationReflection.Properties)
             {
-                foreach (var fieldS in source.GetType().GetProperties())
+                foreach (var fieldS in sourceReflection.Properties)
                 {
                     if (fieldR.Name == fieldS.Name)
                     {
@@ -91,8 +103,8 @@ namespace AAYW.Core.Map
                 }
             }
 
-            if (CustomMappings.ContainsKey(source.GetType()))
-                result = (TDestination)CustomMappings[source.GetType()](result, source);
+            if (CustomMappings.ContainsKey(sourceReflection.ReflectedType))
+                result = (TDestination)CustomMappings[sourceReflection.ReflectedType](result, source);
 
             return result;
         }
@@ -127,11 +139,11 @@ namespace AAYW.Core.Map
             };
         }
 
-        internal static dynamic Map(System.Reflection.TypeInfo entityType, Dictionary<string, string> modelData)
+        internal static dynamic Map(Type entityType, Dictionary<string, string> modelData)
         {
             var result = Resolver.GetInstance(entityType);
 
-            foreach (var fieldR in entityType.GetProperties())
+            foreach (var fieldR in Resolver.GetInstance<IReflector>().Reflect(entityType).Properties)
             {
                 foreach (var fieldS in modelData)
                 {
@@ -145,7 +157,7 @@ namespace AAYW.Core.Map
                         }
                         else
                         {
-                            TypeConverter typeConverter = TypeDescriptor.GetConverter(Type.GetType(type));
+                            TypeConverter typeConverter = TypeDescriptor.GetConverter(Resolver.GetInstance<IReflector>().Reflect(type).ReflectedType);
                             object propValue = typeConverter.ConvertFromString(fieldS.Value);
 
                             fieldR.SetValue(result, propValue);
