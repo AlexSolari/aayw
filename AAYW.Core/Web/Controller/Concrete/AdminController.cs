@@ -233,7 +233,9 @@ namespace AAYW.Core.Controller.Concrete
 
             entity = Mapper.Map(entityType, modelData);
 
-            return Json(manager.Update(entity));
+            manager.CreateOrUpdate(entity);
+
+            return Json(true);
         }
 
         private dynamic GetManager(string type)

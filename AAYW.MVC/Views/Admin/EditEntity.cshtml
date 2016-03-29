@@ -1,23 +1,42 @@
-﻿@model dynamic
+﻿@using AAYW.Core.Dependecies;
+@using AAYW.Core.Reflector;
+@model dynamic
 @* Model will be "Entity" ( actuall type is "dynamic" ), type is unknow at compile time and will be resolved in runtime*@
 <div class="popup-editor">
     <h1>@Html.Text("EntityEditor")</h1>
     @using (Html.BeginForm("SaveEntity", "Admin", FormMethod.Post))
     {
         <input name="type" type="hidden" value="@Model.GetType().Name"/>
-        foreach (var prop in Model.GetType().GetProperties())
+        foreach (var prop in Resolver.GetInstance<IReflector>().Reflect(Model.GetType()).Properties)
         {
             <div class="row">
                 <label for="edit-@(Model.Id + "_" + prop.Name)">@prop.Name (@prop.PropertyType.Name)</label>
-                <div class="control mui-textfield">
-                    <input
-                           id="edit-@(Model.Id + "_" + prop.Name)" 
-                           name="modelData[@(prop.Name + "@" + prop.PropertyType.FullName)]" 
-                           type="@ResolveInputType(prop)"
-                           value="@((prop.PropertyType == typeof(DateTime)) ? prop.GetValue(Model).ToString("yyyy-MM-ddTHH:mm:ss") : prop.GetValue(Model))"
-                           placeholder="@prop.PropertyType.Name" 
-                           data-locked="@(prop.GetCustomAttributes(typeof(AAYW.Core.Annotations.InspectorLockAttribute), false).Length > 0)" />
-                </div>
+                @if (prop.PropertyType.IsEnum){
+                    <div class="control admin-dropdown">
+                        <select 
+                                id="edit-@(Model.Id + "_" + prop.Name)"
+                                name="modelData[@(prop.Name + "@" + prop.PropertyType.FullName)]"
+                                data-locked="@(prop.GetCustomAttributes(typeof(AAYW.Core.Annotations.InspectorLockAttribute), false).Length > 0)">
+                            @foreach(var enumValue in Enum.GetNames(prop.PropertyType))
+                            {
+                                <option value="@enumValue"
+                                        @if(prop.GetValue(Model).ToString() == enumValue) {<text>selected</text>}
+                                        >@enumValue</option>
+                            }
+                        </select>
+                    </div>
+                }
+                else {
+                    <div class="control mui-textfield">
+                        <input
+                               id="edit-@(Model.Id + "_" + prop.Name)" 
+                               name="modelData[@(prop.Name + "@" + prop.PropertyType.FullName)]" 
+                               type="@ResolveInputType(prop)"
+                               value="@((prop.PropertyType == typeof(DateTime)) ? prop.GetValue(Model).ToString("yyyy-MM-ddTHH:mm:ss") : prop.GetValue(Model))"
+                               placeholder="@prop.PropertyType.Name" 
+                               data-locked="@(prop.GetCustomAttributes(typeof(AAYW.Core.Annotations.InspectorLockAttribute), false).Length > 0)" />
+                    </div>
+                }
             </div>
         }
         <div class="row">

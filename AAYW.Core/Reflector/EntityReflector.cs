@@ -39,6 +39,9 @@ namespace AAYW.Core.Reflector
 
         public IReflectionData Reflect(Type type)
         {
+            if (type == null)
+                throw new ArgumentNullException("Type can not be null");
+
             if (reflectionCache.ContainsKey(type))
             {
                 return reflectionCache[type];
@@ -66,7 +69,12 @@ namespace AAYW.Core.Reflector
                 }
             }
 
-            return Reflect((Type)Assembly.GetExecutingAssembly().DefinedTypes.Where(x => x.Name.Equals(typeName)).FirstOrDefault());
+            Type typeToReflect = 
+                Assembly.GetExecutingAssembly().DefinedTypes
+                .Where(x => x.Name.Equals(typeName))
+                .FirstOrDefault() ?? Type.GetType(typeName);
+
+            return Reflect(typeToReflect);
         }
 
         public void DropCache()

@@ -165,9 +165,13 @@ header{
 .admin-content th, .admin-content tr {
     text-align: center;
 }
-.popup-editor input, .admin-mail-settings input,.popup-editor textarea, .admin-mail-settings textarea{
+.popup-editor input, .admin-mail-settings input,.popup-editor textarea,
+ .admin-mail-settings textarea,.popup-editor .admin-dropdown,
+ .admin-mail-settings .admin-dropdown{
     max-width: 500px;
-    display: inline-block;
+    margin: 0 auto;
+}
+.popup-editor select option, .admin-mail-settings select option{
     text-align: center;
 }
 .admin-sidebar .mui-btn + .mui-btn {
@@ -176,4 +180,28 @@ header{
 .form-constructor input, .form-constructor select{
     max-width: 350px;
     display: inline-block;
+}
+.admin-dropdown{
+    display: block;
+    padding-top: 15px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.admin-dropdown select{
+    -webkit-animation-duration: 0.0001s;
+    animation-duration: 0.0001s;
+    -webkit-animation-name: mui-node-inserted;
+    animation-name: mui-node-inserted;
+    display: block;
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.87);
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0px;
+    background-image: none;
 }
