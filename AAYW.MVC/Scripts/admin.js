@@ -153,4 +153,49 @@
         showFormPopup($(this).parents("tr").data("id"));
         return false;
     });
+
+    //Contents
+
+    var showContentsPopup = function (data) {
+        var callback = function (data) {
+            function onsubmit() {
+                AAYW.UI.LoadingIndicator.Show();
+                $.post("[Route:CreateContentBlock]", $(".popup-editor form").serialize(), function (result) {
+                    AAYW.UI.LoadingIndicator.Close();
+                    AAYW.UI.Popup.Close();
+
+                    if (typeof result == "string") {
+                        AAYW.UI.Popup.Show(result);
+                        $('.popup-editor .submit').click(onsubmit);
+                    }
+                    else {
+                        document.location.href = "[Route:ContentBlockList]".replace("{page}", 0);
+                    }
+
+                })
+                return false;
+            }
+
+            AAYW.UI.LoadingIndicator.Close();
+            AAYW.UI.Popup.Show(data);
+
+            $('.popup-editor .submit').click(onsubmit);
+        };
+
+        AAYW.UI.LoadingIndicator.Show();
+
+        if (typeof data == "string") {
+            $.get("[Route:EditContentBlock]".replace("{id}", data), callback);
+        }
+        else {
+            $.get("[Route:CreateContentBlock]", callback);
+        }
+    }
+
+    $('.admin-contents .create').click(showContentsPopup);
+
+    $('.admin-contents .edit-contents').click(function () {
+        showContentsPopup($(this).parents("tr").data("id"));
+        return false;
+    });
 });

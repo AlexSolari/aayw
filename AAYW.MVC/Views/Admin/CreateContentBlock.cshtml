@@ -1,0 +1,36 @@
+﻿@model AAYW.Core.Models.View.ContentBlock.ContentBlockDesignModel
+
+<div class="popup-editor">
+
+    <h2>@Html.Text("CreateContentBlock")</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-horizontal">
+            <h4>@Html.Text("ContentBlockDesignModel")</h4>
+            <hr />
+            @Html.ValidationSummary()
+            <div class="row">
+                <label>@Html.Text("Type")</label>
+                <div class="control admin-dropdown">
+                    @Html.EnumDropDownListFor(model => model.Type, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="row">
+                <label>@Html.Text("Content")</label>
+                <div class="control mui-textfield">
+                    @Html.EditorFor(model => model.Content)
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.Submit(Html.Text("Save"), ButtonType.Raised, "submit  ")
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

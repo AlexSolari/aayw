@@ -96,6 +96,7 @@
     <Compile Include="Data\Managers\BaseManager.cs" />
     <Compile Include="Data\Managers\IManager.cs" />
     <Compile Include="Data\Managers\MailTemplateManager.cs" />
+    <Compile Include="Data\Managers\ContentBlockManager.cs" />
     <Compile Include="Data\Managers\UserFormManager.cs" />
     <Compile Include="Data\Managers\WebsiteSettingsManager.cs" />
     <Compile Include="Data\Managers\UserManager.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Data\DataProvider.cs" />
     <Compile Include="Data\Providers\IProvider.cs" />
     <Compile Include="Data\Providers\MailTemplateProvider.cs" />
+    <Compile Include="Data\Providers\ContentBlockProvider.cs" />
     <Compile Include="Data\Providers\UserFormProvider.cs" />
     <Compile Include="Data\Providers\WebsiteSettingsProvider.cs" />
     <Compile Include="Data\Providers\UserProvider.cs" />
@@ -115,7 +117,10 @@
     <Compile Include="Mail\IMailProcessor.cs" />
     <Compile Include="Mail\MailProcessor.cs" />
     <Compile Include="Map\Mapper.cs" />
+    <Compile Include="Models\Bussines\Admin\ContentBlock.cs" />
     <Compile Include="Models\Bussines\Admin\MailTemplate.cs" />
+    <Compile Include="Models\Mappings\ContentBlockMap.cs" />
+    <Compile Include="Models\View\ContentBlock\ContentBlockDesignModel.cs" />
     <Compile Include="Models\View\UserForm\UserFormDesignModel.cs" />
     <Compile Include="Models\View\UserForm\UserFormField.cs" />
     <Compile Include="Models\Bussines\Entity.cs" />

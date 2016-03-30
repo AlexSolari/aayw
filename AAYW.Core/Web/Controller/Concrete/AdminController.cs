@@ -21,6 +21,7 @@ using AAYW.Core.Models.Bussines.Admin;
 using AAYW.Core.Models.View.MailTemplates;
 using AAYW.Core.Models.View.UserForm;
 using AAYW.Core.Reflector;
+using AAYW.Core.Models.View.ContentBlock;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -30,6 +31,7 @@ namespace AAYW.Core.Controller.Concrete
         WebsiteSettingsManager settingsManager = (WebsiteSettingsManager)AAYW.Core.Dependecies.Resolver.GetInstance<IManager<WebsiteSetting>>();
         IManager<MailTemplate> mailTemplatesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<MailTemplate>>();
         IManager<UserForm> userFormsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<UserForm>>();
+        IManager<ContentBlock> contentBlocksManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<ContentBlock>>();
 
         public AdminController()
         {
@@ -48,6 +50,72 @@ namespace AAYW.Core.Controller.Concrete
         {
             return View();
         }
+        #region ContentBlocks
+
+
+        [HttpGet]
+        public ActionResult ContentBlocksList(int page)
+        {
+            var list = contentBlocksManager.GetList(page);
+            ViewData["Page"] = page;
+            return View(list);
+        }
+
+        [HttpGet]
+        public ActionResult CreateContentBlock()
+        {
+            var model = Dependecies.Resolver.GetInstance<ContentBlockDesignModel>(Guid.NewGuid());
+            return PartialView(model);
+        }
+
+        [HttpGet]
+        public ActionResult EditContentBlock(string id)
+        {
+            var model = contentBlocksManager.GetById(id);
+
+            var mapped = Mapper.Map<ContentBlockDesignModel, ContentBlock>(model);
+
+            return PartialView("CreateContentBlock", mapped);
+        }
+
+        [HttpPost]
+        public ActionResult EditContentBlock(ContentBlockDesignModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var mapped = Mapper.Map<ContentBlock, ContentBlockDesignModel>(model);
+
+            contentBlocksManager.CreateOrUpdate(mapped);
+
+            return Json(true);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteContentBlock(string id)
+        {
+            var model = contentBlocksManager.GetById(id);
+            contentBlocksManager.Delete(model);
+            return RedirectToRoute("ContentBlockList", new { page = 0 });
+        }
+
+        [HttpPost]
+        public ActionResult CreateContentBlock(ContentBlockDesignModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView(model);
+            }
+
+            var mapped = Mapper.Map<ContentBlock, ContentBlockDesignModel>(model);
+
+            contentBlocksManager.CreateOrUpdate(mapped);
+
+            return Json(true);
+        }
+        #endregion
         #region CustomForm
         
 

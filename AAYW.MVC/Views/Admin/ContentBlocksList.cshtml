@@ -1,0 +1,78 @@
+﻿@using AAYW.Core.Models.Bussines.Admin
+@using AAYW.Core.Dependecies;
+@using AAYW.Core.Reflector;
+@model IList<ContentBlock>
+
+@{
+    ViewBag.Title = Html.Text("ContentBlocks");
+    var page = (int)ViewData["Page"];
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+<div class="admin-contents mui-panel">
+    <h2>@Html.Text("CustomForms")</h2>
+    <div class="paging">
+        @if (page != 0)
+        {
+            <a href="@(Url.RouteUrl("ContentBlockList", new { page = page - 1 }))">&larr;</a>
+        }
+        <span class="page">@page</span>
+        <a href="@(Url.RouteUrl("ContentBlockList", new { page = page + 1 }))">&rarr;</a>
+    </div>
+    @if (Model != null && Model.Count != 0)
+    {
+        <div class="table-wrapper">
+
+            <table class="mui-table mui-table--bordered">
+                <thead>
+                    <tr>
+                        @foreach (var property in Resolver.GetInstance<IReflector>().Reflect(Model[0].GetType()).Properties)
+                        {
+                            <th>
+                                @property.Name
+                            </th>
+                        }
+                        <th>
+                            @Html.Text("Contorols")
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr data-id="@item.Id">
+                        <td>
+                            @item.Type
+                        </td>
+                        <td>
+                            @item.Content
+                        </td>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.CreatedDate
+                        </td>
+                        <td>
+                            @item.ModifiedDate
+                        </td>
+                        <td>
+                            <div class="row">
+                                @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeleteContentBlock", new { id = item.Id }))
+                            </div>
+                            <div class="row">
+                                @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditContentBlock", new { id = item.Id }), "edit-contents")
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="mui--appbar-height mui--appbar-line-height no-results">
+            @Html.Text("NoResults")
+        </div>
+    }
+    @Html.Button(Html.Text("Create"), ButtonType.Raised, cssClass: "create")
+</div>
+

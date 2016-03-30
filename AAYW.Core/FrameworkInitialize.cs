@@ -47,17 +47,20 @@ namespace AAYW.Core
             Resolver.RegisterType<User, User>();
             Resolver.RegisterType<MailTemplate, MailTemplate>();
             Resolver.RegisterType<UserForm, UserForm>();
+            Resolver.RegisterType<ContentBlock, ContentBlock>();
             Resolver.RegisterType<WebsiteSetting, WebsiteSetting>();
 
             // Registering providers
             Resolver.RegisterType<IProvider<User>, UserProvider>();
             Resolver.RegisterType<IProvider<UserForm>, UserFormProvider>();
             Resolver.RegisterType<IProvider<MailTemplate>, MailTemplateProvider>();
+            Resolver.RegisterType<IProvider<ContentBlock>, ContentBlockProvider>();
             Resolver.RegisterType<IProvider<WebsiteSetting>, WebsiteSettingsProvider>();
 
             // Registering managers
             Resolver.RegisterType<IManager<User>, UserManager>();
             Resolver.RegisterType<IManager<UserForm>, UserFormManager>();
+            Resolver.RegisterType<IManager<ContentBlock>, ContentBlockManager>();
             Resolver.RegisterType<IManager<MailTemplate>, MailTemplateManager>();
             Resolver.RegisterType<IManager<WebsiteSetting>, WebsiteSettingsManager>();
 
@@ -122,6 +125,11 @@ namespace AAYW.Core
             Map(routes, "Admin", "CustomFormsList", "admin/forms/list/{page}", "CustomFormsList");
             Map(routes, "Admin", "EditUserForm", "admin/forms/edit/{id}", "EditUserForm");
             Map(routes, "Admin", "DeleteUserForm", "admin/forms/delete/{id}", "DeleteUserForm");
+
+            Map(routes, "Admin", "CreateContentBlock", "admin/contents/create", "CreateContentBlock");
+            Map(routes, "Admin", "ContentBlocksList", "admin/contents/list/{page}", "ContentBlockList");
+            Map(routes, "Admin", "EditContentBlock", "admin/contents/edit/{id}", "EditContentBlock");
+            Map(routes, "Admin", "DeleteContentBlock", "admin/contents/delete/{id}", "DeleteContentBlock");
   
           
             Map(routes, "UserForm", "CustomForm", "form/{url}", "CustomForm");
