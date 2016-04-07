@@ -142,6 +142,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\mui.min.js" />
+    <Content Include="Scripts\nicedit\nicEdit.js" />
+    <Content Include="Scripts\nicedit\nicEditorIcons.gif" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -180,6 +182,9 @@
     <Content Include="Views\Shared\_CustomForm.cshtml" />
     <Content Include="Views\Admin\ContentBlocksList.cshtml" />
     <Content Include="Views\Admin\CreateContentBlock.cshtml" />
+    <Content Include="Views\Admin\PagesList.cshtml" />
+    <Content Include="Views\Admin\CreatePage.cshtml" />
+    <Content Include="Views\Pages\Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

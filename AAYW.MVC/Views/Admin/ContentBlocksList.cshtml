@@ -9,7 +9,7 @@
     Layout = "~/Views/Admin/Layout.cshtml";
 }
 <div class="admin-contents mui-panel">
-    <h2>@Html.Text("CustomForms")</h2>
+    <h2>@Html.Text("ContentBlocks")</h2>
     <div class="paging">
         @if (page != 0)
         {
@@ -39,6 +39,9 @@
                 @foreach (var item in Model)
                 {
                     <tr data-id="@item.Id">
+                        <td>
+                            @item.Name
+                        </td>
                         <td>
                             @item.Type
                         </td>

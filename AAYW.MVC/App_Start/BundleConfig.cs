@@ -11,6 +11,9 @@ namespace AAYW.MVC
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/lib/AAYW*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/nicedit").Include(
+                        "~/Scripts/nicedit/nicEdit.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 

@@ -1,0 +1,16 @@
+﻿@*
+    Result field depends on user selected field in backoffice
+*@
+@model IList<AAYW.Core.Models.Bussines.Admin.ContentBlock>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mui-panel center custom-form">
+    @foreach (var item in Model)
+    {
+        <div>
+            @(new HtmlString(item.Content))
+        </div>
+    }
+</div>

@@ -165,12 +165,24 @@ header{
 .admin-content th, .admin-content tr {
     text-align: center;
 }
+.admin-content td{
+    max-width: 500px;
+}
 .popup-editor input, .admin-mail-settings input,.popup-editor textarea,
  .admin-mail-settings textarea,.popup-editor .admin-dropdown,
- .admin-mail-settings .admin-dropdown{
+ .admin-mail-settings .admin-dropdown,
+ .editor-wrapper textarea
+{
     max-width: 500px;
     margin: 0 auto;
     text-align: center;
+}
+.editor-wrapper , .editor-wrapper textarea{
+    width: 100%;
+    min-height: 250px;
+}
+.editor-wrapper > div {
+    margin: 0 auto;
 }
 .popup-editor select option, .admin-mail-settings select option{
     text-align: center;
@@ -205,4 +217,7 @@ header{
     box-shadow: none;
     border-radius: 0px;
     background-image: none;
+}
+.nicEdit-panelContain *{
+    z-index: 999999999999999999999999;
 }

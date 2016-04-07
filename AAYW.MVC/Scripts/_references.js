@@ -8,3 +8,4 @@
 /// <reference path="main.js" />
 /// <reference path="mui.min.js" />
 /// <reference path="admin.js" />
+/// <reference path="nicedit/nicedit.js" />

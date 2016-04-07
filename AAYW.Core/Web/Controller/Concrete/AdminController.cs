@@ -22,6 +22,7 @@ using AAYW.Core.Models.View.MailTemplates;
 using AAYW.Core.Models.View.UserForm;
 using AAYW.Core.Reflector;
 using AAYW.Core.Models.View.ContentBlock;
+using AAYW.Core.Models.View.Page;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -32,6 +33,7 @@ namespace AAYW.Core.Controller.Concrete
         IManager<MailTemplate> mailTemplatesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<MailTemplate>>();
         IManager<UserForm> userFormsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<UserForm>>();
         IManager<ContentBlock> contentBlocksManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<ContentBlock>>();
+        IManager<Page> pagesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Page>>();
 
         public AdminController()
         {
@@ -50,6 +52,57 @@ namespace AAYW.Core.Controller.Concrete
         {
             return View();
         }
+        #region Pages
+
+
+        [HttpGet]
+        public ActionResult PagesList(int page)
+        {
+            var list = pagesManager.GetList(page);
+            ViewData["Page"] = page;
+            return View(list);
+        }
+
+        [HttpGet]
+        public ActionResult CreatePage()
+        {
+            var model = Dependecies.Resolver.GetInstance<PageDesignModel>(Guid.NewGuid());
+            return PartialView(model);
+        }
+
+        [HttpGet]
+        public ActionResult EditPage(string id)
+        {
+            var model = pagesManager.GetById(id);
+
+            var mapped = Mapper.Map<PageDesignModel, Page>(model);
+
+            return PartialView("CreatePage", mapped);
+        }
+
+        [HttpGet]
+        public ActionResult DeletePage(string id)
+        {
+            var model = pagesManager.GetById(id);
+            pagesManager.Delete(model);
+            return RedirectToRoute("PageList", new { page = 0 });
+        }
+
+        [HttpPost]
+        public ActionResult CreatePage(PageDesignModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView(model);
+            }
+
+            var mapped = Mapper.Map<Page, PageDesignModel>(model);
+
+            pagesManager.CreateOrUpdate(mapped);
+
+            return Json(true);
+        }
+        #endregion
         #region ContentBlocks
 
 
@@ -78,21 +131,6 @@ namespace AAYW.Core.Controller.Concrete
             return PartialView("CreateContentBlock", mapped);
         }
 
-        [HttpPost]
-        public ActionResult EditContentBlock(ContentBlockDesignModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var mapped = Mapper.Map<ContentBlock, ContentBlockDesignModel>(model);
-
-            contentBlocksManager.CreateOrUpdate(mapped);
-
-            return Json(true);
-        }
-
         [HttpGet]
         public ActionResult DeleteContentBlock(string id)
         {
@@ -101,6 +139,7 @@ namespace AAYW.Core.Controller.Concrete
             return RedirectToRoute("ContentBlockList", new { page = 0 });
         }
 
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult CreateContentBlock(ContentBlockDesignModel model)
         {

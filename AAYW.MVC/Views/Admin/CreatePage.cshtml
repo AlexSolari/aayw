@@ -1,0 +1,71 @@
+﻿@model AAYW.Core.Models.View.Page.PageDesignModel
+
+<div class="popup-editor">
+
+    <h2>@Html.Text("CreatePage")</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-horizontal">
+            <h4>@Html.Text("PageDesignModel")</h4>
+            <hr />
+            @Html.ValidationSummary()
+            <div class="row">
+                <label>@Html.Text("Title")</label>
+                <div class="control mui-textfield">
+                    @Html.EditorFor(model => model.Title)
+                </div>
+            </div>
+            <div class="row">
+                <label>@Html.Text("Url")</label>
+                <div class="control mui-textfield">
+                    @Html.EditorFor(model => model.Url)
+                </div>
+            </div>
+            <div class="row content-block-picker">
+                <label>@Html.Text("ContentBlocks")</label>
+                <div class="hidden templatehost">
+                    <script type="text/html">
+                        <select name="ContentBlocks[{number}]">
+                            @foreach (var block in Model.ContentBlocksVariants)
+                            {
+                                <option value="@block.Id">@block.Name</option>
+                            }
+                        </select>
+                    </script>
+                </div>
+                @{var index = 0;}
+                @foreach (var item in Model.ContentBlocks)
+                {
+                    
+                    <div class="control admin-dropdown">
+                        @EditorForBlock(index++, item)
+                    </div>
+                }
+                <div class="control admin-dropdown">
+                    @EditorForBlock(Model.ContentBlocks.Count)
+                </div>
+            </div>
+
+            
+            <div class="row">
+
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.Submit(Html.Text("Save"), ButtonType.Raised, "submit  ")
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@helper EditorForBlock(int number, string id = null)
+{
+    <select name="ContentBlocks[@number]">
+        <option value="" @if (id.IsNullOrWhiteSpace()) { <text> selected</text>}>@Html.Text("None")</option>
+        @foreach (var block in Model.ContentBlocksVariants)
+        {
+            <option value="@block.Id" @if (!id.IsNullOrWhiteSpace() && id.Equals(block.Id.ToString())) { <text> selected</text>}>@block.Name</option>
+        }
+    </select>
+}

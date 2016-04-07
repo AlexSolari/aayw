@@ -17,11 +17,18 @@
                     @Html.EnumDropDownListFor(model => model.Type, new { @class = "form-control" })
                 </div>
             </div>
-
+            <div class="row">
+                <label>@Html.Text("Name")</label>
+                <div class="control mui-textfield">
+                    @Html.EditorFor(model => model.Name)
+                </div>
+            </div>
             <div class="row">
                 <label>@Html.Text("Content")</label>
-                <div class="control mui-textfield">
-                    @Html.EditorFor(model => model.Content)
+                <div class="control mui-textfield html-editor">
+                    <div class="editor-wrapper inline">
+                        @Html.EditorFor(model => model.Content)
+                    </div>
                 </div>
             </div>
             <div class="row">

@@ -94,6 +94,7 @@
     <Compile Include="Crypto\BaseCryptoProcessor.cs" />
     <Compile Include="Crypto\ICryptoProcessor.cs" />
     <Compile Include="Data\Managers\BaseManager.cs" />
+    <Compile Include="Data\Managers\PageManager.cs" />
     <Compile Include="Data\Managers\IManager.cs" />
     <Compile Include="Data\Managers\MailTemplateManager.cs" />
     <Compile Include="Data\Managers\ContentBlockManager.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Data\Providers\MailTemplateProvider.cs" />
     <Compile Include="Data\Providers\ContentBlockProvider.cs" />
     <Compile Include="Data\Providers\UserFormProvider.cs" />
+    <Compile Include="Data\Providers\PageProvider.cs" />
     <Compile Include="Data\Providers\WebsiteSettingsProvider.cs" />
     <Compile Include="Data\Providers\UserProvider.cs" />
     <Compile Include="Dependencies\Resolver.cs" />
@@ -117,10 +119,13 @@
     <Compile Include="Mail\IMailProcessor.cs" />
     <Compile Include="Mail\MailProcessor.cs" />
     <Compile Include="Map\Mapper.cs" />
+    <Compile Include="Models\Bussines\Admin\Page.cs" />
     <Compile Include="Models\Bussines\Admin\ContentBlock.cs" />
     <Compile Include="Models\Bussines\Admin\MailTemplate.cs" />
     <Compile Include="Models\Mappings\ContentBlockMap.cs" />
+    <Compile Include="Models\Mappings\PageMap.cs" />
     <Compile Include="Models\View\ContentBlock\ContentBlockDesignModel.cs" />
+    <Compile Include="Models\View\Page\PageDesignModel.cs" />
     <Compile Include="Models\View\UserForm\UserFormDesignModel.cs" />
     <Compile Include="Models\View\UserForm\UserFormField.cs" />
     <Compile Include="Models\Bussines\Entity.cs" />
@@ -146,6 +151,7 @@
     <Compile Include="Web\Controller\Concrete\AdminController.cs" />
     <Compile Include="Web\Controller\Concrete\ErrorController.cs" />
     <Compile Include="Web\Controller\Concrete\HomeController.cs" />
+    <Compile Include="Web\Controller\Concrete\PagesController.cs" />
     <Compile Include="Web\Controller\Concrete\UserFormController.cs" />
     <Compile Include="Web\Controller\FrontendController.cs" />
     <Compile Include="Web\DataBinders\UserFormDataBinder.cs" />

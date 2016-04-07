@@ -1,5 +1,4 @@
 ﻿using AAYW.Core.Models.Bussines.Admin;
-using AAYW.Core.Models.Bussines;
 using AAYW.Core.Models.Bussines.User;
 using AAYW.Core.Models.Mappings;
 using FluentNHibernate.Mapping;
@@ -11,14 +10,13 @@ using System.Threading.Tasks;
 
 namespace AAYW.Core.Models.Mappings
 {
-    class ContentBlockMap : EntityMap<ContentBlock>
+    class PageMap : EntityMap<Page>
     {
-        public ContentBlockMap()
-            : base()
+        public PageMap() : base()
         {
-            Map(x => x.Type);
-            Map(x => x.Name);
-            Map(x => x.Content).CustomSqlType("text");
+            Map(x => x.ContentBlocks).CustomSqlType("xml");
+            Map(x => x.Title);
+            Map(x => x.Url);
             CrateTable();
         }
     }

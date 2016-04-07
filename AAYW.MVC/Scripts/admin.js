@@ -1,12 +1,25 @@
 ﻿$(window).load(function () {
     var lastFieldIndex = 0;
 
+    var bindHtmlEditors = function () {
+        $('.html-editor textarea').each(function (index, el) {
+            var id = el.id;
+            window.nicEditors = window.nicEditors || [];
+            var editor = window.nicEditors[id] = new nicEditor({fullPanel: true}).panelInstance(id);
+            editor.addEvent('blur', function () {
+                var html = $('.html-editor .nicEdit-main').html();
+                $('.nicEdit-main').parents('.html-editor').find('textarea').text(html);
+            });
+        });
+    }
+
     //Entity inspector
     $(".admin-inspector-edit").click(function () {
         AAYW.UI.LoadingIndicator.Show();
         $.get("[Route:EditEntity]".replace("{type}",$(this).data("type")).replace("{id}",$(this).data("target")), function (data) {
             AAYW.UI.LoadingIndicator.Close();
             AAYW.UI.Popup.Show(data);
+            bindHtmlEditors();
             $(".popup-editor form input").each(function (index, el) {
                 var $el = $(el);
                 if ($el.data("locked") == "True")
@@ -63,13 +76,14 @@
 
             AAYW.UI.LoadingIndicator.Close();
             AAYW.UI.Popup.Show(data);
+            bindHtmlEditors();
 
             $('.popup-editor .submit').click(onsubmit);
         };
 
         AAYW.UI.LoadingIndicator.Show();
 
-        if (data instanceof String)
+        if (typeof data == "string")
         {
             $.get("[Route:EditMailTemplate]".replace("{id}", data), callback);
         }
@@ -178,6 +192,7 @@
 
             AAYW.UI.LoadingIndicator.Close();
             AAYW.UI.Popup.Show(data);
+            bindHtmlEditors();
 
             $('.popup-editor .submit').click(onsubmit);
         };
@@ -196,6 +211,51 @@
 
     $('.admin-contents .edit-contents').click(function () {
         showContentsPopup($(this).parents("tr").data("id"));
+        return false;
+    });
+
+    //Pages
+    var showPagesPopup = function (data) {
+        var callback = function (data) {
+            function onsubmit() {
+                AAYW.UI.LoadingIndicator.Show();
+                $.post("[Route:CreatePage]", $(".popup-editor form").serialize(), function (result) {
+                    AAYW.UI.LoadingIndicator.Close();
+                    AAYW.UI.Popup.Close();
+
+                    if (typeof result == "string") {
+                        AAYW.UI.Popup.Show(result);
+                        $('.popup-editor .submit').click(onsubmit);
+                    }
+                    else {
+                        document.location.href = "[Route:PageList]".replace("{page}", 0);
+                    }
+
+                })
+                return false;
+            }
+
+            AAYW.UI.LoadingIndicator.Close();
+            AAYW.UI.Popup.Show(data);
+            bindHtmlEditors();
+
+            $('.popup-editor .submit').click(onsubmit);
+        };
+
+        AAYW.UI.LoadingIndicator.Show();
+
+        if (typeof data == "string") {
+            $.get("[Route:EditPage]".replace("{id}", data), callback);
+        }
+        else {
+            $.get("[Route:CreatePage]", callback);
+        }
+    }
+
+    $('.admin-pages .create').click(showPagesPopup);
+
+    $('.admin-pages .edit-pages').click(function () {
+        showPagesPopup($(this).parents("tr").data("id"));
         return false;
     });
 });

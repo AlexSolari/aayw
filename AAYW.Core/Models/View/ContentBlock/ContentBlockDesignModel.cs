@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace AAYW.Core.Models.View.ContentBlock
 {
@@ -12,6 +13,9 @@ namespace AAYW.Core.Models.View.ContentBlock
     {
         public string Id { get; set; }
         public AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType Type { get; set; }
+        public string Name { get; set; }
+        [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string Content { get; set; }
 
         public ContentBlockDesignModel()

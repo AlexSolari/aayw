@@ -21,11 +21,11 @@ using AAYW.Core.Models.Bussines.Admin;
 using AAYW.Core.Models.View.UserForm;
 using AAYW.Core.Web.DataBinders;
 using AAYW.Core.Map;
-using AAYW.Core.Extensions;
 using System.Xml.Linq;
 using System.Xml;
 using AAYW.Core.Web.Controller.Concrete;
 using AAYW.Core.Reflector;
+using AAYW.Core.Models.View.Page;
 
 namespace AAYW.Core
 {
@@ -45,6 +45,7 @@ namespace AAYW.Core
 
             // Registrering entites
             Resolver.RegisterType<User, User>();
+            Resolver.RegisterType<Page, Page>();
             Resolver.RegisterType<MailTemplate, MailTemplate>();
             Resolver.RegisterType<UserForm, UserForm>();
             Resolver.RegisterType<ContentBlock, ContentBlock>();
@@ -52,6 +53,7 @@ namespace AAYW.Core
 
             // Registering providers
             Resolver.RegisterType<IProvider<User>, UserProvider>();
+            Resolver.RegisterType<IProvider<Page>, PageProvider>();
             Resolver.RegisterType<IProvider<UserForm>, UserFormProvider>();
             Resolver.RegisterType<IProvider<MailTemplate>, MailTemplateProvider>();
             Resolver.RegisterType<IProvider<ContentBlock>, ContentBlockProvider>();
@@ -59,6 +61,7 @@ namespace AAYW.Core
 
             // Registering managers
             Resolver.RegisterType<IManager<User>, UserManager>();
+            Resolver.RegisterType<IManager<Page>, PageManager>();
             Resolver.RegisterType<IManager<UserForm>, UserFormManager>();
             Resolver.RegisterType<IManager<ContentBlock>, ContentBlockManager>();
             Resolver.RegisterType<IManager<MailTemplate>, MailTemplateManager>();
@@ -91,6 +94,25 @@ namespace AAYW.Core
                 var list = source.Fields.DeserializeAs<List<UserFormField>>();
 
                 result.FormFields = list;
+
+                return result;
+            });
+
+            Mapper.AddMapping<Page, PageDesignModel>((result, source) =>
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(source.ContentBlocks.Serialize());
+
+                result.ContentBlocks = xml;
+
+                return result;
+            });
+
+            Mapper.AddMapping<PageDesignModel, Page>((result, source) =>
+            {
+                var list = source.ContentBlocks.DeserializeAs<List<string>>();
+
+                result.ContentBlocks = list;
 
                 return result;
             });
@@ -130,7 +152,11 @@ namespace AAYW.Core
             Map(routes, "Admin", "ContentBlocksList", "admin/contents/list/{page}", "ContentBlockList");
             Map(routes, "Admin", "EditContentBlock", "admin/contents/edit/{id}", "EditContentBlock");
             Map(routes, "Admin", "DeleteContentBlock", "admin/contents/delete/{id}", "DeleteContentBlock");
-  
+
+            Map(routes, "Admin", "CreatePage", "admin/pages/create", "CreatePage");
+            Map(routes, "Admin", "PagesList", "admin/pages/list/{page}", "PageList");
+            Map(routes, "Admin", "EditPage", "admin/pages/edit/{id}", "EditPage");
+            Map(routes, "Admin", "DeletePage", "admin/pages/delete/{id}", "DeletePage");
           
             Map(routes, "UserForm", "CustomForm", "form/{url}", "CustomForm");
             Map(routes, "UserForm", "FormSubmited", "formsuccess", "FormSubmited");
@@ -141,6 +167,8 @@ namespace AAYW.Core
                 "",
                 new { controller = "Home", action = "Index", id = "" }
             );
+
+            Map(routes, "Pages", "Page", "{*url}", "CustomPage");
             
             Map(routes, "Error", "Error404", "{*url}", "Error404");
             Map(routes, "Error", "Error403", "{*url}", "Error403");
@@ -156,6 +184,7 @@ namespace AAYW.Core
             Resolver.RegisterController<ErrorController, ErrorController>("Error");
             Resolver.RegisterController<AdminController, AdminController>("Admin");
             Resolver.RegisterController<UserFormController, UserFormController>("UserForm");
+            Resolver.RegisterController<PageController, PageController>("Pages");
         }
 
         private static void Map(RouteCollection routes, string controller, string action, string url = null, string name = null)

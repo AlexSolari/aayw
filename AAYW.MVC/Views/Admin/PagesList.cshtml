@@ -1,25 +1,25 @@
 ﻿@using AAYW.Core.Models.Bussines.Admin
 @using AAYW.Core.Dependecies;
 @using AAYW.Core.Reflector;
-@model IList<MailTemplate>
+@model IList<AAYW.Core.Models.Bussines.Admin.Page>
 
 @{
-    ViewBag.Title = Html.Text("MailTemplates");
+    ViewBag.Title = Html.Text("Pages");
     var page = (int)ViewData["Page"];
     Layout = "~/Views/Admin/Layout.cshtml";
-    var properties = Resolver.GetInstance<IReflector>().Reflect<MailTemplate>().Properties;
+    var properties = Resolver.GetInstance<IReflector>().Reflect<AAYW.Core.Models.Bussines.Admin.Page>().Properties;
 }
-<div class="admin-mail-template mui-panel">
-    <h2>@Html.Text("MailTemplates")</h2>
+<div class="admin-pages mui-panel">
+    <h2>@Html.Text("Pages")</h2>
     <div class="paging">
         @if (page != 0)
         {
-            <a href="@(Url.RouteUrl("MailTemplates", new { page = page - 1 }))">&larr;</a>
+            <a href="@(Url.RouteUrl("PageList", new { page = page - 1 }))">&larr;</a>
         }
         <span class="page">@page</span>
-        <a href="@(Url.RouteUrl("MailTemplates", new { page = page + 1 }))">&rarr;</a>
+        <a href="@(Url.RouteUrl("PageList", new { page = page + 1 }))">&rarr;</a>
     </div>
-    @if (Model.Count != 0)
+    @if (Model != null && Model.Count != 0)
     {
         <div class="table-wrapper">
 
@@ -41,10 +41,14 @@
                 {
                     <tr data-id="@item.Id">
                         <td>
-                            @item.Name
+                            @item.Url
+                        </td>
+                        
+                        <td>
+                            @item.Title
                         </td>
                         <td>
-                            @item.Body
+                            @item.ContentBlocks.InnerXml
                         </td>
                         <td>
                             @item.Id
@@ -57,10 +61,13 @@
                         </td>
                         <td>
                             <div class="row">
-                                @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeleteMailTemplate", new { id = item.Id }))
+                                @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeletePage", new { id = item.Id }))
                             </div>
                             <div class="row">
-                                @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditMailTemplate", new { id = item.Id }), "edit-template")
+                                @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditPage", new { id = item.Id }), "edit-pages")
+                            </div>
+                            <div class="row">
+                                @Html.Button(Html.Text("View"), ButtonType.Flat, Url.RouteUrl("CustomPage", new { url = item.Url }))
                             </div>
                         </td>
                     </tr>
