@@ -1,4 +1,5 @@
-﻿using AAYW.Core.Data.Providers;
+﻿using AAYW.Core.Annotations;
+using AAYW.Core.Data.Providers;
 using AAYW.Core.Models.Bussines.Admin;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AAYW.Core.Data.Managers
 {
+    [ManagerFor(typeof(MailTemplate))]
     public class MailTemplateManager : BaseManager<MailTemplateProvider, MailTemplate>, IManager<MailTemplate>
     {
         public override void CreateOrUpdate(MailTemplate model)

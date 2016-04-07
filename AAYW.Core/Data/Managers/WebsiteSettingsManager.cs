@@ -16,6 +16,7 @@ using AAYW.Core.Models.Admin.Bussines;
 
 namespace AAYW.Core.Data.Managers
 {
+    [ManagerFor(typeof(WebsiteSetting))]
     public class WebsiteSettingsManager : BaseManager<WebsiteSettingsProvider, WebsiteSetting>
     {
         public WebsiteSettingsManager()
