@@ -14,6 +14,7 @@ namespace AAYW.Core.Models.View.ContentBlock
         public string Id { get; set; }
         public AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType Type { get; set; }
         public string Name { get; set; }
+        [UIHint("HtmlEditor")]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string Content { get; set; }

@@ -11,6 +11,7 @@ namespace AAYW.Core.Data.Managers
         TModel GetByField(string field, string value);
         TModel GetById(string id);
         IList<TModel> GetList(int page, int pagesize = 50);
+        IList<TModel> All();
         void Delete(TModel model);
         void CreateOrUpdate(TModel model);
     }

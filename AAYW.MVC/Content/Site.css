@@ -135,7 +135,32 @@ header{
   } 
 
 }
-
+.feed{
+    padding: 1em;
+}
+.feed li{
+    list-style: none;
+}
+.post h3{
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.42);
+}
+.post-content{
+    text-align: justify;
+}
+.post-date{
+    text-align: left;
+    color: rgba(128, 128, 128, 0.42)
+}
+.post-controls{
+    text-align: left;
+}
+.post-controls .control{
+    display: inline-block;
+}
+.add-post{
+    margin: 1em;
+}
 /**ADMIN**/
 .admin-sidebar{
     padding-top: 0;

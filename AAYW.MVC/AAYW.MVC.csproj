@@ -159,7 +159,6 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
@@ -185,6 +184,9 @@
     <Content Include="Views\Admin\PagesList.cshtml" />
     <Content Include="Views\Admin\CreatePage.cshtml" />
     <Content Include="Views\Pages\Page.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\HtmlEditor.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FeedSelector.cshtml" />
+    <Content Include="Views\Shared\PostEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

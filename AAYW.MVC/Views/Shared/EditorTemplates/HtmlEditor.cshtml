@@ -1,0 +1,8 @@
+﻿@model string
+<div class="control mui-textfield html-editor">
+    <div class="editor-wrapper inline">
+        <textarea name="@ViewData.ModelMetadata.PropertyName" id="html-@Guid.NewGuid()">
+            @Model
+        </textarea>
+    </div>
+</div>

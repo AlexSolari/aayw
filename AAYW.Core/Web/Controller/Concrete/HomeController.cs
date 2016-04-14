@@ -10,6 +10,7 @@ using AAYW.Core.Web.Controller;
 using System.Web.Routing;
 using AAYW.Core.Models.View.User;
 using AAYW.Core.Models.Bussines.User;
+using AAYW.Core.Models.Bussines.Admin;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -27,14 +28,16 @@ namespace AAYW.Core.Controller.Concrete
             }
         }
 
+        IManager<Page> pagesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Page>>();
         UserManager userManager = (UserManager)AAYW.Core.Dependecies.Resolver.GetInstance<IManager<User>>();
 
         [HttpGet]
         public ActionResult Index()
         {
-            if (Request.Cookies.AllKeys.Contains("aayw-landed"))
+            var homePage = pagesManager.GetByField("Url", "home");
+            if (Request.Cookies.AllKeys.Contains("aayw-landed") && homePage != null)
             {
-                return View();
+                return RedirectToRoute("CustomPage", new { url = "home"});
             }
 
             return RedirectToRoute("Landing");

@@ -32,7 +32,6 @@ namespace AAYW.Core.Web.Controller.Concrete
             {
                 return RedirectToRoute("Error404");
             }
-
             ViewBag.Title = page.Title;
 
             var blockIds = page.ContentBlocks.DeserializeAs<List<string>>();
@@ -41,8 +40,15 @@ namespace AAYW.Core.Web.Controller.Concrete
             foreach (var id in blockIds)
             {
                 var block = contentBlocksManager.GetById(id);
+
+                if (block.Type == ContentBlock.BlockType.Redirect)
+                {
+                    return RedirectToRoute("CustomPage", new { url = block.Content });
+                }
+
                 blocks.Add(block);
             }
+
             return View(blocks);
         }
     }

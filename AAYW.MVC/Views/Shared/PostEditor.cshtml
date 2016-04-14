@@ -1,0 +1,30 @@
+﻿@model AAYW.Core.Models.Bussines.Post.Post
+<div class="popup-editor">
+
+    <h2>@Html.Text("Post")</h2>
+
+    @using (Html.BeginForm())
+    {
+        <div class="form-horizontal">
+            @Html.HiddenFor(x => x.CreatedDate)
+            @Html.HiddenFor(x => x.ModifiedDate)
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.FeedId)
+            <div class="row">
+                <label>@Html.Text("Title")</label>
+                <div class="control mui-textfield">
+                    @Html.EditorFor(x => x.Title)
+                </div>
+            </div>
+            <div class="row">
+                <label>@Html.Text("Content")</label>
+                @Html.EditorFor(x => x.Content)
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.Submit(Html.Text("Save"), ButtonType.Raised, "submit  ")
+                </div>
+            </div>
+        </div>
+    }
+</div>

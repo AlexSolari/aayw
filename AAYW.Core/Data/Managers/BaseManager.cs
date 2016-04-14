@@ -31,6 +31,11 @@ namespace AAYW.Core.Data.Managers
             return provider.GetList(page, pagesize);
         }
 
+        public virtual IList<TModel> All()
+        {
+            return provider.All();
+        }
+
         public virtual void CreateOrUpdate(TModel model)
         {
             provider.CreateOrUpdate(model);

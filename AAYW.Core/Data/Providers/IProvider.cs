@@ -11,6 +11,7 @@ namespace AAYW.Core.Data.Providers
         TEntity GetById(Guid id);
         TEntity GetById(string id);
         System.Collections.Generic.IList<TEntity> GetList(int page, int pagesize);
+        System.Collections.Generic.IList<TEntity> All();
         System.Collections.Generic.IList<TEntity> GetListByField(string field, string value);
         void CreateOrUpdate(TEntity model);
     }

@@ -53,6 +53,16 @@ namespace AAYW.Core.Data.Providers
             });
         }
 
+        public virtual IList<TEntity> All()
+        {
+            return Execute(session =>
+            {
+                var criteria = session.CreateCriteria<TEntity>();
+                criteria.AddOrder(Order.Desc("CreatedDate"));
+                return criteria.List<TEntity>();
+            });
+        }
+
         public TEntity GetById(string id)
         {
             Guid guid;

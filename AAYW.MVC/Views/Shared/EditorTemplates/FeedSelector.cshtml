@@ -1,0 +1,17 @@
+﻿@using AAYW.Core.Data.Managers;
+@using AAYW.Core.Dependecies;
+@using AAYW.Core.Models.Bussines.Admin;
+@model string
+@{
+    var manager = Resolver.GetInstance<IManager<ContentBlock>>();
+    var feeds = manager.All();             
+}
+<select>
+    @foreach (var item in feeds)
+    {
+        @if (item.Type == ContentBlock.BlockType.Feed)
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+    }
+</select>

@@ -12,6 +12,8 @@ namespace AAYW.Core.Models.Bussines.Admin
         public enum BlockType
         {
             Html,
+            Feed,
+            Redirect
         }
         public virtual string Name { get; set; }
         public virtual BlockType Type { get; set; }

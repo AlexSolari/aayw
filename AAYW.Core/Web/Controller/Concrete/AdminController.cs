@@ -326,6 +326,7 @@ namespace AAYW.Core.Controller.Concrete
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveEntity(string type, Dictionary<string, string> modelData)
         {
             var manager = GetManager(type);

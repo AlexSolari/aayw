@@ -37,10 +37,15 @@ namespace AAYW.Core.Dependecies
 
         /// <typeparam name="T">What will be requested</typeparam>
         /// <typeparam name="I">What will be returned</typeparam>
-        public static void RegisterType<T, I>()
+        public static void RegisterType<T, I>(bool registerCollections = false)
             where I : T
         {
             typeDependencies.Add(typeof(T), typeof(I));
+            if (registerCollections)
+            {
+                typeDependencies.Add(typeof(IList<T>), typeof(List<I>));
+                typeDependencies.Add(typeof(List<T>), typeof(List<I>));
+            }
             if (typeof(I).GetCustomAttributes(typeof(InspectableAttribute), false).Length > 0)
             {
                 entitiesDependencies.Add(typeof(T), typeof(I));

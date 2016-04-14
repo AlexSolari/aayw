@@ -26,6 +26,7 @@ using System.Xml;
 using AAYW.Core.Web.Controller.Concrete;
 using AAYW.Core.Reflector;
 using AAYW.Core.Models.View.Page;
+using AAYW.Core.Models.Bussines.Post;
 
 namespace AAYW.Core
 {
@@ -44,14 +45,16 @@ namespace AAYW.Core
             Resolver.RegisterType<IReflector, EntityReflector>();
 
             // Registrering entites
-            Resolver.RegisterType<User, User>();
-            Resolver.RegisterType<Page, Page>();
-            Resolver.RegisterType<MailTemplate, MailTemplate>();
-            Resolver.RegisterType<UserForm, UserForm>();
-            Resolver.RegisterType<ContentBlock, ContentBlock>();
-            Resolver.RegisterType<WebsiteSetting, WebsiteSetting>();
+            Resolver.RegisterType<Post, Post>(true);
+            Resolver.RegisterType<User, User>(true);
+            Resolver.RegisterType<Page, Page>(true);
+            Resolver.RegisterType<MailTemplate, MailTemplate>(true);
+            Resolver.RegisterType<UserForm, UserForm>(true);
+            Resolver.RegisterType<ContentBlock, ContentBlock>(true);
+            Resolver.RegisterType<WebsiteSetting, WebsiteSetting>(true);
 
             // Registering providers
+            Resolver.RegisterType<IProvider<Post>, PostProvider>();
             Resolver.RegisterType<IProvider<User>, UserProvider>();
             Resolver.RegisterType<IProvider<Page>, PageProvider>();
             Resolver.RegisterType<IProvider<UserForm>, UserFormProvider>();
@@ -60,6 +63,7 @@ namespace AAYW.Core
             Resolver.RegisterType<IProvider<WebsiteSetting>, WebsiteSettingsProvider>();
 
             // Registering managers
+            Resolver.RegisterType<IManager<Post>, PostManager>();
             Resolver.RegisterType<IManager<User>, UserManager>();
             Resolver.RegisterType<IManager<Page>, PageManager>();
             Resolver.RegisterType<IManager<UserForm>, UserFormManager>();
@@ -123,7 +127,7 @@ namespace AAYW.Core
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             
 
-            Map(routes, "Home", "Index", "home", "Home");
+            Map(routes, "Home", "Index", "", "Home");
             Map(routes, "Home", "Landing", "landing", "Landing");
             Map(routes, "Home", "Login", "login", "Login");
             Map(routes, "Home", "Logout", "logout", "Logout");
@@ -160,7 +164,11 @@ namespace AAYW.Core
           
             Map(routes, "UserForm", "CustomForm", "form/{url}", "CustomForm");
             Map(routes, "UserForm", "FormSubmited", "formsuccess", "FormSubmited");
-            
+
+            Map(routes, "Feed", "CreatePost", "post/new/{feedId}", "CreatePost");
+            Map(routes, "Feed", "EditPost", "post/edit/{postId}", "EditPost");
+            Map(routes, "Feed", "CreateOrUpdatePost", "post/save", "CreateOrUpdatePost");
+            Map(routes, "Feed", "DeletePost", "post/delete/{id}", "DeletePost");
 
             routes.MapRoute(
                 "Default",
@@ -185,6 +193,7 @@ namespace AAYW.Core
             Resolver.RegisterController<AdminController, AdminController>("Admin");
             Resolver.RegisterController<UserFormController, UserFormController>("UserForm");
             Resolver.RegisterController<PageController, PageController>("Pages");
+            Resolver.RegisterController<FeedController, FeedController>("Feed");
         }
 
         private static void Map(RouteCollection routes, string controller, string action, string url = null, string name = null)
