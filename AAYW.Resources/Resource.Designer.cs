@@ -286,6 +286,15 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are here because you&apos;re visiting site first time or home page not set. To set homepage navigate to Admin Page and create page with URL &quot;home&quot;..
+        /// </summary>
+        internal static string LandingDetails {
+            get {
+                return ResourceManager.GetString("LandingDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AAYW -- is a fast way to create customizeble site..
         /// </summary>
         internal static string LandingExplanation {

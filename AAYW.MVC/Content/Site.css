@@ -45,6 +45,14 @@ ul.inline li { display: inline-block; }
     text-align: center;
     padding: 3em 0;
 }
+.landing p:first-of-type{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.42);
+}
+.landing p{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: .5em 0;
+}
 .validation-summary-errors{
     color: red;
     display: inline-block;

@@ -192,6 +192,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="LandingDetails" xml:space="preserve">
+    <value>You are here because you're visiting site first time or home page not set. To set homepage navigate to Admin Page and create page with URL "home".</value>
+  </data>
   <data name="LandingExplanation" xml:space="preserve">
     <value>AAYW -- is a fast way to create customizeble site.</value>
   </data>
