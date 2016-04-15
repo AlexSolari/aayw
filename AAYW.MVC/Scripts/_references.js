@@ -9,3 +9,4 @@
 /// <reference path="mui.min.js" />
 /// <reference path="admin.js" />
 /// <reference path="nicedit/nicedit.js" />
+/// <reference path="lib/aayw.htmleditor.js" />

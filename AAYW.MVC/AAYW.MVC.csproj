@@ -187,6 +187,7 @@
     <Content Include="Views\Shared\EditorTemplates\HtmlEditor.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\FeedSelector.cshtml" />
     <Content Include="Views\Shared\PostEditor.cshtml" />
+    <Content Include="Scripts\lib\AAYW.HtmlEditor.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
