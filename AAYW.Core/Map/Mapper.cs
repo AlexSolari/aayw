@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AAYW.Core.Extensions;
 using AAYW.Core.Reflector;
+using AAYW.Core.Logging;
 
 namespace AAYW.Core.Map
 {
@@ -49,8 +50,7 @@ namespace AAYW.Core.Map
                             }
                             catch (InvalidCastException exc)
                             {
-#warning Add logging here
-                                continue;
+                                Resolver.GetInstance<ILogger>().Log("Error while mapping. Details: {0}".FormatWith(exc.Message));
                             }
                         }
                     }

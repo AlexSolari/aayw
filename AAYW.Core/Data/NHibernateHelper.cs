@@ -1,4 +1,4 @@
-﻿#define RECREATE_DATABASE
+﻿//#define RECREATE_DATABASE
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;

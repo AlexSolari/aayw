@@ -13,6 +13,17 @@
         }
     </ul>
 </div>
+<div class="mui-dropdown">
+    <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+        @Html.Text("Log")
+        <span class="mui-caret"></span>
+    </button>
+    <ul class="mui-dropdown__menu admin-menu">
+        <li><a href="@(Url.RouteUrl("EntireLog"))">@Html.Text("Log_All")</a></li>
+        <li><a href="@(Url.RouteUrl("Log", new { count = 50 }))">@Html.Text("Log_Last50")</a></li>
+        <li><a href="@(Url.RouteUrl("Log", new { count = 100 }))">@Html.Text("Log_Last100")</a></li>
+    </ul>
+</div>
 @Html.Button(Html.Text("MailSettings"), ButtonType.Raised, Url.RouteUrl("MailSettings"), "mui-btn--primary")
 @Html.Button(Html.Text("MailTemplates"), ButtonType.Raised, Url.RouteUrl("MailTemplates", new { page = 0 }), "mui-btn--primary")
 @Html.Button(Html.Text("CustomForms"), ButtonType.Raised, Url.RouteUrl("CustomFormsList", new { page = 0 }), "mui-btn--primary")

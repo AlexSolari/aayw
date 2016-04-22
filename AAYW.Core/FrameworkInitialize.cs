@@ -27,6 +27,7 @@ using AAYW.Core.Web.Controller.Concrete;
 using AAYW.Core.Reflector;
 using AAYW.Core.Models.View.Page;
 using AAYW.Core.Models.Bussines.Post;
+using AAYW.Core.Logging;
 
 namespace AAYW.Core
 {
@@ -43,13 +44,15 @@ namespace AAYW.Core
             Resolver.RegisterType<IMailProcessor, MailProcessor>();
             Resolver.RegisterType<IReflectionData, EntityReflectionData>();
             Resolver.RegisterType<IReflector, EntityReflector>();
+            Resolver.RegisterType<ILogger, Logger>();
 
             // Registrering entites
             Resolver.RegisterType<Post, Post>(true);
             Resolver.RegisterType<User, User>(true);
             Resolver.RegisterType<Page, Page>(true);
-            Resolver.RegisterType<MailTemplate, MailTemplate>(true);
             Resolver.RegisterType<UserForm, UserForm>(true);
+            Resolver.RegisterType<LogMessage, LogMessage>(true);
+            Resolver.RegisterType<MailTemplate, MailTemplate>(true);
             Resolver.RegisterType<ContentBlock, ContentBlock>(true);
             Resolver.RegisterType<WebsiteSetting, WebsiteSetting>(true);
 
@@ -58,6 +61,7 @@ namespace AAYW.Core
             Resolver.RegisterType<IProvider<User>, UserProvider>();
             Resolver.RegisterType<IProvider<Page>, PageProvider>();
             Resolver.RegisterType<IProvider<UserForm>, UserFormProvider>();
+            Resolver.RegisterType<IProvider<LogMessage>, LogMessageProvider>();
             Resolver.RegisterType<IProvider<MailTemplate>, MailTemplateProvider>();
             Resolver.RegisterType<IProvider<ContentBlock>, ContentBlockProvider>();
             Resolver.RegisterType<IProvider<WebsiteSetting>, WebsiteSettingsProvider>();
@@ -66,19 +70,28 @@ namespace AAYW.Core
             Resolver.RegisterType<IManager<Post>, PostManager>();
             Resolver.RegisterType<IManager<User>, UserManager>();
             Resolver.RegisterType<IManager<Page>, PageManager>();
+            Resolver.RegisterType<IManager<LogMessage>, LogManager>();
             Resolver.RegisterType<IManager<UserForm>, UserFormManager>();
             Resolver.RegisterType<IManager<ContentBlock>, ContentBlockManager>();
             Resolver.RegisterType<IManager<MailTemplate>, MailTemplateManager>();
             Resolver.RegisterType<IManager<WebsiteSetting>, WebsiteSettingsManager>();
 
+            var logger = Resolver.GetInstance<ILogger>();
+
             //Controllers
+            logger.Log("Registering controllers and controller factory");
             RegisterControllers();
             //Routing
+            logger.Log("Registering routes");
             RegisterRoutes(RouteTable.Routes);
             //DataBinders
+            logger.Log("Registering model binders");
             ModelBinders.Binders.Add(typeof(UserFormDesignModel), new UserFormDataBinder());
             //Custom Mappings
+            logger.Log("Registering custom mappings");
             RegisterCustomMappings();
+
+            logger.Log("AAYW Framework initialized");
         }
 
         private static void RegisterCustomMappings()
@@ -161,6 +174,9 @@ namespace AAYW.Core
             Map(routes, "Admin", "PagesList", "admin/pages/list/{page}", "PageList");
             Map(routes, "Admin", "EditPage", "admin/pages/edit/{id}", "EditPage");
             Map(routes, "Admin", "DeletePage", "admin/pages/delete/{id}", "DeletePage");
+
+            Map(routes, "Admin", "Log", "admin/log/{count}", "Log");
+            Map(routes, "Admin", "EntireLog", "admin/fulllog", "EntireLog");
           
             Map(routes, "UserForm", "CustomForm", "form/{url}", "CustomForm");
             Map(routes, "UserForm", "FormSubmited", "formsuccess", "FormSubmited");

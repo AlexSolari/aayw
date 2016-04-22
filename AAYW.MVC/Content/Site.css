@@ -169,6 +169,10 @@ header{
 .add-post{
     margin: 1em;
 }
+.log{
+    text-align: left;
+    padding-left: 1em;
+}
 /**ADMIN**/
 .admin-sidebar{
     padding-top: 0;

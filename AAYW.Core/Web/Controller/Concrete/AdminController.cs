@@ -23,6 +23,7 @@ using AAYW.Core.Models.View.UserForm;
 using AAYW.Core.Reflector;
 using AAYW.Core.Models.View.ContentBlock;
 using AAYW.Core.Models.View.Page;
+using AAYW.Core.Logging;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -34,6 +35,8 @@ namespace AAYW.Core.Controller.Concrete
         IManager<UserForm> userFormsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<UserForm>>();
         IManager<ContentBlock> contentBlocksManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<ContentBlock>>();
         IManager<Page> pagesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Page>>();
+
+        ILogger logger = AAYW.Core.Dependecies.Resolver.GetInstance<ILogger>();
 
         public AdminController()
         {
@@ -52,6 +55,21 @@ namespace AAYW.Core.Controller.Concrete
         {
             return View();
         }
+        #region Logging
+
+        [HttpGet]
+        public ActionResult EntireLog()
+        {
+            return View("Log", logger.GetLog());
+        }
+
+        [HttpGet]
+        public ActionResult Log(int count)
+        {
+            return View(logger.GetLog(count));
+        }
+        
+        #endregion
         #region Pages
 
 

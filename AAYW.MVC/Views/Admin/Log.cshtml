@@ -1,0 +1,15 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = Html.Text("AdminHome");
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+<div class="mui-panel">
+    <ul class="mui-list--unstyled log">
+        @foreach(var msg in Model)
+        {
+            <li>@msg</li>
+        }
+    </ul>
+</div>
+
+

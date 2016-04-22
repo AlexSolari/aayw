@@ -1,4 +1,5 @@
 ﻿using AAYW.Core.Dependecies;
+using AAYW.Core.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace AAYW.Core.Reflector
 
         static EntityReflector()
         {
+            Resolver.GetInstance<ILogger>().Log("Reflecting and caching all assembled classes");
             reflectionCache = new Dictionary<Type, IReflectionData>();
             var types = Assembly.GetExecutingAssembly().DefinedTypes;
             foreach (var type in types)
