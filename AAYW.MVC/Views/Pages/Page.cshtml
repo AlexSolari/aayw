@@ -18,7 +18,7 @@
             @switch (item.Type)
             {
                 case AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Html:
-                    
+                    @(new HtmlString(item.Content))
                     break;
                 case AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Feed:
                 <ul class="feed mui-col-md-offset-2 mui-col-md-8">
