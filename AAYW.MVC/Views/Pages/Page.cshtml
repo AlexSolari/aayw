@@ -2,13 +2,10 @@
     Result field depends on user selected field in backoffice
 
 *@
-@using AAYW.Core.Data.Managers;
-@using AAYW.Core.Models.Bussines.Post;
+
 @model IList<AAYW.Core.Models.Bussines.Admin.ContentBlock>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var userManager = AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>();
-    var postsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Post>>();
 }
 
 <div class="mui-panel center custom-form">
@@ -18,40 +15,10 @@
             @switch (item.Type)
             {
                 case AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Html:
-                    @(new HtmlString(item.Content))
+                    @Html.Partial("_Html", item.Content)
                     break;
                 case AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Feed:
-                <ul class="feed mui-col-md-offset-2 mui-col-md-8">
-                    @if (userManager.IsAuthorized && userManager.CurrentUser != null && userManager.CurrentUser.CurrentRole == AAYW.Core.Models.Bussines.User.User.Role.Admin)
-                    {
-                        <li class="add-post" data-feed-id="@item.Id">
-                            @Html.Button(Html.Text("AddPost"), ButtonType.Raised)
-                        </li>
-                    }
-                    @foreach (var post in postsManager.GetListByField("FeedId", item.Id.ToString()).OrderByDescending(x => x.CreatedDate))
-                	{
-		                <li class="post mui-panel">
-                            <h3>@post.Title</h3>
-                            <div class="post-content">
-                                @(new HtmlString(post.Content))
-                            </div>
-                            <div class="post-date">
-                                @post.CreatedDate
-                            </div>
-                            @if (userManager.IsAuthorized && userManager.CurrentUser != null && userManager.CurrentUser.CurrentRole == AAYW.Core.Models.Bussines.User.User.Role.Admin)
-                            {
-                                <div class="post-controls" data-id="@post.Id">
-                                    <div class="control">
-                                        @Html.Button(Html.Text("Edit"), ButtonType.Raised, cssClass: "edit")
-                                    </div>
-                                    <div class="control">
-                                        @Html.Button(Html.Text("Delete"), ButtonType.Flat, cssClass: "delete")
-                                    </div>
-                                </div>
-                            }
-                        </li>
-	                }
-                </ul>
+                    @Html.Partial("_Feed", item);
                     break;
                 default:
                     break;
