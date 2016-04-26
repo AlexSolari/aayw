@@ -184,6 +184,20 @@
                 AAYW.UI.HtmlEditor.Bind();
 
                 $('.popup-editor .submit').click(onsubmit);
+                $('.type-dropdown select').change(function () {
+                    var value = this.options[this.value].innerHTML;
+
+                    if (value == "Html") {
+                        $('.content-row').show();
+                    }
+                    else if (value == "Redirect") {
+                        $('.content-row').show();
+                    }
+                    else {
+                        $('.content-row').hide();
+                    }
+
+                });
             };
 
             AAYW.UI.LoadingIndicator.Show();
@@ -202,6 +216,8 @@
             showContentsPopup($(this).parents("tr").data("id"));
             return false;
         });
+
+        
 
     })(this);
 

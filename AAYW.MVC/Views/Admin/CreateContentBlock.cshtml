@@ -13,7 +13,7 @@
             @Html.ValidationSummary()
             <div class="row">
                 <label>@Html.Text("Type")</label>
-                <div class="control admin-dropdown">
+                <div class="control admin-dropdown type-dropdown">
                     @Html.EnumDropDownListFor(model => model.Type, new { @class = "form-control" })
                 </div>
             </div>
@@ -23,8 +23,8 @@
                     @Html.EditorFor(model => model.Name)
                 </div>
             </div>
-            <div class="row">
-                <label>@Html.Text("Content")</label>
+            <div class="row content-row">
+                <label class="target-label">@Html.Text("ContentOrUrl")</label>
                 @Html.EditorFor(model => model.Content)
             </div>
             <div class="row">
