@@ -6,37 +6,26 @@
 	AAYW.UI.Popup = AAYW.UI.Popup || (function (window) {
 		return {
 			Show: function (content) {
-			    var closeRow = document.createElement('div');
-			    closeRow.style.display = 'inline-block';
-			    closeRow.style.maxWidth = '500px';
-			    closeRow.style.width = '100%';
+			    var closeRow = $("<div></div>");
+			    closeRow.addClass("close-row");
 
-			    var closeButton = document.createElement('span');
-			    closeButton.className = 'popup-close-button';
-			    closeButton.innerHTML = '×';
-			    closeButton.style.fontSize = '1.75em';
-			    closeButton.style.cssFloat = 'right';
-			    closeButton.onclick = function () {
-			        mui.overlay('off');
-			    };
+			    var closeButton = $("<span></span>");
+			    closeButton.addClass("close-button");
+			    closeButton.click(AAYW.UI.Popup.Close);
+			    closeButton.html("×");
 
-			    var modalEl = document.createElement('div');
-			    modalEl.className = 'popup-containter mui--z3';
-				modalEl.style.width = '100%';
-				modalEl.style.height = 'auto';
-				modalEl.style.margin = '100px auto';
-				modalEl.style.textAlign = 'center';
-				modalEl.style.backgroundColor = '#fff';
+			    var modalEl = $("<div></div>");
+			    modalEl.addClass("popup-containter mui--z3");
 
-				var popupContent = document.createElement('div');
-				popupContent.innerHTML = content;
-				popupContent.className = "popup";
+			    var popupContent = $("<div></div>");
+			    popupContent.addClass("popup");
+			    popupContent.html(content);
 
-				closeRow.appendChild(closeButton);
-				modalEl.appendChild(closeRow);
-				modalEl.appendChild(popupContent);
+				closeRow.append(closeButton);
+				modalEl.append(closeRow);
+				modalEl.append(popupContent);
 
-				mui.overlay('on', modalEl);
+				mui.overlay('on', modalEl[0]);
 			},
 			Close: function () {
 			    mui.overlay('off');

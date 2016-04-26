@@ -71,16 +71,28 @@ input.input-validation-error, textarea.input-validation-error{
 header{
     margin-bottom: 1em;
 }
-.popup-close-button{
-    color: dimgray;
-    cursor: pointer;
-}
+/********POPUP*********/
 .popup-containter{
+    width: 100%;
+    height: auto;
+    margin: 100px auto;
     padding: 1em;
     text-align: center;
+    background: #fff;
 }
 .popup{
     padding: 1em;
+}
+.close-row{
+    display: inline-block;
+    max-width: 500px;
+    width: 100%;
+}
+.close-button{
+    font-size: 1.75em;
+    float: right;
+    color: dimgray;
+    cursor: pointer;
 }
 /*************/
 #loading-indicator{
