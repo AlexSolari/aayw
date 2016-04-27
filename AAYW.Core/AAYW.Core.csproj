@@ -91,6 +91,8 @@
     <Compile Include="Annotations\AccessLevelAttribute.cs" />
     <Compile Include="Annotations\CustomCompareAttribute.cs" />
     <Compile Include="Annotations\CustomRequiredAttribute.cs" />
+    <Compile Include="Cache\DefaultCache.cs" />
+    <Compile Include="Cache\ICache.cs" />
     <Compile Include="Crypto\BaseCryptoProcessor.cs" />
     <Compile Include="Crypto\ICryptoProcessor.cs" />
     <Compile Include="Data\Managers\BaseManager.cs" />

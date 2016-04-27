@@ -1,5 +1,7 @@
-﻿using AAYW.Core.Dependecies;
+﻿using AAYW.Core.Cache;
+using AAYW.Core.Dependecies;
 using AAYW.Core.Models.Bussines;
+using AAYW.Core.Extensions;
 using NHibernate.Criterion;
 using System;
 using System.Collections.Generic;
@@ -12,55 +14,97 @@ namespace AAYW.Core.Data.Providers
     public class BaseProvider<TEntity> : DataProvider<TEntity>, IProvider<TEntity>
         where TEntity : Entity
     {
+        ICache cache;
+
         public BaseProvider()
         {
-
+            cache = Resolver.GetInstance<ICache>();
         }
 
         public virtual TEntity GetByField(string field, string value)
         {
             TEntity result = null;
+
+            var key = "{0}-{1}-{2}/{3}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name, field, value);
+            if ( cache.HasKey(key) )
+            {
+                return cache.Get<TEntity>(key);
+            }
+
             Execute(session =>
             {
                 var criteria = session.CreateCriteria(typeof(TEntity));
                 criteria.Add(Restrictions.Eq(field, value));
                 result = criteria.UniqueResult<TEntity>();
             });
+
+            cache.Add<TEntity>(result, key);
             return result;
         }
 
         public virtual IList<TEntity> GetListByField(string field, string value)
         {
             IList<TEntity> result = Resolver.GetInstance<IList<TEntity>>();
+
+            var key = "{0}-{1}-{2}/{3}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name, field, value);
+            if (cache.HasKey(key))
+            {
+                return cache.Get<IList<TEntity>>(key);
+            }
+
             Execute(session =>
             {
                 var criteria = session.CreateCriteria(typeof(TEntity));
                 criteria.Add(Restrictions.Eq(field, value));
                 result = criteria.List<TEntity>();
             });
+
+            cache.Add<IList<TEntity>>(result, key);
             return result;
         }
 
         public virtual IList<TEntity> GetList(int page = 0, int pagesize = 50)
         {
-            return Execute(session =>
+            IList<TEntity> result = Resolver.GetInstance<IList<TEntity>>();
+
+            var key = "{0}-{1}-{2}/{3}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name, page, pagesize);
+            if (cache.HasKey(key))
+            {
+                return cache.Get<IList<TEntity>>(key);
+            }
+
+            Execute(session =>
             {
                 var criteria = session.CreateCriteria<TEntity>();
                 criteria.AddOrder(Order.Desc("CreatedDate"));
                 criteria.SetMaxResults(pagesize);
                 criteria.SetFirstResult(pagesize * page);
-                return criteria.List<TEntity>();
+                result = criteria.List<TEntity>();
             });
+
+            cache.Add<IList<TEntity>>(result, key);
+            return result;
         }
 
         public virtual IList<TEntity> All()
         {
-            return Execute(session =>
+            IList<TEntity> result = Resolver.GetInstance<IList<TEntity>>();
+
+            var key = "{0}-{1}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name);
+            if (cache.HasKey(key))
+            {
+                return cache.Get<IList<TEntity>>(key);
+            }
+
+            Execute(session =>
             {
                 var criteria = session.CreateCriteria<TEntity>();
                 criteria.AddOrder(Order.Desc("CreatedDate"));
-                return criteria.List<TEntity>();
+                result = criteria.List<TEntity>();
             });
+
+            cache.Add<IList<TEntity>>(result, key);
+            return result;
         }
 
         public TEntity GetById(string id)
@@ -75,10 +119,21 @@ namespace AAYW.Core.Data.Providers
 
         public TEntity GetById(Guid id)
         {
-            return Execute(session =>
+            TEntity result = null;
+
+            var key = "{0}-{1}-{2}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name, id);
+            if (cache.HasKey(key))
             {
-                return session.Get<TEntity>(id);
+                return cache.Get<TEntity>(key);
+            }
+
+            Execute(session =>
+            {
+                result = session.Get<TEntity>(id);
             });
+
+            cache.Add<TEntity>(result, key);
+            return result;
         }
 
         public void CreateOrUpdate(TEntity model)
@@ -90,6 +145,11 @@ namespace AAYW.Core.Data.Providers
                     model.ModifiedDate = DateTime.Now;
                     session.SaveOrUpdate(model);
                     transaction.Commit();
+
+                    cache.DropWhere(x => x.Contains("GetById") && x.Contains(model.Id.ToString()) && x.Contains(typeof(TEntity).Name));
+                    cache.DropWhere(x => x.Contains("All") && x.Contains(typeof(TEntity).Name));
+                    cache.DropWhere(x => x.Contains("List") && x.Contains(typeof(TEntity).Name));
+                    cache.DropWhere(x => x.Contains("GetByField") && x.Contains(typeof(TEntity).Name));
                 }
             });
         }
@@ -103,6 +163,11 @@ namespace AAYW.Core.Data.Providers
                     session.Delete(model);
                     session.Flush();
                     transaction.Commit();
+
+                    cache.DropWhere(x => x.Contains("GetById") && x.Contains(model.Id.ToString()) && x.Contains(typeof(TEntity).Name));
+                    cache.DropWhere(x => x.Contains("All") && x.Contains(typeof(TEntity).Name));
+                    cache.DropWhere(x => x.Contains("List") && x.Contains(typeof(TEntity).Name));
+                    cache.DropWhere(x => x.Contains("GetByField") && x.Contains(typeof(TEntity).Name));
                 }
             });
         }

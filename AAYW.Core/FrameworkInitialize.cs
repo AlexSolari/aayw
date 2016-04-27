@@ -28,6 +28,7 @@ using AAYW.Core.Reflector;
 using AAYW.Core.Models.View.Page;
 using AAYW.Core.Models.Bussines.Post;
 using AAYW.Core.Logging;
+using AAYW.Core.Cache;
 
 namespace AAYW.Core
 {
@@ -45,6 +46,7 @@ namespace AAYW.Core
             Resolver.RegisterType<IReflectionData, EntityReflectionData>();
             Resolver.RegisterType<IReflector, EntityReflector>();
             Resolver.RegisterType<ILogger, Logger>();
+            Resolver.RegisterType<ICache, DefaultCache>();
 
             // Registrering entites
             Resolver.RegisterType<Post, Post>(true);
@@ -177,6 +179,9 @@ namespace AAYW.Core
 
             Map(routes, "Admin", "Log", "admin/log/{count}", "Log");
             Map(routes, "Admin", "EntireLog", "admin/fulllog", "EntireLog");
+
+            Map(routes, "Admin", "Cache", "admin/cache", "Cache");
+            Map(routes, "Admin", "DropCache", "admin/cache/drop", "DropCache");
           
             Map(routes, "UserForm", "CustomForm", "form/{url}", "CustomForm");
             Map(routes, "UserForm", "FormSubmited", "formsuccess", "FormSubmited");

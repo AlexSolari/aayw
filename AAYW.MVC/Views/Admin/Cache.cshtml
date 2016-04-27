@@ -1,0 +1,18 @@
+﻿@model Dictionary<string, object>
+@{
+    ViewBag.Title = Html.Text("AdminHome");
+    Layout = "~/Views/Admin/Layout.cshtml";
+}
+<div class="mui-panel">
+    <div class="center">
+        @Html.Button(Html.Text("DropCahce"), ButtonType.Raised, Url.RouteUrl("DropCache"), cssClass: "drop-cache")
+    </div>
+    <ul class="mui-list--unstyled log">
+        @foreach(var msg in Model)
+        {
+            <li><strong>@msg.Key</strong> &rArr; <em>@msg.Value.ToString()</em></li>
+        }
+    </ul>
+</div>
+
+

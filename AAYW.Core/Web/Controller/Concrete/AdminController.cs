@@ -24,6 +24,7 @@ using AAYW.Core.Reflector;
 using AAYW.Core.Models.View.ContentBlock;
 using AAYW.Core.Models.View.Page;
 using AAYW.Core.Logging;
+using AAYW.Core.Cache;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -55,6 +56,21 @@ namespace AAYW.Core.Controller.Concrete
         {
             return View();
         }
+        #region Chaching
+        [HttpGet]
+        public ActionResult Cache()
+        {
+            var cache = AAYW.Core.Dependecies.Resolver.GetInstance<ICache>();
+            return View(cache.GetAll());
+        }
+
+        [HttpGet]
+        public ActionResult DropCache()
+        {
+            AAYW.Core.Dependecies.Resolver.GetInstance<ICache>().DropAll();
+            return RedirectToAction("Cache");
+        }
+        #endregion
         #region Logging
 
         [HttpGet]
