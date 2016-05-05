@@ -18,6 +18,7 @@ namespace AAYW.Core.Models.View.UserForm
             Password,
             DateTime
         }
+        [CustomRequired("FieldName")]
         public string FieldName { get; set; }
         public InputType Type { get; set; }
         public bool Validate { get; set; }

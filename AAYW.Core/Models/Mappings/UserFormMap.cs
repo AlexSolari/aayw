@@ -17,10 +17,10 @@ namespace AAYW.Core.Models.Mappings
             : base()
         {
             Map(x => x.Fields).CustomSqlType("xml");
-            Map(x => x.Url);
-            Map(x => x.MailTemplateName);
-            Map(x => x.SubmitAdress);
-            Map(x => x.Header);
+            Map(x => x.Url).Length(200);
+            Map(x => x.MailTemplateName).Length(100);
+            Map(x => x.SubmitAdress).Length(200);
+            Map(x => x.Header).Length(200);
             CrateTable();
         }
     }

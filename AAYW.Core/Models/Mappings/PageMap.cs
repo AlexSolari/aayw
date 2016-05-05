@@ -15,8 +15,8 @@ namespace AAYW.Core.Models.Mappings
         public PageMap() : base()
         {
             Map(x => x.ContentBlocks).CustomSqlType("xml");
-            Map(x => x.Title);
-            Map(x => x.Url);
+            Map(x => x.Title).Length(300);
+            Map(x => x.Url).Length(100);
             CrateTable();
         }
     }

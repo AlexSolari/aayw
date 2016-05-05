@@ -13,6 +13,7 @@ namespace AAYW.Core.Models.View.MailTemplates
     {
         public virtual Guid Id { get; set; }
         [CustomRequired]
+        [CustomMaxLength(100)]
         public virtual string Name { get; set; }
         [CustomRequired]
         [AllowHtml]

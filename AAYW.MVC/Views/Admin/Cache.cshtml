@@ -10,7 +10,7 @@
     <ul class="mui-list--unstyled log">
         @foreach(var msg in Model)
         {
-            <li><strong>@msg.Key</strong> &rArr; <em>@msg.Value.ToString()</em></li>
+            <li><strong>@msg.Key</strong> &rArr; <em>@msg.Value.SafeToString()</em></li>
         }
     </ul>
 </div>

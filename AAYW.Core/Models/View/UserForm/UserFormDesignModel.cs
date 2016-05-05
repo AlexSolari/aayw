@@ -13,12 +13,16 @@ namespace AAYW.Core.Models.View.UserForm
         public string Id { get; set; }
         public List<UserFormField> FormFields { get; set; }
         [CustomRequired]
+        [CustomMaxLength(200)]
         public string Header { get; set; }
         [CustomRequired]
+        [CustomMaxLength(200)]
         public string Url { get; set; }
         [CustomRequired]
+        [CustomMaxLength(100)]
         public string MailTemplateName { get; set; }
         [CustomRequired]
+        [CustomMaxLength(200)]
         [DataType(DataType.EmailAddress)]
         public string SubmitAdress { get; set; }
 

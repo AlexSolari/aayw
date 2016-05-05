@@ -12,8 +12,12 @@ namespace AAYW.Core.Models.Bussines.Post
     [Inspectable]
     public class Post : Entity
     {
+        [CustomRequired("Title")]
+        [CustomMaxLength(500)]
         public virtual string Title { get; set; }
+        [CustomRequired("Content")]
         [UIHint("HtmlEditor")]
+        [CustomMaxLength(2000)]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public virtual string Content { get; set; }

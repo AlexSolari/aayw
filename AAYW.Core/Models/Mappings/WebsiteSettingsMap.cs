@@ -16,11 +16,11 @@ namespace AAYW.Core.Models.Mappings
         public WebsiteSettingsMap() : base()
         {
             Map(x => x.MailEnableSsl);
-            Map(x => x.MailHost);
-            Map(x => x.MailPassword);
-            Map(x => x.MailUsername);
+            Map(x => x.MailHost).Length(200);
+            Map(x => x.MailPassword).Length(200);
+            Map(x => x.MailUsername).Length(200);
             Map(x => x.MailPort);
-            Map(x => x.MailAdress);
+            Map(x => x.MailAdress).Length(200);
             CrateTable();
         }
     }

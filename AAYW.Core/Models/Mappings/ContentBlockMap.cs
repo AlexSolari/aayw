@@ -17,7 +17,7 @@ namespace AAYW.Core.Models.Mappings
             : base()
         {
             Map(x => x.Type);
-            Map(x => x.Name);
+            Map(x => x.Name).Length(100);
             Map(x => x.Content).CustomSqlType("text");
             CrateTable();
         }

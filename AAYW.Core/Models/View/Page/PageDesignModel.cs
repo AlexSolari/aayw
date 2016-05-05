@@ -17,7 +17,11 @@ namespace AAYW.Core.Models.View.Page
         private List<string> ContentBlocksData; 
 
         public string Id { get; set; }
+        [CustomRequired("Url")]
+        [CustomMaxLength(100)]
         public string Url { get; set; }
+        [CustomRequired("Title")]
+        [CustomMaxLength(300)]
         public string Title { get; set; }
         public List<string> ContentBlocks 
         { 

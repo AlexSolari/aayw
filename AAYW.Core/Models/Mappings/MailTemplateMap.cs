@@ -15,7 +15,7 @@ namespace AAYW.Core.Models.Mappings
         public MailTemplateMap()
             : base()
         {
-            Map(x => x.Name);
+            Map(x => x.Name).Length(100);
             Map(x => x.Body).Length(2000);
             CrateTable();
         }
