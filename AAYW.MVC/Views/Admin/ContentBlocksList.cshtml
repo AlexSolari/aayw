@@ -6,7 +6,7 @@
 @{
     ViewBag.Title = Html.Text("ContentBlocks");
     var page = (int)ViewData["Page"];
-    Layout = "~/Views/Admin/Layout.cshtml";
+    Layout = Layouts.Admin;
 }
 <div class="admin-contents mui-panel">
     <h2>@Html.Text("ContentBlocks")</h2>

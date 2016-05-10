@@ -4,7 +4,7 @@
 @* Model will be "List" of entities ( actuall type is "dynamic" ), type is unknow at compile time and will be resolved in runtime*@
 @{
     ViewBag.Title = Html.Text("EntityInspector");
-    Layout = "~/Views/Admin/Layout.cshtml";
+    Layout = Layouts.Admin;
     var page = (int)ViewData["Page"];
     var type = (string)ViewData["Type"];
 

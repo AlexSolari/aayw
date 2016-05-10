@@ -6,7 +6,7 @@
 @{
     ViewBag.Title = Html.Text("CustomForms");
     var page = (int)ViewData["Page"];
-    Layout = "~/Views/Admin/Layout.cshtml";
+    Layout = Layouts.Admin;
     var properties = Resolver.GetInstance<IReflector>().Reflect<UserForm>().Properties;
 }
 <div class="admin-custom-form mui-panel">

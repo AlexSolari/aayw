@@ -6,7 +6,7 @@
 @{
     ViewBag.Title = Html.Text("MailTemplates");
     var page = (int)ViewData["Page"];
-    Layout = "~/Views/Admin/Layout.cshtml";
+    Layout = Layouts.Admin;
     var properties = Resolver.GetInstance<IReflector>().Reflect<MailTemplate>().Properties;
 }
 <div class="admin-mail-template mui-panel">

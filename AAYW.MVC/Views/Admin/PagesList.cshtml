@@ -6,7 +6,7 @@
 @{
     ViewBag.Title = Html.Text("Pages");
     var page = (int)ViewData["Page"];
-    Layout = "~/Views/Admin/Layout.cshtml";
+    Layout = Layouts.Admin;
     var properties = Resolver.GetInstance<IReflector>().Reflect<AAYW.Core.Models.Bussines.Admin.Page>().Properties;
 }
 <div class="admin-pages mui-panel">
