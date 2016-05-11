@@ -18,6 +18,8 @@ namespace AAYW.Core.Web.Controller.Concrete
     {
         IManager<Page> pagesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Page>>();
         IManager<ContentBlock> contentBlocksManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<ContentBlock>>();
+        IManager<Post> postsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Post>>();
+        IManager<PostComment> commentsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<PostComment>>();
 
         public override string Name
         {
@@ -27,7 +29,6 @@ namespace AAYW.Core.Web.Controller.Concrete
         [HttpGet]
         public ActionResult Post(string id)
         {
-            var postsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Post>>();
             var post = postsManager.GetById(id);
             
             if (post == null)
@@ -36,6 +37,24 @@ namespace AAYW.Core.Web.Controller.Concrete
             }
 
             return View(post);
+        }
+
+        [HttpPost]
+        public ActionResult AddPostComment(string PostId, string UserId, string Content)
+        {
+            if (Content.IsNullOrWhiteSpace() || Content.Length > 500)
+            {
+                return RedirectToAction("Post", new { id = PostId });
+            }
+
+            var comment = Dependecies.Resolver.GetInstance<PostComment>();
+            comment.UserId = UserId;
+            comment.PostId = PostId;
+            comment.Content = Content;
+
+            commentsManager.CreateOrUpdate(comment);
+
+            return RedirectToAction("Post", new { id = PostId });
         }
 
         [HttpGet]

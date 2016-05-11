@@ -54,6 +54,7 @@ namespace AAYW.Core
             Resolver.RegisterType<Page, Page>(true);
             Resolver.RegisterType<UserForm, UserForm>(true);
             Resolver.RegisterType<LogMessage, LogMessage>(true);
+            Resolver.RegisterType<PostComment, PostComment>(true);
             Resolver.RegisterType<MailTemplate, MailTemplate>(true);
             Resolver.RegisterType<ContentBlock, ContentBlock>(true);
             Resolver.RegisterType<WebsiteSetting, WebsiteSetting>(true);
@@ -63,6 +64,7 @@ namespace AAYW.Core
             Resolver.RegisterType<IProvider<User>, UserProvider>();
             Resolver.RegisterType<IProvider<Page>, PageProvider>();
             Resolver.RegisterType<IProvider<UserForm>, UserFormProvider>();
+            Resolver.RegisterType<IProvider<PostComment>, PostCommentProvider>();
             Resolver.RegisterType<IProvider<LogMessage>, LogMessageProvider>();
             Resolver.RegisterType<IProvider<MailTemplate>, MailTemplateProvider>();
             Resolver.RegisterType<IProvider<ContentBlock>, ContentBlockProvider>();
@@ -74,6 +76,7 @@ namespace AAYW.Core
             Resolver.RegisterType<IManager<Page>, PageManager>();
             Resolver.RegisterType<IManager<LogMessage>, LogManager>();
             Resolver.RegisterType<IManager<UserForm>, UserFormManager>();
+            Resolver.RegisterType<IManager<PostComment>, PostCommentManager>();
             Resolver.RegisterType<IManager<ContentBlock>, ContentBlockManager>();
             Resolver.RegisterType<IManager<MailTemplate>, MailTemplateManager>();
             Resolver.RegisterType<IManager<WebsiteSetting>, WebsiteSettingsManager>();
@@ -192,6 +195,7 @@ namespace AAYW.Core
             Map(routes, "Feed", "DeletePost", "post/delete/{id}", "DeletePost");
 
             Map(routes, "Pages", "Post", "post/{id}", "Post");
+            Map(routes, "Pages", "AddPostComment", "addcomment", "AddPostComment");
 
             routes.MapRoute(
                 "Default",

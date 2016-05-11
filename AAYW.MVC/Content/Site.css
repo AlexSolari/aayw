@@ -94,6 +94,9 @@ header{
     color: dimgray;
     cursor: pointer;
 }
+.post-comments{
+    list-style: none;
+}
 /*************/
 #loading-indicator{
     z-index: 999999999;
@@ -160,6 +163,9 @@ header{
 }
 .feed li{
     list-style: none;
+}
+.underscore{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.42);
 }
 .post h3{
     margin-top: 10px;
