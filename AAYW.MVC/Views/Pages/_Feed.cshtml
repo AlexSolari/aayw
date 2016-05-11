@@ -23,8 +23,10 @@
     }
     @foreach (var post in posts.OrderByDescending(x => x.CreatedDate))
     {
+        var dict = new RouteValueDictionary();
+        dict.Add("id", post.Id);
         <li class="post mui-panel">
-            <h3>@post.Title</h3>
+            <h3>@Html.RouteLink(post.Title, "Post", dict)</h3>
             <div class="post-content">
                 @(new HtmlString(post.Content))
             </div>

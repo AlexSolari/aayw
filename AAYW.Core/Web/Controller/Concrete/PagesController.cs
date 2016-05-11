@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AAYW.Core.Extensions;
+using AAYW.Core.Models.Bussines.Post;
 
 namespace AAYW.Core.Web.Controller.Concrete
 {
@@ -21,6 +22,20 @@ namespace AAYW.Core.Web.Controller.Concrete
         public override string Name
         {
             get { return "Pages"; }
+        }
+
+        [HttpGet]
+        public ActionResult Post(string id)
+        {
+            var postsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Post>>();
+            var post = postsManager.GetById(id);
+            
+            if (post == null)
+            {
+                return RedirectToRoute("Error404");
+            }
+
+            return View(post);
         }
 
         [HttpGet]

@@ -191,6 +191,8 @@ namespace AAYW.Core
             Map(routes, "Feed", "CreateOrUpdatePost", "post/save", "CreateOrUpdatePost");
             Map(routes, "Feed", "DeletePost", "post/delete/{id}", "DeletePost");
 
+            Map(routes, "Pages", "Post", "post/{id}", "Post");
+
             routes.MapRoute(
                 "Default",
                 "",
