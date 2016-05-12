@@ -12,6 +12,16 @@
                         $el.parents(".row").addClass("hidden");
                 });
 
+                $('.popup-editor .delete').click(function () {
+                    var id = $('form input[name="modelData[Id@System.Guid]"]').val();
+                    var type = $("form input[name=type]").val();
+                    AAYW.UI.LoadingIndicator.Show();
+                    $.post("[Route:DeleteEntity]", { id: id, type: type }, function () {
+                        AAYW.UI.LoadingIndicator.Close();
+                        AAYW.UI.Popup.Close();
+                        $("tr:has(#" + id + "_Id)").remove();
+                    })
+                });
 
                 $('.popup-editor .submit').click(function () {
                     AAYW.UI.LoadingIndicator.Show();

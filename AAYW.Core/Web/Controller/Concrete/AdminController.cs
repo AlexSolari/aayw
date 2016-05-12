@@ -380,6 +380,24 @@ namespace AAYW.Core.Controller.Concrete
             return Json(true);
         }
 
+        [HttpPost]
+        public ActionResult DeleteEntity(string id, string type)
+        {
+            var manager = GetManager(type);
+            var entityType = AAYW.Core.Dependecies.Resolver.GetInstance<IReflector>().Reflect(type).ReflectedType;
+
+            if (manager == null)
+            {
+                return Json(false);
+            }
+
+            var entity = manager.GetById(id);
+
+            manager.Delete(entity);
+
+            return Json(true);
+        }
+
         private dynamic GetManager(string type)
         {
             var types = AAYW.Core.Dependecies.Resolver.GetInstance<IReflector>().Reflect(type).ReflectedType;

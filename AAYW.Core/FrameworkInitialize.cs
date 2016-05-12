@@ -157,6 +157,7 @@ namespace AAYW.Core
             Map(routes, "Admin", "EntityInspector", "admin/entity/inspector/{type}/{page}", "EntityInspector");
             Map(routes, "Admin", "EditEntity", "admin/entity/edit/{type}/{id}", "EditEntity");
             Map(routes, "Admin", "SaveEntity", "admin/entity/save", "SaveEntity");
+            Map(routes, "Admin", "DeleteEntity", "admin/entity/delete", "DeleteEntity");
 
             Map(routes, "Admin", "MailSettings", "admin/mail/settings", "MailSettings");
             Map(routes, "Admin", "MailTemplates", "admin/mail/templates/{page}", "MailTemplates");
