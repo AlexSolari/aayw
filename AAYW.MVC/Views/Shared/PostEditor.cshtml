@@ -6,6 +6,11 @@
     @using (Html.BeginForm())
     {
         <div class="form-horizontal">
+            <div class="custom-validation validation-summary-errors">
+                <ul>
+
+                </ul>
+            </div>
             @Html.HiddenFor(x => x.CreatedDate)
             @Html.HiddenFor(x => x.ModifiedDate)
             @Html.HiddenFor(x => x.Id)

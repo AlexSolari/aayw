@@ -334,9 +334,13 @@ namespace AAYW.Core.Controller.Concrete
         [HttpPost]
         public ActionResult MailSettings(MailSettings model)
         {
-            var websiteSettings = settingsManager.GetSettings();
-            websiteSettings = Mapper.MapAndMerge<WebsiteSetting, MailSettings>(model, websiteSettings);
-            settingsManager.UpdateSettings(websiteSettings);
+            if (ModelState.IsValid)
+            {
+                var websiteSettings = settingsManager.GetSettings();
+                websiteSettings = Mapper.MapAndMerge<WebsiteSetting, MailSettings>(model, websiteSettings);
+                settingsManager.UpdateSettings(websiteSettings);
+            }
+
             return View(model);
         }
         #endregion

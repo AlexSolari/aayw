@@ -13,7 +13,7 @@ namespace AAYW.Core.Models.Mappings
             : base()
         {
             Map(x => x.Title).Length(500);
-            Map(x => x.Content).Length(2000);
+            Map(x => x.Content).CustomSqlType("text").Length(5000);
             Map(x => x.FeedId);
             CrateTable();
         }

@@ -12,6 +12,8 @@ namespace AAYW.Core.Annotations
 {
     public class CustomMaxLengthAttribute : StringLengthAttribute
     {
+        public bool PlainTextOnly { get; set; }
+
         public CustomMaxLengthAttribute(int MaxLength, int MinLength = 0, [CallerMemberName] string PropertyResourceName = null)
             : base(MaxLength)
         {
@@ -20,6 +22,11 @@ namespace AAYW.Core.Annotations
             ErrorMessage =
                 ResourceAccessor.Instance.Get("Error_MaxLength")
                 .FormatWith(propName, MaxLength, MinimumLength);
+        }
+
+        public override bool IsValid(object value)
+        {
+            return (PlainTextOnly) ? ((string)value).StripTags().Length.InRange(MinimumLength, MaximumLength) : base.IsValid(value);
         }
     }
 }

@@ -191,6 +191,18 @@ header{
     text-align: left;
     padding-left: 1em;
 }
+.click-bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px white;
+}
+.custom-validation {
+    display: none;
+}
 /**ADMIN**/
 .admin-sidebar{
     padding-top: 0;
@@ -226,7 +238,8 @@ header{
 .popup-editor input, .admin-mail-settings input,.popup-editor textarea,
  .admin-mail-settings textarea,.popup-editor .admin-dropdown,
  .admin-mail-settings .admin-dropdown,
- .editor-wrapper textarea
+ .editor-wrapper textarea,
+ .popup-editor .custom-validation
 {
     max-width: 500px;
     margin: 0 auto;

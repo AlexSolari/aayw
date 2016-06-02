@@ -47,7 +47,12 @@ namespace AAYW.Core.Web.Controller.Concrete
         [HttpPost]
         public ActionResult CreateOrUpdatePost(Post post, string returnUrl)
         {
-            postManager.CreateOrUpdate(post);
+            if (ModelState.IsValid)
+                postManager.CreateOrUpdate(post);
+            else
+            {
+                return Json(ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { key = x.Key, errors = x.Value.Errors }));
+            }
 
             return Json(returnUrl);
         }

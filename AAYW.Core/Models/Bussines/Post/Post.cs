@@ -17,7 +17,7 @@ namespace AAYW.Core.Models.Bussines.Post
         public virtual string Title { get; set; }
         [CustomRequired("Content")]
         [UIHint("HtmlEditor")]
-        [CustomMaxLength(2000)]
+        [CustomMaxLength(2000, PlainTextOnly = true)]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public virtual string Content { get; set; }
