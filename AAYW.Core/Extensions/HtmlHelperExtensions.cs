@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace AAYW.Core.Extensions
+namespace System
 {
     public static class HtmlHelperExtensions
     {

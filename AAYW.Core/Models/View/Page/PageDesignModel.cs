@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using AAYW.Core.Extensions;
 using System.Threading.Tasks;
 using System.Xml;
 using AAYW.Core.Data.Managers;

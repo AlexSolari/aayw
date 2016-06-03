@@ -1,6 +1,5 @@
 ﻿using AAYW.Core.Controller.Concrete;
 using AAYW.Core.Crypto;
-using AAYW.Core.Extensions;
 using AAYW.Core.Dependecies;
 using AAYW.Core.Web.ControllerFactory;
 using System;

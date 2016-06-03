@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using AAYW.Core.Extensions;
 
 namespace AAYW.Core.Web.Controller.Concrete
 {

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-using AAYW.Core.Extensions;
 using System.Net.Mime;
 using AAYW.Core.Dependecies;
 using AAYW.Core.Data.Managers;

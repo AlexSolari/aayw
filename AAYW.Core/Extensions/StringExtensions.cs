@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace AAYW.Core.Extensions
+namespace System
 {
     public static class StringExtensions
     {
@@ -15,7 +15,7 @@ namespace AAYW.Core.Extensions
         {
             return htmlRegex.Replace(source, string.Empty);
         }
-
+        
         public static string FormatWith(this string value, params object[] args)
         {
             return String.Format(value, args);

@@ -7,7 +7,6 @@ using System.Web;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
-using AAYW.Core.Extensions;
 using AAYW.Core.Crypto;
 using AAYW.Core.Models.Bussines.User;
 using System.Security.Cryptography;
