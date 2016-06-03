@@ -117,7 +117,10 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult DeletePage(string id)
         {
             var model = pagesManager.GetById(id);
-            pagesManager.Delete(model);
+            if (model != null)
+            {
+                pagesManager.Delete(model);
+            }
             return RedirectToRoute("PageList", new { page = 0 });
         }
 
@@ -168,7 +171,10 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult DeleteContentBlock(string id)
         {
             var model = contentBlocksManager.GetById(id);
-            contentBlocksManager.Delete(model);
+            if (model != null)
+            {
+                contentBlocksManager.Delete(model);
+            }
             return RedirectToRoute("ContentBlockList", new { page = 0 });
         }
 
@@ -235,7 +241,10 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult DeleteUserForm(string id)
         {
             var model = userFormsManager.GetById(id);
-            userFormsManager.Delete(model);
+            if (model != null)
+            {
+                userFormsManager.Delete(model);
+            }
             return RedirectToRoute("CustomFormsList", new { page = 0 });
         }
 
@@ -315,7 +324,10 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult DeleteMailTemplate(string id)
         {
             var model = mailTemplatesManager.GetById(id);
-            mailTemplatesManager.Delete(model);
+            if (model != null)
+            {
+                mailTemplatesManager.Delete(model);
+            }
             return RedirectToRoute("MailTemplates", new { page = 0 });
         }
 

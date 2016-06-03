@@ -61,13 +61,13 @@
                         </td>
                         <td>
                             <div class="row">
-                                @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeletePage", new { id = item.Id }))
+                                @Html.Button(Html.Text("Delete"), href: Url.RouteUrl("DeletePage", new { id = item.Id }))
                             </div>
                             <div class="row">
-                                @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditPage", new { id = item.Id }), "edit-pages")
+                                @Html.Button(Html.Text("Edit"), cssClass: "edit-pages")
                             </div>
                             <div class="row">
-                                @Html.Button(Html.Text("View"), ButtonType.Flat, Url.RouteUrl("CustomPage", new { url = item.Url }))
+                                @Html.Button(Html.Text("View"), href: Url.RouteUrl("CustomPage", new { url = item.Url }))
                             </div>
                         </td>
                     </tr>

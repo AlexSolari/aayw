@@ -59,10 +59,10 @@
                         </td>
                         <td>
                             <div class="row">
-                                @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeleteContentBlock", new { id = item.Id }))
+                                @Html.Button(Html.Text("Delete"), href: Url.RouteUrl("DeleteContentBlock", new { id = item.Id }))
                             </div>
                             <div class="row">
-                                @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditContentBlock", new { id = item.Id }), "edit-contents")
+                                @Html.Button(Html.Text("Edit"), cssClass: "edit-contents")
                             </div>
                         </td>
                     </tr>

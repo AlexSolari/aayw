@@ -66,14 +66,14 @@
                         </td>
                         <td>
                             <div class="row">
-                                @Html.Button(Html.Text("Delete"), ButtonType.Flat, Url.RouteUrl("DeleteUserForm", new { id = item.Id }))
+                                @Html.Button(Html.Text("Delete"), href: Url.RouteUrl("DeleteUserForm", new { id = item.Id }))
                             </div>
                             <div class="row">
-                                @Html.Button(Html.Text("Edit"), ButtonType.Flat, Url.RouteUrl("EditUserForm", new { id = item.Id }), "edit-form")
+                                @Html.Button(Html.Text("Edit"), cssClass: "edit-form")
                             </div>
 
                             <div class="row">
-                                @Html.Button(Html.Text("View"), ButtonType.Flat, Url.RouteUrl("CustomForm", new { url = item.Url }))
+                                @Html.Button(Html.Text("View"), href: Url.RouteUrl("CustomForm", new { url = item.Url }))
                             </div>
                         </td>
                     </tr>
