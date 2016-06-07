@@ -322,6 +322,24 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 250x250, PNG, Transparent background..
+        /// </summary>
+        internal static string LogoBig_Recomendations {
+            get {
+                return ResourceManager.GetString("LogoBig_Recomendations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 64x64, PNG, Transparent background..
+        /// </summary>
+        internal static string LogoSmall_Recomendations {
+            get {
+                return ResourceManager.GetString("LogoSmall_Recomendations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
         internal static string Logout {

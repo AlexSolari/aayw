@@ -126,6 +126,7 @@
     <Content Include="Content\css\mui.css" />
     <Content Include="Content\img\logo-big.png" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\transparent-grid.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
