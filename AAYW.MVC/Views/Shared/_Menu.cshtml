@@ -2,7 +2,7 @@
     var userManager = AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>();
 }
 <div class="mui-appbar">
-    <img src="~/Content/img/logo.png"/>
+    @Html.Logo(Size.Small)
     <ul class="inline menu">
         <li>
             @Html.RouteLink(Html.Text("Home"), "Home")

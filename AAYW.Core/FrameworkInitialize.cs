@@ -186,6 +186,9 @@ namespace AAYW.Core
 
             Map(routes, "Admin", "Cache", "admin/cache", "Cache");
             Map(routes, "Admin", "DropCache", "admin/cache/drop", "DropCache");
+
+            Map(routes, "Admin", "ChangeLogo", "admin/general/logo", "ChangeLogo");
+
           
             Map(routes, "UserForm", "CustomForm", "form/{url}", "CustomForm");
             Map(routes, "UserForm", "FormSubmited", "formsuccess", "FormSubmited");

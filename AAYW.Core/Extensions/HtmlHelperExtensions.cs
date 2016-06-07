@@ -9,6 +9,7 @@ using AAYW.Resources;
 using System.Text.RegularExpressions;
 using System.Linq.Expressions;
 using System.Web;
+using System.IO;
 
 namespace System
 {
@@ -59,7 +60,39 @@ namespace System
             return new HtmlString("<input class='{0}' type='submit' value='{1}' />".FormatWith(cssClass, text));
         }
 	    #endregion
-        
+
+        #region Logos
+
+        public static HtmlString Logo<T>(this HtmlHelper<T> val, Size size, string cssClass = "", string alt = "")
+        {
+            var template = "<img {0} />";
+            var inner = "";
+
+            switch (size)
+            {
+                case Size.Small:
+                    inner += "src=\"{0}\" ".FormatWith("/Content/img/logo.png");
+                    break;
+                case Size.Big:
+                    inner += "src=\"{0}\" ".FormatWith("/Content/img/logo-big.png");
+                    break;
+                default:
+                    break;
+            }
+
+            inner += "class=\"{0}\"".FormatWith(cssClass);
+            inner += "alt=\"{0}\"".FormatWith(alt);
+
+            return new HtmlString(template.FormatWith(inner));
+        }
+
+        #endregion
+    }
+
+    public enum Size
+    {
+        Small,
+        Big
     }
 
     public enum ButtonType

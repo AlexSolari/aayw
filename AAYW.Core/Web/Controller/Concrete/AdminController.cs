@@ -25,6 +25,8 @@ using AAYW.Core.Models.View.Page;
 using AAYW.Core.Logging;
 using AAYW.Core.Cache;
 using AAYW.Core.Api;
+using System.Web;
+using System.IO;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -56,6 +58,53 @@ namespace AAYW.Core.Controller.Concrete
         {
             return View();
         }
+        #region General
+
+        public ActionResult ChangeLogo()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangeLogo(HttpPostedFileBase small, HttpPostedFileBase big)
+        {
+            if (small != null && small.ContentLength > 0)
+            {
+                try
+                {
+                    string path = Path.Combine(Server.MapPath("~/Content/img"), "logo.png");
+                    small.SaveAs(path);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("small", ex.Message.ToString());
+                    return View();
+                }
+            }
+
+            if (big != null && big.ContentLength > 0)
+            {
+                try
+                {
+                    string path = Path.Combine(Server.MapPath("~/Content/img"), "logo-big.png");
+                    big.SaveAs(path);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("big", ex.Message.ToString());
+                    return View();
+                }
+            }
+
+            if (big == null && small == null)
+            {
+                ModelState.AddModelError("", ResourceAccessor.Instance.Get("FileNotSpecified"));
+                return View();
+            }
+
+            return View();
+        }  
+        
+        #endregion
         #region Chaching
         [HttpGet]
         public ActionResult Cache()

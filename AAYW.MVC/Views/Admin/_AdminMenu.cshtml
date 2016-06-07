@@ -3,6 +3,15 @@
 }
 <div class="mui-dropdown">
     <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+        @Html.Text("AdminGeneral")
+        <span class="mui-caret"></span>
+    </button>
+    <ul class="mui-dropdown__menu admin-menu">
+        <li><a href="@Url.RouteUrl("ChangeLogo")">@Html.Text("ChangeLogo")</a></li>
+    </ul>
+</div>
+<div class="mui-dropdown">
+    <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
         @Html.Text("EntityInspector")
         <span class="mui-caret"></span>
     </button>

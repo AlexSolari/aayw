@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = Html.Text("AdminHome");
+    Layout = Layouts.Admin;
+}
+<div class="popup-editor">
+    <h2>@Html.Text("AdminGeneral")</h2>
+    @using (Html.BeginForm("ChangeLogo", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-horizontal">
+            <h4>@Html.Text("ChangeLogo")</h4>
+            <hr />
+            @Html.ValidationSummary()
+            <div class="row">
+                <label for="small"><h3>@Html.Text("LogoSmall")</h3></label>
+                <div class="logo-demo">
+                    @Html.Logo(Size.Small)
+                </div>
+                <div class="control">
+                    <input type="file" name="small" />
+                </div>
+            </div>
+            <div class="row">
+                <label for="big"><h3>@Html.Text("LogoBig")</h3></label>
+                <div class="logo-demo">
+                    @Html.Logo(Size.Big)
+                </div>
+                <div class="control">
+                    <input type="file" name="big" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.Submit(Html.Text("Save"), ButtonType.Raised, "submit")
+                </div>
+            </div>
+        </div>
+    }
+</div>

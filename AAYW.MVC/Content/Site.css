@@ -289,3 +289,10 @@ header{
 .nicEdit-panelContain *{
     z-index: 999999999999999999999999;
 }
+.logo-demo{
+    display: inline-block;
+    padding: .5em;
+    background-color: rgba(0, 5, 96, 0.26);
+    border-radius: .3em;
+    margin-bottom: 1em;
+}

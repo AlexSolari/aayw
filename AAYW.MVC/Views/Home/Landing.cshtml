@@ -2,7 +2,7 @@
     ViewBag.Title = "Welcome";
 }
 <div class="landing mui-panel center">
-    <img src="~/Content/img/logo-big.png" alt="@Html.Text("LandingWelcome")" />
+    @Html.Logo(Size.Big, alt: Html.Text("LandingWelcome"))
     <h1>
         @Html.Text("LandingWelcome")
     </h1>
