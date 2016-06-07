@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AAYW.Core.Data.Managers;
+using AAYW.Core.Api;
 
 namespace AAYW.Core.Web.Controller.Concrete
 {
     public class FeedController : FrontendController
     {
-        IManager<Post> postManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Post>>();
+        IManager<Post> postManager = SiteApi.Data.Posts;
 
         public FeedController()
         {

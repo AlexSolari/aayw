@@ -1,4 +1,5 @@
-﻿using AAYW.Core.Cache;
+﻿using AAYW.Core.Api;
+using AAYW.Core.Cache;
 using AAYW.Core.Dependecies;
 using AAYW.Core.Models.Bussines;
 using NHibernate.Criterion;
@@ -17,7 +18,7 @@ namespace AAYW.Core.Data.Providers
 
         public BaseProvider()
         {
-            cache = Resolver.GetInstance<ICache>();
+            cache = SiteApi.Services.Cache;
         }
 
         public virtual TEntity GetByField(string field, string value)

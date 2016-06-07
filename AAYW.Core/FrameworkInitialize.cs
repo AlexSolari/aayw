@@ -28,6 +28,7 @@ using AAYW.Core.Models.View.Page;
 using AAYW.Core.Models.Bussines.Post;
 using AAYW.Core.Logging;
 using AAYW.Core.Cache;
+using AAYW.Core.Api;
 
 namespace AAYW.Core
 {
@@ -80,7 +81,7 @@ namespace AAYW.Core
             Resolver.RegisterType<IManager<MailTemplate>, MailTemplateManager>();
             Resolver.RegisterType<IManager<WebsiteSetting>, WebsiteSettingsManager>();
 
-            var logger = Resolver.GetInstance<ILogger>();
+            var logger = SiteApi.Services.Logger;
 
             //Controllers
             logger.Log("Registering controllers and controller factory");

@@ -1,4 +1,5 @@
-﻿using AAYW.Core.Data.Managers;
+﻿using AAYW.Core.Api;
+using AAYW.Core.Data.Managers;
 using AAYW.Core.Mail;
 using AAYW.Core.Map;
 using AAYW.Core.Models.Bussines.Admin;
@@ -14,7 +15,7 @@ namespace AAYW.Core.Web.Controller.Concrete
 {
     public class UserFormController : FrontendController
     {
-        IManager<UserForm> userFormsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<UserForm>>();
+        IManager<UserForm> userFormsManager = SiteApi.Data.UserForms;
 
         public override string Name
         {
@@ -49,7 +50,7 @@ namespace AAYW.Core.Web.Controller.Concrete
                 replacements.Add(field.Key, ((string[])field.Value).FirstOrDefault().SafeToString());
             }
 
-            var mailer = Dependecies.Resolver.GetInstance<IMailProcessor>();
+            var mailer = SiteApi.Services.Mailer;
 
             mailer.Send(form.SubmitAdress, form.Header, form.MailTemplateName, replacements);
 

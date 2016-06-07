@@ -1,4 +1,5 @@
-﻿using AAYW.Core.Data.Managers;
+﻿using AAYW.Core.Api;
+using AAYW.Core.Data.Managers;
 using AAYW.Core.Dependecies;
 using AAYW.Core.Models.Bussines.Admin;
 using System;
@@ -11,7 +12,7 @@ namespace AAYW.Core.Logging
 {
     public class Logger : ILogger
     {
-        IManager<LogMessage> manager = Resolver.GetInstance<IManager<LogMessage>>();
+        IManager<LogMessage> manager = SiteApi.Data.LogMessages;
 
         public void Log(string message)
         {

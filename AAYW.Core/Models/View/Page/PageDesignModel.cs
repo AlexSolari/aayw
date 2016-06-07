@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using AAYW.Core.Data.Managers;
+using AAYW.Core.Api;
 
 namespace AAYW.Core.Models.View.Page
 {
@@ -39,7 +40,7 @@ namespace AAYW.Core.Models.View.Page
         public PageDesignModel()
         {
             ContentBlocks = new List<string>();
-            ContentBlocksVariants = Resolver.GetInstance<IManager<Bussines.Admin.ContentBlock>>().GetList(0, 100);
+            ContentBlocksVariants = SiteApi.Data.ContentBlocks.GetList(0, 100);
         }
 
         public PageDesignModel(Guid id)

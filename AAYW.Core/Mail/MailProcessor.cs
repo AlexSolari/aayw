@@ -12,6 +12,7 @@ using System.Net;
 using System.Security;
 using AAYW.Core.Models.Admin.Bussines;
 using AAYW.Core.Models.Bussines.Admin;
+using AAYW.Core.Api;
 
 namespace AAYW.Core.Mail
 {
@@ -25,7 +26,7 @@ namespace AAYW.Core.Mail
         private SmtpClient CreateClient()
         {
             var client = new SmtpClient();
-            var websiteSettings = ((WebsiteSettingsManager)Resolver.GetInstance<IManager<WebsiteSetting>>()).GetSettings();
+            var websiteSettings = ((WebsiteSettingsManager)SiteApi.Data.WebsiteSettings).GetSettings();
 
             client.EnableSsl = websiteSettings.MailEnableSsl;
             client.Host = websiteSettings.MailHost;
@@ -38,10 +39,10 @@ namespace AAYW.Core.Mail
 
         public void Send(string adress, string subject, string templateKey, Dictionary<string, string> replacements = null)
         {
-            var websiteSettings = ((WebsiteSettingsManager)Resolver.GetInstance<IManager<WebsiteSetting>>()).GetSettings();
+            var websiteSettings = ((WebsiteSettingsManager)SiteApi.Data.WebsiteSettings).GetSettings();
             using (var client = CreateClient())
             {
-                var template = Resolver.GetInstance<IManager<MailTemplate>>().GetByField("Name", templateKey);
+                var template = SiteApi.Data.MailTemplates.GetByField("Name", templateKey);
 
                 if (template == null)
                 {

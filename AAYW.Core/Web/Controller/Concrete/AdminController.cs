@@ -24,19 +24,20 @@ using AAYW.Core.Models.View.ContentBlock;
 using AAYW.Core.Models.View.Page;
 using AAYW.Core.Logging;
 using AAYW.Core.Cache;
+using AAYW.Core.Api;
 
 namespace AAYW.Core.Controller.Concrete
 {
     [AccessLevel(Models.Bussines.User.User.Role.Admin)]
     public class AdminController : FrontendController
     {
-        WebsiteSettingsManager settingsManager = (WebsiteSettingsManager)AAYW.Core.Dependecies.Resolver.GetInstance<IManager<WebsiteSetting>>();
-        IManager<MailTemplate> mailTemplatesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<MailTemplate>>();
-        IManager<UserForm> userFormsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<UserForm>>();
-        IManager<ContentBlock> contentBlocksManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<ContentBlock>>();
-        IManager<Page> pagesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Page>>();
+        WebsiteSettingsManager settingsManager = (WebsiteSettingsManager)SiteApi.Data.WebsiteSettings;
+        IManager<MailTemplate> mailTemplatesManager = SiteApi.Data.MailTemplates;
+        IManager<UserForm> userFormsManager = SiteApi.Data.UserForms;
+        IManager<ContentBlock> contentBlocksManager = SiteApi.Data.ContentBlocks;
+        IManager<Page> pagesManager = SiteApi.Data.Pages;
 
-        ILogger logger = AAYW.Core.Dependecies.Resolver.GetInstance<ILogger>();
+        ILogger logger = SiteApi.Services.Logger;
 
         public AdminController()
         {
@@ -59,14 +60,14 @@ namespace AAYW.Core.Controller.Concrete
         [HttpGet]
         public ActionResult Cache()
         {
-            var cache = AAYW.Core.Dependecies.Resolver.GetInstance<ICache>();
+            var cache = SiteApi.Services.Cache;
             return View(cache.GetAll());
         }
 
         [HttpGet]
         public ActionResult DropCache()
         {
-            AAYW.Core.Dependecies.Resolver.GetInstance<ICache>().DropAll();
+            SiteApi.Services.Cache.DropAll();
             return RedirectToAction("Cache");
         }
         #endregion
@@ -379,7 +380,7 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult SaveEntity(string type, Dictionary<string, string> modelData)
         {
             var manager = GetManager(type);
-            var entityType = AAYW.Core.Dependecies.Resolver.GetInstance<IReflector>().Reflect(type).ReflectedType;
+            var entityType = SiteApi.Services.Reflector.Reflect(type).ReflectedType;
 
             if (manager == null)
             {
@@ -399,7 +400,7 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult DeleteEntity(string id, string type)
         {
             var manager = GetManager(type);
-            var entityType = AAYW.Core.Dependecies.Resolver.GetInstance<IReflector>().Reflect(type).ReflectedType;
+            var entityType = SiteApi.Services.Reflector.Reflect(type).ReflectedType;
 
             if (manager == null)
             {
@@ -415,7 +416,7 @@ namespace AAYW.Core.Controller.Concrete
 
         private dynamic GetManager(string type)
         {
-            var types = AAYW.Core.Dependecies.Resolver.GetInstance<IReflector>().Reflect(type).ReflectedType;
+            var types = SiteApi.Services.Reflector.Reflect(type).ReflectedType;
             var reflectedType = AAYW.Core.Dependecies.Resolver.Managers[types];
             dynamic manager = AAYW.Core.Dependecies.Resolver.GetInstance(reflectedType);
 

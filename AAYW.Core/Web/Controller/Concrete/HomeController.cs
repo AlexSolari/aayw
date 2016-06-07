@@ -11,6 +11,7 @@ using System.Web.Routing;
 using AAYW.Core.Models.View.User;
 using AAYW.Core.Models.Bussines.User;
 using AAYW.Core.Models.Bussines.Admin;
+using AAYW.Core.Api;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -28,8 +29,8 @@ namespace AAYW.Core.Controller.Concrete
             }
         }
 
-        IManager<Page> pagesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Page>>();
-        UserManager userManager = (UserManager)AAYW.Core.Dependecies.Resolver.GetInstance<IManager<User>>();
+        IManager<Page> pagesManager = SiteApi.Data.Pages;
+        UserManager userManager = (UserManager)SiteApi.Data.Users;
 
         [HttpGet]
         public ActionResult Index()

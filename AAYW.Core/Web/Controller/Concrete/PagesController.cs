@@ -10,15 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AAYW.Core.Models.Bussines.Post;
+using AAYW.Core.Api;
 
 namespace AAYW.Core.Web.Controller.Concrete
 {
     public class PageController : FrontendController
     {
-        IManager<Page> pagesManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Page>>();
-        IManager<ContentBlock> contentBlocksManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<ContentBlock>>();
-        IManager<Post> postsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Post>>();
-        IManager<PostComment> commentsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<PostComment>>();
+        IManager<Page> pagesManager = SiteApi.Data.Pages;
+        IManager<ContentBlock> contentBlocksManager = SiteApi.Data.ContentBlocks;
+        IManager<Post> postsManager = SiteApi.Data.Posts;
+        IManager<PostComment> commentsManager = SiteApi.Data.PostComments;
 
         public override string Name
         {

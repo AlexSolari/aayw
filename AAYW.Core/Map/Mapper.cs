@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AAYW.Core.Reflector;
 using AAYW.Core.Logging;
+using AAYW.Core.Api;
 
 namespace AAYW.Core.Map
 {
@@ -18,7 +19,7 @@ namespace AAYW.Core.Map
         public static TDestination Map<TDestination, TSource>(TSource source)
         {
             var result = Resolver.GetInstance<TDestination>();
-            var reflector = Resolver.GetInstance<IReflector>();
+            var reflector = SiteApi.Services.Reflector;
             var sourceReflection = reflector.Reflect(typeof(TSource));
             var destinationReflection = reflector.Reflect(typeof(TDestination));
 
@@ -49,7 +50,7 @@ namespace AAYW.Core.Map
                             }
                             catch (InvalidCastException exc)
                             {
-                                Resolver.GetInstance<ILogger>().Log("Error while mapping. Details: {0}".FormatWith(exc.Message));
+                                SiteApi.Services.Logger.Log("Error while mapping. Details: {0}".FormatWith(exc.Message));
                             }
                         }
                     }
@@ -63,7 +64,7 @@ namespace AAYW.Core.Map
         }
         public static TDestination MapAndMerge<TDestination, TSource>(TSource source, TDestination result)
         {
-            var reflector = Resolver.GetInstance<IReflector>();
+            var reflector = SiteApi.Services.Reflector;
             var sourceReflection = reflector.Reflect(typeof(TSource));
             var destinationReflection = reflector.Reflect(typeof(TDestination));
 
@@ -87,7 +88,7 @@ namespace AAYW.Core.Map
         public static TDestination MapAs<TDestination>(object source)
         {
             var result = Resolver.GetInstance<TDestination>();
-            var reflector = Resolver.GetInstance<IReflector>();
+            var reflector = SiteApi.Services.Reflector;
             var sourceReflection = reflector.Reflect(source.GetType());
             var destinationReflection = reflector.Reflect(typeof(TDestination));
 
@@ -140,9 +141,10 @@ namespace AAYW.Core.Map
 
         internal static dynamic Map(Type entityType, Dictionary<string, string> modelData)
         {
+            var reflector = SiteApi.Services.Reflector;
             var result = Resolver.GetInstance(entityType);
 
-            foreach (var fieldR in Resolver.GetInstance<IReflector>().Reflect(entityType).Properties)
+            foreach (var fieldR in reflector.Reflect(entityType).Properties)
             {
                 foreach (var fieldS in modelData)
                 {
@@ -156,7 +158,7 @@ namespace AAYW.Core.Map
                         }
                         else
                         {
-                            TypeConverter typeConverter = TypeDescriptor.GetConverter(Resolver.GetInstance<IReflector>().Reflect(type).ReflectedType);
+                            TypeConverter typeConverter = TypeDescriptor.GetConverter(reflector.Reflect(type).ReflectedType);
                             object propValue = typeConverter.ConvertFromString(fieldS.Value);
 
                             fieldR.SetValue(result, propValue);
