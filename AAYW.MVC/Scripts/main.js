@@ -75,6 +75,9 @@
                         document.body.innerHTML = data;
                         document.location.href = self.href;
                     },
+                    error: function (data) {
+                        document.location.href = self.href;
+                    }
                 });
 
                 $(".click-bar").show();
