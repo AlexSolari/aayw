@@ -23,5 +23,10 @@ namespace AAYW.Core.Api
         {
             get { return SiteServiceApi.Instance; }
         }
+
+        public static TextsApi Texts
+        {
+            get { return TextsApi.Instance; }
+        }
     }
 }

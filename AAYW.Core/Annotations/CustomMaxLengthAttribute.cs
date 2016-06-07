@@ -1,4 +1,5 @@
-﻿using AAYW.Resources;
+﻿using AAYW.Core.Api;
+using AAYW.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,9 +18,9 @@ namespace AAYW.Core.Annotations
             : base(MaxLength)
         {
             MinimumLength = MinLength;
-            var propName = ResourceAccessor.Instance.Get(PropertyResourceName);
+            var propName = SiteApi.Texts.Get(PropertyResourceName);
             ErrorMessage =
-                ResourceAccessor.Instance.Get("Error_MaxLength")
+                SiteApi.Texts.Get("Error_MaxLength")
                 .FormatWith(propName, MaxLength, MinimumLength);
         }
 

@@ -97,7 +97,7 @@ namespace AAYW.Core.Controller.Concrete
 
             if (big == null && small == null)
             {
-                ModelState.AddModelError("", ResourceAccessor.Instance.Get("FileNotSpecified"));
+                ModelState.AddModelError("", SiteApi.Texts.Get("FileNotSpecified"));
                 return View();
             }
 
@@ -314,7 +314,7 @@ namespace AAYW.Core.Controller.Concrete
             }
             else
             {
-                ModelState.AddModelError("Url", ResourceAccessor.Instance.Get("Error_UrlMustBeUniue"));
+                ModelState.AddModelError("Url", SiteApi.Texts.Get("Error_UrlMustBeUniue"));
                 return PartialView(model);
             }
 
@@ -358,7 +358,7 @@ namespace AAYW.Core.Controller.Concrete
 
             if (!((MailTemplateManager)mailTemplatesManager).CanCreate(template))
             {
-                ModelState.AddModelError("Name", ResourceAccessor.Instance.Get("Error_TemplateExist"));
+                ModelState.AddModelError("Name", SiteApi.Texts.Get("Error_TemplateExist"));
             }
 
             if (!ModelState.IsValid)
@@ -471,7 +471,7 @@ namespace AAYW.Core.Controller.Concrete
 
             if (manager == null)
             {
-                ModelState.AddModelError("", ResourceAccessor.Instance.Get("EntityNotFound"));
+                ModelState.AddModelError("", SiteApi.Texts.Get("EntityNotFound"));
                 return View();
             }
             return manager;

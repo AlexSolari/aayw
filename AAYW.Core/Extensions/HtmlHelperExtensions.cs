@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Linq.Expressions;
 using System.Web;
 using System.IO;
+using AAYW.Core.Api;
 
 namespace System
 {
@@ -18,12 +19,12 @@ namespace System
         #region Text
 		public static string Text<T>(this HtmlHelper<T> val, string key)
         {
-            return ResourceAccessor.Instance.Get(key);
+            return SiteApi.Texts.Get(key);
         }
 
         public static HtmlString RichText<T>(this HtmlHelper<T> val, string key)
         {
-            return new HtmlString(ResourceAccessor.Instance.Get(key));
+            return new HtmlString(SiteApi.Texts.Get(key));
         }
 	    #endregion
         

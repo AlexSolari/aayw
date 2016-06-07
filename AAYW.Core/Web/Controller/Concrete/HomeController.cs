@@ -65,7 +65,7 @@ namespace AAYW.Core.Controller.Concrete
         {
             if (!userManager.IsAvalibleForCreation(model.Login))
             {
-                ModelState.AddModelError("login", ResourceAccessor.Instance.Get("UserAlreadyRegistered"));
+                ModelState.AddModelError("login", SiteApi.Texts.Get("UserAlreadyRegistered"));
             }
 
             if (!ModelState.IsValid)
@@ -96,7 +96,7 @@ namespace AAYW.Core.Controller.Concrete
         {
             if (!userManager.Login(model.Login, model.Password))
             {
-                ModelState.AddModelError("", ResourceAccessor.Instance.Get("FailedToLogin"));
+                ModelState.AddModelError("", SiteApi.Texts.Get("FailedToLogin"));
             }
 
             if (!ModelState.IsValid)

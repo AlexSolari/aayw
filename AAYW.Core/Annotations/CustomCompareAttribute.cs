@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+using AAYW.Core.Api;
 
 namespace AAYW.Core.Annotations
 {
@@ -14,11 +15,11 @@ namespace AAYW.Core.Annotations
         public CustomCompareAttribute(string otherProperty, [CallerMemberName] string PropertyResourceName = null)
             : base(otherProperty)
         {
-            var firstPropName = ResourceAccessor.Instance.Get(otherProperty);
-            var secondPropName = ResourceAccessor.Instance.Get(PropertyResourceName);
+            var firstPropName = SiteApi.Texts.Get(otherProperty);
+            var secondPropName = SiteApi.Texts.Get(PropertyResourceName);
 
             ErrorMessage =
-                ResourceAccessor.Instance.Get("Error_Compare")
+                SiteApi.Texts.Get("Error_Compare")
                 .FormatWith(firstPropName, secondPropName);
         }
     }
