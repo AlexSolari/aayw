@@ -2,7 +2,7 @@
     ViewBag.Title = Html.Text("AdminHome");
     Layout = Layouts.Admin;
 }
-<div class="popup-editor">
+<div class="change-logo mui-panel">
     <h2>@Html.Text("AdminGeneral")</h2>
     @using (Html.BeginForm("ChangeLogo", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
