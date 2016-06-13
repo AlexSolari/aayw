@@ -28,6 +28,7 @@ using AAYW.Core.Api;
 using System.Web;
 using System.IO;
 using AAYW.Core.Models.Bussines.Theme;
+using AAYW.Core.Web.ViewResults;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -39,7 +40,7 @@ namespace AAYW.Core.Controller.Concrete
         IManager<UserForm> userFormsManager = SiteApi.Data.UserForms;
         IManager<ContentBlock> contentBlocksManager = SiteApi.Data.ContentBlocks;
         IManager<Page> pagesManager = SiteApi.Data.Pages;
-
+        ICache cache = Dependecies.Resolver.GetInstance<ICache>();
         ILogger logger = SiteApi.Services.Logger;
 
         public AdminController()
@@ -114,6 +115,7 @@ namespace AAYW.Core.Controller.Concrete
         public ActionResult ChangeColorTheme(Theme newTheme)
         {
             SiteApi.Frontend.CurrentTheme = newTheme;
+            cache.Drop("CssTheme");
 
             return View("ChangeColorTheme", newTheme);
         }

@@ -13,6 +13,8 @@ using AAYW.Core.Models.Bussines.User;
 using AAYW.Core.Models.Bussines.Admin;
 using AAYW.Core.Api;
 using AAYW.Core.Web.ViewResults;
+using AAYW.Core.Cache;
+using AAYW.Core.Models.Bussines.Theme;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -32,13 +34,22 @@ namespace AAYW.Core.Controller.Concrete
 
         IManager<Page> pagesManager = SiteApi.Data.Pages;
         UserManager userManager = (UserManager)SiteApi.Data.Users;
+        ICache cache = AAYW.Core.Dependecies.Resolver.GetInstance<ICache>();
 
         [HttpGet]
         public ActionResult Theme()
         {
             var theme = SiteApi.Frontend.CurrentTheme;
 
-            return new Css(theme);
+            if (cache.HasKey("CssTheme"))
+            {
+                return cache.Get<Css>("CssTheme");
+            }
+
+            var css = new Css(theme);
+            cache.Add<Css>(css, "CssTheme");
+
+            return css;
         }
 
         [HttpGet]

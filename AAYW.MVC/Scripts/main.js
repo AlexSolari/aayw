@@ -69,15 +69,19 @@
                     method: 'GET',
                     url: self.href,
                     success: function (data) {
-                        document.body.innerHTML = data
-                        var header = data
-                            .substring(data.indexOf("title>"), data.indexOf("</title"))
-                            .replace("title>", "");
+                        var body = data
+                            .substring(data.indexOf("body>"), data.indexOf("</body"))
+                            .replace("body>", "");
+                        var title = data
+                             .substring(data.indexOf("title>"), data.indexOf("</title"))
+                             .replace("title>", "");
+                        document.body.innerHTML = body;
+                        $(".click-bar").show();
                         if (history)
-                            history.pushState(null, header, self.href)
+                            history.pushState(null, title, self.href)
                         else
                             document.location.href = self.href;
-                        document.querySelector("title").innerHTML = header;
+                        $("title").html(title);
                         onLoad();
                         completion = 70;
                     },
