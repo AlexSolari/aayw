@@ -8,6 +8,8 @@ namespace AAYW.Core.Cache
 {
     public class DefaultCache : ICache
     {
+        public bool OverwriteMode = true;
+
         private static Dictionary<string, object> Values = new Dictionary<string, object>();
 
         public T Get<T>(string key)
@@ -27,6 +29,11 @@ namespace AAYW.Core.Cache
 
         public void Add<T>(T value, string key)
         {
+            if (OverwriteMode)
+            {
+                Drop(key);
+            }
+
             Values.Add(key, value);
         }
 
