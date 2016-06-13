@@ -1,4 +1,4 @@
-﻿$(window).load(function () {
+﻿var onLoad = function onLoad() {
     (function Posts(window) {
         var PostEditCallback = function (data) {
             function onsubmit() {
@@ -6,8 +6,7 @@
                 var form = $(".popup-editor form").serialize();
                 form += "&returnUrl=" + document.location.href;
                 $.post("[Route:CreateOrUpdatePost]", form, function (result) {
-                    if (result instanceof Array)
-                    {
+                    if (result instanceof Array) {
                         var errors = result
                             .map(function (x) { return x.errors[0].ErrorMessage.replace("[", "").replace("]", "") })
                             .map(function (x) { return "<li>" + x + "</li>" });
@@ -15,8 +14,7 @@
                         $(".custom-validation").show();
                         AAYW.UI.LoadingIndicator.Close();
                     }
-                    else
-                    {
+                    else {
                         document.location.href = result.split('#')[0];
                     }
                 })
@@ -66,14 +64,22 @@
         function handler(e) {
             e.preventDefault();
             var self = this;
-            if (self.href && self.href != document.location.href && self.href != document.location.href+"#")
-            {
+            if (self.href && self.href != document.location.href && self.href != document.location.href + "#") {
                 $.ajax({
                     method: 'GET',
                     url: self.href,
                     success: function (data) {
-                        document.body.innerHTML = data;
-                        document.location.href = self.href;
+                        document.body.innerHTML = data
+                        var header = data
+                            .substring(data.indexOf("title>"), data.indexOf("</title"))
+                            .replace("title>", "");
+                        if (history)
+                            history.pushState(null, header, self.href)
+                        else
+                            document.location.href = self.href;
+                        document.querySelector("title").innerHTML = header;
+                        onLoad();
+                        completion = 70;
                     },
                     error: function (data) {
                         document.location.href = self.href;
@@ -83,14 +89,13 @@
                 $(".click-bar").show();
                 var completion = 0;
                 var interval = setInterval(function () {
-                    if (completion > 100)
-                    {
+                    if (completion > 100) {
                         clearInterval(interval);
+                        $(".click-bar").hide();
                     }
-                    else
-                    {
+                    else {
                         completion++;
-                        $(".click-bar").css("width", completion+"%");
+                        $(".click-bar").css("width", completion + "%");
                     }
                 }, 15);
             }
@@ -98,4 +103,6 @@
 
         $("a").click(handler);
     })(this);
-});
+};
+
+$(window).load(onLoad);
