@@ -2,16 +2,17 @@
     var entities = AAYW.Core.Dependecies.Resolver.Entites;
 }
 <div class="mui-dropdown">
-    <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+    <button class="mui-btn mui-btn--primary mui-btn--raised" data-mui-toggle="dropdown">
         @Html.Text("AdminGeneral")
         <span class="mui-caret"></span>
     </button>
-    <ul class="mui-dropdown__menu admin-menu">
+    <ul class="mui-dropdown__menu admin-menu mui-btn--raised">
         <li><a href="@Url.RouteUrl("ChangeLogo")">@Html.Text("ChangeLogo")</a></li>
+        <li><a href="@Url.RouteUrl("ChangeColorTheme")">@Html.Text("ChangeColorTheme")</a></li>
     </ul>
 </div>
 <div class="mui-dropdown">
-    <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+    <button class="mui-btn mui-btn--primary mui-btn--raised" data-mui-toggle="dropdown">
         @Html.Text("EntityInspector")
         <span class="mui-caret"></span>
     </button>
@@ -23,7 +24,7 @@
     </ul>
 </div>
 <div class="mui-dropdown">
-    <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+    <button class="mui-btn mui-btn--primary mui-btn--raised" data-mui-toggle="dropdown">
         @Html.Text("Log")
         <span class="mui-caret"></span>
     </button>

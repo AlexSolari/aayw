@@ -196,6 +196,9 @@
     <Content Include="Views\Admin\Cache.cshtml" />
     <Content Include="Views\Pages\Post.cshtml" />
     <Content Include="Views\Admin\ChangeLogo.cshtml" />
+    <Content Include="Views\Shared\Theme.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Color.cshtml" />
+    <Content Include="Views\Admin\ChangeColorTheme.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

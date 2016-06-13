@@ -28,8 +28,10 @@ namespace AAYW.MVC
                         "~/Scripts/admin.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/css/mui.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/mui").Include(
+                      "~/Content/css/mui.css"));
         }
     }
 }

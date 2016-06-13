@@ -28,5 +28,10 @@ namespace AAYW.Core.Api
         {
             get { return TextsApi.Instance; }
         }
+
+        public static FrontendApi Frontend
+        {
+            get { return FrontendApi.Instance; }
+        }
     }
 }

@@ -12,6 +12,7 @@ using AAYW.Core.Models.View.User;
 using AAYW.Core.Models.Bussines.User;
 using AAYW.Core.Models.Bussines.Admin;
 using AAYW.Core.Api;
+using AAYW.Core.Web.ViewResults;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -31,6 +32,14 @@ namespace AAYW.Core.Controller.Concrete
 
         IManager<Page> pagesManager = SiteApi.Data.Pages;
         UserManager userManager = (UserManager)SiteApi.Data.Users;
+
+        [HttpGet]
+        public ActionResult Theme()
+        {
+            var theme = SiteApi.Frontend.CurrentTheme;
+
+            return new Css(theme);
+        }
 
         [HttpGet]
         public ActionResult Index()

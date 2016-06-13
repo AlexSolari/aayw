@@ -1,0 +1,23 @@
+﻿@model AAYW.Core.Models.Bussines.Theme.Theme
+@{
+    ViewBag.Title = Html.Text("AdminHome");
+    Layout = Layouts.Admin;
+}
+<div class="change-logo mui-panel">
+    <h2>@Html.Text("AdminGeneral")</h2>
+    @using (Html.BeginForm("ChangeColorTheme", "Admin"))
+    {
+        <div class="form-horizontal">
+            <h4>@Html.Text("ChangeColorTheme")</h4>
+            <hr />
+            @Html.ValidationSummary()
+            @Html.EditorForModel()
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.Submit(Html.Text("Save"), ButtonType.Raised, "submit")
+                    @Html.Button(Html.Text("Reset"), ButtonType.Raised, Url.RouteUrl("ResetColorTheme"), "mui-btn--danger")
+                </div>
+            </div>
+        </div>
+    }
+</div>

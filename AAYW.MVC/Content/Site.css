@@ -19,12 +19,8 @@ ul.inline li { display: inline-block; }
 .paging {
     font-size: large;
 }
-.mui-appbar a{
-    color: white;
-}
 .no-results{
     font-size: 3em;
-    color: rgba(128, 128, 128, 0.42);
     height: 100%;
 }
 .center{
@@ -44,9 +40,6 @@ ul.inline li { display: inline-block; }
     margin-top: 1em;
     text-align: center;
     padding: 3em 0;
-}
-.landing p:first-of-type{
-    border-bottom: 1px solid rgba(128, 128, 128, 0.42);
 }
 .landing p{
     max-width: 500px;
@@ -78,7 +71,6 @@ header{
     margin: 100px auto;
     padding: 1em;
     text-align: center;
-    background: #fff;
 }
 .popup{
     padding: 1em;
@@ -112,7 +104,6 @@ header{
     height: 300px;
     text-align: center;
     z-index: 1000;
-    background: white;
     position: fixed;
     top: 50%;
     margin-top: -150px;
@@ -124,14 +115,12 @@ header{
     top: 50%;
     left: 50%;
     transform: translate(-43%, -115%);
-    color: white;
     text-shadow: 0px 0px 5px black;
 }
 .spinner{
     margin-top: 150px;
     transform: translateY(-50%);
     display: inline-block;
-    background: #2196F3;
     border-radius: 50%;
     width: 0%;
     height: 0%;
@@ -164,19 +153,14 @@ header{
 .feed li{
     list-style: none;
 }
-.underscore{
-    border-bottom: 1px solid rgba(128, 128, 128, 0.42);
-}
 .post h3{
     margin-top: 10px;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.42);
 }
 .post-content{
     text-align: justify;
 }
 .post-date{
     text-align: left;
-    color: rgba(128, 128, 128, 0.42)
 }
 .post-controls{
     text-align: left;

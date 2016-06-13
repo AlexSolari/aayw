@@ -94,6 +94,7 @@
     <Compile Include="Api\DataApi.cs" />
     <Compile Include="Api\SiteApi.cs" />
     <Compile Include="Api\SiteServiceApi.cs" />
+    <Compile Include="Api\FrontendApi.cs" />
     <Compile Include="Api\TextsApi.cs" />
     <Compile Include="Cache\DefaultCache.cs" />
     <Compile Include="Cache\ICache.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Models\Bussines\Admin\MailTemplate.cs" />
     <Compile Include="Models\Bussines\Post\Post.cs" />
     <Compile Include="Models\Bussines\Post\PostComment.cs" />
+    <Compile Include="Models\Bussines\Theme\Theme.cs" />
     <Compile Include="Models\Mappings\ContentBlockMap.cs" />
     <Compile Include="Models\Mappings\PageMap.cs" />
     <Compile Include="Models\Mappings\PostCommentMap.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="Web\Controller\FrontendController.cs" />
     <Compile Include="Web\DataBinders\UserFormDataBinder.cs" />
     <Compile Include="Web\HttpHandler\JsRoutingHttpHandler.cs" />
+    <Compile Include="Web\ViewResults\Css.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AAYW.Resources\AAYW.Resources.csproj">

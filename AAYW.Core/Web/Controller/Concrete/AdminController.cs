@@ -27,6 +27,7 @@ using AAYW.Core.Cache;
 using AAYW.Core.Api;
 using System.Web;
 using System.IO;
+using AAYW.Core.Models.Bussines.Theme;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -102,8 +103,28 @@ namespace AAYW.Core.Controller.Concrete
             }
 
             return View();
-        }  
-        
+        }
+
+        public ActionResult ChangeColorTheme()
+        {
+            return View(SiteApi.Frontend.CurrentTheme);
+        }
+
+        [HttpPost]
+        public ActionResult ChangeColorTheme(Theme newTheme)
+        {
+            SiteApi.Frontend.CurrentTheme = newTheme;
+
+            return View("ChangeColorTheme", newTheme);
+        }
+
+        public ActionResult ResetColorTheme()
+        {
+            ChangeColorTheme(SiteApi.Frontend.DefaultTheme);
+
+            return RedirectToAction("ChangeColorTheme");
+        }
+
         #endregion
         #region Chaching
         [HttpGet]

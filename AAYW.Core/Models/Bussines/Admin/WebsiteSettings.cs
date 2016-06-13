@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace AAYW.Core.Models.Admin.Bussines
 {
@@ -21,5 +22,6 @@ namespace AAYW.Core.Models.Admin.Bussines
         [CustomMaxLength(200)]
         public virtual string MailPassword { get; set; }
         public virtual bool MailEnableSsl { get; set; }
+        public virtual XmlDocument CurrentTheme { get; set; }
     }
 }

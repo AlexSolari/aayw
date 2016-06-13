@@ -21,6 +21,7 @@ namespace AAYW.Core.Models.Mappings
             Map(x => x.MailUsername).Length(200);
             Map(x => x.MailPort);
             Map(x => x.MailAdress).Length(200);
+            Map(x => x.CurrentTheme).CustomSqlType("xml");
             CrateTable();
         }
     }

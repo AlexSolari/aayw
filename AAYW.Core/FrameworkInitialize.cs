@@ -143,9 +143,9 @@ namespace AAYW.Core
         private static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
 
             Map(routes, "Home", "Index", "", "Home");
+            Map(routes, "Home", "Theme", "css", "Theme");
             Map(routes, "Home", "Landing", "landing", "Landing");
             Map(routes, "Home", "Login", "login", "Login");
             Map(routes, "Home", "Logout", "logout", "Logout");
@@ -188,6 +188,8 @@ namespace AAYW.Core
             Map(routes, "Admin", "DropCache", "admin/cache/drop", "DropCache");
 
             Map(routes, "Admin", "ChangeLogo", "admin/general/logo", "ChangeLogo");
+            Map(routes, "Admin", "ChangeColorTheme", "admin/general/theme", "ChangeColorTheme");
+            Map(routes, "Admin", "ResetColorTheme", "admin/general/themereset", "ResetColorTheme");
 
           
             Map(routes, "UserForm", "CustomForm", "form/{url}", "CustomForm");
