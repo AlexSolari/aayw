@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using AAYW.Core.Data.Managers;
 using AAYW.Core.Api;
+using AAYW.Core.Annotations;
 
 namespace AAYW.Core.Web.Controller.Concrete
 {
+    [AccessLevel(Models.Bussines.User.User.Role.Admin)]
     public class FeedController : FrontendController
     {
         IManager<Post> postManager = SiteApi.Data.Posts;
