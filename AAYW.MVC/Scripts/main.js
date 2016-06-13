@@ -1,4 +1,6 @@
 ﻿var onLoad = function onLoad() {
+    AAYW.Settings.AjaxLinksMode = !!history;
+
     (function Posts(window) {
         var PostEditCallback = function (data) {
             function onsubmit() {
@@ -60,53 +62,66 @@
         });
     })(this);
 
-    (function Links(window) {
-        function handler(e) {
-            e.preventDefault();
-            var self = this;
-            if (self.href && self.href != document.location.href && self.href != document.location.href + "#") {
-                $.ajax({
-                    method: 'GET',
-                    url: self.href,
-                    success: function (data) {
-                        var body = data
-                            .substring(data.indexOf("body>"), data.indexOf("</body"))
-                            .replace("body>", "");
-                        var title = data
-                             .substring(data.indexOf("title>"), data.indexOf("</title"))
-                             .replace("title>", "");
-                        document.body.innerHTML = body;
-                        $(".click-bar").show();
-                        if (history)
+    if (AAYW.Settings.AjaxLinksMode){
+        (function Links(window) {
+            function handler(e) {
+                e.preventDefault();
+
+                var self = this;
+                var startingTime = new Date().getTime();
+
+                if (self.href && self.href != document.location.href && self.href != document.location.href + "#") {
+                    $.ajax({
+                        method: 'GET',
+                        url: self.href,
+                        success: function (data) {
+                            var body = data
+                                .substring(data.indexOf("body>"), data.indexOf("</body"))
+                                .replace("body>", "");
+                            var title = data
+                                 .substring(data.indexOf("title>"), data.indexOf("</title"))
+                                 .replace("title>", "");
+
                             history.pushState(null, title, self.href)
-                        else
+
+                            document.body.innerHTML = body;
+                            $(".click-bar").show();
+                            $("title").html(title);
+
+                            onLoad();
+                            completion = 70;
+                            
+                            if(AAYW.Settings.DebugMode)
+                            {
+                                console.log({
+                                    pageLoadingTime: new Date().getTime() - startingTime,
+                                });
+                            }
+                        },
+                        error: function (data) {
                             document.location.href = self.href;
-                        $("title").html(title);
-                        onLoad();
-                        completion = 70;
-                    },
-                    error: function (data) {
-                        document.location.href = self.href;
-                    }
-                });
+                        }
+                    });
 
-                $(".click-bar").show();
-                var completion = 0;
-                var interval = setInterval(function () {
-                    if (completion > 100) {
-                        clearInterval(interval);
-                        $(".click-bar").hide();
-                    }
-                    else {
-                        completion++;
-                        $(".click-bar").css("width", completion + "%");
-                    }
-                }, 15);
-            }
-        };
+                    $(".click-bar").show();
+                    var completion = 0;
+                    var interval = setInterval(function () {
+                        if (completion > 100) {
+                            clearInterval(interval);
+                            $(".click-bar").hide();
+                        }
+                        else {
+                            completion++;
+                            $(".click-bar").css("width", completion + "%");
+                        }
+                    }, 15);
+                }
+            };
 
-        $("a").click(handler);
-    })(this);
+            $("a").click(handler);
+        })(this);
+    }
+    
 };
 
 $(window).load(onLoad);

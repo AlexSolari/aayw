@@ -10,3 +10,4 @@
 /// <reference path="admin.js" />
 /// <reference path="nicedit/nicedit.js" />
 /// <reference path="lib/aayw.htmleditor.js" />
+/// <reference path="lib/aayw.settings.js" />

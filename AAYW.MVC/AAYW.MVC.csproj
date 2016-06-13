@@ -132,6 +132,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\lib\AAYW.LoadingIndicator.js" />
+    <Content Include="Scripts\lib\AAYW.Settings.js" />
     <Content Include="Scripts\lib\AAYW.Popup.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
