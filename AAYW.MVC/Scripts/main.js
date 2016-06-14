@@ -69,6 +69,8 @@
 
                 var self = this;
                 var startingTime = new Date().getTime();
+                var interval = null;
+                var loaded = false;
 
                 if (self.href && self.href != document.location.href && self.href != document.location.href + "#") {
                     $.ajax({
@@ -85,13 +87,13 @@
                             history.pushState(null, title, self.href)
 
                             document.body.innerHTML = body;
-                            $(".click-bar").show();
-                            $("title").html(title);
-
-                            onLoad();
-                            completion = 70;
                             
-                            if(AAYW.Settings.DebugMode)
+                            $("title").html(title);
+                            onLoad();
+                            completion = 100;
+                            loaded = true;
+                            
+                            if (AAYW.Settings.DebugMode)
                             {
                                 console.log({
                                     pageLoadingTime: new Date().getTime() - startingTime,
@@ -105,15 +107,23 @@
 
                     $(".click-bar").show();
                     var completion = 0;
-                    var interval = setInterval(function () {
-                        if (completion > 100) {
+                    interval = setInterval(function () {
+
+                        completion++;
+                        if (loaded == true) {
                             clearInterval(interval);
-                            $(".click-bar").hide();
+                            $(".click-bar").show();
+                            $(".click-bar").css("width", 100 + "%");
+                            setTimeout(function () { $(".click-bar").fadeOut(700); }, 300);
+                        }
+                        else if (completion < AAYW.Settings.AjaxLinksTimeout) {
+                            var displayedCompletion = Math.min(75, completion);
+                            $(".click-bar").css("width", displayedCompletion + "%");
                         }
                         else {
-                            completion++;
-                            $(".click-bar").css("width", completion + "%");
+                            document.location.href = self.href;
                         }
+
                     }, 15);
                 }
             };

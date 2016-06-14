@@ -4,5 +4,6 @@
     AAYW.Settings = AAYW.Settings || {
         DebugMode: false,
         AjaxLinksMode: true,
+        AjaxLinksTimeout: 650,
     };
 });
