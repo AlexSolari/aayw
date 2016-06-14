@@ -67,7 +67,7 @@ namespace AAYW.Core.Controller.Concrete
             return View();
         }
         [HttpPost]
-        public ActionResult ChangeLogo(HttpPostedFileBase small, HttpPostedFileBase big)
+        public ActionResult ChangeLogo(HttpPostedFileBase small, HttpPostedFileBase big, HttpPostedFileBase favicon)
         {
             if (small != null && small.ContentLength > 0)
             {
@@ -97,7 +97,21 @@ namespace AAYW.Core.Controller.Concrete
                 }
             }
 
-            if (big == null && small == null)
+            if (favicon != null && favicon.ContentLength > 0)
+            {
+                try
+                {
+                    string path = Path.Combine(Server.MapPath("~/Content/img"), "favicon.png");
+                    favicon.SaveAs(path);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("favicon", ex.Message.ToString());
+                    return View();
+                }
+            }
+
+            if (big == null && small == null && favicon == null)
             {
                 ModelState.AddModelError("", SiteApi.Texts.Get("FileNotSpecified"));
                 return View();

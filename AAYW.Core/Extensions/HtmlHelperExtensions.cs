@@ -87,6 +87,18 @@ namespace System
             return new HtmlString(template.FormatWith(inner));
         }
 
+        public static HtmlString Favicon<T>(this HtmlHelper<T> val, string cssClass = "", string alt = "")
+        {
+            var template = "<img {0} />";
+            var inner = "";
+
+            inner += "src=\"{0}\" ".FormatWith("/Content/img/favicon.png");
+            inner += "class=\"{0}\"".FormatWith(cssClass);
+            inner += "alt=\"{0}\"".FormatWith(alt);
+
+            return new HtmlString(template.FormatWith(inner));
+        }
+
         #endregion
     }
 

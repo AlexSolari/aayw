@@ -11,6 +11,19 @@
             <hr />
             @Html.ValidationSummary()
             <div class="row">
+                <label for="favicon"><h3>@Html.Text("Favicon")</h3></label>
+                <div class="logo-demo">
+                    @Html.Favicon()
+                </div>
+                <div class="control">
+                    <input type="file" name="favicon" />
+                </div>
+                <div class="recomendations">
+                    <h4>@Html.Text("Recomendations")</h4>
+                    @Html.Text("Favicon_Recomendations")
+                </div>
+            </div>
+            <div class="row">
                 <label for="small"><h3>@Html.Text("LogoSmall")</h3></label>
                 <div class="logo-demo">
                     @Html.Logo(Size.Small)

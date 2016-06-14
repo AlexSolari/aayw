@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\mui.css" />
+    <Content Include="Content\img\favicon.png" />
     <Content Include="Content\img\logo-big.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\transparent-grid.png" />

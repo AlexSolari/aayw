@@ -259,6 +259,15 @@ namespace AAYW.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 32x32, PNG, Transparent background..
+        /// </summary>
+        internal static string Favicon_Recomendations {
+            get {
+                return ResourceManager.GetString("Favicon_Recomendations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         internal static string FormSubmited {

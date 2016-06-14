@@ -183,6 +183,9 @@
   <data name="FailedToLogin" xml:space="preserve">
     <value>Incorrect username or password</value>
   </data>
+  <data name="Favicon_Recomendations" xml:space="preserve">
+    <value>32x32, PNG, Transparent background.</value>
+  </data>
   <data name="FormSubmited" xml:space="preserve">
     <value>Success</value>
   </data>
