@@ -2,6 +2,9 @@
 a {
   color: @Model.Primary;
 }
+a:hover, a:focus {
+  color: @Model.DarkPrimary;
+}
 .mui-btn{
   background-color: @Model.PrimaryText;
   color: @Model.DarkPrimaryText;
@@ -225,9 +228,6 @@ abbr[title] {
 }
 hr{
   background-color: @Model.Divider;
-}
-a:hover, a:focus {
-  color: @Model.DarkPrimary;
 }
 .mui-btn.mui-btn--flat{
   color: @Model.DarkPrimaryText;
