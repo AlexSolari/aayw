@@ -13,6 +13,7 @@ namespace AAYW.Core.Data.Managers
     [ManagerFor(typeof(PostComment))]
     public class PostCommentManager : BaseManager<PostCommentProvider, PostComment>, IManager<PostComment>
     {
-
+        public PostCommentManager() : base() { }
+        public PostCommentManager(bool suppressLogging) : base(suppressLogging) { }
     }
 }

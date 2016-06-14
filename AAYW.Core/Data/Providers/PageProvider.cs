@@ -12,5 +12,7 @@ namespace AAYW.Core.Data.Providers
 {
     public class PageProvider : BaseProvider<Page>
     {
+        public PageProvider() : base() { }
+        public PageProvider(bool suppressLogging) : base(suppressLogging) { }
     }
 }

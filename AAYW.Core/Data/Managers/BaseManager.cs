@@ -14,11 +14,18 @@ namespace AAYW.Core.Data.Managers
         where TProvider : IProvider<TModel>
         where TModel : Entity
     {
-        protected TProvider provider = Resolver.GetInstance<TProvider>();
+        protected TProvider provider;
+        protected bool suppressLogging;
 
-        public BaseManager()
+        public BaseManager() : this(false)
         {
+            
+        }
 
+        public BaseManager(bool suppressLogging)
+        {
+            this.suppressLogging = suppressLogging;
+            provider = Resolver.GetInstance<TProvider>(suppressLogging);
         }
 
         public virtual TModel GetById(string id)

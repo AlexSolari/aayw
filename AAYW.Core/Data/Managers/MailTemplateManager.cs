@@ -12,6 +12,9 @@ namespace AAYW.Core.Data.Managers
     [ManagerFor(typeof(MailTemplate))]
     public class MailTemplateManager : BaseManager<MailTemplateProvider, MailTemplate>, IManager<MailTemplate>
     {
+        public MailTemplateManager() : base() { }
+        public MailTemplateManager(bool suppressLogging) : base(suppressLogging) { }
+
         public override void CreateOrUpdate(MailTemplate model)
         {
             if (CanCreate(model))

@@ -12,9 +12,7 @@ namespace AAYW.Core.Data.Providers
 {
     public class WebsiteSettingsProvider : BaseProvider<WebsiteSetting>
     {
-        public WebsiteSettingsProvider()
-        {
-
-        }
+        public WebsiteSettingsProvider() : base() { }
+        public WebsiteSettingsProvider(bool suppressLogging) : base(suppressLogging) { }
     }
 }

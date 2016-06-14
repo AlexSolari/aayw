@@ -12,6 +12,7 @@ namespace AAYW.Core.Data.Managers
     [ManagerFor(typeof(ContentBlock))]
     public class ContentBlockManager : BaseManager<ContentBlockProvider, ContentBlock>, IManager<ContentBlock>
     {
-        
+        public ContentBlockManager() : base() { }
+        public ContentBlockManager(bool suppressLogging) : base(suppressLogging) { }
     }
 }

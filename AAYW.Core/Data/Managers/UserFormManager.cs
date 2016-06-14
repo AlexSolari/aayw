@@ -12,6 +12,9 @@ namespace AAYW.Core.Data.Managers
     [ManagerFor(typeof(UserForm))]
     public class UserFormManager : BaseManager<UserFormProvider, UserForm>, IManager<UserForm>
     {
+        public UserFormManager() : base() { }
+        public UserFormManager(bool suppressLogging) : base(suppressLogging) { }
+
         public bool IsAvalibleForCreation(UserForm model)
         {
             var fromDb = GetByField("Url", model.Url);

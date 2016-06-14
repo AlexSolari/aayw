@@ -13,6 +13,7 @@ namespace AAYW.Core.Data.Managers
     [ManagerFor(typeof(Post))]
     public class PostManager : BaseManager<PostProvider, Post>, IManager<Post>
     {
-        
+        public PostManager() : base() { }
+        public PostManager(bool suppressLogging) : base(suppressLogging) { }
     }
 }

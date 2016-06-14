@@ -9,5 +9,7 @@ namespace AAYW.Core.Data.Providers
 {
     public class UserFormProvider : BaseProvider<UserForm>
     {
+        public UserFormProvider() : base() { }
+        public UserFormProvider(bool suppressLogging) : base(suppressLogging) { }
     }
 }

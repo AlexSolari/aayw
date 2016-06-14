@@ -9,5 +9,7 @@ namespace AAYW.Core.Data.Providers
 {
     public class LogMessageProvider : BaseProvider<LogMessage>
     {
+        public LogMessageProvider() : base() { }
+        public LogMessageProvider(bool suppressLogging) : base(suppressLogging) { }
     }
 }

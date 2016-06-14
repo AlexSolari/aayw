@@ -9,5 +9,7 @@ namespace AAYW.Core.Data.Providers
 {
     public class MailTemplateProvider : BaseProvider<MailTemplate>
     {
+        public MailTemplateProvider() : base() { }
+        public MailTemplateProvider(bool suppressLogging) : base(suppressLogging) { }
     }
 }

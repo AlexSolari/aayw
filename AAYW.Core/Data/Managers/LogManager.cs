@@ -12,6 +12,7 @@ namespace AAYW.Core.Data.Managers
     [ManagerFor(typeof(LogMessage))]
     public class LogManager : BaseManager<LogMessageProvider, LogMessage>, IManager<LogMessage>
     {
-        
+        public LogManager() : base() { }
+        public LogManager(bool suppressLogging) : base(suppressLogging) { }
     }
 }

@@ -18,10 +18,8 @@ namespace AAYW.Core.Data.Managers
     [ManagerFor(typeof(WebsiteSetting))]
     public class WebsiteSettingsManager : BaseManager<WebsiteSettingsProvider, WebsiteSetting>
     {
-        public WebsiteSettingsManager()
-        {
-
-        }
+        public WebsiteSettingsManager() : base() { }
+        public WebsiteSettingsManager(bool suppressLogging) : base(suppressLogging) { }
 
         public WebsiteSetting GetSettings()
         {

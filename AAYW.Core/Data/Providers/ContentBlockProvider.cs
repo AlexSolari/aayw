@@ -9,5 +9,7 @@ namespace AAYW.Core.Data.Providers
 {
     public class ContentBlockProvider : BaseProvider<ContentBlock>
     {
+        public ContentBlockProvider() : base() { }
+        public ContentBlockProvider(bool suppressLogging) : base(suppressLogging) { }
     }
 }

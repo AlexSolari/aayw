@@ -12,6 +12,7 @@ namespace AAYW.Core.Data.Managers
     [ManagerFor(typeof(Page))]
     public class PageManager : BaseManager<PageProvider, Page>, IManager<Page>
     {
-        
+        public PageManager() : base() { }
+        public PageManager(bool suppressLogging) : base(suppressLogging) { }
     }
 }

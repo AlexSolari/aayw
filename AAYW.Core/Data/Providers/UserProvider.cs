@@ -11,10 +11,8 @@ namespace AAYW.Core.Data.Providers
 {
     public class UserProvider : BaseProvider<User>
     {
-        public UserProvider()
-        {
-
-        }
+        public UserProvider() : base() { }
+        public UserProvider(bool suppressLogging) : base(suppressLogging) { }
 
         public User GetByLogin(string login)
         {

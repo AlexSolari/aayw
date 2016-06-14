@@ -50,7 +50,7 @@ namespace AAYW.Core.Api
 
             public IManager<LogMessage> LogMessages
             {
-                get { return Resolver.GetInstance<IManager<LogMessage>>(); }
+                get { return Resolver.GetInstance<IManager<LogMessage>>(true); }
             }
 
             public IManager<UserForm> UserForms

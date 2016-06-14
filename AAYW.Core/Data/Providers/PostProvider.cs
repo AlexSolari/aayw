@@ -13,5 +13,7 @@ namespace AAYW.Core.Data.Providers
 {
     public class PostProvider : BaseProvider<Post>
     {
+        public PostProvider() : base() { }
+        public PostProvider(bool suppressLogging) : base(suppressLogging) { }
     }
 }
