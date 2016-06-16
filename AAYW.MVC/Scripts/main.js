@@ -90,6 +90,7 @@
                             
                             $("title").html(title);
                             onLoad();
+                            onAdmLoad();
                             completion = 100;
                             loaded = true;
                             

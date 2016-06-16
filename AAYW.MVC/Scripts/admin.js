@@ -1,4 +1,4 @@
-﻿$(window).load(function () {
+﻿var onAdmLoad = function onAdmLoad() {
     (function EntityInspector(window) {
         $(".admin-inspector-edit").click(function () {
             AAYW.UI.LoadingIndicator.Show();
@@ -293,4 +293,6 @@
             });
         });
     })(this);
-});
+}
+
+$(window).load(onAdmLoad);
