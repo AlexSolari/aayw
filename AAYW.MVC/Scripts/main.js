@@ -93,6 +93,9 @@
                             onAdmLoad();
                             completion = 100;
                             loaded = true;
+
+                            $(".click-bar").show();
+                            $(".click-bar").css("width", 100 + "%");
                             
                             if (AAYW.Settings.DebugMode)
                             {
@@ -113,8 +116,6 @@
                         completion++;
                         if (loaded == true) {
                             clearInterval(interval);
-                            $(".click-bar").show();
-                            $(".click-bar").css("width", 100 + "%");
                             setTimeout(function () { $(".click-bar").fadeOut(700); }, 300);
                         }
                         else if (completion < AAYW.Settings.AjaxLinksTimeout) {
