@@ -117,11 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddPost" xml:space="preserve">
+    <value>Add new post</value>
+  </data>
+  <data name="AdminGeneral" xml:space="preserve">
+    <value>General</value>
+  </data>
   <data name="AdminHome" xml:space="preserve">
     <value>Admin page</value>
   </data>
+  <data name="Body" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="Cache" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="ChangeColorTheme" xml:space="preserve">
+    <value>Color theme changing</value>
+  </data>
+  <data name="ChangeLogo" xml:space="preserve">
+    <value>Logo changing</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
   <data name="Confirmation" xml:space="preserve">
     <value>Confirmation</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="ContentBlocks" xml:space="preserve">
+    <value>Content blocks</value>
+  </data>
+  <data name="ContentOrUrl" xml:space="preserve">
+    <value>Content or url</value>
   </data>
   <data name="Contorols" xml:space="preserve">
     <value>Contorols</value>
@@ -132,11 +168,23 @@
   <data name="CreateAccount" xml:space="preserve">
     <value>Create account</value>
   </data>
+  <data name="CreateContentBlock" xml:space="preserve">
+    <value>Content block</value>
+  </data>
+  <data name="CreateCustomForm" xml:space="preserve">
+    <value>Custom form</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>Page</value>
+  </data>
   <data name="CustomForms" xml:space="preserve">
     <value>Custom forms</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="DropCache" xml:space="preserve">
+    <value>Drop cache</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -183,14 +231,26 @@
   <data name="FailedToLogin" xml:space="preserve">
     <value>Incorrect username or password</value>
   </data>
+  <data name="Favicon" xml:space="preserve">
+    <value>Favicon</value>
+  </data>
   <data name="Favicon_Recomendations" xml:space="preserve">
     <value>32x32, PNG, Transparent background.</value>
+  </data>
+  <data name="FieldName" xml:space="preserve">
+    <value>Field name</value>
+  </data>
+  <data name="FormConstructor" xml:space="preserve">
+    <value>Form constructor</value>
   </data>
   <data name="FormSubmited" xml:space="preserve">
     <value>Success</value>
   </data>
   <data name="FormSubmitedDetails" xml:space="preserve">
     <value>Data has been sent!</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>Header</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -204,17 +264,35 @@
   <data name="LandingWelcome" xml:space="preserve">
     <value>Welcome to AAYW.</value>
   </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="LogoBig" xml:space="preserve">
+    <value>Big logo</value>
+  </data>
   <data name="LogoBig_Recomendations" xml:space="preserve">
     <value>250x250, PNG, Transparent background.</value>
+  </data>
+  <data name="LogoSmall" xml:space="preserve">
+    <value>Small logo</value>
   </data>
   <data name="LogoSmall_Recomendations" xml:space="preserve">
     <value>64x64, PNG, Transparent background.</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
+  </data>
+  <data name="Log_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Log_Last100" xml:space="preserve">
+    <value>Last 100</value>
+  </data>
+  <data name="Log_Last50" xml:space="preserve">
+    <value>Last 50</value>
   </data>
   <data name="MailAdress" xml:space="preserve">
     <value>Mail adress</value>
@@ -237,25 +315,76 @@
   <data name="MailTemplateCreate" xml:space="preserve">
     <value>Mail template</value>
   </data>
+  <data name="MailTemplateName" xml:space="preserve">
+    <value>Mail template name</value>
+  </data>
   <data name="MailTemplates" xml:space="preserve">
     <value>Mail templates</value>
   </data>
   <data name="MailUsername" xml:space="preserve">
     <value>Mail username</value>
   </data>
+  <data name="Max" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="NoResults" xml:space="preserve">
     <value>No results</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Pattern" xml:space="preserve">
+    <value>Regex pattern</value>
+  </data>
+  <data name="Post" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="Recomendations" xml:space="preserve">
+    <value>Recomendations</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="SubmitAdress" xml:space="preserve">
+    <value>Submit email adress</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
   <data name="UserAlreadyRegistered" xml:space="preserve">
     <value>Username is already taken</value>
+  </data>
+  <data name="Validate" xml:space="preserve">
+    <value>Validate</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
   </data>
 </root>
