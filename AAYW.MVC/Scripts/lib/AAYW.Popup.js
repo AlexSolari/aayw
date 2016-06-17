@@ -12,7 +12,6 @@
 			    var closeButton = $("<span></span>");
 			    closeButton.addClass("close-button");
 			    closeButton.click(AAYW.UI.Popup.Close);
-			    closeButton.html("×");
 
 			    var modalEl = $("<div></div>");
 			    modalEl.addClass("popup-containter mui--z3");

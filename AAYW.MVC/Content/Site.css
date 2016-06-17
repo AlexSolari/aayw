@@ -285,3 +285,6 @@ header{
     margin-right: -100px;
     width: 280px;
 }
+.close-button::after {
+    content: "×";
+}
