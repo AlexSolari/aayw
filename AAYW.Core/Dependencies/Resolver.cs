@@ -112,18 +112,6 @@ namespace AAYW.Core.Dependecies
 
             return result;
         }
-
-        public static IList<FrontendController> GetAllControllers()
-        {
-            var result = new List<FrontendController>();
-
-            foreach (var item in controllerDependencies)
-            {
-                result.Add(GetController(item.Key));   
-            }
-
-            return result;
-        }
         #endregion
 
         #region Entities
@@ -135,6 +123,7 @@ namespace AAYW.Core.Dependecies
             }
             private set { }
         }
+
         public static Dictionary<Type, Type> Managers
         {
             get

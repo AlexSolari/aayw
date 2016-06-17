@@ -1,4 +1,5 @@
-﻿using AAYW.Core.Data.Managers;
+﻿using AAYW.Core.Api;
+using AAYW.Core.Data.Managers;
 using AAYW.Core.Dependecies;
 using AAYW.Core.Models.Bussines.User;
 using System;
@@ -14,7 +15,7 @@ namespace AAYW.Core.Annotations
 
         void IActionFilter.OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var userManager = (UserManager)Resolver.GetInstance<IManager<User>>();
+            var userManager = (UserManager)SiteApi.Data.Users;
             if (userManager.CurrentUser == null || userManager.CurrentUser.CurrentRole != Role)
             {
                 filterContext.Result = new ViewResult() { ViewName = "Error403" };
