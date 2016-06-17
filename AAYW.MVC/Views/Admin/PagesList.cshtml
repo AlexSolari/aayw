@@ -61,7 +61,7 @@
                         </td>
                         <td>
                             <div class="row">
-                                @Html.Button(Html.Text("Delete"), href: Url.RouteUrl("DeletePage", new { id = item.Id }))
+                                @Html.Button(Html.Text("Delete"), ButtonType.Raised, Url.RouteUrl("DeletePage", new { id = item.Id }), "mui-btn--danger")
                             </div>
                             <div class="row">
                                 @Html.Button(Html.Text("Edit"), cssClass: "edit-pages")
