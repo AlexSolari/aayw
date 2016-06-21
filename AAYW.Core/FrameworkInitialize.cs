@@ -29,6 +29,7 @@ using AAYW.Core.Models.Bussines.Post;
 using AAYW.Core.Logging;
 using AAYW.Core.Cache;
 using AAYW.Core.Api;
+using AAYW.Core.Controller.Concrete.Admin;
 
 namespace AAYW.Core
 {
@@ -154,42 +155,43 @@ namespace AAYW.Core
 
             Map(routes, "Admin", "Index", "admin", "AdminHome");
 
-            Map(routes, "Admin", "EntityInspector", "admin/entity/inspector/{type}/{page}", "EntityInspector");
-            Map(routes, "Admin", "EditEntity", "admin/entity/edit/{type}/{id}", "EditEntity");
-            Map(routes, "Admin", "SaveEntity", "admin/entity/save", "SaveEntity");
-            Map(routes, "Admin", "DeleteEntity", "admin/entity/delete", "DeleteEntity");
+            Map(routes, "AdminEntities", "EntityInspector", "admin/entity/inspector/{type}/{page}", "EntityInspector");
+            Map(routes, "AdminEntities", "EditEntity", "admin/entity/edit/{type}/{id}", "EditEntity");
+            Map(routes, "AdminEntities", "SaveEntity", "admin/entity/save", "SaveEntity");
+            Map(routes, "AdminEntities", "DeleteEntity", "admin/entity/delete", "DeleteEntity");
 
-            Map(routes, "Admin", "MailSettings", "admin/mail/settings", "MailSettings");
-            Map(routes, "Admin", "MailTemplates", "admin/mail/templates/{page}", "MailTemplates");
-            Map(routes, "Admin", "CreateOrUpdateMailTemplate", "admin/mail/createtemplate", "CreateMailTemplate");
-            Map(routes, "Admin", "UpdateMailTemplate", "admin/mail/edittemplate/{id}", "EditMailTemplate");
-            Map(routes, "Admin", "DeleteMailTemplate", "admin/mail/deletetemplate/{id}", "DeleteMailTemplate");
+            Map(routes, "AdminMailSettings", "MailSettings", "admin/mail/settings", "MailSettings");
 
-            Map(routes, "Admin", "CreateCustomForm", "admin/forms/create", "CreateCustomForm");
-            Map(routes, "Admin", "CustomFormField", "admin/forms/field/{index}", "CustomFormField");
-            Map(routes, "Admin", "CustomFormsList", "admin/forms/list/{page}", "CustomFormsList");
-            Map(routes, "Admin", "EditUserForm", "admin/forms/edit/{id}", "EditUserForm");
-            Map(routes, "Admin", "DeleteUserForm", "admin/forms/delete/{id}", "DeleteUserForm");
+            Map(routes, "AdminMailTemplates", "MailTemplates", "admin/mail/templates/{page}", "MailTemplates");
+            Map(routes, "AdminMailTemplates", "CreateOrUpdateMailTemplate", "admin/mail/createtemplate", "CreateMailTemplate");
+            Map(routes, "AdminMailTemplates", "UpdateMailTemplate", "admin/mail/edittemplate/{id}", "EditMailTemplate");
+            Map(routes, "AdminMailTemplates", "DeleteMailTemplate", "admin/mail/deletetemplate/{id}", "DeleteMailTemplate");
 
-            Map(routes, "Admin", "CreateContentBlock", "admin/contents/create", "CreateContentBlock");
-            Map(routes, "Admin", "ContentBlocksList", "admin/contents/list/{page}", "ContentBlockList");
-            Map(routes, "Admin", "EditContentBlock", "admin/contents/edit/{id}", "EditContentBlock");
-            Map(routes, "Admin", "DeleteContentBlock", "admin/contents/delete/{id}", "DeleteContentBlock");
+            Map(routes, "AdminCustomForms", "CreateCustomForm", "admin/forms/create", "CreateCustomForm");
+            Map(routes, "AdminCustomForms", "CustomFormField", "admin/forms/field/{index}", "CustomFormField");
+            Map(routes, "AdminCustomForms", "CustomFormsList", "admin/forms/list/{page}", "CustomFormsList");
+            Map(routes, "AdminCustomForms", "EditUserForm", "admin/forms/edit/{id}", "EditUserForm");
+            Map(routes, "AdminCustomForms", "DeleteUserForm", "admin/forms/delete/{id}", "DeleteUserForm");
 
-            Map(routes, "Admin", "CreatePage", "admin/pages/create", "CreatePage");
-            Map(routes, "Admin", "PagesList", "admin/pages/list/{page}", "PageList");
-            Map(routes, "Admin", "EditPage", "admin/pages/edit/{id}", "EditPage");
-            Map(routes, "Admin", "DeletePage", "admin/pages/delete/{id}", "DeletePage");
+            Map(routes, "AdminContentBlocks", "CreateContentBlock", "admin/contents/create", "CreateContentBlock");
+            Map(routes, "AdminContentBlocks", "ContentBlocksList", "admin/contents/list/{page}", "ContentBlockList");
+            Map(routes, "AdminContentBlocks", "EditContentBlock", "admin/contents/edit/{id}", "EditContentBlock");
+            Map(routes, "AdminContentBlocks", "DeleteContentBlock", "admin/contents/delete/{id}", "DeleteContentBlock");
 
-            Map(routes, "Admin", "Log", "admin/log/{count}", "Log");
-            Map(routes, "Admin", "EntireLog", "admin/fulllog", "EntireLog");
+            Map(routes, "AdminPages", "CreatePage", "admin/pages/create", "CreatePage");
+            Map(routes, "AdminPages", "PagesList", "admin/pages/list/{page}", "PageList");
+            Map(routes, "AdminPages", "EditPage", "admin/pages/edit/{id}", "EditPage");
+            Map(routes, "AdminPages", "DeletePage", "admin/pages/delete/{id}", "DeletePage");
 
-            Map(routes, "Admin", "Cache", "admin/cache", "Cache");
-            Map(routes, "Admin", "DropCache", "admin/cache/drop", "DropCache");
+            Map(routes, "AdminLogging", "Log", "admin/log/{count}", "Log");
+            Map(routes, "AdminLogging", "EntireLog", "admin/fulllog", "EntireLog");
 
-            Map(routes, "Admin", "ChangeLogo", "admin/general/logo", "ChangeLogo");
-            Map(routes, "Admin", "ChangeColorTheme", "admin/general/theme", "ChangeColorTheme");
-            Map(routes, "Admin", "ResetColorTheme", "admin/general/themereset", "ResetColorTheme");
+            Map(routes, "AdminCaching", "Cache", "admin/cache", "Cache");
+            Map(routes, "AdminCaching", "DropCache", "admin/cache/drop", "DropCache");
+
+            Map(routes, "AdminGeneral", "ChangeLogo", "admin/general/logo", "ChangeLogo");
+            Map(routes, "AdminGeneral", "ChangeColorTheme", "admin/general/theme", "ChangeColorTheme");
+            Map(routes, "AdminGeneral", "ResetColorTheme", "admin/general/themereset", "ResetColorTheme");
 
           
             Map(routes, "UserForm", "CustomForm", "form/{url}", "CustomForm");
@@ -223,10 +225,20 @@ namespace AAYW.Core
             //Controllers
             Resolver.RegisterController<HomeController, HomeController>("Home");
             Resolver.RegisterController<ErrorController, ErrorController>("Error");
-            Resolver.RegisterController<AdminController, AdminController>("Admin");
             Resolver.RegisterController<UserFormController, UserFormController>("UserForm");
             Resolver.RegisterController<PageController, PageController>("Pages");
             Resolver.RegisterController<FeedController, FeedController>("Feed");
+         
+            Resolver.RegisterController<AdminBaseController, AdminBaseController>("Admin");
+            Resolver.RegisterController<GeneralController, GeneralController>("AdminGeneral");
+            Resolver.RegisterController<CachingController, CachingController>("AdminCaching");
+            Resolver.RegisterController<LoggingController, LoggingController>("AdminLogging");
+            Resolver.RegisterController<PagesController, PagesController>("AdminPages");
+            Resolver.RegisterController<ContentBlocksController, ContentBlocksController>("AdminContentBlocks");
+            Resolver.RegisterController<CustomFormsController, CustomFormsController>("AdminCustomForms");
+            Resolver.RegisterController<MailTemplatesController, MailTemplatesController>("AdminMailTemplates");
+            Resolver.RegisterController<MailSettingsController, MailSettingsController>("AdminMailSettings");
+            Resolver.RegisterController<EntitiesController, EntitiesController>("AdminEntities");
         }
 
         private static void Map(RouteCollection routes, string controller, string action, string url = null, string name = null)

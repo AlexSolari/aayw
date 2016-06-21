@@ -34,7 +34,7 @@ namespace AAYW.Core.Data.Managers
             return model;
         }
 
-        public void UpdateSettings(WebsiteSetting model)
+        public override void CreateOrUpdate(WebsiteSetting model)
         {
             var modelToUpdate = provider.GetList().FirstOrDefault();
 
@@ -43,7 +43,7 @@ namespace AAYW.Core.Data.Managers
                 model.Id = modelToUpdate.Id;
             }
 
-            CreateOrUpdate(model);
+            base.CreateOrUpdate(model);
         }
     }
 }

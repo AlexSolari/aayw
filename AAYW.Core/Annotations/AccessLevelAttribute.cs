@@ -8,7 +8,7 @@ using System.Web.Routing;
 
 namespace AAYW.Core.Annotations
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class AccessLevelAttribute : ActionFilterAttribute, IActionFilter
     {
         public User.Role Role { get; set; }

@@ -171,7 +171,16 @@
     <Compile Include="Reflector\IReflector.cs" />
     <Compile Include="Reflector\EntityReflectionData.cs" />
     <Compile Include="Web\ControllerFactory\BaseControllerFactory.cs" />
-    <Compile Include="Web\Controller\Concrete\AdminController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminEntitiesController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminMailSettingsController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminMailTemplatesController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminCustomFormsController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminBaseController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminPagesController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminLoggingController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminCachingController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminGeneralController.cs" />
+    <Compile Include="Web\Controller\Concrete\Admin\AdminContentBlocksController.cs" />
     <Compile Include="Web\Controller\Concrete\ErrorController.cs" />
     <Compile Include="Web\Controller\Concrete\FeedController.cs" />
     <Compile Include="Web\Controller\Concrete\HomeController.cs" />
