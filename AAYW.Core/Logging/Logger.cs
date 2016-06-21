@@ -4,31 +4,42 @@ using AAYW.Core.Dependecies;
 using AAYW.Core.Models.Bussines.Admin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace AAYW.Core.Logging
 {
     public class Logger : ILogger
     {
-        IManager<LogMessage> manager = SiteApi.Data.LogMessages;
-
         public void Log(string message)
         {
-            var msg = Resolver.GetInstance<LogMessage>();
-            msg.Message = "[{0}] {1}".FormatWith(DateTime.Now.ToString() ,message);
-            manager.CreateOrUpdate(msg);
+            using (var writer = new StreamWriter(HttpContext.Current.Server.MapPath("~/Logs/log.txt"), true))
+            {
+                writer.WriteLine("[{0}] {1}".FormatWith(DateTime.Now.ToString(), message));
+            }
         }
 
         public IEnumerable<string> GetLog()
         {
-            return manager.All().OrderByDescending(x => x.CreatedDate).Select(x => x.Message);
+            var result = new List<string>();
+            using (var reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Logs/log.txt")))
+            {
+                while (!reader.EndOfStream)
+	            {
+                    result.Add(reader.ReadLine());
+	            }
+                
+            }
+            return result;
         }
 
         public IEnumerable<string> GetLog(int count)
         {
-            return manager.GetList(0, count).OrderByDescending(x => x.CreatedDate).Select(x => x.Message);
+            var log = GetLog();
+            return log.Skip(Math.Max(log.Count() - count, 0));
         }
     }
 }
