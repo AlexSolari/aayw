@@ -66,6 +66,7 @@
         AAYW.Engine.Links.Apply();
     }
     
+    AAYW.UI.ColorPickers.Apply();
 };
 
 $(window).load(onLoad);

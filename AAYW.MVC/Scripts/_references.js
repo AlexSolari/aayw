@@ -12,3 +12,4 @@
 /// <reference path="lib/aayw.htmleditor.js" />
 /// <reference path="lib/aayw.settings.js" />
 /// <reference path="lib/aayw.linksengine.js" />
+/// <reference path="lib/aayw.colorpickers.js" />

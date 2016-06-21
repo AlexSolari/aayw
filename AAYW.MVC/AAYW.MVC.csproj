@@ -132,6 +132,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\admin.js" />
+    <Content Include="Scripts\lib\AAYW.ColorPickers.js" />
     <Content Include="Scripts\lib\AAYW.LoadingIndicator.js" />
     <Content Include="Scripts\lib\AAYW.Settings.js" />
     <Content Include="Scripts\lib\AAYW.Popup.js" />

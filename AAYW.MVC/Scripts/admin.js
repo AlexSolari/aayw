@@ -276,23 +276,6 @@
             return false;
         });
     })(this);
-
-    (function AdminColorEditors(window) {
-        var pickers = $(".admin-color-picker");
-        var textViews = $(".admin-color-picker + input");
-        
-        pickers.each(function (index, element) {
-            $(element).change(function (e) {
-                textViews[index].value = this.value;
-            });
-        });
-
-        textViews.each(function (index, element) {
-            $(element).bind("input", function (e) {
-                pickers[index].value = this.value;
-            });
-        });
-    })(this);
 }
 
 $(window).load(onAdmLoad);
