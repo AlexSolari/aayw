@@ -35,6 +35,8 @@ namespace AAYW.Core
 {
     public static class Framework
     {
+        public const bool RETHROW_ON_DATABASE_EXCEPRIONS = true;
+
         public static void Initialize()
         {
             // Register types here, and call this in Global.asax

@@ -1,4 +1,5 @@
-﻿using AAYW.Core.Models.Bussines;
+﻿using AAYW.Core.Api;
+using AAYW.Core.Models.Bussines;
 using NHibernate;
 using NHibernate.Criterion;
 using System;
@@ -28,9 +29,11 @@ namespace AAYW.Core.Data
                     return func(session);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                SiteApi.Services.Logger.Log("Exception caught: {0} {1} {2}".FormatWith(e.Message, Environment.NewLine, e.StackTrace));
+                if (Framework.RETHROW_ON_DATABASE_EXCEPRIONS)
+                    throw;
             }
         }
 
@@ -43,9 +46,11 @@ namespace AAYW.Core.Data
                     action(session);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                SiteApi.Services.Logger.Log("Exception caught: {0} {1} {2}".FormatWith(e.Message, Environment.NewLine, e.StackTrace));
+                if (Framework.RETHROW_ON_DATABASE_EXCEPRIONS)
+                    throw;
             }
         }
     }
