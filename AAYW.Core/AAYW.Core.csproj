@@ -101,7 +101,6 @@
     <Compile Include="Crypto\BaseCryptoProcessor.cs" />
     <Compile Include="Crypto\ICryptoProcessor.cs" />
     <Compile Include="Data\Managers\BaseManager.cs" />
-    <Compile Include="Data\Managers\LogManager.cs" />
     <Compile Include="Data\Managers\PostCommentManager.cs" />
     <Compile Include="Data\Managers\PostManager.cs" />
     <Compile Include="Data\Managers\PageManager.cs" />
@@ -115,7 +114,6 @@
     <Compile Include="Data\Providers\BaseProvider.cs" />
     <Compile Include="Data\DataProvider.cs" />
     <Compile Include="Data\Providers\IProvider.cs" />
-    <Compile Include="Data\Providers\LogMessageProvider.cs" />
     <Compile Include="Data\Providers\MailTemplateProvider.cs" />
     <Compile Include="Data\Providers\ContentBlockProvider.cs" />
     <Compile Include="Data\Providers\PostCommentProvider.cs" />
@@ -135,7 +133,6 @@
     <Compile Include="Mail\IMailProcessor.cs" />
     <Compile Include="Mail\MailProcessor.cs" />
     <Compile Include="Map\Mapper.cs" />
-    <Compile Include="Models\Bussines\Admin\LogMessage.cs" />
     <Compile Include="Models\Bussines\Admin\Page.cs" />
     <Compile Include="Models\Bussines\Admin\ContentBlock.cs" />
     <Compile Include="Models\Bussines\Admin\MailTemplate.cs" />
@@ -146,7 +143,6 @@
     <Compile Include="Models\Mappings\PageMap.cs" />
     <Compile Include="Models\Mappings\PostCommentMap.cs" />
     <Compile Include="Models\Mappings\PostMap.cs" />
-    <Compile Include="Models\Mappings\LogMessageMap.cs" />
     <Compile Include="Models\View\ContentBlock\ContentBlockDesignModel.cs" />
     <Compile Include="Models\View\Page\PageDesignModel.cs" />
     <Compile Include="Models\View\UserForm\UserFormDesignModel.cs" />

@@ -56,7 +56,6 @@ namespace AAYW.Core
             Resolver.RegisterType<User, User>(true);
             Resolver.RegisterType<Page, Page>(true);
             Resolver.RegisterType<UserForm, UserForm>(true);
-            Resolver.RegisterType<LogMessage, LogMessage>(true);
             Resolver.RegisterType<PostComment, PostComment>(true);
             Resolver.RegisterType<MailTemplate, MailTemplate>(true);
             Resolver.RegisterType<ContentBlock, ContentBlock>(true);
@@ -68,7 +67,6 @@ namespace AAYW.Core
             Resolver.RegisterType<IProvider<Page>, PageProvider>();
             Resolver.RegisterType<IProvider<UserForm>, UserFormProvider>();
             Resolver.RegisterType<IProvider<PostComment>, PostCommentProvider>();
-            Resolver.RegisterType<IProvider<LogMessage>, LogMessageProvider>();
             Resolver.RegisterType<IProvider<MailTemplate>, MailTemplateProvider>();
             Resolver.RegisterType<IProvider<ContentBlock>, ContentBlockProvider>();
             Resolver.RegisterType<IProvider<WebsiteSetting>, WebsiteSettingsProvider>();
@@ -77,7 +75,6 @@ namespace AAYW.Core
             Resolver.RegisterType<IManager<Post>, PostManager>();
             Resolver.RegisterType<IManager<User>, UserManager>();
             Resolver.RegisterType<IManager<Page>, PageManager>();
-            Resolver.RegisterType<IManager<LogMessage>, LogManager>();
             Resolver.RegisterType<IManager<UserForm>, UserFormManager>();
             Resolver.RegisterType<IManager<PostComment>, PostCommentManager>();
             Resolver.RegisterType<IManager<ContentBlock>, ContentBlockManager>();

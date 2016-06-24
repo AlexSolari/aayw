@@ -47,12 +47,7 @@ namespace AAYW.Core.Api
             {
                 get { return Resolver.GetInstance<IManager<Page>>(); }
             }
-
-            public IManager<LogMessage> LogMessages
-            {
-                get { return Resolver.GetInstance<IManager<LogMessage>>(true); }
-            }
-
+            
             public IManager<UserForm> UserForms
             {
                 get { return Resolver.GetInstance<IManager<UserForm>>(); }
