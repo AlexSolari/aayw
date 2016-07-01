@@ -26,6 +26,9 @@ namespace System
 
         public static TDest DeserializeAs<TDest>(this XmlDocument src)
         {
+            if (src == null)
+                return default(TDest);
+
             var reader = new XmlNodeReader(src);
             XmlSerializer serializer = new XmlSerializer(typeof(TDest));
             return (TDest)serializer.Deserialize(reader);

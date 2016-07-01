@@ -37,7 +37,7 @@ namespace AAYW.Core.Data
 #if (RECREATE_DATABASE)
                 new SchemaExport(cfg).Create(true, true)
 #else
-                new SchemaUpdate(cfg)
+                new SchemaUpdate(cfg).Execute(true, true)
 #endif
                 )
                 .BuildSessionFactory();

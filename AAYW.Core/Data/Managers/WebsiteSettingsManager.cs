@@ -38,7 +38,7 @@ namespace AAYW.Core.Data.Managers
         {
             var modelToUpdate = provider.GetList().FirstOrDefault();
 
-            if (model != null)
+            if (model != null && modelToUpdate != null)
             {
                 model.Id = modelToUpdate.Id;
             }
