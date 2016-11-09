@@ -12,7 +12,8 @@
                         $el.parents(".row").addClass("hidden");
                 });
 
-                $('.popup-editor .delete').click(function () {
+                $('.popup-editor .delete').click(function (e) {
+                    e.preventDefault();
                     var id = $('form input[name="modelData[Id@System.Guid]"]').val();
                     var type = $("form input[name=type]").val();
                     AAYW.UI.LoadingIndicator.Show();
@@ -113,7 +114,8 @@
                 return false;
             });
 
-            $('.form-constructor .remove').click(function () {
+            $('.form-constructor .remove').click(function (e) {
+                e.preventDefault();
                 $(".form-fields .field").last().remove();
                 lastFieldIndex--;
                 if (lastFieldIndex < 0)
@@ -189,25 +191,27 @@
                     return false;
                 }
 
-                AAYW.UI.LoadingIndicator.Close();
-                AAYW.UI.Popup.Show(data);
-                AAYW.UI.HtmlEditor.Bind();
-
-                $('.popup-editor .submit').click(onsubmit);
-                $('.type-dropdown select').change(function () {
-                    var value = this.options[this.value].innerHTML;
-
-                    if (value == "Html") {
+                function ontypeselect() {
+                    if ($('.type-dropdown select').val() == "html") {
                         $('.content-row').show();
                     }
-                    else if (value == "Redirect") {
+                    else if ($('.type-dropdown select').val() == "redirect") {
                         $('.content-row').show();
                     }
                     else {
                         $('.content-row').hide();
                     }
 
-                });
+                }
+
+                AAYW.UI.LoadingIndicator.Close();
+                AAYW.UI.Popup.Show(data);
+                AAYW.UI.HtmlEditor.Bind();
+
+                $('.popup-editor .submit').click(onsubmit);
+                $('.type-dropdown select').change(ontypeselect);
+
+                ontypeselect();
             };
 
             AAYW.UI.LoadingIndicator.Show();

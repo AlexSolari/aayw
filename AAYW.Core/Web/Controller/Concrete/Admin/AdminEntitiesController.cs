@@ -102,7 +102,7 @@ namespace AAYW.Core.Controller.Concrete.Admin
         {
             var types = SiteApi.Services.Reflector.Reflect(type).ReflectedType;
             var reflectedType = AAYW.Core.Dependecies.Resolver.Managers[types];
-            dynamic manager = AAYW.Core.Dependecies.Resolver.GetInstance(reflectedType);
+            dynamic manager = AAYW.Core.Dependecies.Resolver.GetInstanceForced(reflectedType);
 
             if (manager == null)
             {

@@ -17,7 +17,7 @@ namespace AAYW.Core.Data.Managers
     [ManagerFor(typeof(User))]
     public class UserManager : BaseManager<UserProvider, User>
     {
-        public UserManager() : this(true)
+        public UserManager() : base()
         {
             
         }
@@ -25,7 +25,7 @@ namespace AAYW.Core.Data.Managers
         public UserManager(bool suppressLogging)
             : base(suppressLogging) 
         {
-            if (CurrentUser == null && IsAuthorized)
+            if (!IsAuthorized)
             {
                 Logout();
             }

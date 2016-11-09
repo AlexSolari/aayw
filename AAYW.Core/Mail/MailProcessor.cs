@@ -28,6 +28,9 @@ namespace AAYW.Core.Mail
             var client = new SmtpClient();
             var websiteSettings = ((WebsiteSettingsManager)SiteApi.Data.WebsiteSettings).GetSettings();
 
+            if (websiteSettings.MailHost.IsNullOrWhiteSpace() || websiteSettings.MailAdress.IsNullOrWhiteSpace())
+                throw new SystemException("Mailing settings is not configured.");
+
             client.EnableSsl = websiteSettings.MailEnableSsl;
             client.Host = websiteSettings.MailHost;
             client.Port = websiteSettings.MailPort;

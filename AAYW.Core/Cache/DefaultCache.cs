@@ -10,7 +10,7 @@ namespace AAYW.Core.Cache
     {
         public bool OverwriteMode = true;
 
-        private static Dictionary<string, object> Values = new Dictionary<string, object>();
+        private Dictionary<string, object> Values = new Dictionary<string, object>();
 
         public T Get<T>(string key)
         {

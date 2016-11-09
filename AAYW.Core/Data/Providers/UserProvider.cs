@@ -1,5 +1,4 @@
 ﻿using AAYW.Core.Models.Bussines;
-using NHibernate.Criterion;
 using System;
 using System.Collections.Generic;
 using System.Linq;

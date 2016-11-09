@@ -1,4 +1,6 @@
 ﻿using AAYW.Core.Annotations;
+using sORM.Core;
+using sORM.Core.Mappings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace AAYW.Core.Models.Bussines
 {
-    public class Entity
+    public abstract class Entity : DataEntity
     {
-        [InspectorLock]
-        public virtual Guid Id { get; set; }
-        
-        public virtual DateTime CreatedDate { get; set; }
+        public abstract Guid Id { get; set; }
 
-        public virtual DateTime ModifiedDate { get; set; }
+        public abstract DateTime CreatedDate { get; set; }
+
+        public abstract DateTime ModifiedDate { get; set; }
+
+        public override string DataId { get; set; }
     }
 }

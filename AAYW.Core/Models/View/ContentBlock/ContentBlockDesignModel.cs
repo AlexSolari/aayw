@@ -12,7 +12,7 @@ namespace AAYW.Core.Models.View.ContentBlock
     public class ContentBlockDesignModel
     {
         public string Id { get; set; }
-        public AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType Type { get; set; }
+        public string Type { get; set; }
         [CustomMaxLength(100)]
         public string Name { get; set; }
         [UIHint("HtmlEditor")]

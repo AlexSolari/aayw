@@ -25,7 +25,7 @@ namespace AAYW.Core.Data.Managers
         public BaseManager(bool suppressLogging)
         {
             this.suppressLogging = suppressLogging;
-            provider = Resolver.GetInstance<TProvider>(suppressLogging);
+            provider = (TProvider)Resolver.GetInstance<IProvider<TModel>>(suppressLogging);
         }
 
         public virtual TModel GetById(string id)

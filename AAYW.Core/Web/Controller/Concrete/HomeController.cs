@@ -15,6 +15,7 @@ using AAYW.Core.Api;
 using AAYW.Core.Web.ViewResults;
 using AAYW.Core.Cache;
 using AAYW.Core.Models.Bussines.Theme;
+using AAYW.Core.Annotations;
 
 namespace AAYW.Core.Controller.Concrete
 {
@@ -39,12 +40,12 @@ namespace AAYW.Core.Controller.Concrete
         [HttpGet]
         public ActionResult Theme()
         {
-            var theme = SiteApi.Frontend.CurrentTheme;
-
             if (cache.HasKey("CssTheme"))
             {
                 return cache.Get<Css>("CssTheme");
             }
+
+            var theme = SiteApi.Frontend.CurrentTheme;
 
             var css = new Css(theme);
             cache.Add<Css>(css, "CssTheme");

@@ -1,5 +1,6 @@
 ﻿@{ 
-    var userManager = AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>();
+    var userManager = (AAYW.Core.Data.Managers.UserManager)AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.IManager<User>>();
+    var CurrentUser = userManager.CurrentUser;
 }
 <div class="mui-appbar">
     @Html.Logo(Size.Small)
@@ -7,9 +8,9 @@
         <li>
             @Html.RouteLink(Html.Text("Home"), "Home")
         </li>
-        @if (userManager.IsAuthorized && userManager.CurrentUser != null)
+        @if (userManager.IsAuthorized && CurrentUser != null)
         {
-            if (userManager.CurrentUser.CurrentRole == AAYW.Core.Models.Bussines.User.User.Role.Admin)
+            if (CurrentUser.CurrentRole == AAYW.Core.Models.Bussines.User.User.Role.Admin)
             {
                 <li>
                     @Html.RouteLink(Html.Text("AdminHome"), "AdminHome")

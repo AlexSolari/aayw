@@ -11,18 +11,19 @@ namespace AAYW.Core.Annotations
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class AccessLevelAttribute : ActionFilterAttribute, IActionFilter
     {
-        public User.Role Role { get; set; }
+        public string Role { get; set; }
 
         void IActionFilter.OnActionExecuting(ActionExecutingContext filterContext)
         {
             var userManager = (UserManager)SiteApi.Data.Users;
-            if (userManager.CurrentUser == null || userManager.CurrentUser.CurrentRole != Role)
+            var CurrentUser = userManager.CurrentUser;
+            if (CurrentUser == null || CurrentUser.CurrentRole != Role)
             {
                 filterContext.Result = new ViewResult() { ViewName = "Error403" };
             }
         }
 
-        public AccessLevelAttribute(User.Role Role)
+        public AccessLevelAttribute(string Role)
         {
             this.Role = Role;
         }

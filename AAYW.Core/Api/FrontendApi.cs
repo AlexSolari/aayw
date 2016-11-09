@@ -68,7 +68,7 @@ namespace AAYW.Core.Api
                 {
                     return new Theme()
                     {
-                        Primary = "#2196F3",
+                        PrimaryColor = "#2196F3",
                         PrimaryText = "#FFFFFF",
                         Danger = "#f55a4e",
                         DangerAccent = "#FF4081",
