@@ -175,7 +175,7 @@
       <Project>{8907e55a-87c2-4352-b777-fead71ad157f}</Project>
       <Name>AAYW.Resources</Name>
     </ProjectReference>
-    <ProjectReference Include="..\sORM\sORM\sORM.csproj">
+    <ProjectReference Include="..\sORM\sORM.csproj">
       <Project>{0dac049e-a505-4f26-bcac-db04da7f11a2}</Project>
       <Name>sORM</Name>
     </ProjectReference>

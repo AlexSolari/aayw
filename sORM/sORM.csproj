@@ -58,6 +58,9 @@
     <Compile Include="Core\Mappings\MapAutoAttribute.cs" />
     <Compile Include="Core\Mappings\MapAsTypeAttribute.cs" />
     <Compile Include="Core\Mappings\MapBinder.cs" />
+    <Compile Include="Core\Requests\Concrete\CreateProcedureRequest.cs" />
+    <Compile Include="Core\Requests\Concrete\AttachTriggerRequest.cs" />
+    <Compile Include="Core\Requests\Concrete\SqlRequest.cs" />
     <Compile Include="Core\Requests\Concrete\UpdateRequest.cs" />
     <Compile Include="Core\Requests\Concrete\CreateRequest.cs" />
     <Compile Include="Core\Requests\Concrete\DeleteRequest.cs" />

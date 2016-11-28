@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAYW.MVC", "AAYW.MVC\AAYW.MVC.csproj", "{D82FC8E1-BFFA-4E56-9206-C3266F136AFD}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAYW.Core", "AAYW.Core\AAYW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAYW.Resources", "AAYW.Resources\AAYW.Resources.csproj", "{8907E55A-87C2-4352-B777-FEAD71AD157F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sORM", "sORM\sORM\sORM.csproj", "{0DAC049E-A505-4F26-BCAC-DB04DA7F11A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sORM", "sORM\sORM.csproj", "{0DAC049E-A505-4F26-BCAC-DB04DA7F11A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
