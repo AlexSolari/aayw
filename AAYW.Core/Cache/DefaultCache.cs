@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AAYW.Core.Api;
+using AAYW.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,7 @@ namespace AAYW.Core.Cache
 
         public T Get<T>(string key)
         {
+            SiteApi.Services.Logger.Log(">>Getting CACHED value by key "+key);
             return (T)Values[key];
         }
 
