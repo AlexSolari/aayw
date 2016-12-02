@@ -44,7 +44,7 @@ namespace AAYW.Core
 
         public static void Initialize()
         {
-            // Register instances (singletons) here, and call this in Global.asax
+            // Register instances here
             // Example:
             //  Resolver.RegisterInstance<TType>(new TType());
             //  Resolver.RegisterInstance<IInterface>(new TRealisation());
@@ -53,7 +53,7 @@ namespace AAYW.Core
             Resolver.RegisterInstance<ICache>(new DefaultCache());
             Resolver.RegisterInstance<IReflector>(new EntityReflector());
 
-            // Register types here, and call this in Global.asax
+            // Register types here
             // Example:
             //  Resolver.RegisterType<TBase, TDerived>();
             //  Resolver.RegisterType<IInterface, TRealisation>();
@@ -99,25 +99,23 @@ namespace AAYW.Core
             Resolver.RegisterType<IManager<MailTemplate>, MailTemplateManager>();
             Resolver.RegisterType<IManager<WebsiteSetting>, WebsiteSettingsManager>();
 
-            var logger = SiteApi.Services.Logger;
-
-            //Controllers
-            logger.Log("Registering controllers and controller factory");
+            SiteApi.Services.Logger.Log("--------- Website started ---------");
+            SiteApi.Services.Logger.Log("Registering controllers and controller factory");
             RegisterControllers();
-            //Routing
-            logger.Log("Registering routes");
+
+            SiteApi.Services.Logger.Log("Registering routes");
             RegisterRoutes(RouteTable.Routes);
-            //DataBinders
-            logger.Log("Registering model binders");
+
+            SiteApi.Services.Logger.Log("Registering model binders");
             ModelBinders.Binders.Add(typeof(UserFormDesignModel), new UserFormDataBinder());
-            //Custom Mappings
-            logger.Log("Registering custom mappings");
+
+            SiteApi.Services.Logger.Log("Registering custom mappings");
             RegisterCustomMappings();
-            //Database setup
-            logger.Log("Setting up database");
+
+            SiteApi.Services.Logger.Log("Setting up database");
             DatabaseHelper.Initialize();
 
-            logger.Log("AAYW Framework initialized");
+            SiteApi.Services.Logger.Log("AAYW Framework initialized");
         }
 
         private static void RegisterCustomMappings()

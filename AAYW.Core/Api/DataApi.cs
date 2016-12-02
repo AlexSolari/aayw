@@ -33,44 +33,44 @@ namespace AAYW.Core.Api
                 }
             }
 
-            public IManager<Post> Posts
+            public PostManager Posts
             {
-                get { return Resolver.GetInstance<IManager<Post>>(); }
+                get { return (PostManager)Resolver.GetInstance<IManager<Post>>(); }
             }
 
-            public IManager<User> Users
+            public UserManager Users
             {
-                get { return Resolver.GetInstance<IManager<User>>(); }
+                get { return (UserManager)Resolver.GetInstance<IManager<User>>(); }
             }
 
-            public IManager<Page> Pages
+            public PageManager Pages
             {
-                get { return Resolver.GetInstance<IManager<Page>>(); }
+                get { return (PageManager)Resolver.GetInstance<IManager<Page>>(); }
             }
             
-            public IManager<UserForm> UserForms
+            public UserFormManager UserForms
             {
-                get { return Resolver.GetInstance<IManager<UserForm>>(); }
+                get { return (UserFormManager)Resolver.GetInstance<IManager<UserForm>>(); }
             }
 
-            public IManager<PostComment> PostComments
+            public PostCommentManager PostComments
             {
-                get { return Resolver.GetInstance<IManager<PostComment>>(); }
+                get { return (PostCommentManager)Resolver.GetInstance<IManager<PostComment>>(); }
             }
 
-            public IManager<ContentBlock> ContentBlocks
+            public ContentBlockManager ContentBlocks
             {
-                get { return Resolver.GetInstance<IManager<ContentBlock>>(); }
+                get { return (ContentBlockManager)Resolver.GetInstance<IManager<ContentBlock>>(); }
             }
 
-            public IManager<MailTemplate> MailTemplates
+            public MailTemplateManager MailTemplates
             {
-                get { return Resolver.GetInstance<IManager<MailTemplate>>(); }
+                get { return (MailTemplateManager)Resolver.GetInstance<IManager<MailTemplate>>(); }
             }
 
-            public IManager<WebsiteSetting> WebsiteSettings
+            public WebsiteSettingsManager WebsiteSettings
             {
-                get { return Resolver.GetInstance<IManager<WebsiteSetting>>(); }
+                get { return (WebsiteSettingsManager)Resolver.GetInstance<IManager<WebsiteSetting>>(); }
             }
 
         }

@@ -15,8 +15,7 @@ namespace AAYW.Core.Annotations
 
         void IActionFilter.OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var userManager = (UserManager)SiteApi.Data.Users;
-            var CurrentUser = userManager.CurrentUser;
+            var CurrentUser = SiteApi.Data.Users.CurrentUser;
             if (CurrentUser == null || CurrentUser.CurrentRole != Role)
             {
                 filterContext.Result = new ViewResult() { ViewName = "Error403" };

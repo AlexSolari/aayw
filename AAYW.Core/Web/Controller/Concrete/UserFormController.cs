@@ -15,8 +15,6 @@ namespace AAYW.Core.Web.Controller.Concrete
 {
     public class UserFormController : FrontendController
     {
-        IManager<UserForm> userFormsManager = SiteApi.Data.UserForms;
-
         public override string Name
         {
             get { return "UserForm"; }
@@ -25,7 +23,7 @@ namespace AAYW.Core.Web.Controller.Concrete
         [HttpGet]
         public ActionResult CustomForm(string url)
         {
-            var form = userFormsManager.GetByField("Url", url);
+            var form = SiteApi.Data.UserForms.GetByField("Url", url);
 
             if (form == null)
             {
@@ -40,7 +38,7 @@ namespace AAYW.Core.Web.Controller.Concrete
         [HttpPost]
         public ActionResult CustomForm(string url, Dictionary<string, object> model)
         {
-            var form = userFormsManager.GetByField("Url", url);
+            var form = SiteApi.Data.UserForms.GetByField("Url", url);
             var mapped = Mapper.Map<UserFormDesignModel, UserForm>(form);
 
             var replacements = new Dictionary<string, string>();
@@ -50,9 +48,7 @@ namespace AAYW.Core.Web.Controller.Concrete
                 replacements.Add(field.Key, ((string[])field.Value).FirstOrDefault().SafeToString());
             }
 
-            var mailer = SiteApi.Services.Mailer;
-
-            mailer.Send(form.SubmitAdress, form.Header, form.MailTemplateName, replacements);
+            SiteApi.Services.Mailer.Send(form.SubmitAdress, form.Header, form.MailTemplateName, replacements);
 
             return RedirectToRoute("FormSubmited");
         }

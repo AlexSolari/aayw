@@ -1,5 +1,4 @@
 ﻿using AAYW.Core.Api;
-using AAYW.Core.Cache;
 using AAYW.Core.Dependecies;
 using AAYW.Core.Models.Bussines;
 using sORM.Core;
@@ -16,7 +15,6 @@ namespace AAYW.Core.Data.Providers
     public class BaseProvider<TEntity> : IProvider<TEntity>
         where TEntity : Entity
     {
-        protected ICache cache;
         protected bool suppressLogging;
 
         public BaseProvider() : this(false)
@@ -27,7 +25,6 @@ namespace AAYW.Core.Data.Providers
         public BaseProvider(bool suppressLogging)
         {
             this.suppressLogging = suppressLogging;
-            cache = SiteApi.Services.Cache;
         }
 
         protected void LogRequest(string method, Dictionary<string, string> parameters)
@@ -68,14 +65,14 @@ namespace AAYW.Core.Data.Providers
                 TEntity result = null;
 
                 var key = "{0}-{1}-{2}/{3}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name, field, value);
-                if ( cache.HasKey(key) )
+                if ( SiteApi.Services.Cache.HasKey(key) )
                 {
-                    return cache.Get<TEntity>(key);
+                    return SiteApi.Services.Cache.Get<TEntity>(key);
                 }
 
                 result = SimpleORM.Current.Get<TEntity>(Condition.Equals(field, value)).FirstOrDefault();
 
-                cache.Add<TEntity>(result, key);
+                SiteApi.Services.Cache.Add(result, key);
                 return result;
             });
         }
@@ -93,14 +90,14 @@ namespace AAYW.Core.Data.Providers
                 IList<TEntity> result = Resolver.GetInstance<IList<TEntity>>();
 
                 var key = "{0}-{1}-{2}/{3}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name, field, value);
-                if (cache.HasKey(key))
+                if (SiteApi.Services.Cache.HasKey(key))
                 {
-                    return cache.Get<IList<TEntity>>(key);
+                    return SiteApi.Services.Cache.Get<IList<TEntity>>(key);
                 }
 
                 result = SimpleORM.Current.Get<TEntity>(Condition.Equals(field, value)).ToList();
 
-                cache.Add<IList<TEntity>>(result, key);
+                SiteApi.Services.Cache.Add(result, key);
                 return result;
             });
         }
@@ -118,14 +115,14 @@ namespace AAYW.Core.Data.Providers
                 IList<TEntity> result = Resolver.GetInstance<IList<TEntity>>();
 
                 var key = "{0}-{1}-{2}/{3}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name, page, pagesize);
-                if (cache.HasKey(key))
+                if (SiteApi.Services.Cache.HasKey(key))
                 {
-                    return cache.Get<IList<TEntity>>(key);
+                    return SiteApi.Services.Cache.Get<IList<TEntity>>(key);
                 }
 
                 result = SimpleORM.Current.Get<TEntity>(options: new DataEntityListLoadOptions(pagesize, page)).ToList();
 
-                cache.Add<IList<TEntity>>(result, key);
+                SiteApi.Services.Cache.Add(result, key);
                 return result;
             });
         }
@@ -139,14 +136,14 @@ namespace AAYW.Core.Data.Providers
                 IList<TEntity> result = Resolver.GetInstance<IList<TEntity>>();
 
                 var key = "{0}-{1}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name);
-                if (cache.HasKey(key))
+                if (SiteApi.Services.Cache.HasKey(key))
                 {
-                    return cache.Get<IList<TEntity>>(key);
+                    return SiteApi.Services.Cache.Get<IList<TEntity>>(key);
                 }
 
                 result = SimpleORM.Current.Get<TEntity>(options: new DataEntityListLoadOptions(by: "CreatedDate")).ToList();
 
-                cache.Add<IList<TEntity>>(result, key);
+                SiteApi.Services.Cache.Add(result, key);
                 return result;
             });
         }
@@ -173,14 +170,14 @@ namespace AAYW.Core.Data.Providers
                 TEntity result = null;
 
                 var key = "{0}-{1}-{2}".FormatWith(System.Reflection.MethodBase.GetCurrentMethod().Name, typeof(TEntity).Name, id);
-                if (cache.HasKey(key))
+                if (SiteApi.Services.Cache.HasKey(key))
                 {
-                    return cache.Get<TEntity>(key);
+                    return SiteApi.Services.Cache.Get<TEntity>(key);
                 }
 
                 result = SimpleORM.Current.Get<TEntity>(Condition.Equals("Id", id)).FirstOrDefault();
 
-                cache.Add<TEntity>(result, key);
+                SiteApi.Services.Cache.Add(result, key);
                 return result;
             });
         }
@@ -198,10 +195,10 @@ namespace AAYW.Core.Data.Providers
                 SimpleORM.Current.CreateOrUpdate(model);
                 return 0;
             });
-            cache.DropWhere(x => x.Contains("GetById") && x.Contains(model.Id.ToString()) && x.Contains(typeof(TEntity).Name));
-            cache.DropWhere(x => x.Contains("All") && x.Contains(typeof(TEntity).Name));
-            cache.DropWhere(x => x.Contains("List") && x.Contains(typeof(TEntity).Name));
-            cache.DropWhere(x => x.Contains("GetByField") && x.Contains(typeof(TEntity).Name));
+            SiteApi.Services.Cache.DropWhere(x => x.Contains("GetById") && x.Contains(model.Id.ToString()) && x.Contains(typeof(TEntity).Name));
+            SiteApi.Services.Cache.DropWhere(x => x.Contains("All") && x.Contains(typeof(TEntity).Name));
+            SiteApi.Services.Cache.DropWhere(x => x.Contains("List") && x.Contains(typeof(TEntity).Name));
+            SiteApi.Services.Cache.DropWhere(x => x.Contains("GetByField") && x.Contains(typeof(TEntity).Name));
         }
 
         public void Delete(TEntity model)
@@ -215,10 +212,10 @@ namespace AAYW.Core.Data.Providers
                 SimpleORM.Current.Delete(model);
                 return 0;
             });
-            cache.DropWhere(x => x.Contains("GetById") && x.Contains(model.Id.ToString()) && x.Contains(typeof(TEntity).Name));
-            cache.DropWhere(x => x.Contains("All") && x.Contains(typeof(TEntity).Name));
-            cache.DropWhere(x => x.Contains("List") && x.Contains(typeof(TEntity).Name));
-            cache.DropWhere(x => x.Contains("GetByField") && x.Contains(typeof(TEntity).Name));
+            SiteApi.Services.Cache.DropWhere(x => x.Contains("GetById") && x.Contains(model.Id.ToString()) && x.Contains(typeof(TEntity).Name));
+            SiteApi.Services.Cache.DropWhere(x => x.Contains("All") && x.Contains(typeof(TEntity).Name));
+            SiteApi.Services.Cache.DropWhere(x => x.Contains("List") && x.Contains(typeof(TEntity).Name));
+            SiteApi.Services.Cache.DropWhere(x => x.Contains("GetByField") && x.Contains(typeof(TEntity).Name));
         }
     }
 }

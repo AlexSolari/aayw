@@ -88,7 +88,7 @@ namespace AAYW.Core.Controller.Concrete.Admin
 
             var mapped = Mapper.Map<UserForm, UserFormDesignModel>(model);
 
-            if (isEditing || ((UserFormManager)SiteApi.Data.UserForms).IsAvalibleForCreation(mapped))
+            if (isEditing || SiteApi.Data.UserForms.IsAvalibleForCreation(mapped))
             {
                 SiteApi.Data.UserForms.CreateOrUpdate(mapped);
             }

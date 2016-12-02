@@ -64,25 +64,28 @@ namespace sORM.Core
             var prepareRequest = new SqlRequest("IF EXISTS(SELECT* FROM sys.objects WHERE object_id = OBJECT_ID(N'DatabaseHealthCheck') AND type in (N'P', N'PC')) " +
                     "DROP PROCEDURE DatabaseHealthCheck;");
             var healthCheckRequest = new CreateProcedureRequest(@"
-            SELECT DISTINCT
-            OBJECT_NAME(s.[object_id]) AS TableName,
-            c.name AS ColumnName,
-            s.name AS StatName,
-            s.auto_created,
-            s.user_created,
-            s.no_recompute,
-            s.[object_id],
-            s.stats_id,
-            sc.stats_column_id,
-            sc.column_id,
-            STATS_DATE(s.[object_id], s.stats_id) AS LastUpdated
-            FROM sys.stats s JOIN sys.stats_columns sc 
-                          ON sc.[object_id] = s.[object_id] AND sc.stats_id = s.stats_id
-            JOIN sys.columns c ON c.[object_id] = sc.[object_id] AND c.column_id = sc.column_id
-            JOIN sys.partitions par ON par.[object_id] = s.[object_id]
-            JOIN sys.objects obj ON par.[object_id] = obj.[object_id]
-            WHERE OBJECTPROPERTY(s.OBJECT_ID,'IsUserTable') = 1
-            AND (s.auto_created = 1 OR s.user_created = 1);
+            SELECT  @@ServerName AS ServerName ,
+                    DB_NAME() AS DBName ,
+                    OBJECT_NAME(ddius.object_id) AS TableName ,
+                    SUM(ddius.user_seeks + ddius.user_scans + ddius.user_lookups) AS  Reads ,
+                    SUM(ddius.user_updates) AS Writes ,
+                    SUM(ddius.user_seeks + ddius.user_scans + ddius.user_lookups
+                        + ddius.user_updates) AS [Reads&Writes] ,
+                    ( SELECT    DATEDIFF(s, create_date, GETDATE()) / 86400.0
+                      FROM      master.sys.databases
+                      WHERE     name = 'tempdb'
+                    ) AS SampleDays ,
+                    ( SELECT    DATEDIFF(s, create_date, GETDATE()) AS SecoundsRunnig
+                      FROM      master.sys.databases
+                      WHERE     name = 'tempdb'
+                    ) AS SampleSeconds
+            FROM    sys.dm_db_index_usage_stats ddius
+                    INNER JOIN sys.indexes i ON ddius.object_id = i.object_id
+                                                 AND i.index_id = ddius.index_id
+            WHERE    OBJECTPROPERTY(ddius.object_id, 'IsUserTable') = 1
+                    AND ddius.database_id = DB_ID()
+            GROUP BY OBJECT_NAME(ddius.object_id)
+            ORDER BY [Reads&Writes] DESC;
             ", "DatabaseHealthCheck");
 
             Requests.Execute(prepareRequest);

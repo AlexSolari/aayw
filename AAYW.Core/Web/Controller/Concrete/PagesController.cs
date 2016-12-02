@@ -16,11 +16,6 @@ namespace AAYW.Core.Web.Controller.Concrete
 {
     public class PageController : FrontendController
     {
-        IManager<Page> pagesManager = SiteApi.Data.Pages;
-        IManager<ContentBlock> contentBlocksManager = SiteApi.Data.ContentBlocks;
-        IManager<Post> postsManager = SiteApi.Data.Posts;
-        IManager<PostComment> commentsManager = SiteApi.Data.PostComments;
-
         public override string Name
         {
             get { return "Pages"; }
@@ -29,7 +24,7 @@ namespace AAYW.Core.Web.Controller.Concrete
         [HttpGet]
         public ActionResult Post(string id)
         {
-            var post = postsManager.GetById(id);
+            var post = SiteApi.Data.Posts.GetById(id);
             
             if (post == null)
             {
@@ -52,7 +47,7 @@ namespace AAYW.Core.Web.Controller.Concrete
             comment.PostId = PostId;
             comment.Content = Content;
 
-            commentsManager.CreateOrUpdate(comment);
+            SiteApi.Data.PostComments.CreateOrUpdate(comment);
 
             return RedirectToAction("Post", new { id = PostId });
         }
@@ -60,7 +55,7 @@ namespace AAYW.Core.Web.Controller.Concrete
         [HttpGet]
         public ActionResult Page(string url)
         {
-            var page = pagesManager.GetByField("Url", url);
+            var page = SiteApi.Data.Pages.GetByField("Url", url);
 
             if (page == null)
             {
@@ -73,7 +68,7 @@ namespace AAYW.Core.Web.Controller.Concrete
 
             foreach (var id in blockIds)
             {
-                var block = contentBlocksManager.GetById(id);
+                var block = SiteApi.Data.ContentBlocks.GetById(id);
 
                 if (block.Type == ContentBlock.BlockType.Redirect)
                 {

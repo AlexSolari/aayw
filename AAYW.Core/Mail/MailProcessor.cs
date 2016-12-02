@@ -26,7 +26,7 @@ namespace AAYW.Core.Mail
         private SmtpClient CreateClient()
         {
             var client = new SmtpClient();
-            var websiteSettings = ((WebsiteSettingsManager)SiteApi.Data.WebsiteSettings).GetSettings();
+            var websiteSettings = SiteApi.Data.WebsiteSettings.GetSettings();
 
             if (websiteSettings.MailHost.IsNullOrWhiteSpace() || websiteSettings.MailAdress.IsNullOrWhiteSpace())
                 throw new SystemException("Mailing settings is not configured.");
@@ -42,7 +42,7 @@ namespace AAYW.Core.Mail
 
         public void Send(string adress, string subject, string templateKey, Dictionary<string, string> replacements = null)
         {
-            var websiteSettings = ((WebsiteSettingsManager)SiteApi.Data.WebsiteSettings).GetSettings();
+            var websiteSettings = SiteApi.Data.WebsiteSettings.GetSettings();
             using (var client = CreateClient())
             {
                 var template = SiteApi.Data.MailTemplates.GetByField("Name", templateKey);

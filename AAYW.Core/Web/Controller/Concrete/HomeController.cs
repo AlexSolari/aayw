@@ -33,22 +33,18 @@ namespace AAYW.Core.Controller.Concrete
             }
         }
 
-        IManager<Page> pagesManager = SiteApi.Data.Pages;
-        UserManager userManager = (UserManager)SiteApi.Data.Users;
-        ICache cache = AAYW.Core.Dependecies.Resolver.GetInstance<ICache>();
-
         [HttpGet]
         public ActionResult Theme()
         {
-            if (cache.HasKey("CssTheme"))
+            if (SiteApi.Services.Cache.HasKey("CssTheme"))
             {
-                return cache.Get<Css>("CssTheme");
+                return SiteApi.Services.Cache.Get<Css>("CssTheme");
             }
 
             var theme = SiteApi.Frontend.CurrentTheme;
 
             var css = new Css(theme);
-            cache.Add<Css>(css, "CssTheme");
+            SiteApi.Services.Cache.Add(css, "CssTheme");
 
             return css;
         }
@@ -56,7 +52,7 @@ namespace AAYW.Core.Controller.Concrete
         [HttpGet]
         public ActionResult Index()
         {
-            var homePage = pagesManager.GetByField("Url", "home");
+            var homePage = SiteApi.Data.Pages.GetByField("Url", "home");
             if (Request.Cookies.AllKeys.Contains("aayw-landed") && homePage != null)
             {
                 return RedirectToRoute("CustomPage", new { url = "home"});
@@ -84,7 +80,7 @@ namespace AAYW.Core.Controller.Concrete
         [HttpPost]
         public ActionResult Register(RegistrationModel model)
         {
-            if (!userManager.IsAvalibleForCreation(model.Login))
+            if (!SiteApi.Data.Users.IsAvalibleForCreation(model.Login))
             {
                 ModelState.AddModelError("login", SiteApi.Texts.Get("UserAlreadyRegistered"));
             }
@@ -98,7 +94,7 @@ namespace AAYW.Core.Controller.Concrete
             model.Password = model.Password.Trim();
             model.Confirmation = model.Confirmation.Trim();
 
-            if (userManager.Register(model.Login, model.Password))
+            if (SiteApi.Data.Users.Register(model.Login, model.Password))
             {
                 return RedirectToRoute("Login");
             }
@@ -115,7 +111,7 @@ namespace AAYW.Core.Controller.Concrete
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
-            if (!userManager.Login(model.Login, model.Password))
+            if (!SiteApi.Data.Users.Login(model.Login, model.Password))
             {
                 ModelState.AddModelError("", SiteApi.Texts.Get("FailedToLogin"));
             }
@@ -131,7 +127,7 @@ namespace AAYW.Core.Controller.Concrete
         [HttpGet]
         public ActionResult Logout()
         {
-            userManager.Logout();
+            SiteApi.Data.Users.Logout();
 
             return RedirectToRoute("Home");
         }

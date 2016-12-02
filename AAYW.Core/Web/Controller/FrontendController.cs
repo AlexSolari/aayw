@@ -15,7 +15,7 @@ namespace AAYW.Core.Web.Controller
         public FrontendController()
     	{
 
-	    }
+        }
 
         public abstract string Name { get; }
     }

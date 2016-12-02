@@ -67,7 +67,7 @@ namespace AAYW.Core.Controller.Concrete.Admin
         {
             var template = Mapper.Map<MailTemplate, MailTemplateCreateModel>(model);
 
-            if (!((MailTemplateManager)SiteApi.Data.MailTemplates).CanCreate(template))
+            if (!SiteApi.Data.MailTemplates.CanCreate(template))
             {
                 ModelState.AddModelError("Name", SiteApi.Texts.Get("Error_TemplateExist"));
             }

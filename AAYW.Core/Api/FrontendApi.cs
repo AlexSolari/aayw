@@ -36,7 +36,7 @@ namespace AAYW.Core.Api
             {
                 get
                 {
-                    var settings = SiteApi.Data.WebsiteSettings.All().FirstOrDefault();
+                    var settings = SiteApi.Data.WebsiteSettings.GetSettings();
                     
                     if (settings == null)
                         return DefaultTheme;
@@ -51,7 +51,7 @@ namespace AAYW.Core.Api
 
                 set
                 {
-                    var settings = SiteApi.Data.WebsiteSettings.All().FirstOrDefault() ?? Resolver.GetInstance<WebsiteSetting>();
+                    var settings = SiteApi.Data.WebsiteSettings.GetSettings();
 
                     var serialized = value.Serialize();
 
