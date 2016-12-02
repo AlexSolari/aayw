@@ -69,12 +69,15 @@ namespace AAYW.Core.Controller.Concrete.Admin
 
             if (!SiteApi.Data.MailTemplates.CanCreate(template))
             {
-                ModelState.AddModelError("Name", SiteApi.Texts.Get("Error_TemplateExist"));
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return PartialView("_MailTemplateCreate", model);
+                if (!SiteApi.Data.MailTemplates.CanUpdate(template))
+                {
+                    ModelState.AddModelError("Name", SiteApi.Texts.Get("Error_TemplateExist"));
+                    return PartialView("_MailTemplateCreate", model);
+                }
+                else
+                {
+                    SiteApi.Data.MailTemplates.CreateOrUpdate(template);
+                }
             }
 
             SiteApi.Data.MailTemplates.CreateOrUpdate(template);

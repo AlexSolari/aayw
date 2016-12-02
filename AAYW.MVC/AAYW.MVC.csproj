@@ -131,6 +131,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\admin.js" />
+    <Content Include="Scripts\lib\AAYW.Admin.CustomPages.js" />
+    <Content Include="Scripts\lib\AAYW.Admin.ContentBlocks.js" />
+    <Content Include="Scripts\lib\AAYW.Admin.CustomForms.js" />
+    <Content Include="Scripts\lib\AAYW.Admin.MailSettings.js" />
+    <Content Include="Scripts\lib\AAYW.Admin.MailTemplates.js" />
+    <Content Include="Scripts\lib\AAYW.Admin.EntityInspector.js" />
     <Content Include="Scripts\lib\AAYW.ColorPickers.js" />
     <Content Include="Scripts\lib\AAYW.LoadingIndicator.js" />
     <Content Include="Scripts\lib\AAYW.Settings.js" />
@@ -202,6 +208,7 @@
     <Content Include="Views\Shared\EditorTemplates\Color.cshtml" />
     <Content Include="Views\AdminGeneral\ChangeColorTheme.cshtml" />
     <Content Include="Scripts\lib\AAYW.LinksEngine.js" />
+    <Content Include="Scripts\lib\AAYW.Pages.Posts.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

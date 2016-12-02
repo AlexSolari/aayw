@@ -15,6 +15,23 @@ namespace AAYW.Core.Data.Managers
         public UserFormManager() : base() { }
         public UserFormManager(bool suppressLogging) : base(suppressLogging) { }
 
+        public override void CreateOrUpdate(UserForm model)
+        {
+            if (IsAvalibleForCreation(model) || CanUpdate(model))
+            {
+                if (CanUpdate(model))
+                {
+                    var secondModel = GetByField("Url", model.Url);
+                    model.DataId = secondModel.DataId;
+                }
+                base.CreateOrUpdate(model);
+            }
+            else
+            {
+                throw new ArgumentException("UserForm with this url already exist");
+            }
+        }
+
         public bool IsAvalibleForCreation(UserForm model)
         {
             var fromDb = GetByField("Url", model.Url);
@@ -25,6 +42,13 @@ namespace AAYW.Core.Data.Managers
             }
 
             return false;
+        }
+
+        public bool CanUpdate(UserForm model)
+        {
+            var secondModel = GetByField("Url", model.Url);
+
+            return (secondModel != null && secondModel.Id == model.Id);
         }
     }
 }
