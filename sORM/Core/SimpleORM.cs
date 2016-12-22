@@ -93,14 +93,14 @@ namespace sORM.Core
         }
 
         public void CreateOrUpdate<T>(T obj)
-            where T : DataEntity
         {
+            var map = Mappings[typeof(T)];
             var isCreate = false;
 
             var checkIsExistRequest = new SelectRequest(true);
             checkIsExistRequest.SetTargetType(obj.GetType());
 
-            isCreate = Count<T>(Condition.Equals("DataId", obj.DataId)) == 0;
+            isCreate = Count<T>(Condition.Equals(map.KeyName, typeof(T).GetProperty(map.KeyName).GetValue(obj))) == 0;
 
             IRequest request;
 
@@ -116,14 +116,13 @@ namespace sORM.Core
             Requests.Execute(request);
         }
 
-        public void Delete(DataEntity obj)
+        public void Delete(object obj)
         {
             var request = new DeleteRequest(obj);
             Requests.Execute(request);
         }
 
         public void Delete<T>(ICondition condition = null)
-            where T : DataEntity
         {
             var request = new DeleteRequest(typeof(T));
             if (condition != null)
@@ -132,7 +131,6 @@ namespace sORM.Core
         }
 
         public IEnumerable<T> Get<T>(ICondition condition = null, DataEntityListLoadOptions options = null)
-            where T : DataEntity
         {
             SelectRequest request;
 
@@ -163,7 +161,6 @@ namespace sORM.Core
         }
 
         public int Count<T>(ICondition condition = null)
-            where T : DataEntity
         {
             var request = new SelectRequest(true);
 

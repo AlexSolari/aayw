@@ -18,26 +18,14 @@ namespace AAYW.Core.Models.Bussines.User
             public const string User = "user";
             public const string Admin = "admin";
         }
+
         [MapAsType(DataType.String)]
         public virtual string Login { get; set; }
+
         [MapAsType(DataType.String)]
         public virtual string PasswordHash { get; set; }
+
         [MapAsType(DataType.String)]
         public virtual string CurrentRole { get; set; }
-
-        #region DataEntity members
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        [InspectorLock]
-        public override Guid Id { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime CreatedDate { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime ModifiedDate { get; set; }
-
-        [InspectorLock]
-        public override string DataId { get; set; }
-        #endregion
     }
 }

@@ -19,11 +19,6 @@ namespace AAYW.Core.Data.Managers
         {
             if (IsAvalibleForCreation(model) || CanUpdate(model))
             {
-                if (CanUpdate(model))
-                {
-                    var secondModel = GetByField("Url", model.Url);
-                    model.DataId = secondModel.DataId;
-                }
                 base.CreateOrUpdate(model);
             }
             else

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sORM.Core.Mappings
 {
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple=false)]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple=false, Inherited = true)]
     public class MapAutoAttribute : Attribute
     {
         public MapAutoAttribute() { }

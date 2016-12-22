@@ -24,20 +24,5 @@ namespace AAYW.Core.Models.Bussines.Post
         [CustomMaxLength(500)]
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public virtual string Content { get; set; }
-
-        #region DataEntity members
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        [InspectorLock]
-        public override Guid Id { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime CreatedDate { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime ModifiedDate { get; set; }
-
-        [InspectorLock]
-        public override string DataId { get; set; }
-        #endregion
     }
 }

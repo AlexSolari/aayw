@@ -11,6 +11,7 @@ namespace sORM.Core.Mappings
     {
         public Dictionary<PropertyInfo, string> Data = new Dictionary<PropertyInfo, string>();
         public string Name;
+        public string KeyName;
 
         public System.Data.SqlDbType GetSqlType(string key)
         {

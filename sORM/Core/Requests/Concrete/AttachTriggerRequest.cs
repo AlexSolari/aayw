@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace sORM.Core.Requests.Concrete
 {
     public class AttachTriggerRequest<TType> : IRequest
-        where TType : DataEntity
     {
         public enum When
         {

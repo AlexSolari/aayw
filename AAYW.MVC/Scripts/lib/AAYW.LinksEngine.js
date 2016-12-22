@@ -4,7 +4,7 @@
 	AAYW.Engine = AAYW.Engine || {};
 
 	AAYW.Engine.Links = AAYW.Engine.Links || (function (window) {
-	    function redirect(href) {
+	    function redirect(href, callback) {
 	        var loaded = false;
 	        $.ajax({
 	            method: 'GET',
@@ -28,6 +28,9 @@
 
 	                $(".click-bar").show();
 	                $(".click-bar").css("width", 100 + "%");
+
+	                if (callback)
+	                    callback();
 	            },
 	            error: function (data) {
 	                document.location.href = href;
@@ -64,13 +67,14 @@
 			var interval = null;
 
 			if (self.href && self.href != document.location.href && self.href != document.location.href + "#") {
-			    redirect(self.href);
-
-			    if (AAYW.Settings.DebugMode) {
-			        console.log({
-			            pageLoadingTime: new Date().getTime() - startingTime,
-			        });
-			    }
+			    redirect(self.href, function () {
+			        if (AAYW.Settings.DebugMode) {
+			            console.log({
+			                href: self.href,
+			                pageLoadingTime: new Date().getTime() - startingTime,
+			            });
+			        }
+			    });
 			}
 		};
 

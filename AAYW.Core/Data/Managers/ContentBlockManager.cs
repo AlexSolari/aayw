@@ -17,11 +17,6 @@ namespace AAYW.Core.Data.Managers
 
         public override void CreateOrUpdate(ContentBlock model)
         {
-            if (UpdateNeeded(model))
-            {
-                var secondModel = GetById(model.Id.ToString());
-                model.DataId = secondModel.DataId;
-            }
             base.CreateOrUpdate(model);
         }
 

@@ -13,21 +13,8 @@ namespace AAYW.Core.Models.Bussines.Admin
     {
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public virtual string Name { get; set; }
+
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public virtual string Body { get; set; }
-
-        #region DataEntity members
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        [InspectorLock]
-        public override Guid Id { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime CreatedDate { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime ModifiedDate { get; set; }
-
-        public override string DataId { get; set; }
-        #endregion
     }
 }

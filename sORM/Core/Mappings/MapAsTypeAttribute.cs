@@ -15,7 +15,7 @@ namespace sORM.Core.Mappings
         Float,
     }
 
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple=false)]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple=false, Inherited = true)]
     public class MapAsTypeAttribute : Attribute
     {
         public string Type;

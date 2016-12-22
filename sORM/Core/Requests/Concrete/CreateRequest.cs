@@ -13,7 +13,7 @@ namespace sORM.Core.Requests.Concrete
     {
         private object Target;
 
-        public CreateRequest(DataEntity objToCreate)
+        public CreateRequest(object objToCreate)
         {
             Target = objToCreate;
         }

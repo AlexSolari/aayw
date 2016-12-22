@@ -1,4 +1,5 @@
-﻿using sORM.Core;
+﻿using AAYW.Core.Annotations;
+using sORM.Core;
 using sORM.Core.Mappings;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace AAYW.Core.Models.Bussines.Theme
 {
     [DataModel]
-    public class Theme : DataEntity
+    public class Theme : Entity
     {
         [UIHint("Color")]
         [MapAsType(sORM.Core.Mappings.DataType.String)]
@@ -48,7 +50,20 @@ namespace AAYW.Core.Models.Bussines.Theme
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public string Accent { get; set; }
 
-        [ScaffoldColumn(false)]
-        public override string DataId { get; set; }
+        #region Base
+        [MapAsType(sORM.Core.Mappings.DataType.String)]
+        [InspectorLock]
+        [sORM.Core.Mappings.Key]
+        [HiddenInput(DisplayValue = false)]
+        public override string Id { get; set; }
+
+        [MapAsType(sORM.Core.Mappings.DataType.String)]
+        [HiddenInput(DisplayValue = false)]
+        public override DateTime CreatedDate { get; set; }
+
+        [MapAsType(sORM.Core.Mappings.DataType.String)]
+        [HiddenInput(DisplayValue = false)]
+        public override DateTime ModifiedDate { get; set; }
+        #endregion
     }
 }

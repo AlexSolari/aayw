@@ -13,16 +13,20 @@ namespace sORM.Core.Requests.Concrete
     public class UpdateRequest : IParametrizedRequest, IConditionalRequest
     {
         public IList<ICondition> Conditions { get; set; }
-        private Dictionary<string, string> parameters = new Dictionary<string, string>();
+        private Dictionary<string, object> parameters = new Dictionary<string, object>();
         private object Target;
+        private Type TargetType;
 
-        public UpdateRequest(DataEntity objToUpdate = null)
+        public UpdateRequest(object objToUpdate = null)
         {
             Conditions = new List<ICondition>();
             Target = objToUpdate;
+            TargetType = objToUpdate.GetType();
             if (objToUpdate != null)
             {
-                AddCondition(Condition.Equals("DataId", objToUpdate.DataId));
+                var map = SimpleORM.Current.Mappings[TargetType];
+                AddCondition(Condition.Equals(map.KeyName, TargetType.GetProperty(map.KeyName).GetValue(objToUpdate)));
+
                 var props = objToUpdate.GetType().GetProperties();
                 foreach (var p in props)
                 {
@@ -74,15 +78,15 @@ namespace sORM.Core.Requests.Concrete
 
         public void AddParameter(string fieldname, object value)
         {
-            string res;
+            object res;
             if (value == null)
             {
                 res = "NULL";
             }
-            else if (value is string || value is Guid || value is DateTime)
+            /*else if (value is string || value is Guid || value is DateTime)
             {
                 res = string.Format("{0}", value);
-            }
+            }*/
             else if (value is bool)
             {
                 res = value.ToString();
@@ -90,6 +94,10 @@ namespace sORM.Core.Requests.Concrete
             else if (value is XmlDocument)
             {
                 res = ((XmlDocument)value).InnerXml;
+            }
+            else if (value is Guid)
+            {
+                res = value;
             }
             else
             {

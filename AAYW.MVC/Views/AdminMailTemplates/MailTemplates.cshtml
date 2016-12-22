@@ -56,9 +56,6 @@
                             @item.ModifiedDate
                         </td>
                         <td>
-                            @item.DataId
-                        </td>
-                        <td>
                             <div class="row">
                                 @Html.Button(Html.Text("Delete"), ButtonType.Raised, Url.RouteUrl("DeleteMailTemplate", new { id = item.Id }), "mui-btn--danger")
                             </div>

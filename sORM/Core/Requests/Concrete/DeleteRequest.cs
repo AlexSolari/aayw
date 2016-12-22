@@ -16,12 +16,14 @@ namespace sORM.Core.Requests.Concrete
         private string tableName;
         private Type TargetType;
 
-        public DeleteRequest(DataEntity obj)
+        public DeleteRequest(object obj)
         {
             TargetType = obj.GetType();
             tableName = obj.GetType().Name;
             Conditions = new List<ICondition>();
-            AddCondition(Condition.Equals("DataId", obj.DataId));
+
+            var map = SimpleORM.Current.Mappings[TargetType];
+            AddCondition(Condition.Equals(map.KeyName, TargetType.GetProperty(map.KeyName).GetValue(obj)));
         }
 
         public DeleteRequest(Type type)

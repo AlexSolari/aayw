@@ -18,25 +18,14 @@ namespace AAYW.Core.Models.Bussines.Admin
             public const string Feed = "feed";
             public const string Redirect = "redirect";
         }
+
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public virtual string Name { get; set; }
+
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public virtual string Type { get; set; }
+
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public virtual string Content { get; set; }
-
-        #region DataEntity members
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        [InspectorLock]
-        public override Guid Id { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime CreatedDate { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime ModifiedDate { get; set; }
-
-        public override string DataId { get; set; }
-        #endregion
     }
 }

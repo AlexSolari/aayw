@@ -22,7 +22,7 @@ namespace AAYW.Core.Data.Managers
                 if (CanUpdate(model))
                 {
                     var secondModel = GetByField("Name", model.Name);
-                    model.DataId = secondModel.DataId;
+                    model.Id = secondModel.Id;
                 }
                 base.CreateOrUpdate(model);
             }

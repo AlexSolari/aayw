@@ -1,4 +1,5 @@
-﻿using System;
+﻿using sORM.Core.Mappings.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,7 @@ namespace sORM.Core.Mappings
 
 
         public void Map(Type type)
-        {
-            if (!typeof(DataEntity).IsAssignableFrom(type))
-            {
-                throw new ArgumentException("Type to map into database must be inherited from sORM.Core.DataEntity");
-            }
-
+        { 
             var props = type.GetProperties();
 
             var result = new Map();
@@ -32,15 +28,14 @@ namespace sORM.Core.Mappings
 
             foreach (var prop in props)
             {
-                if (prop.Name.Equals("DataId"))
-                {
-                    result.Data.Add(prop, "DataId VARCHAR(MAX)");
-                    continue;
-                }
-
                 string sqltype = string.Empty;
-                foreach (object attrib in prop.GetCustomAttributes(true))
+                foreach (Attribute attrib in prop.GetCustomAttributes(true))
                 {
+                    if (attrib.GetType() == typeof(KeyAttribute))
+                    {
+                        result.KeyName = ((KeyAttribute)attrib).PropertyName;
+                    }
+
                     if (attrib.GetType() == typeof(MapAsTypeAttribute))
                     {
                         sqltype = ((MapAsTypeAttribute)attrib).Type;
@@ -56,6 +51,11 @@ namespace sORM.Core.Mappings
 
                 var parsedDefinition = prop.Name + " " + sqltype;
                 result.Data.Add(prop, parsedDefinition);
+            }
+
+            if (string.IsNullOrWhiteSpace(result.KeyName))
+            {
+                throw new KeyPropertyNotFoundException(type);
             }
 
             SimpleORM.Current.Mappings.Add(type, result);
@@ -80,7 +80,6 @@ namespace sORM.Core.Mappings
         }
 
         public void Map<TType>()
-            where TType: DataEntity
         {
             Map(typeof(TType));
         }

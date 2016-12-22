@@ -17,11 +17,6 @@ namespace AAYW.Core.Data.Managers
 
         public override void CreateOrUpdate(Page model)
         {
-            if (UpdateNeeded(model))
-            {
-                var secondModel = GetByField("Url", model.Url);
-                model.DataId = secondModel.DataId;
-            }
             base.CreateOrUpdate(model);
         }
 

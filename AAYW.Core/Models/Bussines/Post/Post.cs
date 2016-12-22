@@ -18,6 +18,7 @@ namespace AAYW.Core.Models.Bussines.Post
         [CustomMaxLength(500)]
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public virtual string Title { get; set; }
+
         [CustomRequired("Content")]
         [UIHint("HtmlEditor")]
         [CustomMaxLength(2000, PlainTextOnly = true)]
@@ -25,23 +26,9 @@ namespace AAYW.Core.Models.Bussines.Post
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         [AllowHtml]
         public virtual string Content { get; set; }
+
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         [UIHint("FeedSelector")]
         public virtual string FeedId { get; set; }
-
-        #region DataEntity members
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        [InspectorLock]
-        public override Guid Id { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime CreatedDate { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        public override DateTime ModifiedDate { get; set; }
-
-        [InspectorLock]
-        public override string DataId { get; set; }
-        #endregion
     }
 }

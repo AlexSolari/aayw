@@ -9,14 +9,17 @@ using System.Threading.Tasks;
 
 namespace AAYW.Core.Models.Bussines
 {
-    public abstract class Entity : DataEntity
+    public abstract class Entity
     {
-        public abstract Guid Id { get; set; }
+        [MapAsType(sORM.Core.Mappings.DataType.String)]
+        [InspectorLock]
+        [Key]
+        public virtual string Id { get; set; }
 
-        public abstract DateTime CreatedDate { get; set; }
+        [MapAsType(sORM.Core.Mappings.DataType.String)]
+        public virtual DateTime CreatedDate { get; set; }
 
-        public abstract DateTime ModifiedDate { get; set; }
-
-        public override string DataId { get; set; }
+        [MapAsType(sORM.Core.Mappings.DataType.String)]
+        public virtual DateTime ModifiedDate { get; set; }
     }
 }
