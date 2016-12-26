@@ -43,8 +43,8 @@ namespace AAYW.Core.Web.Controller.Concrete
             }
 
             var comment = Dependecies.Resolver.GetInstance<PostComment>();
-            comment.UserId = UserId;
-            comment.PostId = PostId;
+            comment.UserId = Guid.Parse(UserId);
+            comment.PostId = Guid.Parse(PostId);
             comment.Content = Content;
 
             SiteApi.Data.PostComments.CreateOrUpdate(comment);

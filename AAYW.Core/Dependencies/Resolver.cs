@@ -89,7 +89,7 @@ namespace AAYW.Core.Dependecies
                 var entity = result as Entity;
                 entity.CreatedDate = DateTime.Now;
                 entity.ModifiedDate = DateTime.Now;
-                entity.Id = Guid.NewGuid().ToString();
+                entity.Id = Guid.NewGuid();
             }
 
             return (T)result;
@@ -118,7 +118,7 @@ namespace AAYW.Core.Dependecies
                 var entity = result as Entity;
                 entity.CreatedDate = DateTime.Now;
                 entity.ModifiedDate = DateTime.Now;
-                entity.Id = Guid.NewGuid().ToString();
+                entity.Id = Guid.NewGuid();
             }
 
             return result;
@@ -160,7 +160,7 @@ namespace AAYW.Core.Dependecies
                 var entity = result as Entity;
                 entity.CreatedDate = DateTime.Now;
                 entity.ModifiedDate = DateTime.Now;
-                entity.Id = Guid.NewGuid().ToString();
+                entity.Id = Guid.NewGuid();
             }
 
             return result;

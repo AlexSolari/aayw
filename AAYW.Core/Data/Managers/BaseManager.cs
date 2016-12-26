@@ -53,12 +53,12 @@ namespace AAYW.Core.Data.Managers
             provider.Delete(model);
         }
 
-        public virtual TModel GetByField(string field, string value)
+        public virtual TModel GetByField(string field, object value)
         {
             return provider.GetByField(field, value);
         }
 
-        public virtual IList<TModel> GetListByField(string field, string value)
+        public virtual IList<TModel> GetListByField(string field, object value)
         {
             return provider.GetListByField(field, value);
         }

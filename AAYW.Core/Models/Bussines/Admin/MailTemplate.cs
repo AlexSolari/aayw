@@ -11,6 +11,7 @@ namespace AAYW.Core.Models.Bussines.Admin
     [DataModel]
     public class MailTemplate : Entity
     {
+        [SecondaryKey]
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public virtual string Name { get; set; }
 

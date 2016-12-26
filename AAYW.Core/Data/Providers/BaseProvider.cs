@@ -52,12 +52,12 @@ namespace AAYW.Core.Data.Providers
             return result;
         }
 
-        public virtual TEntity GetByField(string field, string value)
+        public virtual TEntity GetByField(string field, object value)
         {
             LogRequest("GetByField", new Dictionary<string, string>() 
             { 
                 { "field", field },
-                { "value", value },
+                { "value", value.ToString() },
             });
 
             return WrapRequestExecution(() => 
@@ -77,12 +77,12 @@ namespace AAYW.Core.Data.Providers
             });
         }
 
-        public virtual IList<TEntity> GetListByField(string field, string value)
+        public virtual IList<TEntity> GetListByField(string field, object value)
         {
             LogRequest("GetListByField", new Dictionary<string, string>() 
             { 
                 { "field", field },
-                { "value", value },
+                { "value", value.ToString() },
             });
 
             return WrapRequestExecution(() =>

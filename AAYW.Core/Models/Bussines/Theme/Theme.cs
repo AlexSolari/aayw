@@ -49,21 +49,5 @@ namespace AAYW.Core.Models.Bussines.Theme
         [UIHint("Color")]
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public string Accent { get; set; }
-
-        #region Base
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        [InspectorLock]
-        [sORM.Core.Mappings.Key]
-        [HiddenInput(DisplayValue = false)]
-        public override string Id { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        [HiddenInput(DisplayValue = false)]
-        public override DateTime CreatedDate { get; set; }
-
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
-        [HiddenInput(DisplayValue = false)]
-        public override DateTime ModifiedDate { get; set; }
-        #endregion
     }
 }

@@ -6,7 +6,7 @@
     var userManager = (AAYW.Core.Data.Managers.UserManager)AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.IManager<User>>();
     var CurrentUser = userManager.CurrentUser;
     var commentsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<PostComment>>();
-    var comments = commentsManager.GetListByField("PostId", Model.Id.ToString());
+    var comments = commentsManager.GetListByField("PostId", Model.Id);
     ViewBag.Title = Model.Title;
 }
 

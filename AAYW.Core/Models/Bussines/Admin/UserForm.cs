@@ -22,6 +22,7 @@ namespace AAYW.Core.Models.Bussines.Admin
         public virtual string Url { get; set; }
 
         [MapAsType(sORM.Core.Mappings.DataType.String)]
+        [ReferenceTo(typeof(MailTemplate), "Name")]
         public virtual string MailTemplateName { get; set; }
 
         [MapAsType(sORM.Core.Mappings.DataType.String)]

@@ -32,7 +32,7 @@ namespace AAYW.Core.Web.Controller.Concrete
         {
             var post = AAYW.Core.Dependecies.Resolver.GetInstance<Post>();
 
-            post.FeedId = feedId;
+            post.FeedId = Guid.Parse(feedId);
 
             return PartialView("PostEditor", post);
         }

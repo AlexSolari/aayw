@@ -1,4 +1,5 @@
 ﻿using AAYW.Core.Annotations;
+using AAYW.Core.Models.Bussines.Admin;
 using sORM.Core.Mappings;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,9 @@ namespace AAYW.Core.Models.Bussines.Post
         [AllowHtml]
         public virtual string Content { get; set; }
 
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
+        [MapAsType(sORM.Core.Mappings.DataType.Guid)]
         [UIHint("FeedSelector")]
-        public virtual string FeedId { get; set; }
+        [ReferenceTo(typeof(ContentBlock), "Id")]
+        public virtual Guid FeedId { get; set; }
     }
 }

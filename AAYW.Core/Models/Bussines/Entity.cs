@@ -11,10 +11,10 @@ namespace AAYW.Core.Models.Bussines
 {
     public abstract class Entity
     {
-        [MapAsType(sORM.Core.Mappings.DataType.String)]
+        [MapAsType(sORM.Core.Mappings.DataType.Guid)]
         [InspectorLock]
         [Key]
-        public virtual string Id { get; set; }
+        public virtual Guid Id { get; set; }
 
         [MapAsType(sORM.Core.Mappings.DataType.String)]
         public virtual DateTime CreatedDate { get; set; }
