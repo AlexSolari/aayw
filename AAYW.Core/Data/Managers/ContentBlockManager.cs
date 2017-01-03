@@ -14,5 +14,17 @@ namespace AAYW.Core.Data.Managers
     {
         public ContentBlockManager() : base() { }
         public ContentBlockManager(bool suppressLogging) : base(suppressLogging) { }
+
+        public override void CreateOrUpdate(ContentBlock model)
+        {
+            base.CreateOrUpdate(model);
+        }
+
+        private bool UpdateNeeded(ContentBlock model)
+        {
+            var secondModel = GetById(model.Id.ToString());
+
+            return (secondModel != null);
+        }
     }
 }

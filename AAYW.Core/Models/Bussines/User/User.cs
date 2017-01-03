@@ -1,5 +1,6 @@
 ﻿using AAYW.Core.Annotations;
 using AAYW.Core.Models;
+using sORM.Core.Mappings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,22 @@ using System.Threading.Tasks;
 namespace AAYW.Core.Models.Bussines.User
 {
     [Inspectable]
+    [DataModel]
     public class User : Entity
     {
-        public enum Role : int
+        public sealed class Role
         {
-            User,
-            Admin
+            public const string User = "user";
+            public const string Admin = "admin";
         }
+
+        [MapAsType(DataType.String)]
         public virtual string Login { get; set; }
+
+        [MapAsType(DataType.String)]
         public virtual string PasswordHash { get; set; }
-        public virtual Role CurrentRole { get; set; }
+
+        [MapAsType(DataType.String)]
+        public virtual string CurrentRole { get; set; }
     }
 }

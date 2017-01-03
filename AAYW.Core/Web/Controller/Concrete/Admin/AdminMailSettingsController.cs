@@ -44,7 +44,7 @@ namespace AAYW.Core.Controller.Concrete.Admin
         [HttpGet]
         public ActionResult MailSettings()
         {
-            var websiteSettings = ((WebsiteSettingsManager)SiteApi.Data.WebsiteSettings).GetSettings();
+            var websiteSettings = SiteApi.Data.WebsiteSettings.GetSettings();
             var mailSettings = Mapper.Map<MailSettings, WebsiteSetting>(websiteSettings);
             return View(mailSettings);
         }
@@ -54,8 +54,8 @@ namespace AAYW.Core.Controller.Concrete.Admin
         {
             if (ModelState.IsValid)
             {
-                var websiteSettings = ((WebsiteSettingsManager)SiteApi.Data.WebsiteSettings).GetSettings();
-                websiteSettings = Mapper.MapAndMerge<WebsiteSetting, MailSettings>(model, websiteSettings);
+                var websiteSettings = SiteApi.Data.WebsiteSettings.GetSettings();
+                websiteSettings = Mapper.MapAndMerge(model, websiteSettings);
                 SiteApi.Data.WebsiteSettings.CreateOrUpdate(websiteSettings);
             }
 

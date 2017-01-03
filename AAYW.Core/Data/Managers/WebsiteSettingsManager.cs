@@ -23,7 +23,7 @@ namespace AAYW.Core.Data.Managers
 
         public WebsiteSetting GetSettings()
         {
-            var model = provider.GetList().FirstOrDefault();
+            var model = provider.All().FirstOrDefault();
 
             if (model == null)
             {

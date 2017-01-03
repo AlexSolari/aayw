@@ -14,8 +14,6 @@ namespace AAYW.Core.Web.Controller.Concrete
     [AccessLevel(Models.Bussines.User.User.Role.Admin)]
     public class FeedController : FrontendController
     {
-        IManager<Post> postManager = SiteApi.Data.Posts;
-
         public FeedController()
         {
 
@@ -34,7 +32,7 @@ namespace AAYW.Core.Web.Controller.Concrete
         {
             var post = AAYW.Core.Dependecies.Resolver.GetInstance<Post>();
 
-            post.FeedId = feedId;
+            post.FeedId = Guid.Parse(feedId);
 
             return PartialView("PostEditor", post);
         }
@@ -42,7 +40,7 @@ namespace AAYW.Core.Web.Controller.Concrete
         [HttpGet]
         public ActionResult EditPost(string postId)
         {
-            var post = postManager.GetById(postId);
+            var post = SiteApi.Data.Posts.GetById(postId);
 
             return PartialView("PostEditor", post);
         }
@@ -51,7 +49,7 @@ namespace AAYW.Core.Web.Controller.Concrete
         public ActionResult CreateOrUpdatePost(Post post, string returnUrl)
         {
             if (ModelState.IsValid)
-                postManager.CreateOrUpdate(post);
+                SiteApi.Data.Posts.CreateOrUpdate(post);
             else
             {
                 return Json(ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { key = x.Key, errors = x.Value.Errors }));
@@ -63,11 +61,11 @@ namespace AAYW.Core.Web.Controller.Concrete
         [HttpPost]
         public ActionResult DeletePost(string id)
         {
-            var postToDelete = postManager.GetById(id);
+            var postToDelete = SiteApi.Data.Posts.GetById(id);
 
             if (postToDelete != null)
             {
-                postManager.Delete(postToDelete);
+                SiteApi.Data.Posts.Delete(postToDelete);
             }
 
             return Json(true);

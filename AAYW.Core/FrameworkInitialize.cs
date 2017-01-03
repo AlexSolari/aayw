@@ -30,6 +30,11 @@ using AAYW.Core.Logging;
 using AAYW.Core.Cache;
 using AAYW.Core.Api;
 using AAYW.Core.Controller.Concrete.Admin;
+using AAYW.Core.Data;
+using AAYW.Core.Models.View.Settings;
+using AAYW.Core.Models.View.MailTemplates;
+using AAYW.Core.Models.View.ContentBlock;
+using AAYW.Core.Models.View.User;
 
 namespace AAYW.Core
 {
@@ -39,7 +44,16 @@ namespace AAYW.Core
 
         public static void Initialize()
         {
-            // Register types here, and call this in Global.asax
+            // Register instances here
+            // Example:
+            //  Resolver.RegisterInstance<TType>(new TType());
+            //  Resolver.RegisterInstance<IInterface>(new TRealisation());
+            //  Resolver.RegisterInstance<TBase>(new TDerived());
+            Resolver.RegisterInstance<ILogger>(new Logger());
+            Resolver.RegisterInstance<ICache>(new DefaultCache());
+            Resolver.RegisterInstance<IReflector>(new EntityReflector());
+
+            // Register types here
             // Example:
             //  Resolver.RegisterType<TBase, TDerived>();
             //  Resolver.RegisterType<IInterface, TRealisation>();
@@ -47,19 +61,23 @@ namespace AAYW.Core
             Resolver.RegisterType<IControllerFactory, BaseControllerFactory>();
             Resolver.RegisterType<IMailProcessor, MailProcessor>();
             Resolver.RegisterType<IReflectionData, EntityReflectionData>();
-            Resolver.RegisterType<IReflector, EntityReflector>();
-            Resolver.RegisterType<ILogger, Logger>();
-            Resolver.RegisterType<ICache, DefaultCache>();
 
             // Registrering entites
             Resolver.RegisterType<Post, Post>(true);
             Resolver.RegisterType<User, User>(true);
             Resolver.RegisterType<Page, Page>(true);
             Resolver.RegisterType<UserForm, UserForm>(true);
+            Resolver.RegisterType<LoginModel, LoginModel>();
+            Resolver.RegisterType<UserFormField, UserFormField>();
             Resolver.RegisterType<PostComment, PostComment>(true);
             Resolver.RegisterType<MailTemplate, MailTemplate>(true);
             Resolver.RegisterType<ContentBlock, ContentBlock>(true);
+            Resolver.RegisterType<MailSettings, MailSettings>(false);
+            Resolver.RegisterType<PageDesignModel, PageDesignModel>();
             Resolver.RegisterType<WebsiteSetting, WebsiteSetting>(true);
+            Resolver.RegisterType<UserFormDesignModel, UserFormDesignModel>();
+            Resolver.RegisterType<MailTemplateCreateModel, MailTemplateCreateModel>();
+            Resolver.RegisterType<ContentBlockDesignModel, ContentBlockDesignModel>();
 
             // Registering providers
             Resolver.RegisterType<IProvider<Post>, PostProvider>();
@@ -81,22 +99,23 @@ namespace AAYW.Core
             Resolver.RegisterType<IManager<MailTemplate>, MailTemplateManager>();
             Resolver.RegisterType<IManager<WebsiteSetting>, WebsiteSettingsManager>();
 
-            var logger = SiteApi.Services.Logger;
-
-            //Controllers
-            logger.Log("Registering controllers and controller factory");
+            SiteApi.Services.Logger.Log("--------- Website started ---------");
+            SiteApi.Services.Logger.Log("Registering controllers and controller factory");
             RegisterControllers();
-            //Routing
-            logger.Log("Registering routes");
+
+            SiteApi.Services.Logger.Log("Registering routes");
             RegisterRoutes(RouteTable.Routes);
-            //DataBinders
-            logger.Log("Registering model binders");
+
+            SiteApi.Services.Logger.Log("Registering model binders");
             ModelBinders.Binders.Add(typeof(UserFormDesignModel), new UserFormDataBinder());
-            //Custom Mappings
-            logger.Log("Registering custom mappings");
+
+            SiteApi.Services.Logger.Log("Registering custom mappings");
             RegisterCustomMappings();
 
-            logger.Log("AAYW Framework initialized");
+            SiteApi.Services.Logger.Log("Setting up database");
+            DatabaseHelper.Initialize();
+
+            SiteApi.Services.Logger.Log("AAYW Framework initialized");
         }
 
         private static void RegisterCustomMappings()

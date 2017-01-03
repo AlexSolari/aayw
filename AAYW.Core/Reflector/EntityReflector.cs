@@ -12,27 +12,11 @@ namespace AAYW.Core.Reflector
 {
     public class EntityReflector : IReflector
     {
-        static Dictionary<Type, IReflectionData> reflectionCache { get; set; }
-
-        static EntityReflector()
-        {
-            SiteApi.Services.Logger.Log("Reflecting and caching all assembled classes");
-            reflectionCache = new Dictionary<Type, IReflectionData>();
-            var types = Assembly.GetExecutingAssembly().DefinedTypes;
-            foreach (var type in types)
-            {
-                if (reflectionCache.ContainsKey(type))
-                    continue;
-
-                var reflectionData = Resolver.GetInstance<IReflectionData>(type);
-
-                reflectionCache.Add(type, reflectionData);
-            }
-        }
+        private Dictionary<Type, IReflectionData> reflectionCache { get; set; }
 
         public EntityReflector()
         {
-            
+            reflectionCache = new Dictionary<Type, IReflectionData>();
         }
 
         public IReflectionData Reflect<TType>()

@@ -31,20 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -91,6 +83,7 @@
     <Compile Include="Annotations\AccessLevelAttribute.cs" />
     <Compile Include="Annotations\CustomCompareAttribute.cs" />
     <Compile Include="Annotations\CustomRequiredAttribute.cs" />
+    <Compile Include="Annotations\PerfomanceProfilingAttribute.cs" />
     <Compile Include="Api\DataApi.cs" />
     <Compile Include="Api\SiteApi.cs" />
     <Compile Include="Api\SiteServiceApi.cs" />
@@ -110,9 +103,8 @@
     <Compile Include="Data\Managers\UserFormManager.cs" />
     <Compile Include="Data\Managers\WebsiteSettingsManager.cs" />
     <Compile Include="Data\Managers\UserManager.cs" />
-    <Compile Include="Data\NHibernateHelper.cs" />
+    <Compile Include="Data\DatabaseHelper.cs" />
     <Compile Include="Data\Providers\BaseProvider.cs" />
-    <Compile Include="Data\DataProvider.cs" />
     <Compile Include="Data\Providers\IProvider.cs" />
     <Compile Include="Data\Providers\MailTemplateProvider.cs" />
     <Compile Include="Data\Providers\ContentBlockProvider.cs" />
@@ -139,10 +131,6 @@
     <Compile Include="Models\Bussines\Post\Post.cs" />
     <Compile Include="Models\Bussines\Post\PostComment.cs" />
     <Compile Include="Models\Bussines\Theme\Theme.cs" />
-    <Compile Include="Models\Mappings\ContentBlockMap.cs" />
-    <Compile Include="Models\Mappings\PageMap.cs" />
-    <Compile Include="Models\Mappings\PostCommentMap.cs" />
-    <Compile Include="Models\Mappings\PostMap.cs" />
     <Compile Include="Models\View\ContentBlock\ContentBlockDesignModel.cs" />
     <Compile Include="Models\View\Page\PageDesignModel.cs" />
     <Compile Include="Models\View\UserForm\UserFormDesignModel.cs" />
@@ -151,11 +139,6 @@
     <Compile Include="Models\Bussines\Admin\UserForm.cs" />
     <Compile Include="Models\Bussines\User\User.cs" />
     <Compile Include="Models\Bussines\Admin\WebsiteSettings.cs" />
-    <Compile Include="Models\Mappings\EntityMap.cs" />
-    <Compile Include="Models\Mappings\UserFormMap.cs" />
-    <Compile Include="Models\Mappings\MailTemplateMap.cs" />
-    <Compile Include="Models\Mappings\WebsiteSettingsMap.cs" />
-    <Compile Include="Models\Mappings\UserMap.cs" />
     <Compile Include="Models\View\MailTemplates\MailTemplateCreateModel.cs" />
     <Compile Include="Models\View\Settings\MailSettings.cs" />
     <Compile Include="Models\View\User\LoginModel.cs" />
@@ -191,6 +174,10 @@
     <ProjectReference Include="..\AAYW.Resources\AAYW.Resources.csproj">
       <Project>{8907e55a-87c2-4352-b777-fead71ad157f}</Project>
       <Name>AAYW.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sORM\sORM.csproj">
+      <Project>{0dac049e-a505-4f26-bcac-db04da7f11a2}</Project>
+      <Name>sORM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

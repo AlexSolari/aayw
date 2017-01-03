@@ -14,5 +14,17 @@ namespace AAYW.Core.Data.Managers
     {
         public PageManager() : base() { }
         public PageManager(bool suppressLogging) : base(suppressLogging) { }
+
+        public override void CreateOrUpdate(Page model)
+        {
+            base.CreateOrUpdate(model);
+        }
+
+        private bool UpdateNeeded(Page model)
+        {
+            var secondModel = GetByField("Url", model.Url);
+
+            return (secondModel != null && secondModel.Id == model.Id);
+        }
     }
 }

@@ -17,8 +17,13 @@ namespace AAYW.Core.Data.Managers
 
         public override void CreateOrUpdate(MailTemplate model)
         {
-            if (CanCreate(model))
+            if (CanCreate(model) || CanUpdate(model))
             {
+                if (CanUpdate(model))
+                {
+                    var secondModel = GetByField("Name", model.Name);
+                    model.Id = secondModel.Id;
+                }
                 base.CreateOrUpdate(model);
             }
             else
@@ -31,7 +36,14 @@ namespace AAYW.Core.Data.Managers
         {
             var secondModel = GetByField("Name", model.Name);
 
-            return (secondModel == null || (secondModel.Id == model.Id));
+            return (secondModel == null);
+        }
+
+        public bool CanUpdate(MailTemplate model)
+        {
+            var secondModel = GetByField("Name", model.Name);
+
+            return (secondModel != null && secondModel.Id == model.Id);
         }
     }
 }

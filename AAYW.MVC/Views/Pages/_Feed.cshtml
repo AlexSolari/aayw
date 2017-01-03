@@ -2,12 +2,13 @@
 @using AAYW.Core.Models.Bussines.Post;
 @model AAYW.Core.Models.Bussines.Admin.ContentBlock
 @{
-    var userManager = AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.UserManager>();
+    var userManager = (AAYW.Core.Data.Managers.UserManager)AAYW.Core.Dependecies.Resolver.GetInstance<AAYW.Core.Data.Managers.IManager<User>>();
+    var CurrentUser = userManager.CurrentUser;
     var postsManager = AAYW.Core.Dependecies.Resolver.GetInstance<IManager<Post>>();
-    var posts = postsManager.GetListByField("FeedId", Model.Id.ToString());
+    var posts = postsManager.GetListByField("FeedId", Model.Id);
 }
 <ul class="feed mui-col-md-offset-2 mui-col-md-8">
-    @if (userManager.IsAuthorized && userManager.CurrentUser != null && userManager.CurrentUser.CurrentRole == AAYW.Core.Models.Bussines.User.User.Role.Admin)
+    @if (userManager.IsAuthorized && CurrentUser != null && CurrentUser.CurrentRole == AAYW.Core.Models.Bussines.User.User.Role.Admin)
     {
         <li class="add-post" data-feed-id="@Model.Id">
             @Html.Button(Html.Text("AddPost"), ButtonType.Raised)

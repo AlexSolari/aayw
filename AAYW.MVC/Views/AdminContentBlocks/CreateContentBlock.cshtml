@@ -1,5 +1,10 @@
 ﻿@model AAYW.Core.Models.View.ContentBlock.ContentBlockDesignModel
-
+@{
+    var selectList = new List<SelectListItem>();
+    selectList.Add(new SelectListItem() { Text = AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Feed, Value = AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Feed });
+    selectList.Add(new SelectListItem() { Text = AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Html, Value = AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Html });
+    selectList.Add(new SelectListItem() { Text = AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Redirect, Value = AAYW.Core.Models.Bussines.Admin.ContentBlock.BlockType.Redirect });
+}
 <div class="popup-editor">
 
     <h2>@Html.Text("CreateContentBlock")</h2>
@@ -13,7 +18,7 @@
             <div class="row">
                 <label>@Html.Text("Type")</label>
                 <div class="control admin-dropdown type-dropdown">
-                    @Html.EnumDropDownListFor(model => model.Type, new { @class = "form-control" })
+                    @Html.DropDownList("Type", selectList, new { @class = "form-control" })
                 </div>
             </div>
             <div class="row">

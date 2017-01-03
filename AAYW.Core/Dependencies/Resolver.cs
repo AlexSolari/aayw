@@ -13,6 +13,7 @@ namespace AAYW.Core.Dependecies
 {
     public static class Resolver
     {
+        static Dictionary<Type, object> instanceDependencies = new Dictionary<Type, object>();
         static Dictionary<Type, Type> typeDependencies = new Dictionary<Type, Type>();
         static Dictionary<string, Type> controllerDependencies = new Dictionary<string, Type>();
         static Dictionary<Type, Type> entitiesDependencies = new Dictionary<Type, Type>();
@@ -24,7 +25,7 @@ namespace AAYW.Core.Dependecies
             if (typeDependencies.ContainsKey(typeof(T)))
                 return typeDependencies[typeof(T)];
             else
-                return typeof(T);
+                return null;
         }
 
         public static Type Resolve(Type type)
@@ -32,9 +33,13 @@ namespace AAYW.Core.Dependecies
             if (typeDependencies.ContainsKey(type))
                 return typeDependencies[type];
             else
-                return type;
+                return null;
         }
 
+        /// <summary>
+        ///     Register type and realisation for DI.
+        /// </summary>
+        /// <param name="registerCollections">If true, also registers IList, List, IEnumerable and ICollection</param>
         /// <typeparam name="T">What will be requested</typeparam>
         /// <typeparam name="I">What will be returned</typeparam>
         public static void RegisterType<T, I>(bool registerCollections = false)
@@ -45,6 +50,8 @@ namespace AAYW.Core.Dependecies
             {
                 typeDependencies.Add(typeof(IList<T>), typeof(List<I>));
                 typeDependencies.Add(typeof(List<T>), typeof(List<I>));
+                typeDependencies.Add(typeof(IEnumerable<T>), typeof(List<I>));
+                typeDependencies.Add(typeof(ICollection<T>), typeof(List<I>));
             }
             if (typeof(I).GetCustomAttributes(typeof(InspectableAttribute), false).Length > 0)
             {
@@ -59,9 +66,52 @@ namespace AAYW.Core.Dependecies
             }
         }
 
+        /// <summary>
+        ///     Resolve dependency and return new instance of registered type.
+        /// </summary>
+        /// <typeparam name="T">What will be returned</typeparam>
         public static T GetInstance<T>(params object[] args)
         {
-            var result = (T)Activator.CreateInstance(Resolve<T>(), args);
+            var resolved = Resolve<T>();
+            object result;
+
+            if (resolved == null && instanceDependencies.ContainsKey(typeof(T)))
+            {
+                result = instanceDependencies[typeof(T)];
+            }
+            else
+            {
+                result = Activator.CreateInstance(resolved, args);
+            }
+
+            if (result is Entity)
+            {
+                var entity = result as Entity;
+                entity.CreatedDate = DateTime.Now;
+                entity.ModifiedDate = DateTime.Now;
+                entity.Id = Guid.NewGuid();
+            }
+
+            return (T)result;
+        }
+
+        /// <summary>
+        ///     Resolve dependency and return new instance of registered type.
+        /// </summary>
+        /// <param name="reflectedType">Type that will be returned. Notice, that result will be boxed.</param>
+        public static object GetInstance(Type type, params object[] args)
+        {
+            var resolved = Resolve(type);
+            object result;
+
+            if (resolved == null && instanceDependencies.ContainsKey(type))
+            {
+                result = instanceDependencies[type];
+            }
+            else
+            {
+                result = Activator.CreateInstance(resolved, args);
+            }
 
             if (result is Entity)
             {
@@ -74,9 +124,36 @@ namespace AAYW.Core.Dependecies
             return result;
         }
 
-        public static object GetInstance(Type type, params object[] args)
+        /// <summary>
+        ///     Register instance of type to be used as singleton.
+        /// </summary>
+        /// <typeparam name="T">What will be returned</typeparam>
+        public static void RegisterInstance<T>(T instance)
         {
-            var result = Activator.CreateInstance(Resolve(type), args);
+            instanceDependencies[typeof(T)] = instance;
+        }
+
+        /// <summary>
+        ///     Resolve dependency and return new instance of registered type.
+        /// </summary>
+        /// <remarks>If requested type is not registered, forces creation of instance anyway</remarks>
+        /// <param name="reflectedType">Type that will be returned. Notice, that result will be boxed.</param>
+        public static object GetInstanceForced(Type reflectedType, params object[] args)
+        {
+            var resolved = Resolve(reflectedType);
+            object result = null;
+
+            if (resolved == null)
+            {
+                if (instanceDependencies.ContainsKey(reflectedType))
+                    result = instanceDependencies[reflectedType];
+                else
+                    result = Activator.CreateInstance(reflectedType, args);
+            }
+            else
+            {
+                result = Activator.CreateInstance(resolved, args);
+            }
 
             if (result is Entity)
             {
@@ -91,7 +168,7 @@ namespace AAYW.Core.Dependecies
         #endregion
 
         #region Controllers
-        
+
         /// <typeparam name="T">What will be requested</typeparam>
         /// <typeparam name="I">What will be returned</typeparam>
         public static void RegisterController<T, I>(string name)
@@ -139,5 +216,7 @@ namespace AAYW.Core.Dependecies
         public static Dictionary<string, string> RouteUrl = new Dictionary<string, string>();
 
         #endregion
+
+        
     }
 }

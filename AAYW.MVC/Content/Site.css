@@ -1,5 +1,11 @@
-﻿body{
+﻿html,body{
+    height: 100%;
+}
+body{
     min-width: 400px;
+}
+main{
+    height: calc(-65px + -4em + 100%);
 }
 .inline {
     display: inline-block;
@@ -40,6 +46,7 @@ ul.inline li { display: inline-block; }
     margin-top: 1em;
     text-align: center;
     padding: 3em 0;
+    height: 100%;
 }
 .landing p{
     max-width: 500px;

@@ -16,16 +16,19 @@ namespace AAYW.Core.Logging
     {
         public void Log(string message)
         {
-            using (var writer = new StreamWriter(HttpContext.Current.Server.MapPath("~/Logs/log.txt"), true))
+            lock (this)
             {
-                writer.WriteLine("[{0}] {1}".FormatWith(DateTime.Now.ToString(), message));
+                using (var writer = new StreamWriter(HttpContext.Current.Server.MapPath("~/Logs/log#{0}.txt".FormatWith(DateTime.Now.ToShortDateString().Replace('/', '.'))), true))
+                {
+                    writer.WriteLine("[{0}] {1}".FormatWith(DateTime.Now.ToString(), message));
+                }
             }
         }
 
         public IEnumerable<string> GetLog()
         {
             var result = new List<string>();
-            using (var reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Logs/log.txt")))
+            using (var reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Logs/log#{0}.txt".FormatWith(DateTime.Now.ToShortDateString().Replace('/', '.')))))
             {
                 while (!reader.EndOfStream)
 	            {
@@ -33,13 +36,14 @@ namespace AAYW.Core.Logging
 	            }
                 
             }
+            result.Reverse();
             return result;
         }
 
         public IEnumerable<string> GetLog(int count)
         {
             var log = GetLog();
-            return log.Skip(Math.Max(log.Count() - count, 0));
+            return log.Take(count);
         }
     }
 }
